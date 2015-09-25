@@ -1,0 +1,8 @@
+map:{
+    # same as UT for now
+    ; repsEnvType = ut
+
+    # no system user here
+    ; additionalUserMap = map:{
+    }
+}

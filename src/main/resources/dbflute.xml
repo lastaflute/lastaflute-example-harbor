@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//DBFLUTE//DTD LastaDi 1.0//EN" 
+	"http://dbflute.org/meta/lastadi10.dtd">
+<components namespace="dbflute">
+	<include condition="#exists('#path')" path="my_included_dbflute.xml"/>
+	<include path="rdb.xml"/>
+
+	<!-- The components of DBFlute Runtime. -->
+	<component name="introduction" class="org.docksidestage.dbflute.allcommon.DBFluteInitializer"/>
+	<component name="invokerAssistant" class="org.docksidestage.dbflute.allcommon.ImplementedInvokerAssistant"/>
+	<component name="behaviorCommandInvoker" class="org.dbflute.bhv.core.BehaviorCommandInvoker"/>
+	<component name="behaviorSelector" class="org.docksidestage.dbflute.allcommon.ImplementedBehaviorSelector"/>
+	<component name="commonColumnAutoSetupper" class="org.docksidestage.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
+
+	<!-- The components of Behavior. -->
+	<component name="memberBhv" class="org.docksidestage.dbflute.exbhv.MemberBhv"/>
+	<component name="memberAddressBhv" class="org.docksidestage.dbflute.exbhv.MemberAddressBhv"/>
+	<component name="memberFollowingBhv" class="org.docksidestage.dbflute.exbhv.MemberFollowingBhv"/>
+	<component name="memberLoginBhv" class="org.docksidestage.dbflute.exbhv.MemberLoginBhv"/>
+	<component name="memberSecurityBhv" class="org.docksidestage.dbflute.exbhv.MemberSecurityBhv"/>
+	<component name="memberServiceBhv" class="org.docksidestage.dbflute.exbhv.MemberServiceBhv"/>
+	<component name="memberStatusBhv" class="org.docksidestage.dbflute.exbhv.MemberStatusBhv"/>
+	<component name="memberWithdrawalBhv" class="org.docksidestage.dbflute.exbhv.MemberWithdrawalBhv"/>
+	<component name="productBhv" class="org.docksidestage.dbflute.exbhv.ProductBhv"/>
+	<component name="productCategoryBhv" class="org.docksidestage.dbflute.exbhv.ProductCategoryBhv"/>
+	<component name="productStatusBhv" class="org.docksidestage.dbflute.exbhv.ProductStatusBhv"/>
+	<component name="purchaseBhv" class="org.docksidestage.dbflute.exbhv.PurchaseBhv"/>
+	<component name="purchasePaymentBhv" class="org.docksidestage.dbflute.exbhv.PurchasePaymentBhv"/>
+	<component name="regionBhv" class="org.docksidestage.dbflute.exbhv.RegionBhv"/>
+	<component name="serviceRankBhv" class="org.docksidestage.dbflute.exbhv.ServiceRankBhv"/>
+	<component name="withdrawalReasonBhv" class="org.docksidestage.dbflute.exbhv.WithdrawalReasonBhv"/>
+</components>

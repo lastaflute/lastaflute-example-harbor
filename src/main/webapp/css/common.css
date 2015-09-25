@@ -1,0 +1,137 @@
+@charset "utf-8";
+
+/* -------------------------------------------------
+                                     Common Style
+------------------------------------------------- */
+
+body {
+	font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
+	background-color: #FAFCF2;
+	color: #444;
+}
+.wrap {
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+/* -------------------------------------------------
+                                           Header
+------------------------------------------------- */
+.nav-main a:LINK, .nav-main a:VISITED {
+	color: #FAFAFA;
+	text-decoration: none;
+}
+.nav-main .link-block {
+	display: block;
+}
+.nav-main {
+	width: 100%;
+	height: 54px;
+	background-color: #882255;
+	color: #FAFAFA;
+}
+.pg-main-title {
+	height: 54px;
+	line-height: 54px;
+	padding: 0 16px 0 8px;
+	display: inline-block;
+	float: left;
+	font-size: 32px;
+}
+.pg-main-title span {
+	font-size: 12px;
+}
+.nav-home > li:HOVER {
+	background-color: #771143;
+}
+.nav-home > li {
+	padding: 0 16px;
+	display: inline-block;
+	line-height: 54px;
+	float: left;
+	cursor: pointer;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.nav-user {
+}
+
+/* dropdown menu */
+ul.nav-user li{
+	float: right;
+	position: relative;
+	width: 120px;
+	margin: 0;
+	padding: 5px;
+	background-color: #882255;
+}
+ul.child{
+	display: none;
+	position: absolute;
+	margin-left: -5px;
+	padding: 0;
+}
+ul.child li a{
+	padding: 5px 10px;
+	margin-left: -5px;
+	margin-right: -5px;
+	margin-bottom: -5px;
+	display: block;
+	color: #fff;
+	background-color: #9D004D;
+}
+ul.nav-user li a:hover{
+	opacity: 0.8;
+}
+/* -------------------------------------------------
+                                             Main
+------------------------------------------------- */
+.pg-content-title {
+	width: 936px;
+	height: 40px;
+	line-height: 40px;
+	margin: 20px auto 0;
+	border-left: solid 8px #882255;
+	padding-left: 16px;
+	font-size: 32px;
+	font-weight: bold;
+}
+.pg-content-title-second {
+	border-left: solid 6px #888;
+	padding-left: 8px;
+	font-size: 24px;
+}
+
+/* -------------------------------------------------
+                                           Footer
+------------------------------------------------- */
+footer {
+	height: 50px;
+	line-height: 50px;
+	background-color: #882255;
+	color: #FAFAFA;
+}
+footer a:LINK, footer a:VISITED {
+	width: 100%;
+	height: 50px;
+	display: inline-block;
+	color: #FAFAFA;
+}
+footer:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.footer-link li {
+	padding: 0 12px;
+	display: inline-block;
+	float: left;
+}
+.copyright {
+	display: inline-block;
+	float: right;
+}

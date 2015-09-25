@@ -1,0 +1,2799 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>maihamadb properties</title>
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
+	font-size: 80%;
+	margin: 10px 5px 5px 15px;
+	background-color: #ffffe0;
+}
+
+/* heading */
+h1 {
+	font-size: 1.5em;
+	border-bottom: 2px solid #af0000;
+	border-top: 2px solid #af0000;
+}
+h2 {
+	margin: 30px 0 5px 0;
+	font-size: 1.8em;
+	border-bottom: 2px solid #af0000;
+	border-left: 10px solid #af0000;
+	text-indent: 10px;
+}
+h3 {
+	padding: 0 0 0 10px;
+	margin: 1em 10% 4px 0;
+	border-left: double 3px #af0000;
+	font-size: 1.5em;
+	color: #333333;
+}
+h4 {
+	padding: 0 0 0 10px;
+	margin: 1em 10% 0 1em;
+	border-top: solid 1px #af0000;
+	border-bottom: solid 1px #af0000;
+	font-size: 1.4em;
+	color: #333333;
+}
+.navilinkarea {
+	text-align: right;
+}
+.requestlink {
+	margin-top: 0.1em;
+}
+.sisterlink {
+	margin-top: 0.6em;
+	font-size: 110%;
+}
+.sistersublink {
+	margin-top: 0.6em;
+	font-size: 80%;
+}
+
+/* table */
+table {
+	border-collapse:collapse;
+}
+table, th {
+	border: 1px solid #555;
+}
+th {
+	background-color: #cc9;
+	font-size: 0.8em;
+}
+td {
+	border-bottom: 1px dotted #aaa;
+	border-left: 1px solid #555;
+	padding:2px;
+}
+.rownumhead {
+	text-align: center;
+	font-size: 0.4em;
+}
+.rownumcell {
+	text-align: center;
+	font-size: 0.4em;
+	color: #444;
+}
+.filecell {
+	font-size: 0.9em;
+	white-space: nowrap;
+}
+.extendsfilecell {
+	font-size: 0.6em;
+	white-space: nowrap;
+}
+.markcell {
+	text-align: center;
+	font-size: 0.8em;
+}
+.keycell {
+	font-size: 0.9em;
+	white-space: nowrap;
+}
+.keylistcell {
+	font-size: 0.8em;
+	white-space: nowrap;
+}
+.envtypecell {
+	text-align: center;
+	font-size: 0.6em;
+}
+.envonlytitle {
+	text-align: center;
+	font-size: 1.0em;
+}
+.envonlycomment {
+	color: green;
+	font-size: 0.6em;
+	font-weight: normal;
+}
+.langtypecell {
+	text-align: center;
+	font-size: 0.6em;
+}
+.valuecell {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+.uniquenocell {
+	color: #555555;
+	text-align: center;
+	font-size: 0.7em;
+}
+.floatleftcell {
+	font-size: 0.8em;
+}
+.sizecell {
+	text-align: center;
+	font-size: 0.8em;
+}
+.checkcell {
+	text-align: center;
+	font-size: 0.8em;
+}
+.commentcell {
+	color: green;
+	font-size: 0.7em;
+}
+.freecomment {
+	color: green;
+	font-size: 0.6em;
+	font-weight: normal;
+}
+.diffprop {
+	color: #CC3311;
+	font-size: 1.1em;
+}
+.tablesupplement {
+	color: green;
+	font-size: 0.7em;
+}
+
+/* inner table */
+table.child {
+	margin: 3px;
+}
+table.child th {
+	font-size: 0.7em;
+}
+table.child, table.child td, table.child th {
+	border-top: none;
+	border-left: none;
+	border-bottom: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+}
+	</style>
+</head>
+
+<body>
+<h1>Properties for maihamadb</h1>
+<div class="navilinkarea">
+	<p class="requestlink"><a href="#harborenv">HarborEnv</a></p>
+	<p class="requestlink"><a href="#harborconfig">HarborConfig</a></p>
+	<p class="requestlink"><a href="#harborlabel">HarborLabel</a></p>
+	<p class="requestlink"><a href="#harbormessage">HarborMessage</a></p>
+<p class="sisterlink"><a href="./schema-maihamadb.html">to SchemaHTML</a></p>
+<p class="sisterlink"><a href="./history-maihamadb.html">to HistoryHTML</a></p>
+</div>
+
+<h2 id="propertieslist">Properties List</h2>
+
+<h3><a href="#harborenv">HarborEnv</a></h3>
+<table summary="File Attributes">
+	<thead>
+		<tr>
+			<th>File</th>
+			<th>Env</th>
+			<th>Lang</th>
+			<th>Key Count</th>
+			<th>Duplicate Key</th>
+			<th>Over Key</th>
+			<th>Short Key</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="filecell">../src/main/resources/harbor_env_production.properties</td>
+			<td class="envtypecell">-</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">17</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="keylistcell">
+				<p class="diffprop">mail.address.support</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="filecell">../src/main/resources/harbor_env_integration.properties</td>
+			<td class="envtypecell">integration</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">17</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="filecell">../src/main/resources/harbor_env_production.properties</td>
+			<td class="envtypecell">production</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">17</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+<h3><a href="#harborconfig">HarborConfig</a> <span class="freecomment">(extends HarborEnv)</span></h3>
+<table summary="File Attributes">
+	<thead>
+		<tr>
+			<th>File</th>
+			<th>Env</th>
+			<th>Lang</th>
+			<th>Key Count</th>
+			<th>Extends</th>
+			<th>Duplicate Key</th>
+			<th>Over Key</th>
+			<th>Short Key</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="filecell"><strong>../src/main/resources/harbor_config.properties</strong></td>
+			<td class="envtypecell">-</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">9</td>
+			<td class="extendsfilecell">../src/main/resources/harbor_env_production.properties</td>
+			<td>&nbsp;</td>
+			<td class="markcell">-</td>
+			<td class="markcell">-</td>
+		</tr>
+	</tbody>
+</table>
+<h3><a href="#harborlabel">HarborLabel</a></h3>
+<table summary="File Attributes">
+	<thead>
+		<tr>
+			<th>File</th>
+			<th>Env</th>
+			<th>Lang</th>
+			<th>Key Count</th>
+			<th>Duplicate Key</th>
+			<th>Over Key</th>
+			<th>Short Key</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="filecell"><strong>../src/main/resources/harbor_label.properties</strong></td>
+			<td class="envtypecell">-</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">40</td>
+			<td>&nbsp;</td>
+			<td class="markcell">-</td>
+			<td class="markcell">-</td>
+		</tr>
+	</tbody>
+</table>
+<h3><a href="#harbormessage">HarborMessage</a> <span class="freecomment">(extends HarborLabel)</span></h3>
+<table summary="File Attributes">
+	<thead>
+		<tr>
+			<th>File</th>
+			<th>Env</th>
+			<th>Lang</th>
+			<th>Key Count</th>
+			<th>Extends</th>
+			<th>Duplicate Key</th>
+			<th>Over Key</th>
+			<th>Short Key</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="filecell"><strong>../src/main/resources/harbor_message.properties</strong></td>
+			<td class="envtypecell">-</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">39</td>
+			<td class="extendsfilecell">../src/main/resources/harbor_label.properties</td>
+			<td>&nbsp;</td>
+			<td class="markcell">-</td>
+			<td class="markcell">-</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 id="harborenv">HarborEnv</h2>
+<table summary="Properties">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>Property Key</th>
+		<th>Contents</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="keycell">lasta_di.smart.deploy.mode</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">cool</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;mode&nbsp;of&nbsp;Lasta&nbsp;Di's&nbsp;smart-deploy,&nbsp;should&nbsp;be&nbsp;cool&nbsp;in&nbsp;production&nbsp;(e.g.&nbsp;hot,&nbsp;cool,&nbsp;warm)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">cool</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;mode&nbsp;of&nbsp;Lasta&nbsp;Di's&nbsp;smart-deploy,&nbsp;should&nbsp;be&nbsp;cool&nbsp;in&nbsp;production&nbsp;(e.g.&nbsp;hot,&nbsp;cool,&nbsp;warm)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">cool</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;mode&nbsp;of&nbsp;Lasta&nbsp;Di's&nbsp;smart-deploy,&nbsp;should&nbsp;be&nbsp;cool&nbsp;in&nbsp;production&nbsp;(e.g.&nbsp;hot,&nbsp;cool,&nbsp;warm)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="keycell">development.here</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Is&nbsp;development&nbsp;environment&nbsp;here?&nbsp;(used&nbsp;for&nbsp;various&nbsp;purpose,&nbsp;you&nbsp;should&nbsp;set&nbsp;false&nbsp;if&nbsp;unknown)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Is&nbsp;development&nbsp;environment&nbsp;here?&nbsp;(used&nbsp;for&nbsp;various&nbsp;purpose,&nbsp;you&nbsp;should&nbsp;set&nbsp;false&nbsp;if&nbsp;unknown)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Is&nbsp;development&nbsp;environment&nbsp;here?&nbsp;(used&nbsp;for&nbsp;various&nbsp;purpose,&nbsp;you&nbsp;should&nbsp;set&nbsp;false&nbsp;if&nbsp;unknown)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="keycell">environment.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Production</td>
+					<td class="uniquenocell">3</td>
+					<td class="commentcell">The&nbsp;title&nbsp;of&nbsp;environment&nbsp;(e.g.&nbsp;local&nbsp;or&nbsp;integartion&nbsp;or&nbsp;production)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Integration</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;title&nbsp;of&nbsp;environment&nbsp;(e.g.&nbsp;local&nbsp;or&nbsp;integartion&nbsp;or&nbsp;production)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Production</td>
+					<td class="uniquenocell">3</td>
+					<td class="commentcell">The&nbsp;title&nbsp;of&nbsp;environment&nbsp;(e.g.&nbsp;local&nbsp;or&nbsp;integartion&nbsp;or&nbsp;production)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="keycell">framework.debug</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;enable&nbsp;the&nbsp;Framework&nbsp;internal&nbsp;debug?&nbsp;(true&nbsp;only&nbsp;when&nbsp;emergency)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;enable&nbsp;the&nbsp;Framework&nbsp;internal&nbsp;debug?&nbsp;(true&nbsp;only&nbsp;when&nbsp;emergency)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;enable&nbsp;the&nbsp;Framework&nbsp;internal&nbsp;debug?&nbsp;(true&nbsp;only&nbsp;when&nbsp;emergency)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="keycell">time.adjust.time.millis</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">0</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;milliseconds&nbsp;for&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;adjust&nbsp;time&nbsp;(set&nbsp;only&nbsp;when&nbsp;test)&nbsp;@LongType</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">0</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;milliseconds&nbsp;for&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;adjust&nbsp;time&nbsp;(set&nbsp;only&nbsp;when&nbsp;test)&nbsp;@LongType</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">0</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;milliseconds&nbsp;for&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;adjust&nbsp;time&nbsp;(set&nbsp;only&nbsp;when&nbsp;test)&nbsp;@LongType</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="keycell">log.level</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">info</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;log&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">info</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;log&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">info</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;log&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="keycell">log.file.basedir</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">/tmp/lastaflute/harbor</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;log&nbsp;file&nbsp;basedir</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">/tmp/lastaflute/harbor</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;log&nbsp;file&nbsp;basedir</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">/tmp/lastaflute/harbor</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;log&nbsp;file&nbsp;basedir</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="keycell">mail.send.mock</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;send&nbsp;mock&nbsp;mail?&nbsp;(true:&nbsp;no&nbsp;send&nbsp;actually,&nbsp;logging&nbsp;only)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;send&nbsp;mock&nbsp;mail?&nbsp;(true:&nbsp;no&nbsp;send&nbsp;actually,&nbsp;logging&nbsp;only)</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">false</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">Does&nbsp;it&nbsp;send&nbsp;mock&nbsp;mail?&nbsp;(true:&nbsp;no&nbsp;send&nbsp;actually,&nbsp;logging&nbsp;only)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="keycell">mail.smtp.server.main.host.and.port</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">localhost:25</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">SMTP&nbsp;server&nbsp;settings&nbsp;for&nbsp;main:&nbsp;host:port</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">localhost:25</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">SMTP&nbsp;server&nbsp;settings&nbsp;for&nbsp;main:&nbsp;host:port</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">localhost:25</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">SMTP&nbsp;server&nbsp;settings&nbsp;for&nbsp;main:&nbsp;host:port</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="keycell">mail.subject.test.prefix</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell"> &nbsp;</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;prefix&nbsp;of&nbsp;subject&nbsp;to&nbsp;show&nbsp;test&nbsp;environment&nbsp;or&nbsp;not</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">[Test]</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;prefix&nbsp;of&nbsp;subject&nbsp;to&nbsp;show&nbsp;test&nbsp;environment&nbsp;or&nbsp;not</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell"> &nbsp;</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;prefix&nbsp;of&nbsp;subject&nbsp;to&nbsp;show&nbsp;test&nbsp;environment&nbsp;or&nbsp;not</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="keycell">mail.return.path</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">returnpath@docksidestage.org</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;common&nbsp;return&nbsp;path&nbsp;of&nbsp;all&nbsp;mail</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">returnpath@docksidestage.org</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;common&nbsp;return&nbsp;path&nbsp;of&nbsp;all&nbsp;mail</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">returnpath@docksidestage.org</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;common&nbsp;return&nbsp;path&nbsp;of&nbsp;all&nbsp;mail</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
+		<td class="keycell">jdbc.driver</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">org.h2.Driver</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;driver&nbsp;FQCN&nbsp;to&nbsp;connect&nbsp;database&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">org.h2.Driver</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;driver&nbsp;FQCN&nbsp;to&nbsp;connect&nbsp;database&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">org.h2.Driver</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;driver&nbsp;FQCN&nbsp;to&nbsp;connect&nbsp;database&nbsp;for&nbsp;JDBC</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">13</td>
+		<td class="keycell">jdbc.url</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">jdbc:h2:file:$classes(org.docksidestage.dbflute.allcommon.DBCurrent.class)/../../etc/testdb/maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;URL&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">jdbc:h2:file:$classes(org.docksidestage.dbflute.allcommon.DBCurrent.class)/../../etc/testdb/maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;URL&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">jdbc:h2:file:$classes(org.docksidestage.dbflute.allcommon.DBCurrent.class)/../../etc/testdb/maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;URL&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">14</td>
+		<td class="keycell">jdbc.user</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;user&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;user&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">maihamadb</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;user&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">15</td>
+		<td class="keycell">jdbc.password</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">********</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">@Secure&nbsp;The&nbsp;password&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">********</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">@Secure&nbsp;The&nbsp;password&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">********</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">@Secure&nbsp;The&nbsp;password&nbsp;of&nbsp;database&nbsp;connection&nbsp;for&nbsp;JDBC</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">16</td>
+		<td class="keycell">jdbc.connection.pooling.size</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">10</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;(max)&nbsp;pooling&nbsp;size&nbsp;of&nbsp;Seasar's&nbsp;connection&nbsp;pool</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">10</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;(max)&nbsp;pooling&nbsp;size&nbsp;of&nbsp;Seasar's&nbsp;connection&nbsp;pool</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">10</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;(max)&nbsp;pooling&nbsp;size&nbsp;of&nbsp;Seasar's&nbsp;connection&nbsp;pool</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">17</td>
+		<td class="keycell">server.domain</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">docksidestage.org</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">domain&nbsp;to&nbsp;access&nbsp;this&nbsp;application&nbsp;from&nbsp;internet,&nbsp;e.g.&nbsp;for&nbsp;registration&nbsp;mail</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">docksidestage.org</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">domain&nbsp;to&nbsp;access&nbsp;this&nbsp;application&nbsp;from&nbsp;internet,&nbsp;e.g.&nbsp;for&nbsp;registration&nbsp;mail</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">docksidestage.org</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">domain&nbsp;to&nbsp;access&nbsp;this&nbsp;application&nbsp;from&nbsp;internet,&nbsp;e.g.&nbsp;for&nbsp;registration&nbsp;mail</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">18</td>
+		<td class="keycell">mail.address.support</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">harbor-support@annie.example.com</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Mail&nbsp;Address&nbsp;for&nbsp;Harbor&nbsp;Support</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<p class="tablesupplement">*uq: Unique No (same value, same No)</p>
+<h2 id="harborconfig">HarborConfig <span class="freecomment">(extends HarborEnv)</span></h2>
+<table summary="Properties">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>Property Key</th>
+		<th>Contents</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="keycell">domain.name</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">harbor</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;name&nbsp;of&nbsp;domain&nbsp;(means&nbsp;this&nbsp;application)&nbsp;as&nbsp;identity</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="keycell">domain.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Harbor</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;title&nbsp;of&nbsp;domain&nbsp;(means&nbsp;this&nbsp;application)&nbsp;for&nbsp;logging</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="keycell">cookie.default.path</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">/</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;default&nbsp;path&nbsp;of&nbsp;cookie&nbsp;(basically&nbsp;'/'&nbsp;if&nbsp;no&nbsp;context&nbsp;path)</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="keycell">cookie.default.expire</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">31556926</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;default&nbsp;expire&nbsp;of&nbsp;cookie&nbsp;in&nbsp;seconds&nbsp;e.g.&nbsp;31556926:&nbsp;one&nbsp;year,&nbsp;86400:&nbsp;one&nbsp;day</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="keycell">cookie.eternal.expire</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">315360000</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;eternal&nbsp;expire&nbsp;of&nbsp;cookie&nbsp;in&nbsp;seconds&nbsp;e.g.&nbsp;315360000:&nbsp;ten&nbsp;year,&nbsp;86400:&nbsp;one&nbsp;day</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="keycell">cookie.remember.me.harbor.key</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">HRB</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;cookie&nbsp;key&nbsp;of&nbsp;remember-me&nbsp;for&nbsp;Harbor</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="keycell">paging.page.size</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">4</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;size&nbsp;of&nbsp;one&nbsp;page&nbsp;for&nbsp;paging</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="keycell">paging.page.range.size</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">3</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;size&nbsp;of&nbsp;page&nbsp;range&nbsp;for&nbsp;paging</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="keycell">paging.page.range.fill.limit</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">true</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;option&nbsp;'fillLimit'&nbsp;of&nbsp;page&nbsp;range&nbsp;for&nbsp;paging</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<p class="tablesupplement">*uq: Unique No (same value, same No)</p>
+<h2 id="harborlabel">HarborLabel</h2>
+<table summary="Properties">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>Property Key</th>
+		<th>Contents</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="keycell">labels.member</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Member</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="keycell">labels.product</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Product</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="keycell">labels.status</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Status</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="keycell">labels.withdrawal</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Withdrawal</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="keycell">labels.member.status</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.member]&nbsp;@[labels.status]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="keycell">labels.product.status</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.product]&nbsp;@[labels.status]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="keycell">labels.memberId</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.member]&nbsp;ID</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">---------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="keycell">labels.memberName</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.member]&nbsp;Name</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="keycell">labels.email</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Mail&nbsp;Address</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="keycell">labels.account</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Account</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="keycell">labels.password</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Password</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
+		<td class="keycell">labels.versionNo</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Version&nbsp;No</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">13</td>
+		<td class="keycell">labels.list</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">List</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">---------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">14</td>
+		<td class="keycell">labels.detail</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Detail</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">15</td>
+		<td class="keycell">labels.edit</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Edit</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">16</td>
+		<td class="keycell">labels.add</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Add</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">17</td>
+		<td class="keycell">labels.search</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Search</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">18</td>
+		<td class="keycell">labels.register</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Register</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">19</td>
+		<td class="keycell">labels.update</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Update</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">20</td>
+		<td class="keycell">labels.confirm</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Confirm</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">21</td>
+		<td class="keycell">labels.finish</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Finish</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">22</td>
+		<td class="keycell">labels.member.list.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.list]&nbsp;of&nbsp;@[labels.member]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">23</td>
+		<td class="keycell">labels.member.add.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.add]&nbsp;@[labels.member]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">24</td>
+		<td class="keycell">labels.member.edit.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.edit]&nbsp;@[labels.member]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">25</td>
+		<td class="keycell">labels.member.input.keyword</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">input&nbsp;keyword&nbsp;to&nbsp;search</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">26</td>
+		<td class="keycell">labels.member.input.zipCode</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">e.g.&nbsp;153-0051</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">27</td>
+		<td class="keycell">labels.mypage.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">My&nbsp;Page</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">28</td>
+		<td class="keycell">labels.profile.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Profile</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">29</td>
+		<td class="keycell">labels.withdrawal.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.withdrawal]&nbsp;@[labels.account]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">30</td>
+		<td class="keycell">labels.withdrawal.confirm.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.confirm]&nbsp;@[labels.withdrawal]&nbsp;Reason</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">31</td>
+		<td class="keycell">labels.product.list.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.list]&nbsp;of&nbsp;@[labels.product]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">32</td>
+		<td class="keycell">labels.product.detail.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.detail]&nbsp;of&nbsp;@[labels.product]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">33</td>
+		<td class="keycell">labels.signin.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Sign&nbsp;In</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">34</td>
+		<td class="keycell">labels.signin.button</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Sign&nbsp;in</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">35</td>
+		<td class="keycell">labels.signin.input.account</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">input&nbsp;Pixy</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">36</td>
+		<td class="keycell">labels.signin.input.password</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">input&nbsp;sea</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">37</td>
+		<td class="keycell">labels.error.message.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Notice</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">38</td>
+		<td class="keycell">labels.listbox.caption.short</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">--</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">39</td>
+		<td class="keycell">labels.listbox.caption.long</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">----</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">40</td>
+		<td class="keycell">labels.listbox.caption.tell</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">select</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<p class="tablesupplement">*uq: Unique No (same value, same No)</p>
+<h2 id="harbormessage">HarborMessage <span class="freecomment">(extends HarborLabel)</span></h2>
+<table summary="Properties">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>Property Key</th>
+		<th>Contents</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="keycell">errors.header</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">&lt;font&nbsp;color="red"&gt;&lt;ul&gt;</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">------------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="keycell">errors.footer</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">&lt;/ul&gt;&lt;/font&gt;</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="keycell">errors.prefix</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">&lt;li&gt;</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="keycell">errors.suffix</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">&lt;/li&gt;</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="keycell">constraints.AssertFalse.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;false</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">---------------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="keycell">constraints.AssertTrue.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;true</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="keycell">constraints.DecimalMax.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;less&nbsp;than&nbsp;${inclusive&nbsp;==&nbsp;true&nbsp;?&nbsp;'or&nbsp;equal&nbsp;to&nbsp;'&nbsp;:&nbsp;''}{value}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="keycell">constraints.DecimalMin.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;greater&nbsp;than&nbsp;${inclusive&nbsp;==&nbsp;true&nbsp;?&nbsp;'or&nbsp;equal&nbsp;to&nbsp;'&nbsp;:&nbsp;''}{value}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="keycell">constraints.Digits.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;bounds&nbsp;(&lt;{integer}&nbsp;digits&gt;.&lt;{fraction}&nbsp;digits&gt;&nbsp;expected)</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="keycell">constraints.Future.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;in&nbsp;the&nbsp;future</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="keycell">constraints.Max.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;{value}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
+		<td class="keycell">constraints.Min.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;{value}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">13</td>
+		<td class="keycell">constraints.NotNull.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;null</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">14</td>
+		<td class="keycell">constraints.Null.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;null</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">15</td>
+		<td class="keycell">constraints.Past.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;in&nbsp;the&nbsp;past</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">16</td>
+		<td class="keycell">constraints.Pattern.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;match&nbsp;"{regexp}"</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">17</td>
+		<td class="keycell">constraints.Size.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">size&nbsp;must&nbsp;be&nbsp;between&nbsp;{min}&nbsp;and&nbsp;{max}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">18</td>
+		<td class="keycell">constraints.CreditCardNumber.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">invalid&nbsp;credit&nbsp;card&nbsp;number</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">-------------------</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">19</td>
+		<td class="keycell">constraints.EAN.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">invalid&nbsp;{type}&nbsp;barcode</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">20</td>
+		<td class="keycell">constraints.Email.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">not&nbsp;a&nbsp;well-formed&nbsp;email&nbsp;address</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">21</td>
+		<td class="keycell">constraints.Length.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">length&nbsp;must&nbsp;be&nbsp;between&nbsp;{min}&nbsp;and&nbsp;{max}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">22</td>
+		<td class="keycell">constraints.LuhnCheck.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">The&nbsp;check&nbsp;digit&nbsp;for&nbsp;${value}&nbsp;is&nbsp;invalid,&nbsp;Luhn&nbsp;Modulo&nbsp;10&nbsp;checksum&nbsp;failed</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">23</td>
+		<td class="keycell">constraints.Mod10Check.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">The&nbsp;check&nbsp;digit&nbsp;for&nbsp;${value}&nbsp;is&nbsp;invalid,&nbsp;Modulo&nbsp;10&nbsp;checksum&nbsp;failed</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">24</td>
+		<td class="keycell">constraints.Mod11Check.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">The&nbsp;check&nbsp;digit&nbsp;for&nbsp;${value}&nbsp;is&nbsp;invalid,&nbsp;Modulo&nbsp;11&nbsp;checksum&nbsp;failed</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">25</td>
+		<td class="keycell">constraints.ModCheck.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">The&nbsp;check&nbsp;digit&nbsp;for&nbsp;${value}&nbsp;is&nbsp;invalid,&nbsp;${modType}&nbsp;checksum&nbsp;failed</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">26</td>
+		<td class="keycell">constraints.NotBlank.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">27</td>
+		<td class="keycell">constraints.NotEmpty.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">28</td>
+		<td class="keycell">constraints.ParametersScriptAssert.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">script&nbsp;expression&nbsp;"{script}"&nbsp;didn't&nbsp;evaluate&nbsp;to&nbsp;true</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">29</td>
+		<td class="keycell">constraints.Range.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;between&nbsp;{min}&nbsp;and&nbsp;{max}</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">30</td>
+		<td class="keycell">constraints.SafeHtml.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;have&nbsp;unsafe&nbsp;html&nbsp;content</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">31</td>
+		<td class="keycell">constraints.ScriptAssert.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">script&nbsp;expression&nbsp;"{script}"&nbsp;didn't&nbsp;evaluate&nbsp;to&nbsp;true</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">32</td>
+		<td class="keycell">constraints.URL.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">must&nbsp;be&nbsp;a&nbsp;valid&nbsp;URL</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">33</td>
+		<td class="keycell">constraints.Required.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">is&nbsp;required</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">34</td>
+		<td class="keycell">errors.login.failure</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">could&nbsp;not&nbsp;login</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-/</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">35</td>
+		<td class="keycell">errors.app.illegal.transition</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">retry&nbsp;because&nbsp;of&nbsp;illegal&nbsp;transition</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">36</td>
+		<td class="keycell">errors.app.db.already.deleted</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">others&nbsp;might&nbsp;be&nbsp;updated,&nbsp;so&nbsp;retry</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">37</td>
+		<td class="keycell">errors.app.db.already.updated</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">others&nbsp;might&nbsp;be&nbsp;updated,&nbsp;so&nbsp;retry</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">38</td>
+		<td class="keycell">errors.app.db.already.exists</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">already&nbsp;existing&nbsp;data,&nbsp;so&nbsp;retry</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">39</td>
+		<td class="keycell">errors.signup.account.already.exists</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">the&nbsp;account&nbsp;already&nbsp;exists&nbsp;so&nbsp;input&nbsp;others</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<p class="tablesupplement">*uq: Unique No (same value, same No)</p>
+
+<h2>Thanks</h2>
+<p>
+	Created by <a href="http://dbflute.org/">DBFlute(AutoGenerator)</a>
+</p>
+</body>
+</html>

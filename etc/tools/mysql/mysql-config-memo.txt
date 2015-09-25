@@ -1,0 +1,16 @@
+
+# ========================================================================================
+#                                                                            Configuration
+#                                                                            =============
+Set up the following recommended settings to my.ini or my.cnf:
+
+# /* * * * * * * * * * * * * * * * * * * * * * * * Custom Settings
+character_set_server=utf8mb4
+lower_case_table_names=1
+
+# to avoid easy deadlock of repeatable-read
+transaction-isolation=READ-COMMITTED
+
+# TRADITIONAL contains STRICT_ALL_TABLES, NO_ZERO_DATE and so on...
+sql_mode="TRADITIONAL"
+# * * * * * * * * * */

@@ -1,0 +1,17 @@
+map:{
+    ; 2015/09/25 16:35:28 = map:{
+        ; diffDate = 2015/09/25 16:35:28
+        ; tableDiff = map:{
+            ; MEMBER_WITHDRAWAL = map:{
+                ; tableName = MEMBER_WITHDRAWAL
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; VERSION_NO = map:{
+                        ; columnName = VERSION_NO
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+}

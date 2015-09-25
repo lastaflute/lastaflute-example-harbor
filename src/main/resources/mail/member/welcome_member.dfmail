@@ -1,0 +1,20 @@
+/*
+ [New Member's Registration]
+ The member will be formalized after click.
+*/
+subject: Welcome to your sign up, /*pmb.memberName*/
+>>>
+Hello, /*pmb.memberName*/
+
+How are you? Thank you for signing up to Maihama!
+
+You are now temporaly registered to the site. 
+Please click on the link below to become a formal member. 
+http:///*pmb.domain*//signup/register//*pmb.token*/
+
+We hope you will enjoy your time in Maihama.
+/* this is no comment */
+Thank you. 
+
+Regards, 
+Docksidestage Support Team

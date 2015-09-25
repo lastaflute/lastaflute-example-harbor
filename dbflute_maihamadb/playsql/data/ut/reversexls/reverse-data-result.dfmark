@@ -1,0 +1,29 @@
+
+* * * * * * * * * * *
+*                   *
+* Load Data Reverse *
+*                   *
+* * * * * * * * * * *
+...Outputting load data: tables=10
+  isReplaceSchemaDirectUse = true
+  isOverrideExistingDataFile = false
+  isSynchronizeOriginDate = true
+
+[cyclic-data-01-MEMBER-plus.xls]: tables=8
+  MEMBER (20)
+  MEMBER_ADDRESS (20)
+  MEMBER_FOLLOWING (111)
+  MEMBER_LOGIN (57)
+  MEMBER_SECURITY (20)
+  MEMBER_SERVICE (20)
+  MEMBER_WITHDRAWAL (4)
+  PRODUCT (20)
+
+[cyclic-data-02-PURCHASE.xls]: tables=2
+  PURCHASE (70)
+  PURCHASE_PAYMENT (100)
+
+[loadingControlMap.dataprop]
+df:originDate: 2014/04/30 -> 2015/08/07
+
+Output Date: 2015/08/07 19:04:29

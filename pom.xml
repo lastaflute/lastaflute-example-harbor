@@ -32,7 +32,7 @@
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
 		<utflute.version>0.5.0-sp9</utflute.version>
-		<jetty.boot.version>0.3.4</jetty.boot.version>
+		<jetty.boot.version>0.3.5</jetty.boot.version>
 	</properties>
 
 	<licenses>

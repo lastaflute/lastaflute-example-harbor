@@ -18,6 +18,7 @@ package org.docksidestage.mylasta;
 import java.io.File;
 import java.lang.reflect.Modifier;
 
+import org.dbflute.utflute.core.document.DocumentGenerator;
 import org.docksidestage.unit.UnitHarborTestCase;
 
 /**
@@ -47,5 +48,10 @@ public class ActionDefinitionTest extends UnitHarborTestCase {
 
     protected void assertActionDefinition(File srcFile, Class<?> clazz) {
         getComponent(clazz); // expect no exception
+    }
+
+    public void test_document() throws Exception {
+        DocumentGenerator documentGenerator = new DocumentGenerator();
+        documentGenerator.saveLastaDocMeta();
     }
 }

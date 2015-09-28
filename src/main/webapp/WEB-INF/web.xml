@@ -49,10 +49,6 @@
     <!--                                                                        ========== -->
     <!-- #migration change taglib definition -->
 	<jsp-config>
-		<taglib>
-			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
-			<taglib-location>/META-INF/c.tld</taglib-location>
-		</taglib>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<el-ignored>false</el-ignored>

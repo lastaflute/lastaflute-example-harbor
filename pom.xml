@@ -32,7 +32,7 @@
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
 		<utflute.version>0.5.0-sp9</utflute.version>
-		<jetty.boot.version>0.3.5</jetty.boot.version>
+		<jetty.boot.version>0.3.6-A-SNAPSHOT</jetty.boot.version>
 	</properties>
 
 	<licenses>
@@ -296,16 +296,24 @@
 			<artifactId>jetty-boot</artifactId>
 			<version>${jetty.boot.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency> <!-- jetty-all does not contain JSP -->
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>9.2.13.v20150730</version>
-			<scope>provided</scope>
-			<exclusions> <!-- jstl already exists -->
-				<exclusion><groupId>org.eclipse.jetty.orbit</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>
-				<exclusion><groupId>org.glassfish.web</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>
+			<exclusions> <!-- apache-jsp already contains -->
+				<exclusion><groupId>org.glassfish</groupId><artifactId>javax.el</artifactId></exclusion>
 			</exclusions>
+		</dependency>
+		<dependency> <!-- jetty-boot needs jasper as jsp engine -->
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>apache-jsp</artifactId>
+			<version>9.3.3.v20150827</version>
+			<exclusions>
+				<exclusion><groupId>org.eclipse.jetty</groupId><artifactId>jetty-server</artifactId></exclusion>
+				<exclusion><groupId>org.eclipse.jetty</groupId><artifactId>jetty-util</artifactId></exclusion>
+				<exclusion><groupId>org.eclipse.jetty.http2</groupId><artifactId>http2-server</artifactId></exclusion>
+			</exclusions>
+		</dependency>
+		<dependency> <!-- needed for annotation handling (that is needed for tld scan)  -->
+			<groupId>asm</groupId>
+			<artifactId>asm-all</artifactId>
+			<version>3.3.1</version>
 		</dependency>
 
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->

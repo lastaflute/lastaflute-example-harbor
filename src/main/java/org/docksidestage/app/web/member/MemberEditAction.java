@@ -56,19 +56,20 @@ public class MemberEditAction extends HarborBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse index(Integer memberId, MemberForm form) {
+    public HtmlResponse index(Integer memberId) {
         Member member = selectMember(memberId);
-        form.memberId = member.getMemberId();
-        form.memberName = member.getMemberName();
-        form.memberAccount = member.getMemberAccount();
-        form.memberStatusCode = member.getMemberStatusCode();
-        form.birthdate = toStringDate(member.getBirthdate()).orElse(null);
-        form.formalizedDate = toStringDate(member.getFormalizedDatetime()).orElse(null);
-        form.latestLoginDatetime = toStringDateTime(member.getLatestLoginDatetime()).orElse(null);
-        form.updateDatetime = toStringDateTime(member.getUpdateDatetime()).get();
-        form.previousStatusCode = member.getMemberStatusCode(); // to determine new formalized member
-        form.versionNo = member.getVersionNo();
-        return asHtml(path_Member_MemberEditJsp).renderWith(data -> {
+        return asHtml(path_Member_MemberEditJsp).useForm(MemberForm.class, op -> op.setup(form -> {
+            form.memberId = member.getMemberId();
+            form.memberName = member.getMemberName();
+            form.memberAccount = member.getMemberAccount();
+            form.memberStatusCode = member.getMemberStatusCode();
+            form.birthdate = toStringDate(member.getBirthdate()).orElse(null);
+            form.formalizedDate = toStringDate(member.getFormalizedDatetime()).orElse(null);
+            form.latestLoginDatetime = toStringDate(member.getLatestLoginDatetime()).orElse(null);
+            form.updateDatetime = toStringDate(member.getUpdateDatetime()).get();
+            form.previousStatusCode = member.getMemberStatusCode(); // to determine new formalized member
+            form.versionNo = member.getVersionNo();
+        })).renderWith(data -> {
             data.register("memberStatusMap", prepareMemberStatusMap());
         });
     }

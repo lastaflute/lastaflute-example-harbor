@@ -161,7 +161,7 @@ public abstract class BsMemberService extends AbstractEntity implements DomainEn
     /**
      * Get the value of serviceRankCode as the classification of ServiceRank. <br>
      * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * 会員が受けられるサービスのランクを示す
+     * rank of service member gets
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
      */
@@ -172,7 +172,7 @@ public abstract class BsMemberService extends AbstractEntity implements DomainEn
     /**
      * Set the value of serviceRankCode as the classification of ServiceRank. <br>
      * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * 会員が受けられるサービスのランクを示す
+     * rank of service member gets
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setServiceRankCodeAsServiceRank(CDef.ServiceRank cdef) {

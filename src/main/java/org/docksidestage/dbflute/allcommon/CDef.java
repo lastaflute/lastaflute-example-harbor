@@ -36,14 +36,14 @@ public interface CDef extends Classification {
     Map<String, Object> EMPTY_SUB_ITEM_MAP = (Map<String, Object>)Collections.EMPTY_MAP;
 
     /**
-     * フラグを示す
+     * general boolean classification for every flg-column
      */
     public enum Flg implements CDef {
-        /** はい: 有効を示す */
-        True("1", "はい", new String[] {"true"})
+        /** Checked: means yes */
+        True("1", "Checked", new String[] {"true"})
         ,
-        /** いいえ: 無効を示す */
-        False("0", "いいえ", new String[] {"false"})
+        /** Unchecked: means no */
+        False("0", "Unchecked", new String[] {"false"})
         ;
         private static final Map<String, Flg> _codeValueMap = new HashMap<String, Flg>();
         static {
@@ -106,7 +106,7 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 入会から退会までの会員のステータスを示す
+     * status of member from entry to withdrawal
      */
     public enum MemberStatus implements CDef {
         /** Formalized: as formal member, allowed to use all service */
@@ -135,7 +135,7 @@ public interface CDef extends Classification {
 
         /**
          * Is the classification in the group? <br>
-         * Members that can use the service, can sign in <br>
+         * means member that can use services <br>
          * The group elements:[Formalized, Provisional]
          * @return The determination, true or false.
          */
@@ -190,7 +190,7 @@ public interface CDef extends Classification {
 
         /**
          * Get the list of group classification elements. (returns new copied list) <br>
-         * Members that can use the service, can sign in <br>
+         * means member that can use services <br>
          * The group elements:[Formalized, Provisional]
          * @return The list of classification elements in the group. (NotNull)
          */
@@ -223,7 +223,7 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 会員が受けられるサービスのランクを示す
+     * rank of service member gets
      */
     public enum ServiceRank implements CDef {
         /** PLATINUM: platinum rank */
@@ -302,7 +302,7 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 主に会員の住んでいる地域を示す
+     * mainly region of member address
      */
     public enum Region implements CDef {
         /** AMERICA */
@@ -378,20 +378,20 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 会員の退会理由。なのでちょっとねがてぃぶ
+     * reason for member withdrawal
      */
     public enum WithdrawalReason implements CDef {
-        /** site is not kindness: site is not kindness */
-        Sit("SIT", "site is not kindness", EMPTY_SISTERS)
+        /** SIT: site is not kindness */
+        Sit("SIT", "SIT", EMPTY_SISTERS)
         ,
-        /** no attractive product: no attractive product */
-        Prd("PRD", "no attractive product", EMPTY_SISTERS)
+        /** PRD: no attractive product */
+        Prd("PRD", "PRD", EMPTY_SISTERS)
         ,
-        /** because of furiten: because of furiten */
-        Frt("FRT", "because of furiten", EMPTY_SISTERS)
+        /** FRT: because of furiten */
+        Frt("FRT", "FRT", EMPTY_SISTERS)
         ,
-        /** other reasons: other reasons */
-        Oth("OTH", "other reasons", EMPTY_SISTERS)
+        /** OTH: other reasons */
+        Oth("OTH", "OTH", EMPTY_SISTERS)
         ;
         private static final Map<String, WithdrawalReason> _codeValueMap = new HashMap<String, WithdrawalReason>();
         static {
@@ -454,13 +454,13 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 商品のカテゴリ。階層構造である
+     * category of product. self reference
      */
     public enum ProductCategory implements CDef {
-        /** Music: of  */
+        /** Music */
         Music("MSC", "Music", EMPTY_SISTERS)
         ,
-        /** Food: of  */
+        /** Food */
         Food("FOD", "Food", EMPTY_SISTERS)
         ,
         /** Herb: of Food */
@@ -533,7 +533,7 @@ public interface CDef extends Classification {
     }
 
     /**
-     * 商品ステータス。あんまり面白みのないステータス
+     * status for product
      */
     public enum ProductStatus implements CDef {
         /** OnSaleProduction */
@@ -605,27 +605,125 @@ public interface CDef extends Classification {
         @Override public String toString() { return code(); }
     }
 
+    /**
+     * method of payment for purchase
+     */
+    public enum PaymentMethod implements CDef {
+        /** by hand: payment by hand, face-to-face */
+        ByHand("HAN", "by hand", EMPTY_SISTERS)
+        ,
+        /** bank transfer: bank transfer payment */
+        BankTransfer("BAK", "bank transfer", EMPTY_SISTERS)
+        ,
+        /** credit card: credit card payment */
+        CreditCard("CRC", "credit card", EMPTY_SISTERS)
+        ;
+        private static final Map<String, PaymentMethod> _codeValueMap = new HashMap<String, PaymentMethod>();
+        static {
+            for (PaymentMethod value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private Set<String> _sisterSet;
+        private PaymentMethod(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
+        public String code() { return _code; } public String alias() { return _alias; }
+        public Set<String> sisterSet() { return _sisterSet; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.PaymentMethod; }
+
+        /**
+         * Is the classification in the group? <br>
+         * the most recommended method <br>
+         * The group elements:[ByHand]
+         * @return The determination, true or false.
+         */
+        public boolean isRecommended() {
+            return ByHand.equals(this);
+        }
+
+        public boolean inGroup(String groupName) {
+            if ("recommended".equals(groupName)) { return isRecommended(); }
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static PaymentMethod codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof PaymentMethod) { return (PaymentMethod)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static PaymentMethod nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<PaymentMethod> listAll() {
+            return new ArrayList<PaymentMethod>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br>
+         * the most recommended method <br>
+         * The group elements:[ByHand]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<PaymentMethod> listOfRecommended() {
+            return new ArrayList<PaymentMethod>(Arrays.asList(ByHand));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br>
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<PaymentMethod> groupOf(String groupName) {
+            if ("recommended".equals(groupName)) { return listOfRecommended(); }
+            return new ArrayList<PaymentMethod>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
     public enum DefMeta implements ClassificationMeta {
-        /** フラグを示す */
+        /** general boolean classification for every flg-column */
         Flg
         ,
-        /** 入会から退会までの会員のステータスを示す */
+        /** status of member from entry to withdrawal */
         MemberStatus
         ,
-        /** 会員が受けられるサービスのランクを示す */
+        /** rank of service member gets */
         ServiceRank
         ,
-        /** 主に会員の住んでいる地域を示す */
+        /** mainly region of member address */
         Region
         ,
-        /** 会員の退会理由。なのでちょっとねがてぃぶ */
+        /** reason for member withdrawal */
         WithdrawalReason
         ,
-        /** 商品のカテゴリ。階層構造である */
+        /** category of product. self reference */
         ProductCategory
         ,
-        /** 商品ステータス。あんまり面白みのないステータス */
+        /** status for product */
         ProductStatus
+        ,
+        /** method of payment for purchase */
+        PaymentMethod
         ;
         public String classificationName() {
             return name(); // same as definition name
@@ -639,6 +737,7 @@ public interface CDef extends Classification {
             if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.codeOf(code); }
             if ("ProductCategory".equals(name())) { return CDef.ProductCategory.codeOf(code); }
             if ("ProductStatus".equals(name())) { return CDef.ProductStatus.codeOf(code); }
+            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.codeOf(code); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
@@ -650,6 +749,7 @@ public interface CDef extends Classification {
             if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.valueOf(name); }
             if ("ProductCategory".equals(name())) { return CDef.ProductCategory.valueOf(name); }
             if ("ProductStatus".equals(name())) { return CDef.ProductStatus.valueOf(name); }
+            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.valueOf(name); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
@@ -661,6 +761,7 @@ public interface CDef extends Classification {
             if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.listAll()); }
             if ("ProductCategory".equals(name())) { return toClassificationList(CDef.ProductCategory.listAll()); }
             if ("ProductStatus".equals(name())) { return toClassificationList(CDef.ProductStatus.listAll()); }
+            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.listAll()); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
@@ -672,6 +773,7 @@ public interface CDef extends Classification {
             if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.groupOf(groupName)); }
             if ("ProductCategory".equals(name())) { return toClassificationList(CDef.ProductCategory.groupOf(groupName)); }
             if ("ProductStatus".equals(name())) { return toClassificationList(CDef.ProductStatus.groupOf(groupName)); }
+            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.groupOf(groupName)); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
@@ -683,11 +785,12 @@ public interface CDef extends Classification {
         public ClassificationCodeType codeType() {
             if ("Flg".equals(name())) { return ClassificationCodeType.Number; }
             if ("MemberStatus".equals(name())) { return ClassificationCodeType.String; }
-            if ("ServiceRank".equals(name())) { return ClassificationCodeType.Number; }
+            if ("ServiceRank".equals(name())) { return ClassificationCodeType.String; }
             if ("Region".equals(name())) { return ClassificationCodeType.Number; }
             if ("WithdrawalReason".equals(name())) { return ClassificationCodeType.String; }
             if ("ProductCategory".equals(name())) { return ClassificationCodeType.String; }
             if ("ProductStatus".equals(name())) { return ClassificationCodeType.String; }
+            if ("PaymentMethod".equals(name())) { return ClassificationCodeType.String; }
             return ClassificationCodeType.String; // as default
         }
 
@@ -699,6 +802,7 @@ public interface CDef extends Classification {
             if ("WithdrawalReason".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("ProductCategory".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("ProductStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("PaymentMethod".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             return ClassificationUndefinedHandlingType.LOGGING; // as default
         }
     }

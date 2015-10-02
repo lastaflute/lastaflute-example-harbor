@@ -176,14 +176,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3)}
+     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentMethodCode_Asc() { regOBA("PAYMENT_METHOD_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3)}
+     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentMethodCode_Desc() { regOBD("PAYMENT_METHOD_CODE"); return this; }

@@ -169,7 +169,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     /**
      * Get the value of productStatusCode as the classification of ProductStatus. <br>
      * PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
-     * 商品ステータス。あんまり面白みのないステータス
+     * status for product
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
      */
@@ -180,7 +180,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     /**
      * Set the value of productStatusCode as the classification of ProductStatus. <br>
      * PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
-     * 商品ステータス。あんまり面白みのないステータス
+     * status for product
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setProductStatusCodeAsProductStatus(CDef.ProductStatus cdef) {

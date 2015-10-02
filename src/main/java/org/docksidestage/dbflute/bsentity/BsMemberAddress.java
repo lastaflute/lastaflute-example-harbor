@@ -174,7 +174,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements DomainEn
     /**
      * Get the value of regionId as the classification of Region. <br>
      * (地域ID)REGION_ID: {IX, NotNull, INTEGER(10), FK to REGION, classification=Region} <br>
-     * 主に会員の住んでいる地域を示す
+     * mainly region of member address
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
      */
@@ -185,7 +185,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements DomainEn
     /**
      * Set the value of regionId as the classification of Region. <br>
      * (地域ID)REGION_ID: {IX, NotNull, INTEGER(10), FK to REGION, classification=Region} <br>
-     * 主に会員の住んでいる地域を示す
+     * mainly region of member address
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setRegionIdAsRegion(CDef.Region cdef) {

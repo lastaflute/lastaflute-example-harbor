@@ -96,6 +96,7 @@ public class NewProjectCreator {
                 || isStartUpTool(canonicalPath) // e.g. this
                 || isDemoTestResource(canonicalPath) // e.g. .gitignore for DemoTest
                 || isTestDbResource(canonicalPath) // e.g. H2 database
+                || isTestClientResource(canonicalPath) // e.g. lidoisle
                 || isDBFluteClientLog(canonicalPath) // e.g. dbflute.log
                 || isH2DatabaseDDL(canonicalPath) // e.g. ...80-comment.sql
                 || isErdImage(canonicalPath) // e.g. maihamadb.png
@@ -389,6 +390,10 @@ public class NewProjectCreator {
 
     protected boolean isTestDbResource(String canonicalPath) {
         return Srl.containsAny(canonicalPath, "/etc/testdb", "/etc/.gitignore");
+    }
+
+    protected boolean isTestClientResource(String canonicalPath) {
+        return Srl.containsAny(canonicalPath, "/lidoisle");
     }
 
     protected boolean isDBFluteClientLog(String canonicalPath) {

@@ -70,7 +70,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     /**
      * Equal(=). As WithdrawalReason. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason} <br>
-     * 会員の退会理由。なのでちょっとねがてぃぶ
+     * reason for member withdrawal
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setWithdrawalReasonCode_Equal_AsWithdrawalReason(CDef.WithdrawalReason cdef) {
@@ -79,7 +79,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * Equal(=). As Sit (SIT). And OnlyOnceRegistered. <br>
-     * site is not kindness: site is not kindness
+     * SIT: site is not kindness
      */
     public void setWithdrawalReasonCode_Equal_Sit() {
         setWithdrawalReasonCode_Equal_AsWithdrawalReason(CDef.WithdrawalReason.Sit);
@@ -87,7 +87,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * Equal(=). As Prd (PRD). And OnlyOnceRegistered. <br>
-     * no attractive product: no attractive product
+     * PRD: no attractive product
      */
     public void setWithdrawalReasonCode_Equal_Prd() {
         setWithdrawalReasonCode_Equal_AsWithdrawalReason(CDef.WithdrawalReason.Prd);
@@ -95,7 +95,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * Equal(=). As Frt (FRT). And OnlyOnceRegistered. <br>
-     * because of furiten: because of furiten
+     * FRT: because of furiten
      */
     public void setWithdrawalReasonCode_Equal_Frt() {
         setWithdrawalReasonCode_Equal_AsWithdrawalReason(CDef.WithdrawalReason.Frt);
@@ -103,7 +103,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * Equal(=). As Oth (OTH). And OnlyOnceRegistered. <br>
-     * other reasons: other reasons
+     * OTH: other reasons
      */
     public void setWithdrawalReasonCode_Equal_Oth() {
         setWithdrawalReasonCode_Equal_AsWithdrawalReason(CDef.WithdrawalReason.Oth);
@@ -125,7 +125,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     /**
      * NotEqual(&lt;&gt;). As WithdrawalReason. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason} <br>
-     * 会員の退会理由。なのでちょっとねがてぃぶ
+     * reason for member withdrawal
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setWithdrawalReasonCode_NotEqual_AsWithdrawalReason(CDef.WithdrawalReason cdef) {
@@ -134,7 +134,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * NotEqual(&lt;&gt;). As Sit (SIT). And OnlyOnceRegistered. <br>
-     * site is not kindness: site is not kindness
+     * SIT: site is not kindness
      */
     public void setWithdrawalReasonCode_NotEqual_Sit() {
         setWithdrawalReasonCode_NotEqual_AsWithdrawalReason(CDef.WithdrawalReason.Sit);
@@ -142,7 +142,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * NotEqual(&lt;&gt;). As Prd (PRD). And OnlyOnceRegistered. <br>
-     * no attractive product: no attractive product
+     * PRD: no attractive product
      */
     public void setWithdrawalReasonCode_NotEqual_Prd() {
         setWithdrawalReasonCode_NotEqual_AsWithdrawalReason(CDef.WithdrawalReason.Prd);
@@ -150,7 +150,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * NotEqual(&lt;&gt;). As Frt (FRT). And OnlyOnceRegistered. <br>
-     * because of furiten: because of furiten
+     * FRT: because of furiten
      */
     public void setWithdrawalReasonCode_NotEqual_Frt() {
         setWithdrawalReasonCode_NotEqual_AsWithdrawalReason(CDef.WithdrawalReason.Frt);
@@ -158,7 +158,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     /**
      * NotEqual(&lt;&gt;). As Oth (OTH). And OnlyOnceRegistered. <br>
-     * other reasons: other reasons
+     * OTH: other reasons
      */
     public void setWithdrawalReasonCode_NotEqual_Oth() {
         setWithdrawalReasonCode_NotEqual_AsWithdrawalReason(CDef.WithdrawalReason.Oth);
@@ -180,7 +180,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     /**
      * InScope {in ('a', 'b')}. As WithdrawalReason. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason} <br>
-     * 会員の退会理由。なのでちょっとねがてぃぶ
+     * reason for member withdrawal
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setWithdrawalReasonCode_InScope_AsWithdrawalReason(Collection<CDef.WithdrawalReason> cdefList) {
@@ -203,7 +203,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     /**
      * NotInScope {not in ('a', 'b')}. As WithdrawalReason. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason} <br>
-     * 会員の退会理由。なのでちょっとねがてぃぶ
+     * reason for member withdrawal
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setWithdrawalReasonCode_NotInScope_AsWithdrawalReason(Collection<CDef.WithdrawalReason> cdefList) {

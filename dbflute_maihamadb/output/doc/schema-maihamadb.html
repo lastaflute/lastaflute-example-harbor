@@ -2523,7 +2523,7 @@ dl.procedurelist dd.column pre {
 		<td class="sizecell"> 3 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
+		<td class="relcell"><a href="#PaymentMethodCls">PaymentMethod</a></td>
 		<td class="commentcell"> 手渡しや銀行振込など</td>
 		<td class="subcell">paymentMethodCode</td>
 		<td class="subcell">String</td>
@@ -2892,7 +2892,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>Flg</td>
 		<td class="clstypecell"> implicit</td>
-		<td>フラグを示す</td>
+		<td>general&nbsp;boolean&nbsp;classification&nbsp;for&nbsp;every&nbsp;flg-column</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -2905,15 +2905,15 @@ dl.procedurelist dd.column pre {
 			<tr>
 				<td>1</td>
 				<td>True</td>
-				<td>はい</td>
-				<td class="commentcell">有効を示す</td>
+				<td>Checked</td>
+				<td class="commentcell">means&nbsp;yes</td>
 				<td>true</td>
 			</tr>
 			<tr>
 				<td>0</td>
 				<td>False</td>
-				<td>いいえ</td>
-				<td class="commentcell">無効を示す</td>
+				<td>Unchecked</td>
+				<td class="commentcell">means&nbsp;no</td>
 				<td>false</td>
 			</tr>
 			</table>
@@ -2922,14 +2922,14 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>MemberStatus</td>
 		<td class="clstypecell">table</td>
-		<td>入会から退会までの会員のステータスを示す</td>
+		<td>status&nbsp;of&nbsp;member&nbsp;from&nbsp;entry&nbsp;to&nbsp;withdrawal</td>
 		<td>
 			<table class="child">
 			<tr>
 				<th id="MemberStatusCls">Code</th>
 				<th>Name</th>
 				<th>Comment</th>
-				<th><span class="clsgroup" title="Members that can use the service, can sign in :: [Formalized, Provisional]">serviceAvailable</span></th>
+				<th><span class="clsgroup" title="means member that can use services :: [Formalized, Provisional]">serviceAvailable</span></th>
 				<th><span class="clsgroup" title="Members are not formalized yet :: [Provisional]">shortOfFormalized</span></th>
 			</tr>
 			<tr>
@@ -2959,7 +2959,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>ServiceRank</td>
 		<td class="clstypecell">table</td>
-		<td>会員が受けられるサービスのランクを示す</td>
+		<td>rank&nbsp;of&nbsp;service&nbsp;member&nbsp;gets</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -2998,7 +2998,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>Region</td>
 		<td class="clstypecell">table</td>
-		<td>主に会員の住んでいる地域を示す</td>
+		<td>mainly&nbsp;region&nbsp;of&nbsp;member&nbsp;address</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -3032,37 +3032,32 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>WithdrawalReason</td>
 		<td class="clstypecell">table</td>
-		<td>会員の退会理由。なのでちょっとねがてぃぶ</td>
+		<td>reason&nbsp;for&nbsp;member&nbsp;withdrawal</td>
 		<td>
 			<table class="child">
 			<tr>
 				<th id="WithdrawalReasonCls">Code</th>
 				<th>Name</th>
-				<th>Alias</th>
 				<th>Comment</th>
 			</tr>
 			<tr>
 				<td>SIT</td>
 				<td>Sit</td>
-				<td>site is not kindness</td>
 				<td class="commentcell">site&nbsp;is&nbsp;not&nbsp;kindness</td>
 			</tr>
 			<tr>
 				<td>PRD</td>
 				<td>Prd</td>
-				<td>no attractive product</td>
 				<td class="commentcell">no&nbsp;attractive&nbsp;product</td>
 			</tr>
 			<tr>
 				<td>FRT</td>
 				<td>Frt</td>
-				<td>because of furiten</td>
 				<td class="commentcell">because&nbsp;of&nbsp;furiten</td>
 			</tr>
 			<tr>
 				<td>OTH</td>
 				<td>Oth</td>
-				<td>other reasons</td>
 				<td class="commentcell">other&nbsp;reasons</td>
 			</tr>
 			</table>
@@ -3071,7 +3066,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>ProductCategory</td>
 		<td class="clstypecell">table</td>
-		<td>商品のカテゴリ。階層構造である</td>
+		<td>category&nbsp;of&nbsp;product.&nbsp;self&nbsp;reference</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -3082,12 +3077,12 @@ dl.procedurelist dd.column pre {
 			<tr>
 				<td>MSC</td>
 				<td>Music</td>
-				<td class="commentcell">of&nbsp;</td>
+				<td class="commentcell"> &nbsp;</td>
 			</tr>
 			<tr>
 				<td>FOD</td>
 				<td>Food</td>
-				<td class="commentcell">of&nbsp;</td>
+				<td class="commentcell"> &nbsp;</td>
 			</tr>
 			<tr>
 				<td>HEB</td>
@@ -3110,7 +3105,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>ProductStatus</td>
 		<td class="clstypecell">table</td>
-		<td>商品ステータス。あんまり面白みのないステータス</td>
+		<td>status&nbsp;for&nbsp;product</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -3132,6 +3127,43 @@ dl.procedurelist dd.column pre {
 				<td>SST</td>
 				<td>SaleStop</td>
 				<td class="commentcell"> &nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>PaymentMethod</td>
+		<td class="clstypecell"> implicit</td>
+		<td>method&nbsp;of&nbsp;payment&nbsp;for&nbsp;purchase</td>
+		<td>
+			<table class="child">
+			<tr>
+				<th id="PaymentMethodCls">Code</th>
+				<th>Name</th>
+				<th>Alias</th>
+				<th>Comment</th>
+				<th><span class="clsgroup" title="the most recommended method :: [ByHand]">recommended</span></th>
+			</tr>
+			<tr>
+				<td>HAN</td>
+				<td>ByHand</td>
+				<td>by hand</td>
+				<td class="commentcell">payment&nbsp;by&nbsp;hand,&nbsp;face-to-face</td>
+				<td class="flgcell">o</td>
+			</tr>
+			<tr>
+				<td>BAK</td>
+				<td>BankTransfer</td>
+				<td>bank transfer</td>
+				<td class="commentcell">bank&nbsp;transfer&nbsp;payment</td>
+				<td class="flgcell"> &nbsp;</td>
+			</tr>
+			<tr>
+				<td>CRC</td>
+				<td>CreditCard</td>
+				<td>credit card</td>
+				<td class="commentcell">credit&nbsp;card&nbsp;payment</td>
+				<td class="flgcell"> &nbsp;</td>
 			</tr>
 			</table>
 		</td>

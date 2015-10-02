@@ -815,7 +815,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * Equal(=). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
      * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(10), classification=Flg} <br>
-     * フラグを示す
+     * general boolean classification for every flg-column
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setPaymentCompleteFlg_Equal_AsFlg(CDef.Flg cdef) {
@@ -825,7 +825,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * Equal(=). As boolean for Flg. <br>
      * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(10), classification=Flg} <br>
-     * フラグを示す
+     * general boolean classification for every flg-column
      * @param determination The determination, true or false. (basically NotNull: error as default, or no condition as option)
      */
     public void setPaymentCompleteFlg_Equal_AsBoolean(Boolean determination) {
@@ -834,7 +834,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * はい: 有効を示す
+     * Checked: means yes
      */
     public void setPaymentCompleteFlg_Equal_True() {
         setPaymentCompleteFlg_Equal_AsFlg(CDef.Flg.True);
@@ -842,7 +842,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
-     * いいえ: 無効を示す
+     * Unchecked: means no
      */
     public void setPaymentCompleteFlg_Equal_False() {
         setPaymentCompleteFlg_Equal_AsFlg(CDef.Flg.False);
@@ -864,7 +864,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * NotEqual(&lt;&gt;). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
      * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(10), classification=Flg} <br>
-     * フラグを示す
+     * general boolean classification for every flg-column
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setPaymentCompleteFlg_NotEqual_AsFlg(CDef.Flg cdef) {
@@ -873,7 +873,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * はい: 有効を示す
+     * Checked: means yes
      */
     public void setPaymentCompleteFlg_NotEqual_True() {
         setPaymentCompleteFlg_NotEqual_AsFlg(CDef.Flg.True);
@@ -881,7 +881,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
-     * いいえ: 無効を示す
+     * Unchecked: means no
      */
     public void setPaymentCompleteFlg_NotEqual_False() {
         setPaymentCompleteFlg_NotEqual_AsFlg(CDef.Flg.False);
@@ -903,7 +903,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * InScope {in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
      * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(10), classification=Flg} <br>
-     * フラグを示す
+     * general boolean classification for every flg-column
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setPaymentCompleteFlg_InScope_AsFlg(Collection<CDef.Flg> cdefList) {
@@ -926,7 +926,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
      * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(10), classification=Flg} <br>
-     * フラグを示す
+     * general boolean classification for every flg-column
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setPaymentCompleteFlg_NotInScope_AsFlg(Collection<CDef.Flg> cdefList) {

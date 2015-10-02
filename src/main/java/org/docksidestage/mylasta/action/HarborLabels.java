@@ -32,6 +32,12 @@ public class HarborLabels extends ActionMessages {
     /** The key of the message: Product */
     public static final String LABELS_PRODUCT = "{labels.product}";
 
+    /** The key of the message: Purchase */
+    public static final String LABELS_PURCHASE = "{labels.purchase}";
+
+    /** The key of the message: Payment */
+    public static final String LABELS_PAYMENT = "{labels.payment}";
+
     /** The key of the message: Status */
     public static final String LABELS_STATUS = "{labels.status}";
 
@@ -121,6 +127,12 @@ public class HarborLabels extends ActionMessages {
 
     /** The key of the message: @[labels.detail] of @[labels.product] */
     public static final String LABELS_PRODUCT_DETAIL_TITLE = "{labels.product.detail.title}";
+
+    /** The key of the message: @[labels.list] of @[labels.purchase] */
+    public static final String LABELS_PURCHASE_LIST_TITLE = "{labels.purchase.list.title}";
+
+    /** The key of the message: @[labels.list] of @[labels.purchase] */
+    public static final String LABELS_PURCHASE_DETAIL_TITLE = "{labels.purchase.detail.title}";
 
     /** The key of the message: Sign In */
     public static final String LABELS_SIGNIN_TITLE = "{labels.signin.title}";

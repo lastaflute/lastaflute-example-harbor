@@ -12,7 +12,6 @@
 				<li><a href="${ctx}/product/list/"><span class="link-block">Product</span></a></li>
 				<li><a href="${ctx}/member/list/"><span class="link-block">Member</span></a></li>
 				<li><a href="${ctx}/purchase/list/"><span class="link-block">Purchase</span></a></li>
-				<li><a href="${ctx}/various/upload/"><span class="link-block">upload</span></a></li>
 			</ul>
 			<ul class="nav-user">
 				<li>

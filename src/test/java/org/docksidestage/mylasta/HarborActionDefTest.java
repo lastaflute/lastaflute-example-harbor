@@ -24,7 +24,7 @@ import org.docksidestage.unit.UnitHarborTestCase;
 /**
  * @author jflute
  */
-public class ActionDefinitionTest extends UnitHarborTestCase {
+public class HarborActionDefTest extends UnitHarborTestCase {
 
     public void test_definition() throws Exception {
         // ## Arrange ##

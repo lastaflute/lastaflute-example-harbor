@@ -45,7 +45,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    protected HarborConfig harborConfig;
+    private HarborConfig harborConfig;
 
     // ===================================================================================
     //                                                                              Assist

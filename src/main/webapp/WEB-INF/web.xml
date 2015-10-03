@@ -18,6 +18,9 @@
 	<filter-mapping>
 		<filter-name>lastaFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
 
     <!-- ================================================================================= -->

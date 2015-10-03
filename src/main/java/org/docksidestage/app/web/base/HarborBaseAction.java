@@ -206,11 +206,11 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     // -----------------------------------------------------
     //                                         to Local Date
     //                                         -------------
-    protected OptionalThing<LocalDate> toDate(String exp) { // application may call
+    protected OptionalThing<LocalDate> toDate(Object exp) { // application may call
         return i18nDateLogic.toDate(exp, myConvZone());
     }
 
-    protected OptionalThing<LocalDateTime> toDateTime(String exp) { // application may call
+    protected OptionalThing<LocalDateTime> toDateTime(Object exp) { // application may call
         return i18nDateLogic.toDateTime(exp, myConvZone());
     }
 
@@ -226,7 +226,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     }
 
     protected OptionalThing<String> toStringDateTime(LocalDateTime dateTime) { // application may call
-        return i18nDateLogic.toStringDate(dateTime, myConvZone());
+        return i18nDateLogic.toStringDateTime(dateTime, myConvZone());
     }
 
     // -----------------------------------------------------

@@ -15,8 +15,9 @@
  */
 package org.docksidestage.app.web.member;
 
+import java.time.LocalDate;
+
 /**
- * 会員一覧で利用する画面項目DTO。
  * @author jflute
  */
 public class MemberSearchRowBean {
@@ -24,7 +25,7 @@ public class MemberSearchRowBean {
     public Integer memberId;
     public String memberName;
     public String memberStatusName;
-    public String formalizedDate;
+    public LocalDate formalizedDate;
     public String updateDatetime;
     public boolean withdrawalMember;
     public Integer purchaseCount;

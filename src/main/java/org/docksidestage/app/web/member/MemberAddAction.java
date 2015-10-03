@@ -15,24 +15,15 @@
  */
 package org.docksidestage.app.web.member;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
-import org.dbflute.cbean.result.ListResultBean;
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
-import org.docksidestage.dbflute.exbhv.MemberStatusBhv;
 import org.docksidestage.dbflute.exentity.Member;
-import org.docksidestage.dbflute.exentity.MemberStatus;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.callback.ActionRuntime;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
- * 会員追加アクション。
  * @author jflute
  */
 public class MemberAddAction extends HarborBaseAction {
@@ -40,59 +31,31 @@ public class MemberAddAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
     @Resource
-    protected MemberBhv memberBhv;
-
-    @Resource
-    protected MemberStatusBhv memberStatusBhv;
+    private MemberBhv memberBhv;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Member_MemberAddJsp);
+        return asHtml(path_Member_MemberAddJsp).useForm(MemberAddForm.class);
     }
 
     @Execute
-    public HtmlResponse doAdd(MemberForm form) {
+    public HtmlResponse register(MemberAddForm form) {
+        validate(form, messages -> {} , () -> {
+            return asHtml(path_Member_MemberAddJsp);
+        });
         Member member = new Member();
-        member.setMemberId(form.memberId);
         member.setMemberName(form.memberName);
-        member.setBirthdate(toDate(form.birthdate).orElse(null));
-        member.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(form.memberStatusCode));
         member.setMemberAccount(form.memberAccount);
-        if (member.isMemberStatusCodeFormalized()) { // 区分値の判定は Entity の isなんとか() メソッドで by jflute
-            member.setFormalizedDatetime(currentDateTime()); // 現在日時はTimeManagerから by jflute
+        member.setBirthdate(form.birthdate);
+        member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
+        if (member.isMemberStatusCodeFormalized()) {
+            member.setFormalizedDatetime(currentDateTime());
         }
-        member.setVersionNo(form.versionNo);
         memberBhv.insert(member);
         return redirect(MemberListAction.class);
-    }
-
-    // ===================================================================================
-    //                                                                            Callback
-    //                                                                            ========
-    @Override
-    public void hookFinally(ActionRuntime runtime) {
-        if (runtime.isForwardToHtml()) {
-            prepareListBox(runtime); // 会員ステータスなどリストボックスの構築
-        }
-        super.hookFinally(runtime);
-    }
-
-    // ===================================================================================
-    //                                                                               Logic
-    //                                                                               =====
-    protected void prepareListBox(ActionRuntime runtime) { // ここはアプリによって色々かと by jflute
-        ListResultBean<MemberStatus> statusList = memberStatusBhv.selectList(cb -> {
-            cb.query().addOrderBy_DisplayOrder_Asc();
-        });
-        Map<String, String> statusMap = new LinkedHashMap<String, String>();
-        statusList.forEach(status -> statusMap.put(status.getMemberStatusCode(), status.getMemberStatusName()));
-        runtime.registerData("memberStatusMap", statusMap);
     }
 }

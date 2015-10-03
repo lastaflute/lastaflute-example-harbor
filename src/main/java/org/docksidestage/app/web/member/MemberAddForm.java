@@ -15,41 +15,24 @@
  */
 package org.docksidestage.app.web.member;
 
-import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.docksidestage.dbflute.allcommon.CDef;
+import org.lastaflute.web.validation.Required;
 
 /**
- * 会員に対する操作の汎用ActionForm。
  * @author jflute
  */
-public class MemberForm {
+public class MemberAddForm {
 
-    @NotNull
-    public Integer memberId;
-
-    @NotBlank
+    @Required
     public String memberName;
 
-    @NotBlank
+    @Required
     public String memberAccount;
 
-    @NotBlank
-    public String memberStatusCode;
+    public LocalDate birthdate;
 
-    public String birthdate;
-
-    public String formalizedDate;
-
-    @NotBlank
-    public String latestLoginDatetime;
-
-    @NotBlank
-    public String updateDatetime;
-
-    @NotBlank
-    public String previousStatusCode;
-
-    @NotNull
-    public Long versionNo;
+    @Required
+    public CDef.MemberStatus memberStatus;
 }

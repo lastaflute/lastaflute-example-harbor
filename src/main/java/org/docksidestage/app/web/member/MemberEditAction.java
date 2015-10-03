@@ -15,18 +15,11 @@
  */
 package org.docksidestage.app.web.member;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
-import org.dbflute.cbean.result.ListResultBean;
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
-import org.docksidestage.dbflute.exbhv.MemberStatusBhv;
 import org.docksidestage.dbflute.exentity.Member;
-import org.docksidestage.dbflute.exentity.MemberStatus;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -38,19 +31,8 @@ public class MemberEditAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
     @Resource
-    protected MemberBhv memberBhv;
-
-    @Resource
-    protected MemberStatusBhv memberStatusBhv;
-
-    // -----------------------------------------------------
-    //                                          Display Data
-    //                                          ------------
-    public Map<String, String> memberStatusMap;
+    private MemberBhv memberBhv;
 
     // ===================================================================================
     //                                                                             Execute
@@ -58,39 +40,35 @@ public class MemberEditAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index(Integer memberId) {
         Member member = selectMember(memberId);
-        return asHtml(path_Member_MemberEditJsp).useForm(MemberForm.class, op -> op.setup(form -> {
+        return asHtml(path_Member_MemberEditJsp).useForm(MemberEditForm.class, op -> op.setup(form -> {
             form.memberId = member.getMemberId();
             form.memberName = member.getMemberName();
             form.memberAccount = member.getMemberAccount();
-            form.memberStatusCode = member.getMemberStatusCode();
-            form.birthdate = toStringDate(member.getBirthdate()).orElse(null);
-            form.formalizedDate = toStringDate(member.getFormalizedDatetime()).orElse(null);
-            form.latestLoginDatetime = toStringDate(member.getLatestLoginDatetime()).orElse(null);
-            form.updateDatetime = toStringDate(member.getUpdateDatetime()).get();
-            form.previousStatusCode = member.getMemberStatusCode(); // to determine new formalized member
+            form.memberStatus = member.getMemberStatusCodeAsMemberStatus();
+            form.birthdate = member.getBirthdate();
+            form.formalizedDate = toDate(member.getFormalizedDatetime()).orElse(null); // to yyyyMMdd
+            form.latestLoginDatetime = member.getLatestLoginDatetime();
+            form.updateDatetime = member.getUpdateDatetime();
+            form.previousStatus = member.getMemberStatusCodeAsMemberStatus(); // to determine new formalized member
             form.versionNo = member.getVersionNo();
-        })).renderWith(data -> {
-            data.register("memberStatusMap", prepareMemberStatusMap());
-        });
+        }));
     }
 
     @Execute
-    public HtmlResponse doUpdate(MemberForm form) {
+    public HtmlResponse update(MemberEditForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Member_MemberEditJsp).renderWith(data -> {
-                data.register("memberStatusMap", prepareMemberStatusMap());
-            });
+            return asHtml(path_Member_MemberEditJsp);
         });
         Member member = new Member();
         member.setMemberId(form.memberId);
         member.setMemberName(form.memberName);
         member.setBirthdate(toDate(form.birthdate).orElse(null));
-        member.setMemberStatusCodeAsMemberStatus(toCls(CDef.MemberStatus.class, form.memberStatusCode).get());
+        member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
         member.setMemberAccount(form.memberAccount);
         if (member.isMemberStatusCodeFormalized()) {
-            toCls(CDef.MemberStatus.class, form.previousStatusCode).filter(cls -> cls.isShortOfFormalized()).ifPresent(cls -> {
+            if (form.previousStatus.isShortOfFormalized()) {
                 member.setFormalizedDatetime(currentDateTime());
-            });
+            }
         } else if (member.isMemberStatusCode_ShortOfFormalized()) {
             member.setFormalizedDatetime(null);
         }
@@ -100,11 +78,14 @@ public class MemberEditAction extends HarborBaseAction {
     }
 
     @Execute
-    public HtmlResponse doDelete(MemberForm memberForm) {
+    public HtmlResponse withdrawal(MemberEditForm form) {
+        validate(form, messages -> {} , () -> {
+            return asHtml(path_Member_MemberEditJsp);
+        });
         Member member = new Member();
-        member.setMemberId(memberForm.memberId);
+        member.setMemberId(form.memberId);
         member.setMemberStatusCode_Withdrawal();
-        member.setVersionNo(memberForm.versionNo);
+        member.setVersionNo(form.versionNo);
         memberBhv.update(member);
         return redirect(MemberListAction.class);
     }
@@ -119,17 +100,6 @@ public class MemberEditAction extends HarborBaseAction {
             } , Member.ALIAS_latestLoginDatetime);
             cb.query().setMemberId_Equal(memberId);
             cb.query().setMemberStatusCode_InScope_ServiceAvailable();
-        }).get();
-    }
-
-    protected Map<String, String> prepareMemberStatusMap() {
-        ListResultBean<MemberStatus> statusList = memberStatusBhv.selectList(cb -> {
-            cb.query().addOrderBy_DisplayOrder_Asc();
-        });
-        Map<String, String> statusMap = new LinkedHashMap<String, String>();
-        statusList.forEach(status -> {
-            statusMap.put(status.getMemberStatusCode(), status.getMemberStatusName());
-        });
-        return statusMap;
+        }).get(); // exclusive control if not found
     }
 }

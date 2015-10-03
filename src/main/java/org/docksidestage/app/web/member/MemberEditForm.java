@@ -16,18 +16,42 @@
 package org.docksidestage.app.web.member;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.docksidestage.dbflute.allcommon.CDef;
+import org.lastaflute.web.validation.ClientError;
+import org.lastaflute.web.validation.Required;
 
 /**
  * @author jflute
  */
-public class MemberSearchForm {
+public class MemberEditForm {
 
+    @Required(groups = ClientError.class)
+    public Integer memberId;
+
+    @Required
     public String memberName;
+
+    @Required
+    public String memberAccount;
+
+    public LocalDate birthdate;
+
+    public LocalDate formalizedDate;
+
+    @Required
     public CDef.MemberStatus memberStatus;
-    public String purchaseProductName;
-    public boolean unpaid;
-    public LocalDate formalizedFrom;
-    public LocalDate formalizedTo;
+
+    @Required(groups = ClientError.class)
+    public LocalDateTime latestLoginDatetime;
+
+    @Required(groups = ClientError.class)
+    public LocalDateTime updateDatetime; // only view
+
+    @Required(groups = ClientError.class)
+    public CDef.MemberStatus previousStatus;
+
+    @Required(groups = ClientError.class)
+    public Long versionNo;
 }

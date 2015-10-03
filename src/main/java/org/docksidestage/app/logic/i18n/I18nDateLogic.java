@@ -22,6 +22,7 @@ import java.util.TimeZone;
 
 import org.dbflute.helper.HandyDate;
 import org.dbflute.optional.OptionalThing;
+import org.dbflute.util.DfTypeUtil;
 import org.dbflute.util.Srl;
 
 /**
@@ -36,57 +37,37 @@ public class I18nDateLogic {
     // -----------------------------------------------------
     //                                         to Local Date
     //                                         -------------
-    public OptionalThing<LocalDate> toDate(String exp, TimeZone timeZone) { // application may call
-        if (isNotEmpty(exp)) {
-            return OptionalThing.of(new HandyDate(exp, timeZone, myDatePattern(), myLocale()).getLocalDate());
-        } else {
-            return OptionalThing.ofNullable(null, () -> {
-                throw new IllegalStateException("The specified expression for local date was null or empty: " + exp);
-            });
-        }
+    public OptionalThing<LocalDate> toDate(Object exp, TimeZone timeZone) { // application may call
+        return OptionalThing.ofNullable(DfTypeUtil.toLocalDate(exp, myDatePattern(), timeZone), () -> {
+            throw new IllegalStateException("Not found the converted local date: exp=" + exp);
+        });
     }
 
-    public OptionalThing<LocalDateTime> toDateTime(String exp, TimeZone timeZone) { // application may call
-        if (isNotEmpty(exp)) {
-            return OptionalThing.of(new HandyDate(exp, timeZone, myDatePattern(), myLocale()).getLocalDateTime());
-        } else {
-            return OptionalThing.ofNullable(null, () -> {
-                throw new IllegalStateException("The specified expression for local date was null or empty: " + exp);
-            });
-        }
+    public OptionalThing<LocalDateTime> toDateTime(Object exp, TimeZone timeZone) { // application may call
+        return OptionalThing.ofNullable(DfTypeUtil.toLocalDateTime(exp, myDatePattern(), timeZone), () -> {
+            throw new IllegalStateException("Not found the converted local date-time: exp=" + exp);
+        });
     }
 
     // -----------------------------------------------------
     //                                        to String Date
     //                                        --------------
     public OptionalThing<String> toStringDate(LocalDate date, TimeZone timeZone) { // application may call
-        if (date != null) {
-            return OptionalThing.of(new HandyDate(date, timeZone).toDisp(myDatePattern(), myLocale()));
-        } else {
-            return OptionalThing.ofNullable(null, () -> {
-                throw new IllegalStateException("The specified local date was null.");
-            });
-        }
+        return OptionalThing.ofNullable(date, () -> {
+            throw new IllegalStateException("Not found the specified local date for date expression.");
+        }).map(dt -> new HandyDate(dt, timeZone).toDisp(myDatePattern(), myLocale()));
     }
 
     public OptionalThing<String> toStringDate(LocalDateTime dateTime, TimeZone timeZone) { // application may call
-        if (dateTime != null) {
-            return OptionalThing.of(new HandyDate(dateTime, timeZone).toDisp(myDatePattern(), myLocale()));
-        } else {
-            return OptionalThing.ofNullable(null, () -> {
-                throw new IllegalStateException("The specified local date-time was null.");
-            });
-        }
+        return OptionalThing.ofNullable(dateTime, () -> {
+            throw new IllegalStateException("Not found the specified local date-time for date expression.");
+        }).map(dt -> new HandyDate(dt, timeZone).toDisp(myDatePattern(), myLocale()));
     }
 
     public OptionalThing<String> toStringDateTime(LocalDateTime dateTime, TimeZone timeZone) { // application may call
-        if (dateTime != null) {
-            return OptionalThing.of(new HandyDate(dateTime, timeZone).toDisp(myDateTimePattern(), myLocale()));
-        } else {
-            return OptionalThing.ofNullable(null, () -> {
-                throw new IllegalStateException("The specified local date-time was null.");
-            });
-        }
+        return OptionalThing.ofNullable(dateTime, () -> {
+            throw new IllegalStateException("Not found the specified local date-time for date-time expression.");
+        }).map(dt -> new HandyDate(dateTime, timeZone).toDisp(myDateTimePattern(), myLocale()));
     }
 
     // -----------------------------------------------------
@@ -94,11 +75,11 @@ public class I18nDateLogic {
     //                                   -------------------
     // #app_customize if pattern and locale are changed by user, move it to method arguments
     protected String myDatePattern() {
-        return "yyyy/MM/dd";
+        return "yyyy-MM-dd";
     }
 
     protected String myDateTimePattern() {
-        return "yyyy/MM/dd HH:mm:ss";
+        return "yyyy-MM-dd HH:mm:ss";
     }
 
     protected Locale myLocale() {

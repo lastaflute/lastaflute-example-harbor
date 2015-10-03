@@ -5,7 +5,7 @@
 	<h2 class="pg-content-title"><la:caption key="labels.product.list.title"/></h2>
 	<section class="product-search-box">
 		<h3 class="pg-content-title-second">Search Condition</h3>
-		<la:form styleClass="product-search-form">
+		<la:form method="GET" styleClass="product-search-form">
 			<la:errors/>
 			<ul class="product-search-condition-list">
 				<li><span>Name</span><la:text property="productName"/></li>

@@ -98,7 +98,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     }
 
     @Override
-    public void hookFinally(ActionRuntime runtime) {
+    public void hookFinally(ActionRuntime runtime) { // application may override
         if (runtime.isForwardToHtml()) {
             runtime.registerData("headerBean", getUserBean().map(userBean -> {
                 return new HarborHeaderBean(userBean);

@@ -15,7 +15,6 @@
  */
 package org.docksidestage.app.web.signin;
 
-import org.docksidestage.dbflute.allcommon.CDef;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -30,11 +29,7 @@ public class SigninForm {
     @NotBlank
     public String password;
 
-    public String rememberMe;
-
-    public boolean isRememberMeTrue() {
-        return CDef.Flg.True.code().equals(rememberMe);
-    }
+    public boolean rememberMe;
 
     public void clearSecurityInfo() {
         password = null;

@@ -18,7 +18,7 @@
 				</li>
 				<li>
 					<p><label><la:checkbox property="rememberMe"/> Remember Account</label></p>
-					<la:submit property="doSignin" value="labels.signin.button"/>
+					<la:submit property="signin" value="labels.signin.button"/>
 				</li>
 			</ul>
 		</la:form>

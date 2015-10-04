@@ -49,15 +49,12 @@ public class SigninAction extends HarborBaseAction {
     }
 
     @Execute
-    public HtmlResponse doSignin(SigninForm form) {
+    public HtmlResponse signin(SigninForm form) {
         validate(form, messages -> {} , () -> {
             form.clearSecurityInfo();
             return asHtml(path_Signin_SigninJsp);
         });
-        String email = form.email;
-        String password = form.password;
-        boolean useAutoLogin = form.isRememberMeTrue();
-        return harborLoginAssist.loginRedirect(email, password, op -> op.rememberMe(useAutoLogin), () -> {
+        return harborLoginAssist.loginRedirect(form.email, form.password, op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
         });
     }

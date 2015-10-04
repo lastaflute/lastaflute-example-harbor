@@ -2,10 +2,10 @@
   "actionDocMetaList": [
     {
       "url": "/member/add/",
-      "description": "会員追加アクション。",
+      "description": null,
       "typeName": "org.docksidestage.app.web.member.MemberAddAction",
       "simpleTypeName": "MemberAddAction",
-      "typeComment": "/**\n * 会員追加アクション。\n * @author jflute\n */\n",
+      "typeComment": "/**\n * @author jflute\n */\n",
       "methodName": "index",
       "methodComment": null,
       "annotationList": [
@@ -23,35 +23,24 @@
       }
     },
     {
-      "url": "/member/add/doAdd",
-      "description": "会員追加アクション。",
+      "url": "/member/add/register",
+      "description": null,
       "typeName": "org.docksidestage.app.web.member.MemberAddAction",
       "simpleTypeName": "MemberAddAction",
-      "typeComment": "/**\n * 会員追加アクション。\n * @author jflute\n */\n",
-      "methodName": "doAdd",
+      "typeComment": "/**\n * @author jflute\n */\n",
+      "methodName": "register",
       "methodComment": null,
       "annotationList": [
         "Execute"
       ],
       "formTypeDocMeta": {
         "name": null,
-        "typeName": "org.docksidestage.app.web.member.MemberForm",
-        "simpleTypeName": "MemberForm",
+        "typeName": "org.docksidestage.app.web.member.MemberAddForm",
+        "simpleTypeName": "MemberAddForm",
         "value": null,
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": [
-          {
-            "name": "memberId",
-            "typeName": "java.lang.Integer",
-            "simpleTypeName": "Integer",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
-            ],
-            "nestTypeDocMetaList": []
-          },
           {
             "name": "memberName",
             "typeName": "java.lang.String",
@@ -59,7 +48,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
@@ -70,80 +59,27 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "memberStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
             "name": "birthdate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "formalizedDate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "latestLoginDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "memberStatus",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "updateDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "previousStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "versionNo",
-            "typeName": "java.lang.Long",
-            "simpleTypeName": "Long",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           }
@@ -153,7 +89,7 @@
         "name": null,
         "typeName": "org.lastaflute.web.response.HtmlResponse",
         "simpleTypeName": "HtmlResponse",
-        "value": "redirect(MemberListAction.class)",
+        "value": "asHtml(path_Member_MemberAddJsp),redirect(MemberListAction.class)",
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": []
@@ -182,20 +118,20 @@
       }
     },
     {
-      "url": "/member/edit/doUpdate",
+      "url": "/member/edit/update",
       "description": null,
       "typeName": "org.docksidestage.app.web.member.MemberEditAction",
       "simpleTypeName": "MemberEditAction",
       "typeComment": "/**\n * @author jflute\n */\n",
-      "methodName": "doUpdate",
+      "methodName": "update",
       "methodComment": null,
       "annotationList": [
         "Execute"
       ],
       "formTypeDocMeta": {
         "name": null,
-        "typeName": "org.docksidestage.app.web.member.MemberForm",
-        "simpleTypeName": "MemberForm",
+        "typeName": "org.docksidestage.app.web.member.MemberEditForm",
+        "simpleTypeName": "MemberEditForm",
         "value": null,
         "comment": null,
         "annotationList": [],
@@ -207,7 +143,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotNull"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
@@ -218,7 +154,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
@@ -229,25 +165,14 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "memberStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
             "name": "birthdate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
@@ -255,43 +180,54 @@
           },
           {
             "name": "formalizedDate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "latestLoginDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "memberStatus",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required"
+            ],
+            "nestTypeDocMetaList": []
+          },
+          {
+            "name": "latestLoginDatetime",
+            "typeName": "java.time.LocalDateTime",
+            "simpleTypeName": "LocalDateTime",
+            "value": null,
+            "comment": null,
+            "annotationList": [
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
           {
             "name": "updateDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDateTime",
+            "simpleTypeName": "LocalDateTime",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "previousStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "previousStatus",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
@@ -302,7 +238,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotNull"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           }
@@ -319,20 +255,20 @@
       }
     },
     {
-      "url": "/member/edit/doDelete",
+      "url": "/member/edit/withdrawal",
       "description": null,
       "typeName": "org.docksidestage.app.web.member.MemberEditAction",
       "simpleTypeName": "MemberEditAction",
       "typeComment": "/**\n * @author jflute\n */\n",
-      "methodName": "doDelete",
+      "methodName": "withdrawal",
       "methodComment": null,
       "annotationList": [
         "Execute"
       ],
       "formTypeDocMeta": {
         "name": null,
-        "typeName": "org.docksidestage.app.web.member.MemberForm",
-        "simpleTypeName": "MemberForm",
+        "typeName": "org.docksidestage.app.web.member.MemberEditForm",
+        "simpleTypeName": "MemberEditForm",
         "value": null,
         "comment": null,
         "annotationList": [],
@@ -344,7 +280,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotNull"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
@@ -355,7 +291,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
@@ -366,25 +302,14 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "memberStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotBlank"
+              "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
             "name": "birthdate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
@@ -392,43 +317,54 @@
           },
           {
             "name": "formalizedDate",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "latestLoginDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "memberStatus",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required"
+            ],
+            "nestTypeDocMetaList": []
+          },
+          {
+            "name": "latestLoginDatetime",
+            "typeName": "java.time.LocalDateTime",
+            "simpleTypeName": "LocalDateTime",
+            "value": null,
+            "comment": null,
+            "annotationList": [
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
           {
             "name": "updateDatetime",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "java.time.LocalDateTime",
+            "simpleTypeName": "LocalDateTime",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "previousStatusCode",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "previousStatus",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotBlank"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           },
@@ -439,7 +375,7 @@
             "value": null,
             "comment": null,
             "annotationList": [
-              "NotNull"
+              "Required{groups\u003d[ClientError]}"
             ],
             "nestTypeDocMetaList": []
           }
@@ -449,7 +385,7 @@
         "name": null,
         "typeName": "org.lastaflute.web.response.HtmlResponse",
         "simpleTypeName": "HtmlResponse",
-        "value": "redirect(MemberListAction.class)",
+        "value": "asHtml(path_Member_MemberEditJsp),redirect(MemberListAction.class)",
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": []
@@ -485,8 +421,8 @@
           },
           {
             "name": "memberStatus",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
+            "simpleTypeName": "MemberStatus",
             "value": null,
             "comment": null,
             "annotationList": [],
@@ -511,18 +447,18 @@
             "nestTypeDocMetaList": []
           },
           {
-            "name": "formalizedDateFrom",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "formalizedFrom",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "formalizedDateTo",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "name": "formalizedTo",
+            "typeName": "java.time.LocalDate",
+            "simpleTypeName": "LocalDate",
             "value": null,
             "comment": null,
             "annotationList": [],
@@ -534,92 +470,7 @@
         "name": null,
         "typeName": "org.lastaflute.web.response.HtmlResponse",
         "simpleTypeName": "HtmlResponse",
-        "value": "asSearchResponse(form, pageNumber.orElse(1)",
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": []
-      }
-    },
-    {
-      "url": "/member/list/doSearch",
-      "description": null,
-      "typeName": "org.docksidestage.app.web.member.MemberListAction",
-      "simpleTypeName": "MemberListAction",
-      "typeComment": "/**\n * @author jflute\n */\n",
-      "methodName": "doSearch",
-      "methodComment": null,
-      "annotationList": [
-        "Execute"
-      ],
-      "formTypeDocMeta": {
-        "name": null,
-        "typeName": "org.docksidestage.app.web.member.MemberSearchForm",
-        "simpleTypeName": "MemberSearchForm",
-        "value": null,
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": [
-          {
-            "name": "memberName",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "memberStatus",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "purchaseProductName",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "unpaid",
-            "typeName": "boolean",
-            "simpleTypeName": "boolean",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "formalizedDateFrom",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "formalizedDateTo",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
-            "value": null,
-            "comment": null,
-            "annotationList": [],
-            "nestTypeDocMetaList": []
-          }
-        ]
-      },
-      "returnTypeDocMeta": {
-        "name": null,
-        "typeName": "org.lastaflute.web.response.HtmlResponse",
-        "simpleTypeName": "HtmlResponse",
-        "value": "asSearchResponse(form, 1)",
+        "value": "asHtml(path_Member_MemberListJsp),mappingToBean(member),asHtml(path_Member_MemberListJsp)",
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": []
@@ -636,96 +487,12 @@
       "annotationList": [
         "Execute"
       ],
-      "formTypeDocMeta": {
-        "name": null,
-        "typeName": "org.docksidestage.app.web.member.purchase.MemberPurchaseListForm",
-        "simpleTypeName": "MemberPurchaseListForm",
-        "value": null,
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": [
-          {
-            "name": "memberId",
-            "typeName": "java.lang.Integer",
-            "simpleTypeName": "Integer",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "purchaseId",
-            "typeName": "java.lang.Long",
-            "simpleTypeName": "Long",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
-            ],
-            "nestTypeDocMetaList": []
-          }
-        ]
-      },
+      "formTypeDocMeta": null,
       "returnTypeDocMeta": {
         "name": null,
         "typeName": "org.lastaflute.web.response.HtmlResponse",
         "simpleTypeName": "HtmlResponse",
-        "value": "new MemberPurchaseHeaderBean(member),mappingToBean(purchase),asHtml(path_MemberPurchase_MemberPurchaseListJsp)",
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": []
-      }
-    },
-    {
-      "url": "/member/purchase/list/doDelete",
-      "description": null,
-      "typeName": "org.docksidestage.app.web.member.purchase.MemberPurchaseListAction",
-      "simpleTypeName": "MemberPurchaseListAction",
-      "typeComment": "/**\n * @author jflute\n */\n",
-      "methodName": "doDelete",
-      "methodComment": null,
-      "annotationList": [
-        "Execute"
-      ],
-      "formTypeDocMeta": {
-        "name": null,
-        "typeName": "org.docksidestage.app.web.member.purchase.MemberPurchaseListForm",
-        "simpleTypeName": "MemberPurchaseListForm",
-        "value": null,
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": [
-          {
-            "name": "memberId",
-            "typeName": "java.lang.Integer",
-            "simpleTypeName": "Integer",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
-            ],
-            "nestTypeDocMetaList": []
-          },
-          {
-            "name": "purchaseId",
-            "typeName": "java.lang.Long",
-            "simpleTypeName": "Long",
-            "value": null,
-            "comment": null,
-            "annotationList": [
-              "NotNull"
-            ],
-            "nestTypeDocMetaList": []
-          }
-        ]
-      },
-      "returnTypeDocMeta": {
-        "name": null,
-        "typeName": "org.lastaflute.web.response.HtmlResponse",
-        "simpleTypeName": "HtmlResponse",
-        "value": "asHtml(path_MemberPurchase_MemberPurchaseListJsp),redirect(getClass()",
+        "value": "asHtml(path_MemberPurchase_MemberPurchaseListJsp)",
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": []
@@ -903,12 +670,12 @@
       }
     },
     {
-      "url": "/signin/doSignin",
+      "url": "/signin/signin",
       "description": null,
       "typeName": "org.docksidestage.app.web.signin.SigninAction",
       "simpleTypeName": "SigninAction",
       "typeComment": "/**\n * @author jflute\n */\n",
-      "methodName": "doSignin",
+      "methodName": "signin",
       "methodComment": null,
       "annotationList": [
         "Execute"
@@ -945,8 +712,8 @@
           },
           {
             "name": "rememberMe",
-            "typeName": "java.lang.String",
-            "simpleTypeName": "String",
+            "typeName": "boolean",
+            "simpleTypeName": "boolean",
             "value": null,
             "comment": null,
             "annotationList": [],
@@ -958,7 +725,7 @@
         "name": null,
         "typeName": "org.lastaflute.web.response.HtmlResponse",
         "simpleTypeName": "HtmlResponse",
-        "value": "asHtml(path_Signin_SigninJsp),harborLoginAssist.loginRedirect(email, password,  op -\u003e op.rememberMe(useAutoLogin),redirect(MypageAction.class)",
+        "value": "asHtml(path_Signin_SigninJsp),harborLoginAssist.loginRedirect(form.email, form.password,  op -\u003e op.rememberMe(form.rememberMe),redirect(MypageAction.class)",
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": []

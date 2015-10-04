@@ -128,7 +128,6 @@ table.child, table.child td, table.child th {
         <td class="rownumcell">1</td>
         <td class="aliascell"><a href="#/member/add/">/member/add/</a></td>
         <td class="aliascell">
-            会員追加アクション。
         </td>
         <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberAddAction">MemberAddAction</span>#index()</td>
         <td class="aliascell">
@@ -139,13 +138,12 @@ table.child, table.child td, table.child th {
     </tr>
     <tr>
         <td class="rownumcell">2</td>
-        <td class="aliascell"><a href="#/member/add/doAdd">/member/add/doAdd</a></td>
+        <td class="aliascell"><a href="#/member/add/register">/member/add/register</a></td>
         <td class="aliascell">
-            会員追加アクション。
         </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberAddAction">MemberAddAction</span>#doAdd()</td>
+        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberAddAction">MemberAddAction</span>#register()</td>
         <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+            <span title="org.docksidestage.app.web.member.MemberAddForm">MemberAddForm</span>
         </td>
         <td class="aliascell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -165,12 +163,12 @@ table.child, table.child td, table.child th {
     </tr>
     <tr>
         <td class="rownumcell">4</td>
-        <td class="aliascell"><a href="#/member/edit/doUpdate">/member/edit/doUpdate</a></td>
+        <td class="aliascell"><a href="#/member/edit/update">/member/edit/update</a></td>
         <td class="aliascell">
         </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberEditAction">MemberEditAction</span>#doUpdate()</td>
+        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberEditAction">MemberEditAction</span>#update()</td>
         <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+            <span title="org.docksidestage.app.web.member.MemberEditForm">MemberEditForm</span>
         </td>
         <td class="aliascell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -178,12 +176,12 @@ table.child, table.child td, table.child th {
     </tr>
     <tr>
         <td class="rownumcell">5</td>
-        <td class="aliascell"><a href="#/member/edit/doDelete">/member/edit/doDelete</a></td>
+        <td class="aliascell"><a href="#/member/edit/withdrawal">/member/edit/withdrawal</a></td>
         <td class="aliascell">
         </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberEditAction">MemberEditAction</span>#doDelete()</td>
+        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberEditAction">MemberEditAction</span>#withdrawal()</td>
         <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+            <span title="org.docksidestage.app.web.member.MemberEditForm">MemberEditForm</span>
         </td>
         <td class="aliascell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -204,12 +202,11 @@ table.child, table.child td, table.child th {
     </tr>
     <tr>
         <td class="rownumcell">7</td>
-        <td class="aliascell"><a href="#/member/list/doSearch">/member/list/doSearch</a></td>
+        <td class="aliascell"><a href="#/member/purchase/list/{memberId:Integer}/{pageNumber:Integer}">/member/purchase/list/{memberId:Integer}/{pageNumber:Integer}</a></td>
         <td class="aliascell">
         </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.MemberListAction">MemberListAction</span>#doSearch()</td>
+        <td class="aliascell"><span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListAction">MemberPurchaseListAction</span>#index()</td>
         <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.MemberSearchForm">MemberSearchForm</span>
         </td>
         <td class="aliascell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -217,32 +214,6 @@ table.child, table.child td, table.child th {
     </tr>
     <tr>
         <td class="rownumcell">8</td>
-        <td class="aliascell"><a href="#/member/purchase/list/{memberId:Integer}/{pageNumber:Integer}">/member/purchase/list/{memberId:Integer}/{pageNumber:Integer}</a></td>
-        <td class="aliascell">
-        </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListAction">MemberPurchaseListAction</span>#index()</td>
-        <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListForm">MemberPurchaseListForm</span>
-        </td>
-        <td class="aliascell">
-            <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">9</td>
-        <td class="aliascell"><a href="#/member/purchase/list/doDelete">/member/purchase/list/doDelete</a></td>
-        <td class="aliascell">
-        </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListAction">MemberPurchaseListAction</span>#doDelete()</td>
-        <td class="aliascell">
-            <span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListForm">MemberPurchaseListForm</span>
-        </td>
-        <td class="aliascell">
-            <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">10</td>
         <td class="aliascell"><a href="#/mypage/">/mypage/</a></td>
         <td class="aliascell">
         </td>
@@ -254,7 +225,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">11</td>
+        <td class="rownumcell">9</td>
         <td class="aliascell"><a href="#/product/detail/{productId:Integer}">/product/detail/{productId:Integer}</a></td>
         <td class="aliascell">
         </td>
@@ -266,7 +237,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">12</td>
+        <td class="rownumcell">10</td>
         <td class="aliascell"><a href="#/product/list/{pageNumber:OptionalThing<Integer>}">/product/list/{pageNumber:OptionalThing<Integer>}</a></td>
         <td class="aliascell">
         </td>
@@ -279,7 +250,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">13</td>
+        <td class="rownumcell">11</td>
         <td class="aliascell"><a href="#/profile/">/profile/</a></td>
         <td class="aliascell">
         </td>
@@ -291,7 +262,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">14</td>
+        <td class="rownumcell">12</td>
         <td class="aliascell"><a href="#/root/">/root/</a></td>
         <td class="aliascell">
         </td>
@@ -303,7 +274,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">15</td>
+        <td class="rownumcell">13</td>
         <td class="aliascell"><a href="#/signin/">/signin/</a></td>
         <td class="aliascell">
         </td>
@@ -315,11 +286,11 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">16</td>
-        <td class="aliascell"><a href="#/signin/doSignin">/signin/doSignin</a></td>
+        <td class="rownumcell">14</td>
+        <td class="aliascell"><a href="#/signin/signin">/signin/signin</a></td>
         <td class="aliascell">
         </td>
-        <td class="aliascell"><span title="org.docksidestage.app.web.signin.SigninAction">SigninAction</span>#doSignin()</td>
+        <td class="aliascell"><span title="org.docksidestage.app.web.signin.SigninAction">SigninAction</span>#signin()</td>
         <td class="aliascell">
             <span title="org.docksidestage.app.web.signin.SigninForm">SigninForm</span>
         </td>
@@ -328,7 +299,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">17</td>
+        <td class="rownumcell">15</td>
         <td class="aliascell"><a href="#/signout/">/signout/</a></td>
         <td class="aliascell">
             @author&nbsp;toshiaki.
@@ -341,7 +312,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">18</td>
+        <td class="rownumcell">16</td>
         <td class="aliascell"><a href="#/signup/">/signup/</a></td>
         <td class="aliascell">
         </td>
@@ -353,7 +324,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">19</td>
+        <td class="rownumcell">17</td>
         <td class="aliascell"><a href="#/signup/signup">/signup/signup</a></td>
         <td class="aliascell">
         </td>
@@ -366,7 +337,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">20</td>
+        <td class="rownumcell">18</td>
         <td class="aliascell"><a href="#/signup/register">/signup/register</a></td>
         <td class="aliascell">
         </td>
@@ -378,7 +349,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">21</td>
+        <td class="rownumcell">19</td>
         <td class="aliascell"><a href="#/startup/">/startup/</a></td>
         <td class="aliascell">
         </td>
@@ -391,7 +362,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">22</td>
+        <td class="rownumcell">20</td>
         <td class="aliascell"><a href="#/startup/doStartup">/startup/doStartup</a></td>
         <td class="aliascell">
         </td>
@@ -404,7 +375,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">23</td>
+        <td class="rownumcell">21</td>
         <td class="aliascell"><a href="#/withdrawal/">/withdrawal/</a></td>
         <td class="aliascell">
         </td>
@@ -416,7 +387,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">24</td>
+        <td class="rownumcell">22</td>
         <td class="aliascell"><a href="#/withdrawal/confirm">/withdrawal/confirm</a></td>
         <td class="aliascell">
         </td>
@@ -429,7 +400,7 @@ table.child, table.child td, table.child th {
         </td>
     </tr>
     <tr>
-        <td class="rownumcell">25</td>
+        <td class="rownumcell">23</td>
         <td class="aliascell"><a href="#/withdrawal/done">/withdrawal/done</a></td>
         <td class="aliascell">
         </td>
@@ -454,28 +425,26 @@ Execute Method: org.docksidestage.app.web.member.MemberAddAction#index()
 Annotations: [Execute]
 </p>
 <p class="tablecomment" style="white-space:pre-wrap;">/**
- * 会員追加アクション。
  * @author jflute
  */
 </p>
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
 <p>asHtml(path_Member_MemberAddJsp)</p>
 
-<h2 id="/member/add/doAdd">
-/member/add/doAdd
+<h2 id="/member/add/register">
+/member/add/register
 </h2>
 <p>
-Execute Method: org.docksidestage.app.web.member.MemberAddAction#doAdd()
+Execute Method: org.docksidestage.app.web.member.MemberAddAction#register()
 </p>
 <p>
 Annotations: [Execute]
 </p>
 <p class="tablecomment" style="white-space:pre-wrap;">/**
- * 会員追加アクション。
  * @author jflute
  */
 </p>
-Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+Form or Body: <span title="org.docksidestage.app.web.member.MemberAddForm">MemberAddForm</span>
 <table>
     <thead>
     <tr>
@@ -489,11 +458,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </thead>
     <tr>
         <td class="rownumcell">1</td>
-        <td>memberId</td>
-        <td><p title="java.lang.Integer">Integer</p></td>
+        <td>memberName</td>
+        <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotNull
+            Required
         </td>
         <td>
 
@@ -501,11 +470,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">2</td>
-        <td>memberName</td>
+        <td>memberAccount</td>
         <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required
         </td>
         <td>
 
@@ -513,11 +482,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">3</td>
-        <td>memberAccount</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>birthdate</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
-            NotBlank
         </td>
         <td>
 
@@ -525,81 +493,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">4</td>
-        <td>memberStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>memberStatus</td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
-            NotBlank
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">5</td>
-        <td>birthdate</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">6</td>
-        <td>formalizedDate</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">7</td>
-        <td>latestLoginDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-            NotBlank
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">8</td>
-        <td>updateDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-            NotBlank
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">9</td>
-        <td>previousStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-            NotBlank
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">10</td>
-        <td>versionNo</td>
-        <td><p title="java.lang.Long">Long</p></td>
-        <td></td>
-        <td>
-            NotNull
+            Required
         </td>
         <td>
 
@@ -608,7 +506,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
 </table>
 
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>redirect(MemberListAction.class)</p>
+<p>asHtml(path_Member_MemberAddJsp),redirect(MemberListAction.class)</p>
 
 <h2 id="/member/edit/{memberId:Integer}">
 /member/edit/{memberId:Integer}
@@ -626,11 +524,11 @@ Annotations: [Execute]
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
 <p>asHtml(path_Member_MemberEditJsp)</p>
 
-<h2 id="/member/edit/doUpdate">
-/member/edit/doUpdate
+<h2 id="/member/edit/update">
+/member/edit/update
 </h2>
 <p>
-Execute Method: org.docksidestage.app.web.member.MemberEditAction#doUpdate()
+Execute Method: org.docksidestage.app.web.member.MemberEditAction#update()
 </p>
 <p>
 Annotations: [Execute]
@@ -639,7 +537,7 @@ Annotations: [Execute]
  * @author jflute
  */
 </p>
-Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+Form or Body: <span title="org.docksidestage.app.web.member.MemberEditForm">MemberEditForm</span>
 <table>
     <thead>
     <tr>
@@ -657,7 +555,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.Integer">Integer</p></td>
         <td></td>
         <td>
-            NotNull
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -669,7 +567,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required
         </td>
         <td>
 
@@ -681,7 +579,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required
         </td>
         <td>
 
@@ -689,11 +587,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">4</td>
-        <td>memberStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>birthdate</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
-            NotBlank
         </td>
         <td>
 
@@ -701,8 +598,8 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">5</td>
-        <td>birthdate</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>formalizedDate</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
         </td>
@@ -712,10 +609,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">6</td>
-        <td>formalizedDate</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>memberStatus</td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
+            Required
         </td>
         <td>
 
@@ -724,10 +622,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     <tr>
         <td class="rownumcell">7</td>
         <td>latestLoginDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -736,10 +634,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     <tr>
         <td class="rownumcell">8</td>
         <td>updateDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -747,11 +645,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">9</td>
-        <td>previousStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>previousStatus</td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -763,7 +661,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.Long">Long</p></td>
         <td></td>
         <td>
-            NotNull
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -774,11 +672,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
 <p>asHtml(path_Member_MemberEditJsp),redirectById(MemberEditAction.class, member.getMemberId()</p>
 
-<h2 id="/member/edit/doDelete">
-/member/edit/doDelete
+<h2 id="/member/edit/withdrawal">
+/member/edit/withdrawal
 </h2>
 <p>
-Execute Method: org.docksidestage.app.web.member.MemberEditAction#doDelete()
+Execute Method: org.docksidestage.app.web.member.MemberEditAction#withdrawal()
 </p>
 <p>
 Annotations: [Execute]
@@ -787,7 +685,7 @@ Annotations: [Execute]
  * @author jflute
  */
 </p>
-Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberForm</span>
+Form or Body: <span title="org.docksidestage.app.web.member.MemberEditForm">MemberEditForm</span>
 <table>
     <thead>
     <tr>
@@ -805,7 +703,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.Integer">Integer</p></td>
         <td></td>
         <td>
-            NotNull
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -817,7 +715,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required
         </td>
         <td>
 
@@ -829,7 +727,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.String">String</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required
         </td>
         <td>
 
@@ -837,11 +735,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">4</td>
-        <td>memberStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>birthdate</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
-            NotBlank
         </td>
         <td>
 
@@ -849,8 +746,8 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">5</td>
-        <td>birthdate</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>formalizedDate</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
         </td>
@@ -860,10 +757,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">6</td>
-        <td>formalizedDate</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>memberStatus</td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
+            Required
         </td>
         <td>
 
@@ -872,10 +770,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     <tr>
         <td class="rownumcell">7</td>
         <td>latestLoginDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -884,10 +782,10 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     <tr>
         <td class="rownumcell">8</td>
         <td>updateDatetime</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -895,11 +793,11 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
     </tr>
     <tr>
         <td class="rownumcell">9</td>
-        <td>previousStatusCode</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>previousStatus</td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
-            NotBlank
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -911,7 +809,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
         <td><p title="java.lang.Long">Long</p></td>
         <td></td>
         <td>
-            NotNull
+            Required{groups=[ClientError]}
         </td>
         <td>
 
@@ -920,7 +818,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberForm">MemberFo
 </table>
 
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>redirect(MemberListAction.class)</p>
+<p>asHtml(path_Member_MemberEditJsp),redirect(MemberListAction.class)</p>
 
 <h2 id="/member/list/{pageNumber:OptionalThing<Integer>}">
 /member/list/{pageNumber:OptionalThing<Integer>}
@@ -961,7 +859,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberSearchForm">Me
     <tr>
         <td class="rownumcell">2</td>
         <td>memberStatus</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
         <td></td>
         <td>
         </td>
@@ -993,8 +891,8 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberSearchForm">Me
     </tr>
     <tr>
         <td class="rownumcell">5</td>
-        <td>formalizedDateFrom</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>formalizedFrom</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
         </td>
@@ -1004,8 +902,8 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberSearchForm">Me
     </tr>
     <tr>
         <td class="rownumcell">6</td>
-        <td>formalizedDateTo</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td>formalizedTo</td>
+        <td><p title="java.time.LocalDate">LocalDate</p></td>
         <td></td>
         <td>
         </td>
@@ -1016,103 +914,7 @@ Form or Body: <span title="org.docksidestage.app.web.member.MemberSearchForm">Me
 </table>
 
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>asSearchResponse(form, pageNumber.orElse(1)</p>
-
-<h2 id="/member/list/doSearch">
-/member/list/doSearch
-</h2>
-<p>
-Execute Method: org.docksidestage.app.web.member.MemberListAction#doSearch()
-</p>
-<p>
-Annotations: [Execute]
-</p>
-<p class="tablecomment" style="white-space:pre-wrap;">/**
- * @author jflute
- */
-</p>
-Form or Body: <span title="org.docksidestage.app.web.member.MemberSearchForm">MemberSearchForm</span>
-<table>
-    <thead>
-    <tr>
-        <th class="rownumhead">No.</th>
-        <th>name</th>
-        <th>class</th>
-        <th>comment</th>
-        <th>annotations</th>
-        <th>nestTypeDocMetaList</th>
-    </tr>
-    </thead>
-    <tr>
-        <td class="rownumcell">1</td>
-        <td>memberName</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">2</td>
-        <td>memberStatus</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">3</td>
-        <td>purchaseProductName</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">4</td>
-        <td>unpaid</td>
-        <td><p title="boolean">boolean</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">5</td>
-        <td>formalizedDateFrom</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">6</td>
-        <td>formalizedDateTo</td>
-        <td><p title="java.lang.String">String</p></td>
-        <td></td>
-        <td>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-</table>
-
-Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>asSearchResponse(form, 1)</p>
+<p>asHtml(path_Member_MemberListJsp),mappingToBean(member),asHtml(path_Member_MemberListJsp)</p>
 
 <h2 id="/member/purchase/list/{memberId:Integer}/{pageNumber:Integer}">
 /member/purchase/list/{memberId:Integer}/{pageNumber:Integer}
@@ -1127,100 +929,8 @@ Annotations: [Execute]
  * @author jflute
  */
 </p>
-Form or Body: <span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListForm">MemberPurchaseListForm</span>
-<table>
-    <thead>
-    <tr>
-        <th class="rownumhead">No.</th>
-        <th>name</th>
-        <th>class</th>
-        <th>comment</th>
-        <th>annotations</th>
-        <th>nestTypeDocMetaList</th>
-    </tr>
-    </thead>
-    <tr>
-        <td class="rownumcell">1</td>
-        <td>memberId</td>
-        <td><p title="java.lang.Integer">Integer</p></td>
-        <td></td>
-        <td>
-            NotNull
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">2</td>
-        <td>purchaseId</td>
-        <td><p title="java.lang.Long">Long</p></td>
-        <td></td>
-        <td>
-            NotNull
-        </td>
-        <td>
-
-        </td>
-    </tr>
-</table>
-
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>new MemberPurchaseHeaderBean(member),mappingToBean(purchase),asHtml(path_MemberPurchase_MemberPurchaseListJsp)</p>
-
-<h2 id="/member/purchase/list/doDelete">
-/member/purchase/list/doDelete
-</h2>
-<p>
-Execute Method: org.docksidestage.app.web.member.purchase.MemberPurchaseListAction#doDelete()
-</p>
-<p>
-Annotations: [Execute]
-</p>
-<p class="tablecomment" style="white-space:pre-wrap;">/**
- * @author jflute
- */
-</p>
-Form or Body: <span title="org.docksidestage.app.web.member.purchase.MemberPurchaseListForm">MemberPurchaseListForm</span>
-<table>
-    <thead>
-    <tr>
-        <th class="rownumhead">No.</th>
-        <th>name</th>
-        <th>class</th>
-        <th>comment</th>
-        <th>annotations</th>
-        <th>nestTypeDocMetaList</th>
-    </tr>
-    </thead>
-    <tr>
-        <td class="rownumcell">1</td>
-        <td>memberId</td>
-        <td><p title="java.lang.Integer">Integer</p></td>
-        <td></td>
-        <td>
-            NotNull
-        </td>
-        <td>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="rownumcell">2</td>
-        <td>purchaseId</td>
-        <td><p title="java.lang.Long">Long</p></td>
-        <td></td>
-        <td>
-            NotNull
-        </td>
-        <td>
-
-        </td>
-    </tr>
-</table>
-
-Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>asHtml(path_MemberPurchase_MemberPurchaseListJsp),redirect(getClass()</p>
+<p>asHtml(path_MemberPurchase_MemberPurchaseListJsp)</p>
 
 <h2 id="/mypage/">
 /mypage/
@@ -1365,11 +1075,11 @@ Annotations: [Execute]
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
 <p>redirect(MypageAction.class),asHtml(path_Signin_SigninJsp)</p>
 
-<h2 id="/signin/doSignin">
-/signin/doSignin
+<h2 id="/signin/signin">
+/signin/signin
 </h2>
 <p>
-Execute Method: org.docksidestage.app.web.signin.SigninAction#doSignin()
+Execute Method: org.docksidestage.app.web.signin.SigninAction#signin()
 </p>
 <p>
 Annotations: [Execute]
@@ -1417,7 +1127,7 @@ Form or Body: <span title="org.docksidestage.app.web.signin.SigninForm">SigninFo
     <tr>
         <td class="rownumcell">3</td>
         <td>rememberMe</td>
-        <td><p title="java.lang.String">String</p></td>
+        <td><p title="boolean">boolean</p></td>
         <td></td>
         <td>
         </td>
@@ -1428,7 +1138,7 @@ Form or Body: <span title="org.docksidestage.app.web.signin.SigninForm">SigninFo
 </table>
 
 Return as: <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
-<p>asHtml(path_Signin_SigninJsp),harborLoginAssist.loginRedirect(email, password,  op -> op.rememberMe(useAutoLogin),redirect(MypageAction.class)</p>
+<p>asHtml(path_Signin_SigninJsp),harborLoginAssist.loginRedirect(form.email, form.password,  op -> op.rememberMe(form.rememberMe),redirect(MypageAction.class)</p>
 
 <h2 id="/signout/">
 /signout/

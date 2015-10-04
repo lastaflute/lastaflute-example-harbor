@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.signin;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.lastaflute.web.validation.Required;
 
 /**
  * The form of member's Login.
@@ -23,10 +23,10 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class SigninForm {
 
-    @NotBlank
+    @Required
     public String email;
 
-    @NotBlank
+    @Required
     public String password;
 
     public boolean rememberMe;

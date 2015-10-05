@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
-import org.docksidestage.dbflute.exbhv.MemberBhv;
+import org.docksidestage.mylasta.action.HarborMessages;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -34,8 +34,6 @@ public class SigninAction extends HarborBaseAction {
     //                                                                           =========
     @Resource
     private HarborLoginAssist harborLoginAssist;
-    @Resource
-    private MemberBhv memberBhv;
 
     // ===================================================================================
     //                                                                             Execute
@@ -50,12 +48,20 @@ public class SigninAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse signin(SigninForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> moreValidate(form, messages), () -> {
             form.clearSecurityInfo();
             return asHtml(path_Signin_SigninJsp);
         });
         return harborLoginAssist.loginRedirect(form.email, form.password, op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
         });
+    }
+
+    private void moreValidate(SigninForm form, HarborMessages messages) {
+        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
+            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
+                messages.addErrorsLoginFailure("email");
+            }
+        }
     }
 }

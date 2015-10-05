@@ -81,11 +81,11 @@ public class SignupAction extends HarborBaseAction {
     }
 
     private String deriveMemberMailAddress(SignupForm form) {
-        return form.account + "@harborstage.org"; // simple for example
+        return form.account + "@docksidestage.org"; // #simple_for_example
     }
 
     private String generateToken() {
-        return primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
+        return primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // #simple_for_example
     }
 
     @Execute

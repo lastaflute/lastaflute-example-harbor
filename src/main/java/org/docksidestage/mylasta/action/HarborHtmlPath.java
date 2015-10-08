@@ -53,9 +53,6 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /purchase/purchase_list.jsp */
     HtmlNext path_Purchase_PurchaseListJsp = new HtmlNext("/purchase/purchase_list.jsp");
 
-    /** The path of the HTML: /sea/sea_land.jsp */
-    HtmlNext path_Sea_SeaLandJsp = new HtmlNext("/sea/sea_land.jsp");
-
     /** The path of the HTML: /signin/signin.jsp */
     HtmlNext path_Signin_SigninJsp = new HtmlNext("/signin/signin.jsp");
 

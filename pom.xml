@@ -166,8 +166,35 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-boot</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+							<includeArtifactIds>
+								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
+								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
+							</includeArtifactIds>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+					<packagingExcludes>
+						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
+						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
+						, WEB-INF/lib/org.eclipse.jdt.core-*.jar
+					</packagingExcludes>
 					<webResources>
 						<resource>
 							<directory>${project.build.outputDirectory}</directory>
@@ -182,26 +209,6 @@
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>unpack-provided</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-						<configuration>
-							<includeScope>provided</includeScope>
-							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-							<includes>**/*</includes>
-							<overWriteReleases>true</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -275,13 +282,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>${jsp.version}</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency> <!-- tomcat does not provides, jetty's two jar files so here -->
 			<groupId>javax.servlet</groupId>
@@ -296,13 +302,12 @@
 			<groupId>org.dbflute.jetty</groupId>
 			<artifactId>jetty-boot</artifactId>
 			<version>${jetty.boot.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency> <!-- jetty-all does not contain JSP -->
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-jsp</artifactId>
 			<version>9.2.13.v20150730</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 			<exclusions> <!-- jstl already exists -->
 				<exclusion><groupId>org.eclipse.jetty.orbit</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>
 				<exclusion><groupId>org.glassfish.web</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>

@@ -179,6 +179,7 @@
 							<includeArtifactIds>
 								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
 								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
+								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli, tomcat-jasper
 							</includeArtifactIds>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
@@ -194,12 +195,13 @@
 						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
 						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
 						, WEB-INF/lib/org.eclipse.jdt.core-*.jar
+						, WEB-INF/lib/tomcat-*.jar
 					</packagingExcludes>
 					<webResources>
 						<resource>
 							<directory>${project.build.outputDirectory}</directory>
 							<includes>
-								<include>**/*Boot.class</include>
+								<include>**/*Boot*.class</include>
 							</includes>
 						</resource>
 					</webResources>

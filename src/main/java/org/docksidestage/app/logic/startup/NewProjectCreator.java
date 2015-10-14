@@ -350,8 +350,6 @@ public class NewProjectCreator {
         );
     }
 
-    // TODO jflute new project, except bean, mail templates (2015/08/13)
-
     protected boolean isWebInfViewResource(String canonicalPath) {
         return canonicalPath.contains("/WEB-INF/view/");
     }

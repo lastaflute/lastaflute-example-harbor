@@ -56,6 +56,9 @@ public interface HarborEnv {
     /** The key of the configuration. e.g. returnpath@docksidestage.org */
     String MAIL_RETURN_PATH = "mail.return.path";
 
+    /** The key of the configuration. e.g. harbor-support@annie.example.com */
+    String MAIL_ADDRESS_SUPPORT = "mail.address.support";
+
     /** The key of the configuration. e.g. org.h2.Driver */
     String JDBC_DRIVER = "jdbc.driver";
 
@@ -73,9 +76,6 @@ public interface HarborEnv {
 
     /** The key of the configuration. e.g. localhost:8091 */
     String SERVER_DOMAIN = "server.domain";
-
-    /** The key of the configuration. e.g. harbor-support@annie.example.com */
-    String MAIL_ADDRESS_SUPPORT = "mail.address.support";
 
     /**
      * Get the value of property as {@link String}.
@@ -215,6 +215,14 @@ public interface HarborEnv {
     String getMailReturnPath();
 
     /**
+     * Get the value for the key 'mail.address.support'. <br>
+     * The value is, e.g. harbor-support@annie.example.com <br>
+     * comment: Mail Address for Harbor Support
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getMailAddressSupport();
+
+    /**
      * Get the value for the key 'jdbc.driver'. <br>
      * The value is, e.g. org.h2.Driver <br>
      * comment: The driver FQCN to connect database for JDBC
@@ -270,14 +278,6 @@ public interface HarborEnv {
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getServerDomain();
-
-    /**
-     * Get the value for the key 'mail.address.support'. <br>
-     * The value is, e.g. harbor-support@annie.example.com <br>
-     * comment: Mail Address for Harbor Support
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     */
-    String getMailAddressSupport();
 
     /**
      * The simple implementation for configuration.
@@ -348,6 +348,10 @@ public interface HarborEnv {
             return get(HarborEnv.MAIL_RETURN_PATH);
         }
 
+        public String getMailAddressSupport() {
+            return get(HarborEnv.MAIL_ADDRESS_SUPPORT);
+        }
+
         public String getJdbcDriver() {
             return get(HarborEnv.JDBC_DRIVER);
         }
@@ -374,10 +378,6 @@ public interface HarborEnv {
 
         public String getServerDomain() {
             return get(HarborEnv.SERVER_DOMAIN);
-        }
-
-        public String getMailAddressSupport() {
-            return get(HarborEnv.MAIL_ADDRESS_SUPPORT);
         }
     }
 }

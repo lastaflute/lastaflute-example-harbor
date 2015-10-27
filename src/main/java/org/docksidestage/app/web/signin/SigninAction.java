@@ -23,6 +23,7 @@ import org.docksidestage.app.web.mypage.MypageAction;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -64,4 +65,15 @@ public class SigninAction extends HarborBaseAction {
             }
         }
     }
+
+    @Execute
+    public JsonResponse<Object> indexJson(SigninForm form) {
+        validate(form, messages -> moreValidate(form, messages), () -> {
+            form.clearSecurityInfo();
+            return JsonResponse.asEmptyBody().httpStatus(400);
+        });
+        harborLoginAssist.login(form.email, form.password, op -> op.rememberMe(form.rememberMe));
+        return JsonResponse.asEmptyBody();
+    }
+
 }

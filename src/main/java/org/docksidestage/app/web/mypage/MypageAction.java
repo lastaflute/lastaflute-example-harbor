@@ -26,6 +26,7 @@ import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -47,5 +48,17 @@ public class MypageAction extends HarborBaseAction {
         return asHtml(path_Mypage_MypageJsp).renderWith(data -> {
             data.register("beans", beans);
         });
+    }
+
+    @Execute
+    public JsonResponse<List<MypageProductBean>> indexJson() {
+        ListResultBean<Product> memberList = productBhv.selectList(cb -> {
+            cb.query().addOrderBy_RegularPrice_Desc();
+            cb.fetchFirst(3);
+        });
+        List<MypageProductBean> beans = memberList.stream().map(member -> {
+            return new MypageProductBean(member);
+        }).collect(Collectors.toList());
+        return asJson(beans);
     }
 }

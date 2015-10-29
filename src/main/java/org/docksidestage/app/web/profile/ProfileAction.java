@@ -17,21 +17,44 @@ package org.docksidestage.app.web.profile;
 
 import javax.annotation.Resource;
 
+import org.dbflute.optional.OptionalEntity;
+import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.dbflute.exbhv.ProductBhv;
+import org.docksidestage.dbflute.exbhv.MemberBhv;
+import org.docksidestage.dbflute.exbhv.PurchaseBhv;
+import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
  * @author jflute
+ * @author deco
  */
 public class ProfileAction extends HarborBaseAction {
 
     @Resource
-    protected ProductBhv productBhv;
+    protected MemberBhv memberBhv;
+
+    @Resource
+    protected PurchaseBhv purchaseBhv;
 
     @Execute
-    public HtmlResponse index() {
-        return asHtml(path_Profile_ProfileJsp);
+    public HtmlResponse index(OptionalThing<Integer> pageNumber, ProfileForm form) {
+        validate(form, messages -> {} , () -> {
+            return asHtml(path_Error_ErrorMessageJsp);
+        });
+
+        OptionalEntity<Member> member = memberBhv.selectEntity(cb -> {
+            cb.query().setMemberId_Equal(pageNumber.get());
+        });
+        memberBhv.loadPurchase(member.get(), purCB -> {});
+
+        ProfileBean beans = new ProfileBean();
+        beans.memberId = pageNumber.get();
+        beans.memberName = member.get().getMemberName();
+        beans.purchaseList = member.get().getPurchaseList();
+        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
+            data.register("beans", beans);
+        });
     }
 }

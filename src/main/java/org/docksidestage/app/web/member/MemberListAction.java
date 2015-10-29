@@ -26,6 +26,7 @@ import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -54,6 +55,21 @@ public class MemberListAction extends HarborBaseAction {
             data.register("beans", beans);
             registerPagingNavi(data, page, form);
         });
+    }
+
+    @Execute
+    public JsonResponse<PagingResultBean<MemberSearchRowBean>> indexJson(OptionalThing<Integer> pageNumber, MemberSearchForm form) {
+        validate(form, messages -> {} , () -> {
+            return JsonResponse.asEmptyBody().httpStatus(400);
+        });
+        Integer pageNumberValue = pageNumber.orElse(1);
+        PagingResultBean<Member> page = selectMemberPage(pageNumberValue, form);
+
+        PagingResultBean<MemberSearchRowBean> bean = page.mappingList(member -> {
+            return mappingToBean(member);
+        });
+
+        return asJson(bean);
     }
 
     // ===================================================================================

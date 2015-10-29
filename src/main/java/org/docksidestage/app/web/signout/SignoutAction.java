@@ -22,6 +22,7 @@ import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.signin.SigninAction;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author toshiaki.arai
@@ -36,5 +37,11 @@ public class SignoutAction extends HarborBaseAction {
     public HtmlResponse index() {
         harborLoginAssist.logout();
         return redirect(SigninAction.class);
+    }
+
+    @Execute
+    public JsonResponse<Void> indexJson() {
+        harborLoginAssist.logout();
+        return JsonResponse.asEmptyBody();
     }
 }

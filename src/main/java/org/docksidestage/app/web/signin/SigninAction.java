@@ -58,14 +58,6 @@ public class SigninAction extends HarborBaseAction {
         });
     }
 
-    private void moreValidate(SigninForm form, HarborMessages messages) {
-        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
-            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
-                messages.addErrorsLoginFailure("email");
-            }
-        }
-    }
-
     @Execute
     public JsonResponse<Object> indexJson(SigninForm form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
@@ -74,6 +66,14 @@ public class SigninAction extends HarborBaseAction {
         });
         harborLoginAssist.login(form.email, form.password, op -> op.rememberMe(form.rememberMe));
         return JsonResponse.asEmptyBody();
+    }
+
+    private void moreValidate(SigninForm form, HarborMessages messages) {
+        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
+            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
+                messages.addErrorsLoginFailure("email");
+            }
+        }
     }
 
 }

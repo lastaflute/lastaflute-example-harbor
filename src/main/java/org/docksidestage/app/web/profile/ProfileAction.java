@@ -15,23 +15,59 @@
  */
 package org.docksidestage.app.web.profile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.dbflute.optional.OptionalEntity;
+import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.dbflute.exbhv.ProductBhv;
+import org.docksidestage.dbflute.exbhv.MemberBhv;
+import org.docksidestage.dbflute.exentity.Member;
+import org.docksidestage.dbflute.exentity.Product;
+import org.docksidestage.dbflute.exentity.Purchase;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
  * @author jflute
+ * @author deco
  */
 public class ProfileAction extends HarborBaseAction {
 
     @Resource
-    protected ProductBhv productBhv;
+    protected MemberBhv memberBhv;
 
     @Execute
-    public HtmlResponse index() {
-        return asHtml(path_Profile_ProfileJsp);
+    public HtmlResponse index(OptionalThing<Integer> pageNumber, ProfileForm form) {
+        validate(form, messages -> {} , () -> {
+            return asHtml(path_Error_ErrorMessageJsp);
+        });
+        OptionalEntity<Member> optionalMember = memberBhv.selectEntity(cb -> {
+            cb.query().setMemberId_Equal(pageNumber.get());
+        });
+        Member member = optionalMember.get();
+        memberBhv.loadPurchase(member, purCB -> {
+            purCB.setupSelect_Product();
+        });
+
+        ProfileBean beans = new ProfileBean();
+        beans.memberId = pageNumber.get();
+        beans.memberName = member.getMemberName();
+        List<Purchase> purchaseList = member.getPurchaseList();
+        beans.purchaseList = purchaseList;
+        beans.productList = new ArrayList<>();
+        for (Purchase pur : purchaseList) {
+            OptionalEntity<Product> product = pur.getProduct();
+            if (!product.isPresent()) {
+                continue;
+            }
+            beans.productList.add(product.get());
+        }
+
+        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
+            data.register("beans", beans);
+        });
     }
 }

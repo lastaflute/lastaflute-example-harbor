@@ -24,11 +24,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     // Routes
     page('/', scrollToTop, function() {
-      app.route = 'home';
+      app.route = 'mypage';
     });
 
-    page('/users', scrollToTop, function() {
-      app.route = 'users';
+    page('/bought', scrollToTop, function() {
+      app.route = 'bought';
     });
 
     page('/users/:name', scrollToTop, function(data) {
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     // add #! before urls
     page({
-      hashbang: true
+      hashbang: false
     });
 
   });

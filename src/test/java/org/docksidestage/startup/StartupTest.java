@@ -40,6 +40,10 @@ public class StartupTest extends UnitHarborTestCase {
     }
 
     protected void refresh(String serviceName) throws IOException {
-        new DfRefreshResourceRequest(Arrays.asList(serviceName), "http://localhost:8386/").refreshResources();
+        try {
+            new DfRefreshResourceRequest(Arrays.asList(serviceName), "http://localhost:8386/").refreshResources();
+        } catch (RuntimeException continued) {
+            log("*Cannot refresh for Eclipse, but no problem so continue: " + continued.getMessage());
+        }
     }
 }

@@ -126,6 +126,9 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: is required */
     public static final String CONSTRAINTS_Required_MESSAGE = "{constraints.Required.message}";
 
+    /** The key of the message: should be {propertyType} */
+    public static final String CONSTRAINTS_TypeAny_MESSAGE = "{constraints.TypeAny.message}";
+
     /** The key of the message: could not login */
     public static final String ERRORS_LOGIN_FAILURE = "{errors.login.failure}";
 
@@ -630,6 +633,21 @@ public class HarborMessages extends HarborLabels {
     public HarborMessages addConstraintsRequiredMessage(String property) {
         assertPropertyNotNull(property);
         add(property, new ActionMessage(CONSTRAINTS_Required_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeAny.message' with parameters.
+     * <pre>
+     * message: should be {propertyType}
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @param propertyType The parameter propertyType for message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeAnyMessage(String property, String propertyType) {
+        assertPropertyNotNull(property);
+        add(property, new ActionMessage(CONSTRAINTS_TypeAny_MESSAGE, propertyType));
         return this;
     }
 

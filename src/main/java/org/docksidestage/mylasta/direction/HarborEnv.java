@@ -41,6 +41,9 @@ public interface HarborEnv {
     /** The key of the configuration. e.g. debug */
     String LOG_LEVEL = "log.level";
 
+    /** The key of the configuration. e.g. debug */
+    String LOG_CONSOLE_LEVEL = "log.console.level";
+
     /** The key of the configuration. e.g. /tmp/lastaflute/harbor */
     String LOG_FILE_BASEDIR = "log.file.basedir";
 
@@ -165,6 +168,14 @@ public interface HarborEnv {
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getLogLevel();
+
+    /**
+     * Get the value for the key 'log.console.level'. <br>
+     * The value is, e.g. debug <br>
+     * comment: The log console level for logback
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getLogConsoleLevel();
 
     /**
      * Get the value for the key 'log.file.basedir'. <br>
@@ -322,6 +333,10 @@ public interface HarborEnv {
 
         public String getLogLevel() {
             return get(HarborEnv.LOG_LEVEL);
+        }
+
+        public String getLogConsoleLevel() {
+            return get(HarborEnv.LOG_CONSOLE_LEVEL);
         }
 
         public String getLogFileBasedir() {

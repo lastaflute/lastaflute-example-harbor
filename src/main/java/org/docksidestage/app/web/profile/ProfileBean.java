@@ -9,6 +9,9 @@ public class ProfileBean {
 
     public int memberId;
     public String memberName;
+    public String memberStatusName;
+    public String servicePointCount;
+    public String serviceRankName;
     public List<Purchase> purchaseList;
     public List<Product> productList;
 }

@@ -21,7 +21,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.dbflute.optional.OptionalEntity;
-import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
@@ -40,34 +39,39 @@ public class ProfileAction extends HarborBaseAction {
     protected MemberBhv memberBhv;
 
     @Execute
-    public HtmlResponse index(OptionalThing<Integer> pageNumber, ProfileForm form) {
+    public HtmlResponse index(ProfileForm form) {
         validate(form, messages -> {} , () -> {
             return asHtml(path_Error_ErrorMessageJsp);
         });
-        OptionalEntity<Member> optionalMember = memberBhv.selectEntity(cb -> {
-            cb.query().setMemberId_Equal(pageNumber.get());
-        });
-        Member member = optionalMember.get();
+
+        Integer memberId = getUserBean().get().getMemberId();
+        Member member = memberBhv.selectEntity(cb -> {
+            cb.setupSelect_MemberStatus();
+            cb.setupSelect_MemberServiceAsOne().withServiceRank();
+            cb.query().setMemberId_Equal(memberId);
+        }).get();
         memberBhv.loadPurchase(member, purCB -> {
             purCB.setupSelect_Product();
         });
 
-        ProfileBean beans = new ProfileBean();
-        beans.memberId = pageNumber.get();
-        beans.memberName = member.getMemberName();
+        ProfileBean bean = new ProfileBean();
+        bean.memberName = member.getMemberName();
+        bean.memberStatusName = member.getMemberStatus().get().getMemberStatusName();
+        bean.servicePointCount = String.valueOf(member.getMemberServiceAsOne().get().getServicePointCount());
+        bean.serviceRankName = member.getMemberServiceAsOne().get().getServiceRankCode();
         List<Purchase> purchaseList = member.getPurchaseList();
-        beans.purchaseList = purchaseList;
-        beans.productList = new ArrayList<>();
+        bean.purchaseList = purchaseList;
+        bean.productList = new ArrayList<>();
         for (Purchase pur : purchaseList) {
             OptionalEntity<Product> product = pur.getProduct();
             if (!product.isPresent()) {
                 continue;
             }
-            beans.productList.add(product.get());
+            bean.productList.add(product.get());
         }
 
         return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
-            data.register("beans", beans);
+            data.register("beans", bean);
         });
     }
 }

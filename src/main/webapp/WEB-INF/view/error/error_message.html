@@ -12,7 +12,7 @@
 <div class="contents">
 	<h2 class="sg-content-title" th:text="#{labels.error.message.title}">labels.error.message.title</h2>
 	<ul th:unless="${errors.empty}" style="display: none" th:style="'color : red;'">
-		<li th:each="er : ${errors.all}" th:text="${er.isResource()} ? #{${er.key}(${er.values})} : ${er.key}"></li>
+		<li th:each="er : ${errors.all}" th:text="${er.message}"></li>
 	</ul>
 	<div class="listback">
 		<a href="product_detail.html" th:href="@{/member/list/" th:text="#{labels.error.message.title}">labels.error.message.title</a>

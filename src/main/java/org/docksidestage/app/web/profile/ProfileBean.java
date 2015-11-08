@@ -1,6 +1,6 @@
 package org.docksidestage.app.web.profile;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -13,5 +13,17 @@ public class ProfileBean {
     public String memberStatusName;
     public String servicePointCount;
     public String serviceRankName;
-    public List<HashMap<String, String>> purchaseList;
+    public List<PurchaseInfo> purchaseList;
+
+    public class PurchaseInfo {
+        public String productName;
+        public Integer regularPrice;
+        public LocalDateTime purchaseDateTime;
+
+        public void setPurchaseInfo(String productName, Integer regularPrice, LocalDateTime purchaseDateTime) {
+            this.productName = productName;
+            this.regularPrice = regularPrice;
+            this.purchaseDateTime = purchaseDateTime;
+        }
+    }
 }

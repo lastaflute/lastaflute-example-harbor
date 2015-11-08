@@ -16,11 +16,11 @@
 package org.docksidestage.app.web.profile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.profile.ProfileBean.PurchaseInfo;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.Product;
@@ -33,9 +33,15 @@ import org.lastaflute.web.response.HtmlResponse;
  */
 public class ProfileAction extends HarborBaseAction {
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     @Resource
     protected MemberBhv memberBhv;
 
+    // ===================================================================================
+    //                                                                             Execute
+    //                                                                             =======
     @Execute
     public HtmlResponse index(ProfileForm form) {
         validate(form, messages -> {} , () -> {
@@ -60,11 +66,9 @@ public class ProfileAction extends HarborBaseAction {
         bean.purchaseList = new ArrayList<>();
         member.getPurchaseList().forEach(purchase -> {
             Product product = purchase.getProduct().get();
-            HashMap<String, String> purchaseMap = new HashMap<>();
-            purchaseMap.put("productName", product.getProductName());
-            purchaseMap.put("regularPrice", String.valueOf(product.getRegularPrice()));
-            purchaseMap.put("purchaseDateTime", String.valueOf(purchase.getPurchaseDatetime()));
-            bean.purchaseList.add(purchaseMap);
+            PurchaseInfo purchaseInfo = bean.new PurchaseInfo();
+            purchaseInfo.setPurchaseInfo(product.getProductName(), product.getRegularPrice(), purchase.getPurchaseDatetime());
+            bean.purchaseList.add(purchaseInfo);
         });
 
         return asHtml(path_Profile_ProfileJsp).renderWith(data -> {

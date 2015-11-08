@@ -30,7 +30,6 @@
 							<td>${bean.purchaseDateTime}</td>
 						</tr>
 					</c:forEach>
-					
 				</tbody>
 			</table>
 		</section>

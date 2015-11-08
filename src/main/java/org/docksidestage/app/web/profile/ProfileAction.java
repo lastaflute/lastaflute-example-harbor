@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.profile;
 
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -23,7 +23,6 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.profile.ProfileBean.PurchasedProductBean;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
-import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -44,12 +43,11 @@ public class ProfileAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-
         Member member = selectMember();
         ProfileBean bean = mappingToBean(member);
 
         return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
-            data.register("beans", bean);
+            data.register("bean", bean);
         });
     }
 
@@ -65,6 +63,7 @@ public class ProfileAction extends HarborBaseAction {
         }).get();
         memberBhv.loadPurchase(member, purCB -> {
             purCB.setupSelect_Product();
+            purCB.query().addOrderBy_PurchaseDatetime_Desc();
         });
         return member;
     }
@@ -73,18 +72,10 @@ public class ProfileAction extends HarborBaseAction {
     //                                                                             Mapping
     //                                                                             =======
     private ProfileBean mappingToBean(Member member) {
-        ProfileBean bean = new ProfileBean();
-        bean.memberName = member.getMemberName();
-        bean.memberStatusName = member.getMemberStatus().get().getMemberStatusName();
-        bean.servicePointCount = String.valueOf(member.getMemberServiceAsOne().get().getServicePointCount());
-        bean.serviceRankName = member.getMemberServiceAsOne().get().getServiceRankCode();
-        bean.purchaseList = new ArrayList<>();
-        member.getPurchaseList().forEach(purchase -> {
-            Product product = purchase.getProduct().get();
-            PurchasedProductBean purchasedProductBean =
-                    new PurchasedProductBean(product.getProductName(), product.getRegularPrice(), purchase.getPurchaseDatetime());
-            bean.purchaseList.add(purchasedProductBean);
-        });
+        ProfileBean bean = new ProfileBean(member);
+        bean.purchaseList = member.getPurchaseList().stream().map(purchase -> {
+            return new PurchasedProductBean(purchase);
+        }).collect(Collectors.toList());
         return bean;
     }
 }

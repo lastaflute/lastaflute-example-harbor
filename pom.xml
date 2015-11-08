@@ -16,8 +16,9 @@
 		<!-- Main Framework -->
 		<dbflute.version>1.1.0-sp8</dbflute.version>
 		<h2.jdbc.version>1.4.188</h2.jdbc.version>
-		<lastaflute.version>0.6.5-RC5</lastaflute.version>
-		<lasta.taglib.version>0.6.0</lasta.taglib.version>
+		<lastaflute.version>0.6.5-P-SNAPSHOT</lastaflute.version>
+		<lasta.thymeleaf.version>0.2.0-H-SNAPSHOT</lasta.thymeleaf.version>
+		<lasta.taglib.version>0.6.0</lasta.taglib.version> <!-- will be deleted -->
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.12</slf4j.version>
@@ -176,11 +177,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-							<includeArtifactIds>
-								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
-								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli
-								, tomcat-jasper, tomcat-jasper-el, tomcat-el-api, tomcat-jsp-api, ecj
-							</includeArtifactIds>
+							<includeArtifactIds>javax.servlet-api, jetty-boot, jetty-all</includeArtifactIds>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
 						</configuration>
@@ -192,8 +189,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<packagingExcludes>
-						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
-						, WEB-INF/lib/tomcat-*.jar, WEB-INF/lib/ecj-*.jar
+						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar, WEB-INF/lib/jetty-*.jar
 					</packagingExcludes>
 					<webResources>
 						<resource>
@@ -250,6 +246,11 @@
 			<version>${lastaflute.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.lastaflute.html</groupId>
+			<artifactId>lasta-thymeleaf</artifactId>
+			<version>${lasta.thymeleaf.version}</version>
+		</dependency>
+		<dependency>  <!-- will be deleted -->
 			<groupId>org.lastaflute</groupId>
 			<artifactId>lasta-taglib</artifactId>
 			<version>${lasta.taglib.version}</version>

@@ -250,7 +250,7 @@
 			<artifactId>lasta-thymeleaf</artifactId>
 			<version>${lasta.thymeleaf.version}</version>
 		</dependency>
-		<dependency>  <!-- will be deleted -->
+		<dependency> <!-- will be deleted -->
 			<groupId>org.lastaflute</groupId>
 			<artifactId>lasta-taglib</artifactId>
 			<version>${lasta.taglib.version}</version>

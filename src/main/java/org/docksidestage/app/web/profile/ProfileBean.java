@@ -3,6 +3,9 @@ package org.docksidestage.app.web.profile;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author deco
+ */
 public class ProfileBean {
 
     public int memberId;

@@ -17,7 +17,7 @@
 		<dbflute.version>1.1.0-sp8</dbflute.version>
 		<h2.jdbc.version>1.4.188</h2.jdbc.version>
 		<lastaflute.version>0.6.5-P-SNAPSHOT</lastaflute.version>
-		<lasta.thymeleaf.version>0.2.0-H-SNAPSHOT</lasta.thymeleaf.version>
+		<lasta.thymeleaf.version>0.2.0-J-SNAPSHOT</lasta.thymeleaf.version>
 		<lasta.taglib.version>0.6.0</lasta.taglib.version> <!-- will be deleted -->
 
 		<!-- Partner Library -->

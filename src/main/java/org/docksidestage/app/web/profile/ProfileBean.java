@@ -13,14 +13,14 @@ public class ProfileBean {
     public String memberStatusName;
     public String servicePointCount;
     public String serviceRankName;
-    public List<PurchaseInfo> purchaseList;
+    public List<PurchasedProductBean> purchaseList;
 
-    public class PurchaseInfo {
+    public static class PurchasedProductBean {
         public String productName;
         public Integer regularPrice;
         public LocalDateTime purchaseDateTime;
 
-        public void setPurchaseInfo(String productName, Integer regularPrice, LocalDateTime purchaseDateTime) {
+        PurchasedProductBean(String productName, Integer regularPrice, LocalDateTime purchaseDateTime) {
             this.productName = productName;
             this.regularPrice = regularPrice;
             this.purchaseDateTime = purchaseDateTime;

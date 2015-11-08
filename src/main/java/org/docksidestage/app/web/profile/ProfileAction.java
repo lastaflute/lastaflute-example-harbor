@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.app.web.profile.ProfileBean.PurchaseInfo;
+import org.docksidestage.app.web.profile.ProfileBean.PurchasedProductBean;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.Product;
@@ -43,11 +43,20 @@ public class ProfileAction extends HarborBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse index(ProfileForm form) {
-        validate(form, messages -> {} , () -> {
-            return asHtml(path_Error_ErrorMessageJsp);
-        });
+    public HtmlResponse index() {
 
+        Member member = selectMember();
+        ProfileBean bean = mappingToBean(member);
+
+        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
+            data.register("beans", bean);
+        });
+    }
+
+    // ===================================================================================
+    //                                                                              Select
+    //                                                                              ======
+    private Member selectMember() {
         Integer memberId = getUserBean().get().getMemberId();
         Member member = memberBhv.selectEntity(cb -> {
             cb.setupSelect_MemberStatus();
@@ -57,7 +66,13 @@ public class ProfileAction extends HarborBaseAction {
         memberBhv.loadPurchase(member, purCB -> {
             purCB.setupSelect_Product();
         });
+        return member;
+    }
 
+    // ===================================================================================
+    //                                                                             Mapping
+    //                                                                             =======
+    private ProfileBean mappingToBean(Member member) {
         ProfileBean bean = new ProfileBean();
         bean.memberName = member.getMemberName();
         bean.memberStatusName = member.getMemberStatus().get().getMemberStatusName();
@@ -66,13 +81,10 @@ public class ProfileAction extends HarborBaseAction {
         bean.purchaseList = new ArrayList<>();
         member.getPurchaseList().forEach(purchase -> {
             Product product = purchase.getProduct().get();
-            PurchaseInfo purchaseInfo = bean.new PurchaseInfo();
-            purchaseInfo.setPurchaseInfo(product.getProductName(), product.getRegularPrice(), purchase.getPurchaseDatetime());
-            bean.purchaseList.add(purchaseInfo);
+            PurchasedProductBean purchasedProductBean =
+                    new PurchasedProductBean(product.getProductName(), product.getRegularPrice(), purchase.getPurchaseDatetime());
+            bean.purchaseList.add(purchasedProductBean);
         });
-
-        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
-            data.register("beans", bean);
-        });
+        return bean;
     }
 }

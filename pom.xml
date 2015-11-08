@@ -16,7 +16,7 @@
 		<!-- Main Framework -->
 		<dbflute.version>1.1.0-sp8</dbflute.version>
 		<h2.jdbc.version>1.4.188</h2.jdbc.version>
-		<lastaflute.version>0.6.5-M-SNAPSHOT</lastaflute.version>
+		<lastaflute.version>0.6.5-RC5</lastaflute.version>
 		<lasta.taglib.version>0.6.0</lasta.taglib.version>
 
 		<!-- Partner Library -->
@@ -178,7 +178,6 @@
 							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
 							<includeArtifactIds>
 								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
-								, jetty-boot, jetty-all, jetty-jsp, jetty-schemas, javax.el, javax.websocket-api
 								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli
 								, tomcat-jasper, tomcat-jasper-el, tomcat-el-api, tomcat-jsp-api, ecj
 							</includeArtifactIds>
@@ -194,8 +193,6 @@
 				<configuration>
 					<packagingExcludes>
 						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
-						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
-						, WEB-INF/lib/org.eclipse.jdt.core-*.jar
 						, WEB-INF/lib/tomcat-*.jar, WEB-INF/lib/ecj-*.jar
 					</packagingExcludes>
 					<webResources>

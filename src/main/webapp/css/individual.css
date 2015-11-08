@@ -230,8 +230,8 @@
                                              Profile
 ------------------------------------------------- */
 .profile-contents-box {
-	width: 936px;
-	margin: 20px auto 0;
+	width: 960px;
+    margin: 32px auto 0;
 	padding-bottom: 20px;
 }
 
@@ -240,5 +240,5 @@
 }
 
 .profile-product-box {
-	margin-top: 20px;
+	margin-top: 32px;
 }

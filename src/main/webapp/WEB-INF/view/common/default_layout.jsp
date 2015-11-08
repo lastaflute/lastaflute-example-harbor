@@ -20,6 +20,7 @@
 						<c:otherwise><p class="nameHeader">Welcome, Mr.Guest</p></c:otherwise>
 					</c:choose>
 					<ul class="child">
+						<li><a href="${ctx}/profile/">Profile</a></li>
 						<li><a href="#">setting</a></li>
 						<li><a href="${ctx}/logout/">logout</a></li>
 					</ul>

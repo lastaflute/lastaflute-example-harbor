@@ -32,7 +32,7 @@ body {
 	background-color: #882255;
 	color: #FAFAFA;
 }
-.pg-main-title {
+.sg-main-title {
 	height: 54px;
 	line-height: 54px;
 	padding: 0 16px 0 8px;
@@ -40,7 +40,7 @@ body {
 	float: left;
 	font-size: 32px;
 }
-.pg-main-title span {
+.sg-main-title span {
 	font-size: 12px;
 }
 .nav-home > li:HOVER {
@@ -90,7 +90,7 @@ ul.nav-user li a:hover{
 /* -------------------------------------------------
                                              Main
 ------------------------------------------------- */
-.pg-content-title {
+.sg-content-title {
 	width: 936px;
 	height: 40px;
 	line-height: 40px;
@@ -100,7 +100,7 @@ ul.nav-user li a:hover{
 	font-size: 32px;
 	font-weight: bold;
 }
-.pg-content-title-second {
+.sg-content-title-second {
 	border-left: solid 6px #888;
 	padding-left: 8px;
 	font-size: 24px;

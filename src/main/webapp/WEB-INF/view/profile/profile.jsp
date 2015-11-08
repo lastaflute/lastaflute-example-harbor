@@ -2,10 +2,10 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="contents">
-	<h2 class="pg-content-title"><la:caption key="labels.profile.title"/></h2>
+	<h2 class="sg-content-title"><la:caption key="labels.profile.title"/></h2>
 	<article class="profile-contents-box">
 		<section class="profile-info-box">
-			<h3 class="pg-content-title-second">${beans.memberName}</h3>
+			<h3 class="sg-content-title-second">${beans.memberName}</h3>
 			<ul class="profile-info-detail">
 				<li>MemberStatus : ${beans.memberStatusName}</li>
 				<li>PointCount : ${beans.servicePointCount}</li>
@@ -13,7 +13,7 @@
 			</ul>
 		</section>
 		<section class="profile-product-box">
-			<h3 class="pg-content-title-second">PurchaseHistory</h3>
+			<h3 class="sg-content-title-second">PurchaseHistory</h3>
 			<table class="product-list-tbl">
 				<thead>
 					<tr>

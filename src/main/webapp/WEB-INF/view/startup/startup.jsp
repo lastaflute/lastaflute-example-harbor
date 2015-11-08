@@ -3,7 +3,7 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="contents">
-	<h2 class="pg-content-title">Start up!!</h2>
+	<h2 class="sg-content-title">Start up!!</h2>
 	<section class="sign-in-box">
 		<la:form styleClass="signin-form">
 			<c:if test="${bean.isComplete}">

@@ -7,9 +7,9 @@
 		<section class="profile-info-box">
 			<h3 class="pg-content-title-second">${beans.memberName}</h3>
 			<ul class="profile-info-detail">
-				<li>${beans.memberStatusName}</li>
-				<li>${beans.servicePointCount}</li>
-				<li>${beans.serviceRankName}</li>
+				<li>MemberStatus : ${beans.memberStatusName}</li>
+				<li>PointCount : ${beans.servicePointCount}</li>
+				<li>ServiceRank  : ${beans.serviceRankName}</li>
 			</ul>
 		</section>
 		<section class="profile-product-box">
@@ -19,15 +19,18 @@
 					<tr>
 						<th>ProductName</th>
 						<th>Price</th>
+						<th>PurchaseDateTime</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="bean" items="${beans.productList}">
+					<c:forEach var="bean" items="${beans.purchaseList}">
 						<tr>
 							<td>${bean.productName}</td>
 							<td>${bean.regularPrice}</td>
+							<td>${bean.purchaseDateTime}</td>
 						</tr>
 					</c:forEach>
+					
 				</tbody>
 			</table>
 		</section>

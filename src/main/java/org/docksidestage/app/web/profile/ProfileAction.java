@@ -16,16 +16,14 @@
 package org.docksidestage.app.web.profile;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
-import org.dbflute.optional.OptionalEntity;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.Product;
-import org.docksidestage.dbflute.exentity.Purchase;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -59,16 +57,15 @@ public class ProfileAction extends HarborBaseAction {
         bean.memberStatusName = member.getMemberStatus().get().getMemberStatusName();
         bean.servicePointCount = String.valueOf(member.getMemberServiceAsOne().get().getServicePointCount());
         bean.serviceRankName = member.getMemberServiceAsOne().get().getServiceRankCode();
-        List<Purchase> purchaseList = member.getPurchaseList();
-        bean.purchaseList = purchaseList;
-        bean.productList = new ArrayList<>();
-        for (Purchase pur : purchaseList) {
-            OptionalEntity<Product> product = pur.getProduct();
-            if (!product.isPresent()) {
-                continue;
-            }
-            bean.productList.add(product.get());
-        }
+        bean.purchaseList = new ArrayList<>();
+        member.getPurchaseList().forEach(purchase -> {
+            Product product = purchase.getProduct().get();
+            HashMap<String, String> purchaseMap = new HashMap<>();
+            purchaseMap.put("productName", product.getProductName());
+            purchaseMap.put("regularPrice", String.valueOf(product.getRegularPrice()));
+            purchaseMap.put("purchaseDateTime", String.valueOf(purchase.getPurchaseDatetime()));
+            bean.purchaseList.add(purchaseMap);
+        });
 
         return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
             data.register("beans", bean);

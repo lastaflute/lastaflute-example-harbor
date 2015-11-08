@@ -46,7 +46,7 @@ public class ProfileAction extends HarborBaseAction {
         Member member = selectMember();
         ProfileBean bean = mappingToBean(member);
 
-        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
+        return asHtml(path_Profile_ProfileHtml).renderWith(data -> {
             data.register("bean", bean);
         });
     }

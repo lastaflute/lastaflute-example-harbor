@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="/common/layout.html :: head (title)"> /*/-->
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/individual.css" />
+	<title>Preview Title</title>
+<!--/*/ </th:block> /*/-->
+
+<!--/* individual Css write to after */-->
+</head>
+<body>
+<header th:replace="/common/layout.html :: header">
+	<section class="nav-main cf">
+		<div class="wrap">
+			<h1 class="sg-main-title"><a href="#" th:href="@{/}">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<ul class="nav-home">
+				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Product</span></a></li>
+				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Member</span></a></li>
+				<li><a href="../member/purchase/member_purchase_list.html" th:href="@{/member/purchase/list/}"><span class="link-block">Purchase</span></a></li>
+				<li><a href="../various/various_upload.html" th:href="@{/various/upload/}"><span class="link-block">upload</span></a></li>
+			</ul>
+			<ul class="nav-user">
+				<li>
+					<p th:if="${headerBean.isLogin}" class="nameHeader" th:text="'Hello, ' + ${headerBean.memberName}">Hello, ${f:h(headerBean.memberName)}</p>
+					<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
+					<ul class="child">
+						<li><a href="#" th:href="@{/profile/}">Profile</a></li>
+						<li><a href="#">setting</a></li>
+						<li><a href="#" th:href="@{/logout/}">logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</section>
+</header>
+<!-- <main> start main content -->
+<div class="contents">
+	<h2 class="sg-content-title" th:text="#{labels.product.list.title}"></h2>
+	<article class="profile-contents-box">
+		<section class="profile-info-box">
+			<h3 class="sg-content-title-second" th:text="${bean.memberName}"></h3>
+			<ul class="profile-info-detail">
+				<li>MemberStatus : <span th:text="${bean.memberStatusName}"></span></li>
+				<li>PointCount : <span th:text="${bean.servicePointCount}"></span></li>
+				<li>ServiceRank : <span th:text="${bean.serviceRankName}"></span></li>
+			</ul>
+		</section>
+		<section class="profile-product-box">
+			<h3 class="sg-content-title-second">PurchaseHistory</h3>
+			<table class="product-list-tbl">
+				<thead>
+					<tr>
+						<th>ProductName</th>
+						<th>Price</th>
+						<th>PurchaseDateTime</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="bean : ${bean.purchaseList}">
+						<td th:text="${bean.productName}"></td>
+						<td th:text="${bean.regularPrice}"></td>
+						<td th:text="${bean.purchaseDateTime}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</article>
+</div>
+<footer th:replace="/common/layout.html :: footer">
+	<div class="wrap">
+		<ul class="footer-link">
+			<li><a href="http://dbflute.seasar.org/">DBFlute Top</a></li>
+			<li><a href="http://dbflute.seasar.org/ja/manual/reference/example/index.html">DBFlute Example</a></li>
+		</ul>
+		<p class="copyright">&copy; Lasta Flute project</p>
+	</div>
+</footer>
+<!--/*/ <th:block th:include="/common/layout.html :: afterScript"> /*/-->
+<!-- script contents -->
+<script src="../../../js/jquery-2.1.3.min.js" ></script>
+<script src="../../../js/common.js" ></script>
+<!--/*/ </th:block> /*/-->
+<!--/* individual Script write to after */-->
+</body>
+</html>

@@ -13,7 +13,7 @@
 <header th:fragment="header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="pg-main-title"><a href="#" th:href="@{/}">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="sg-main-title"><a href="#" th:href="@{/}">Maihama<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
 				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Product</span></a></li>
 				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Member</span></a></li>
@@ -25,6 +25,7 @@
 					<p th:if="${headerBean.isLogin}" class="nameHeader" th:text="'Hello, ' + ${headerBean.memberName}">Hello, ${f:h(headerBean.memberName)}</p>
 					<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
 					<ul class="child">
+						<li><a href="#" th:href="@{/profile/}">Profile</a></li>
 						<li><a href="#">setting</a></li>
 						<li><a href="#" th:href="@{/logout/}">logout</a></li>
 					</ul>

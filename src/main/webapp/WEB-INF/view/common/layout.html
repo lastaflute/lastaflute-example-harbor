@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:fragment="head (title)"> /*/-->
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/reset.css" th:href="@{/css/reset.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/common.css" th:href="@{/css/common.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/individual.css" th:href="@{/css/individual.css}"/>
+	<title th:text="'LastaFlute Example | ' + ${title}">${param.title}</title>
+<!--/*/ </th:block> /*/-->
+</head>
+<body>
+<header th:fragment="header">
+	<section class="nav-main cf">
+		<div class="wrap">
+			<h1 class="sg-main-title"><a href="#" th:href="@{/}">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<ul class="nav-home">
+				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Product</span></a></li>
+				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Member</span></a></li>
+				<li><a href="../member/purchase/member_purchase_list.html" th:href="@{/member/purchase/list/}"><span class="link-block">Purchase</span></a></li>
+				<li><a href="../various/various_upload.html" th:href="@{/various/upload/}"><span class="link-block">upload</span></a></li>
+			</ul>
+			<ul class="nav-user">
+				<li>
+					<p th:if="${headerBean.isLogin}" class="nameHeader" th:text="'Hello, ' + ${headerBean.memberName}">Hello, ${f:h(headerBean.memberName)}</p>
+					<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
+					<ul class="child">
+						<li><a href="#" th:href="@{/profile/}">Profile</a></li>
+						<li><a href="#">setting</a></li>
+						<li><a href="#" th:href="@{/logout/}">logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</section>
+</header>
+<main>
+<!--/* main contents */-->
+	${param.contents}
+
+
+
+<!--/* paging navi */-->
+<div class="paging-navi" th:fragment="paging-navi" th:if="${pagingNavi}">
+<!--/*/ <th:block th:if="${pagingNavi.displayPagingNavi}"> /*/-->
+	<span th:text="${pagingNavi.currentPageNumber}">${pagingNavi.currentPageNumber}</span>/<span th:text="${pagingNavi.allPageCount}">${pagingNavi.allPageCount}</span> (<span th:text="${pagingNavi.allRecordCount}">${pagingNavi.allRecordCount}</span>)
+	<a th:if="${pagingNavi.existsPreviousPage}" th:href="${pagingNavi.previousPageLinkHref}">pre</a>
+	<span th:each="link : ${pagingNavi.pageNumberLinkList}" >
+			<span id="pageNumberElement" th:unless="${link.current}"><a th:href="${link.pageNumberLinkHref}" th:text="${link.pageNumberElement}">${link.pageNumberElement}</a></span>
+			<span id="pageNumberElement" th:if="${link.current}" th:text="${link.pageNumberElement}">${link.pageNumberElement}</span>
+	</span>
+	<a th:if="${pagingNavi.existsNextPage}" th:href="${pagingNavi.nextPageLinkHref}">next</a>
+<!--/*/ </th:block> /*/-->
+</div>
+
+
+</main>
+<footer th:fragment="footer">
+	<div class="wrap">
+		<ul class="footer-link">
+			<li><a href="http://dbflute.seasar.org/">DBFlute Top</a></li>
+			<li><a href="http://dbflute.seasar.org/ja/manual/reference/example/index.html">DBFlute Example</a></li>
+		</ul>
+		<p class="copyright">&copy; Lasta Flute project</p>
+	</div>
+</footer>
+<!--/*/ <th:block th:fragment="afterScript"> /*/-->
+<!-- script contents -->
+<script src="../../../js/jquery-2.1.3.min.js" th:src="@{/js/jquery-2.1.3.min.js}"></script>
+<script src="../../../js/common.js" th:src="@{/js/common.js}"></script>
+<!--/*/ </th:block> /*/-->
+<!--/*
+ ${param.individualScript}
+ */-->
+</body>
+</html>

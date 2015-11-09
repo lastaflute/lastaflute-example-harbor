@@ -7,7 +7,7 @@
 <header>
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="pg-main-title"><a href="${ctx}/">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="sg-main-title"><a href="${ctx}/">Maihama<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
 				<li><a href="${ctx}/product/list/"><span class="link-block">Product</span></a></li>
 				<li><a href="${ctx}/member/list/"><span class="link-block">Member</span></a></li>
@@ -20,6 +20,7 @@
 						<c:otherwise><p class="nameHeader">Welcome, Mr.Guest</p></c:otherwise>
 					</c:choose>
 					<ul class="child">
+						<li><a href="${ctx}/profile/">Profile</a></li>
 						<li><a href="#">setting</a></li>
 						<li><a href="${ctx}/logout/">logout</a></li>
 					</ul>

@@ -2,9 +2,9 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="contents">
-	<h2 class="pg-content-title"><la:caption key="labels.product.list.title"/></h2>
+	<h2 class="sg-content-title"><la:caption key="labels.product.list.title"/></h2>
 	<section class="product-search-box">
-		<h3 class="pg-content-title-second">Search Condition</h3>
+		<h3 class="sg-content-title-second">Search Condition</h3>
 		<la:form method="GET" styleClass="product-search-form">
 			<la:errors/>
 			<ul class="product-search-condition-list">
@@ -22,7 +22,7 @@
 		</la:form>
 	</section>
 	<section class="product-result-box">
-		<h3 class="pg-content-title-second">Search Results</h3>
+		<h3 class="sg-content-title-second">Search Results</h3>
 		<table class="product-list-tbl">
 			<thead>
 				<tr>

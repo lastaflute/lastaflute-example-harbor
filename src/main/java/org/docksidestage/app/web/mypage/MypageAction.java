@@ -46,7 +46,7 @@ public class MypageAction extends HarborBaseAction {
         List<MypageProductBean> beans = memberList.stream().map(member -> {
             return new MypageProductBean(member);
         }).collect(Collectors.toList());
-        return asHtml(path_Mypage_MypageJsp).renderWith(data -> {
+        return asHtml(path_Mypage_MypageHtml).renderWith(data -> {
             data.register("beans", beans);
         });
     }

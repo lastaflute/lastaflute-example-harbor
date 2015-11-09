@@ -49,13 +49,13 @@ public class ProductListAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Product_ProductListJsp);
+            return asHtml(path_Product_ProductListHtml);
         });
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), form);
         List<ProductSearchRowBean> beans = page.mappingList(product -> {
             return mappingToBean(product);
         });
-        return asHtml(path_Product_ProductListJsp).renderWith(data -> {
+        return asHtml(path_Product_ProductListHtml).renderWith(data -> {
             data.register("beans", beans);
             registerPagingNavi(data, page, form);
         });

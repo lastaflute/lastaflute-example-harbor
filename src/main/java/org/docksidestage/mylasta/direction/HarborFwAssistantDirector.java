@@ -34,8 +34,10 @@ import org.lastaflute.core.security.InvertibleCryptographer;
 import org.lastaflute.core.security.OneWayCryptographer;
 import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
+import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
 import org.lastaflute.web.direction.FwWebDirection;
 import org.lastaflute.web.servlet.filter.cors.CorsHook;
+import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 
 /**
  * @author jflute
@@ -121,7 +123,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directAdjustment(createActionAdjustmentProvider());
         direction.directMessage(nameList -> nameList.add("harbor_message"), "harbor_label");
         direction.directApiCall(createApiFailureHook());
-
+        direction.directHtmlRendering(createHtmlRenderingProvider());
     }
 
     protected HarborUserLocaleProcessProvider createUserLocaleProcessProvider() {
@@ -143,5 +145,9 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected HarborApiFailureHook createApiFailureHook() {
         return new HarborApiFailureHook();
+    }
+
+    protected HtmlRenderingProvider createHtmlRenderingProvider() {
+        return new ThymeleafRenderingProvider().asDevelopment(harborConfig.isDevelopmentHere());
     }
 }

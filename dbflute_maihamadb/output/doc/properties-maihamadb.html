@@ -202,10 +202,19 @@ table.child, table.child td, table.child th {
 	</thead>
 	<tbody>
 		<tr>
-			<td class="filecell">../src/main/resources/harbor_env_production.properties</td>
+			<td class="filecell"><strong>../src/main/resources/harbor_env.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">17</td>
+			<td class="sizecell">19</td>
+			<td>&nbsp;</td>
+			<td class="markcell">-</td>
+			<td class="markcell">-</td>
+		</tr>
+		<tr>
+			<td class="filecell">../src/main/resources/harbor_env_integration.properties</td>
+			<td class="envtypecell">integration</td>
+			<td class="langtypecell">-</td>
+			<td class="sizecell">18</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td class="keylistcell">
@@ -213,22 +222,15 @@ table.child, table.child td, table.child th {
 			</td>
 		</tr>
 		<tr>
-			<td class="filecell">../src/main/resources/harbor_env_integration.properties</td>
-			<td class="envtypecell">integration</td>
-			<td class="langtypecell">-</td>
-			<td class="sizecell">17</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
 			<td class="filecell">../src/main/resources/harbor_env_production.properties</td>
 			<td class="envtypecell">production</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">17</td>
+			<td class="sizecell">18</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td class="keylistcell">
+				<p class="diffprop">mail.address.support</p>
+			</td>
 		</tr>
 	</tbody>
 </table>
@@ -252,7 +254,7 @@ table.child, table.child td, table.child th {
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
 			<td class="sizecell">9</td>
-			<td class="extendsfilecell">../src/main/resources/harbor_env_production.properties</td>
+			<td class="extendsfilecell">../src/main/resources/harbor_env.properties</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
 			<td class="markcell">-</td>
@@ -277,7 +279,7 @@ table.child, table.child td, table.child th {
 			<td class="filecell"><strong>../src/main/resources/harbor_label.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">40</td>
+			<td class="sizecell">44</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
 			<td class="markcell">-</td>
@@ -303,7 +305,7 @@ table.child, table.child td, table.child th {
 			<td class="filecell"><strong>../src/main/resources/harbor_message.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">39</td>
+			<td class="sizecell">40</td>
 			<td class="extendsfilecell">../src/main/resources/harbor_label.properties</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
@@ -337,8 +339,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">cool</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">hot</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">The&nbsp;mode&nbsp;of&nbsp;Lasta&nbsp;Di's&nbsp;smart-deploy,&nbsp;should&nbsp;be&nbsp;cool&nbsp;in&nbsp;production&nbsp;(e.g.&nbsp;hot,&nbsp;cool,&nbsp;warm)</td>
 				</tr>
 				<tr>
@@ -373,8 +375,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">false</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">true</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">Is&nbsp;development&nbsp;environment&nbsp;here?&nbsp;(used&nbsp;for&nbsp;various&nbsp;purpose,&nbsp;you&nbsp;should&nbsp;set&nbsp;false&nbsp;if&nbsp;unknown)</td>
 				</tr>
 				<tr>
@@ -409,8 +411,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">Production</td>
-					<td class="uniquenocell">3</td>
+					<td class="valuecell">Local&nbsp;Development</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">The&nbsp;title&nbsp;of&nbsp;environment&nbsp;(e.g.&nbsp;local&nbsp;or&nbsp;integartion&nbsp;or&nbsp;production)</td>
 				</tr>
 				<tr>
@@ -483,7 +485,7 @@ table.child, table.child td, table.child th {
 					<td class="langtypecell">-</td>
 					<td class="valuecell">0</td>
 					<td class="uniquenocell">1</td>
-					<td class="commentcell">The&nbsp;milliseconds&nbsp;for&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;adjust&nbsp;time&nbsp;(set&nbsp;only&nbsp;when&nbsp;test)&nbsp;@LongType</td>
+					<td class="commentcell">The&nbsp;milliseconds&nbsp;for&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;adjust&nbsp;time&nbsp;(set&nbsp;only&nbsp;when&nbsp;test)&nbsp;@LongType&nbsp;*dynamic&nbsp;in&nbsp;development</td>
 				</tr>
 				<tr>
 					<td class="envtypecell">integration</td>
@@ -517,8 +519,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">info</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">debug</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">The&nbsp;log&nbsp;level&nbsp;for&nbsp;logback</td>
 				</tr>
 				<tr>
@@ -540,6 +542,42 @@ table.child, table.child td, table.child th {
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="keycell">log.console.level</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">debug</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">The&nbsp;log&nbsp;console&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">integration</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">off</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;log&nbsp;console&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+				<tr>
+					<td class="envtypecell">production</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">off</td>
+					<td class="uniquenocell">2</td>
+					<td class="commentcell">The&nbsp;log&nbsp;console&nbsp;level&nbsp;for&nbsp;logback</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="keycell">log.file.basedir</td>
 		<td>
 			<table class="child">
@@ -575,7 +613,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="keycell">mail.send.mock</td>
 		<td>
 			<table class="child">
@@ -589,8 +627,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">false</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">true</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">Does&nbsp;it&nbsp;send&nbsp;mock&nbsp;mail?&nbsp;(true:&nbsp;no&nbsp;send&nbsp;actually,&nbsp;logging&nbsp;only)</td>
 				</tr>
 				<tr>
@@ -611,7 +649,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">10</td>
 		<td class="keycell">mail.smtp.server.main.host.and.port</td>
 		<td>
 			<table class="child">
@@ -647,7 +685,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">11</td>
 		<td class="keycell">mail.subject.test.prefix</td>
 		<td>
 			<table class="child">
@@ -661,8 +699,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell"> &nbsp;</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">[Test]</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">The&nbsp;prefix&nbsp;of&nbsp;subject&nbsp;to&nbsp;show&nbsp;test&nbsp;environment&nbsp;or&nbsp;not</td>
 				</tr>
 				<tr>
@@ -683,7 +721,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">12</td>
 		<td class="keycell">mail.return.path</td>
 		<td>
 			<table class="child">
@@ -719,7 +757,29 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">13</td>
+		<td class="keycell">mail.address.support</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">harbor-support@annie.example.com</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Mail&nbsp;Address&nbsp;for&nbsp;Harbor&nbsp;Support</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">14</td>
 		<td class="keycell">jdbc.driver</td>
 		<td>
 			<table class="child">
@@ -755,7 +815,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">15</td>
 		<td class="keycell">jdbc.url</td>
 		<td>
 			<table class="child">
@@ -791,7 +851,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">14</td>
+		<td class="rownumcell">16</td>
 		<td class="keycell">jdbc.user</td>
 		<td>
 			<table class="child">
@@ -827,7 +887,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">15</td>
+		<td class="rownumcell">17</td>
 		<td class="keycell">jdbc.password</td>
 		<td>
 			<table class="child">
@@ -863,7 +923,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">16</td>
+		<td class="rownumcell">18</td>
 		<td class="keycell">jdbc.connection.pooling.size</td>
 		<td>
 			<table class="child">
@@ -899,7 +959,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">17</td>
+		<td class="rownumcell">19</td>
 		<td class="keycell">server.domain</td>
 		<td>
 			<table class="child">
@@ -913,8 +973,8 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">docksidestage.org</td>
-					<td class="uniquenocell">2</td>
+					<td class="valuecell">localhost:8091</td>
+					<td class="uniquenocell">1</td>
 					<td class="commentcell">domain&nbsp;to&nbsp;access&nbsp;this&nbsp;application&nbsp;from&nbsp;internet,&nbsp;e.g.&nbsp;for&nbsp;registration&nbsp;mail</td>
 				</tr>
 				<tr>
@@ -930,28 +990,6 @@ table.child, table.child td, table.child th {
 					<td class="valuecell">docksidestage.org</td>
 					<td class="uniquenocell">2</td>
 					<td class="commentcell">domain&nbsp;to&nbsp;access&nbsp;this&nbsp;application&nbsp;from&nbsp;internet,&nbsp;e.g.&nbsp;for&nbsp;registration&nbsp;mail</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">18</td>
-		<td class="keycell">mail.address.support</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-					<th>Comment</th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">harbor-support@annie.example.com</td>
-					<td class="uniquenocell">1</td>
-					<td class="commentcell">Mail&nbsp;Address&nbsp;for&nbsp;Harbor&nbsp;Support</td>
 				</tr>
 			</table>
 		</td>
@@ -1224,6 +1262,46 @@ table.child, table.child td, table.child th {
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
+		<td class="keycell">labels.purchase</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Purchase</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="keycell">labels.payment</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">Payment</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
 		<td class="keycell">labels.status</td>
 		<td>
 			<table class="child">
@@ -1243,7 +1321,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">6</td>
 		<td class="keycell">labels.withdrawal</td>
 		<td>
 			<table class="child">
@@ -1263,7 +1341,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">7</td>
 		<td class="keycell">labels.member.status</td>
 		<td>
 			<table class="child">
@@ -1283,7 +1361,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">8</td>
 		<td class="keycell">labels.product.status</td>
 		<td>
 			<table class="child">
@@ -1303,7 +1381,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">9</td>
 		<td class="keycell">labels.memberId</td>
 		<td>
 			<table class="child">
@@ -1325,7 +1403,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">10</td>
 		<td class="keycell">labels.memberName</td>
 		<td>
 			<table class="child">
@@ -1345,7 +1423,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">11</td>
 		<td class="keycell">labels.email</td>
 		<td>
 			<table class="child">
@@ -1365,7 +1443,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">12</td>
 		<td class="keycell">labels.account</td>
 		<td>
 			<table class="child">
@@ -1385,7 +1463,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">13</td>
 		<td class="keycell">labels.password</td>
 		<td>
 			<table class="child">
@@ -1405,7 +1483,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">14</td>
 		<td class="keycell">labels.versionNo</td>
 		<td>
 			<table class="child">
@@ -1425,7 +1503,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">15</td>
 		<td class="keycell">labels.list</td>
 		<td>
 			<table class="child">
@@ -1447,7 +1525,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">14</td>
+		<td class="rownumcell">16</td>
 		<td class="keycell">labels.detail</td>
 		<td>
 			<table class="child">
@@ -1467,7 +1545,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">15</td>
+		<td class="rownumcell">17</td>
 		<td class="keycell">labels.edit</td>
 		<td>
 			<table class="child">
@@ -1487,7 +1565,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">16</td>
+		<td class="rownumcell">18</td>
 		<td class="keycell">labels.add</td>
 		<td>
 			<table class="child">
@@ -1507,7 +1585,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">17</td>
+		<td class="rownumcell">19</td>
 		<td class="keycell">labels.search</td>
 		<td>
 			<table class="child">
@@ -1527,7 +1605,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">18</td>
+		<td class="rownumcell">20</td>
 		<td class="keycell">labels.register</td>
 		<td>
 			<table class="child">
@@ -1547,7 +1625,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">19</td>
+		<td class="rownumcell">21</td>
 		<td class="keycell">labels.update</td>
 		<td>
 			<table class="child">
@@ -1567,7 +1645,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">20</td>
+		<td class="rownumcell">22</td>
 		<td class="keycell">labels.confirm</td>
 		<td>
 			<table class="child">
@@ -1587,7 +1665,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">21</td>
+		<td class="rownumcell">23</td>
 		<td class="keycell">labels.finish</td>
 		<td>
 			<table class="child">
@@ -1607,7 +1685,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">22</td>
+		<td class="rownumcell">24</td>
 		<td class="keycell">labels.member.list.title</td>
 		<td>
 			<table class="child">
@@ -1627,7 +1705,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">23</td>
+		<td class="rownumcell">25</td>
 		<td class="keycell">labels.member.add.title</td>
 		<td>
 			<table class="child">
@@ -1647,7 +1725,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">24</td>
+		<td class="rownumcell">26</td>
 		<td class="keycell">labels.member.edit.title</td>
 		<td>
 			<table class="child">
@@ -1667,7 +1745,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">25</td>
+		<td class="rownumcell">27</td>
 		<td class="keycell">labels.member.input.keyword</td>
 		<td>
 			<table class="child">
@@ -1687,7 +1765,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">26</td>
+		<td class="rownumcell">28</td>
 		<td class="keycell">labels.member.input.zipCode</td>
 		<td>
 			<table class="child">
@@ -1707,7 +1785,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">27</td>
+		<td class="rownumcell">29</td>
 		<td class="keycell">labels.mypage.title</td>
 		<td>
 			<table class="child">
@@ -1727,7 +1805,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">28</td>
+		<td class="rownumcell">30</td>
 		<td class="keycell">labels.profile.title</td>
 		<td>
 			<table class="child">
@@ -1747,7 +1825,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">29</td>
+		<td class="rownumcell">31</td>
 		<td class="keycell">labels.withdrawal.title</td>
 		<td>
 			<table class="child">
@@ -1767,7 +1845,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">30</td>
+		<td class="rownumcell">32</td>
 		<td class="keycell">labels.withdrawal.confirm.title</td>
 		<td>
 			<table class="child">
@@ -1787,7 +1865,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">31</td>
+		<td class="rownumcell">33</td>
 		<td class="keycell">labels.product.list.title</td>
 		<td>
 			<table class="child">
@@ -1807,7 +1885,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">32</td>
+		<td class="rownumcell">34</td>
 		<td class="keycell">labels.product.detail.title</td>
 		<td>
 			<table class="child">
@@ -1827,7 +1905,47 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">33</td>
+		<td class="rownumcell">35</td>
+		<td class="keycell">labels.purchase.list.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.list]&nbsp;of&nbsp;@[labels.purchase]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">36</td>
+		<td class="keycell">labels.purchase.detail.title</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">@[labels.list]&nbsp;of&nbsp;@[labels.purchase]</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">37</td>
 		<td class="keycell">labels.signin.title</td>
 		<td>
 			<table class="child">
@@ -1847,7 +1965,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">34</td>
+		<td class="rownumcell">38</td>
 		<td class="keycell">labels.signin.button</td>
 		<td>
 			<table class="child">
@@ -1867,7 +1985,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">35</td>
+		<td class="rownumcell">39</td>
 		<td class="keycell">labels.signin.input.account</td>
 		<td>
 			<table class="child">
@@ -1887,7 +2005,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">36</td>
+		<td class="rownumcell">40</td>
 		<td class="keycell">labels.signin.input.password</td>
 		<td>
 			<table class="child">
@@ -1907,7 +2025,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">37</td>
+		<td class="rownumcell">41</td>
 		<td class="keycell">labels.error.message.title</td>
 		<td>
 			<table class="child">
@@ -1927,7 +2045,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">38</td>
+		<td class="rownumcell">42</td>
 		<td class="keycell">labels.listbox.caption.short</td>
 		<td>
 			<table class="child">
@@ -1947,7 +2065,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">39</td>
+		<td class="rownumcell">43</td>
 		<td class="keycell">labels.listbox.caption.long</td>
 		<td>
 			<table class="child">
@@ -1967,7 +2085,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">40</td>
+		<td class="rownumcell">44</td>
 		<td class="keycell">labels.listbox.caption.tell</td>
 		<td>
 			<table class="child">
@@ -2769,6 +2887,26 @@ table.child, table.child td, table.child th {
 	</tr>
 	<tr>
 		<td class="rownumcell">39</td>
+		<td class="keycell">errors.app.double.submit.request</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">double&nbsp;submit&nbsp;might&nbsp;be&nbsp;requested</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">40</td>
 		<td class="keycell">errors.signup.account.already.exists</td>
 		<td>
 			<table class="child">

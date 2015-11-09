@@ -225,3 +225,20 @@
 	border: solid 1px #CCC;
 	text-align: center;
 }
+
+/* -------------------------------------------------
+                                             Profile
+------------------------------------------------- */
+.profile-contents-box {
+	width: 960px;
+    margin: 32px auto 0;
+	padding-bottom: 20px;
+}
+
+.profile-info-detail > li {
+	margin-top: 10px;
+}
+
+.profile-product-box {
+	margin-top: 32px;
+}

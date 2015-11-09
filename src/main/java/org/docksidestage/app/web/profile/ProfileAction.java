@@ -15,18 +15,14 @@
  */
 package org.docksidestage.app.web.profile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
-import org.dbflute.optional.OptionalEntity;
-import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.profile.ProfileBean.PurchasedProductBean;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
-import org.docksidestage.dbflute.exentity.Product;
-import org.docksidestage.dbflute.exentity.Purchase;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -36,38 +32,50 @@ import org.lastaflute.web.response.HtmlResponse;
  */
 public class ProfileAction extends HarborBaseAction {
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     @Resource
     protected MemberBhv memberBhv;
 
+    // ===================================================================================
+    //                                                                             Execute
+    //                                                                             =======
     @Execute
-    public HtmlResponse index(OptionalThing<Integer> pageNumber, ProfileForm form) {
-        validate(form, messages -> {} , () -> {
-            return asHtml(path_Error_ErrorMessageJsp);
+    public HtmlResponse index() {
+        Member member = selectMember();
+        ProfileBean bean = mappingToBean(member);
+
+        return asHtml(path_Profile_ProfileHtml).renderWith(data -> {
+            data.register("bean", bean);
         });
-        OptionalEntity<Member> optionalMember = memberBhv.selectEntity(cb -> {
-            cb.query().setMemberId_Equal(pageNumber.get());
-        });
-        Member member = optionalMember.get();
+    }
+
+    // ===================================================================================
+    //                                                                              Select
+    //                                                                              ======
+    private Member selectMember() {
+        Integer memberId = getUserBean().get().getMemberId();
+        Member member = memberBhv.selectEntity(cb -> {
+            cb.setupSelect_MemberStatus();
+            cb.setupSelect_MemberServiceAsOne().withServiceRank();
+            cb.query().setMemberId_Equal(memberId);
+        }).get();
         memberBhv.loadPurchase(member, purCB -> {
             purCB.setupSelect_Product();
+            purCB.query().addOrderBy_PurchaseDatetime_Desc();
         });
+        return member;
+    }
 
-        ProfileBean beans = new ProfileBean();
-        beans.memberId = pageNumber.get();
-        beans.memberName = member.getMemberName();
-        List<Purchase> purchaseList = member.getPurchaseList();
-        beans.purchaseList = purchaseList;
-        beans.productList = new ArrayList<>();
-        for (Purchase pur : purchaseList) {
-            OptionalEntity<Product> product = pur.getProduct();
-            if (!product.isPresent()) {
-                continue;
-            }
-            beans.productList.add(product.get());
-        }
-
-        return asHtml(path_Profile_ProfileJsp).renderWith(data -> {
-            data.register("beans", beans);
-        });
+    // ===================================================================================
+    //                                                                             Mapping
+    //                                                                             =======
+    private ProfileBean mappingToBean(Member member) {
+        ProfileBean bean = new ProfileBean(member);
+        bean.purchaseList = member.getPurchaseList().stream().map(purchase -> {
+            return new PurchasedProductBean(purchase);
+        }).collect(Collectors.toList());
+        return bean;
     }
 }

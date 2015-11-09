@@ -5,8 +5,6 @@
 # map:{
 #     ; serviceName = [your service name]
 #     ; domainPackage = [package]
-#     ; environmentList = list:{ [environment name] }
-#     ; isMakeActionHtml = [true or false]
 #     ; commonMap = map:{
 #         ; path = [relative path to common project from DBFlute client]
 #         ; freeGenList = list:{ [env or config or label or message or html] }
@@ -29,12 +27,6 @@ map:{
 
     # package for your domain name, e.g. com.example
     ; domainPackage = org.docksidestage
-
-    # keywords for environment properties, same as directory name
-    ; environmentList = list:{ integration ; production }
-
-    # environment dispatch by lasta.env of system property?
-    ; isUseLastaEnv = true
 
     # settings for web applications
     ; appMap = map:{

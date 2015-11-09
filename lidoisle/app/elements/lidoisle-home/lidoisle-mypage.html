@@ -1,0 +1,58 @@
+<dom-module id="lidoisle-mypage">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2 class="page-title">Hello, Mr.Hogehoge</h2>
+    <h3>Your Most Expensive Purchase Top 3</h3>
+    <paper-button raised on-click="sendMypageAjax">Show</paper-button>
+    <table>
+      <colgroup>
+        <col width="200px"></col>
+        <col></col>
+      </colgroup>
+      <template is="dom-repeat" items="{{myPurchase}}">
+        <tr><th>{{item.productName}}</th><td>&yen;<span>{{item.regularPrice}}</span></td></tr>
+    </template>
+    </table>
+    
+    <iron-ajax
+      with-credentials
+      id="mypageAjax"
+      url="http://localhost:8090/harbor/mypage/indexJson"
+      method="GET"
+      on-response="mypageResponse"
+      on-error="handleError"></iron-ajax>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-mypage',
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Welcome!',
+            notify: true
+          }
+        },
+        sendMypageAjax: function() {
+          var _this = this;
+          _this.$.mypageAjax.generateRequest();
+        },
+        mypageResponse: function() {
+          this.myPurchase = this.$.mypageAjax.lastResponse;
+        },
+        handleError: function(e) {
+          console.error(e);
+        },
+      });
+    })();
+  </script>
+
+</dom-module>

@@ -35,6 +35,7 @@ import org.lastaflute.core.security.OneWayCryptographer;
 import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
 import org.lastaflute.web.direction.FwWebDirection;
+import org.lastaflute.web.servlet.filter.cors.CorsHook;
 
 /**
  * @author jflute
@@ -113,11 +114,14 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     //                                                                               =====
     @Override
     protected void prepareWebDirection(FwWebDirection direction) {
+        final String allowOrigin = "http://localhost:5000"; // #simple_for_example should be environment configuration
+        direction.directCors(new CorsHook(allowOrigin)); // #change_it
         direction.directRequest(createUserLocaleProcessProvider(), createUserTimeZoneProcessProvider());
         direction.directCookie(createCookieResourceProvider());
         direction.directAdjustment(createActionAdjustmentProvider());
         direction.directMessage(nameList -> nameList.add("harbor_message"), "harbor_label");
         direction.directApiCall(createApiFailureHook());
+
     }
 
     protected HarborUserLocaleProcessProvider createUserLocaleProcessProvider() {

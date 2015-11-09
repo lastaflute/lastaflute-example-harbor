@@ -52,6 +52,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
+  <link rel="import" href="elements/lidoisle-home/lidoisle-mypage.html">
+  <link rel="import" href="elements/lidoisle-home/lidoisle-bought.html">
   <!-- endreplace-->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -120,8 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="mypage">
               <paper-material elevation="1">
-                <h2 class="page-title">Mypage</h2>
-                <p>ここがマイページ</p>
+                <lidoisle-mypage></lidoisle-mypage>
               </paper-material>
             </section>
 
@@ -129,6 +130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <h2 class="page-title">Bought</h2>
                 <p>買ったもの</p>
+                <lidoisle-bought></lidoisle-bought>
               </paper-material>
             </section>
 

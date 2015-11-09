@@ -1,0 +1,56 @@
+<dom-module id="lidoisle-bought">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2 class="page-title">Products you bought</h2>
+    <!-- <paper-button raised on-click="sendboughtAjax">Show</paper-button>
+    <table>
+      <colgroup>
+        <col width="200px"></col>
+        <col></col>
+      </colgroup>
+      <template is="dom-repeat" items="{{myPurchase}}">
+        <tr><th>{{item.productName}}</th><td>&yen;<span>{{item.regularPrice}}</span></td></tr>
+    </template>
+    </table>
+    <iron-ajax
+      with-credentials
+      id="boughtAjax"
+      url="http://localhost:8090/harbor/purchase/indexJson"
+      method="GET"
+      on-response="boughtResponse"
+      on-error="handleError"></iron-ajax> -->
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-bought',
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Welcome!',
+            notify: true
+          }
+        },
+        sendboughtAjax: function() {
+          var _this = this;
+          _this.$.boughtAjax.generateRequest();
+        },
+        boughtResponse: function() {
+        this.myPurchase = this.$.boughtAjax.lastResponse;
+      },
+      handleError: function(e) {
+        console.error(e);
+      },
+      });
+    })();
+  </script>
+
+</dom-module>

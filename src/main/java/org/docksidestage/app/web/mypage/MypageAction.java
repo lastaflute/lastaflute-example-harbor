@@ -25,6 +25,7 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
+import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.response.JsonResponse;
 
@@ -50,6 +51,7 @@ public class MypageAction extends HarborBaseAction {
         });
     }
 
+    @AllowAnyoneAccess // TODO (s.tadokoro) Remove this when JSON Login feature is implemented.
     @Execute
     public JsonResponse<List<MypageProductBean>> indexJson() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {

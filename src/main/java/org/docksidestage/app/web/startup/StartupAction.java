@@ -10,6 +10,7 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.render.RenderData;
 
 /**
  * @author iwamatsu0430
@@ -28,32 +29,43 @@ public class StartupAction extends HarborBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse index(StartupDoForm form) {
-        StartupResult result = new StartupResult();
-        return asHtml(path_Startup_StartupJsp).renderWith(data -> {
-            data.register("bean", result);
+    public HtmlResponse index() {
+        return asHtml(path_Startup_StartupHtml).useForm(StartupForm.class).renderWith(data -> {
+            registerBean(data, new StartupBean());
         });
     }
 
     @Execute
-    public HtmlResponse doStartup(StartupDoForm form) {
-        final String domain = form.domain;
-        final String serviceName = form.serviceName;
-        StartupResult result = new StartupResult();
-
+    public HtmlResponse create(StartupForm form) {
         validate(form, message -> {} , () -> {
-            return asHtml(path_Startup_StartupJsp).renderWith(data -> {
-                data.register("bean", result);
+            return asHtml(path_Startup_StartupHtml).renderWith(data -> {
+                registerBean(data, new StartupBean());
             });
         });
 
-        final File projectDir = DfResourceUtil.getBuildDir(getClass()).getParentFile().getParentFile();
+        final String domain = form.domain;
+        final String serviceName = form.serviceName;
+        final File projectDir = getProjectDir();
         async(() -> startupLogic.toHarbor(projectDir, domain, serviceName));
 
-        result.isComplete = true;
-        result.projectPath = projectDir.getPath() + File.separator + serviceName;
-        return asHtml(path_Startup_StartupJsp).renderWith(data -> {
-            data.register("bean", result);
+        StartupBean bean = mappingToBean(serviceName, projectDir);
+        return asHtml(path_Startup_StartupHtml).renderWith(data -> {
+            registerBean(data, bean);
         });
+    }
+
+    private File getProjectDir() {
+        return DfResourceUtil.getBuildDir(getClass()).getParentFile().getParentFile();
+    }
+
+    private StartupBean mappingToBean(String serviceName, File projectDir) {
+        StartupBean bean = new StartupBean();
+        bean.isComplete = true;
+        bean.projectPath = projectDir.getPath() + "/" + serviceName;
+        return bean;
+    }
+
+    private void registerBean(RenderData data, StartupBean bean) {
+        data.register("bean", bean);
     }
 }

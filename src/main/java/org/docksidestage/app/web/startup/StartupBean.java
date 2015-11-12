@@ -2,9 +2,10 @@ package org.docksidestage.app.web.startup;
 
 /**
  * @author iwamatsu0430
+ * @author jflute
  */
-public class StartupResult {
+public class StartupBean {
 
-    public boolean isComplete = false;
+    public boolean isComplete;
     public String projectPath;
 }

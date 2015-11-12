@@ -48,16 +48,13 @@
 				<th>RegularPrice</th>
 			</tr>
 		</thead>
-		<thead>
-			<tr>
+		<tbody>
+			<tr th:each="bean : ${beans}">
 				<td th:text="${bean.productName}"></td>
 				<td th:text="${bean.regularPrice}"></td>
 			</tr>
-		</thead>
+		</tbody>
 	</table>
-	<ul th:each="bean : ${beans}">
-		<li><span th:text="${bean.productName}"></span>, <span th:text=""></span></li>
-	</ul>
 </div>
 <footer th:replace="/common/layout.html :: footer">
 	<div class="wrap">

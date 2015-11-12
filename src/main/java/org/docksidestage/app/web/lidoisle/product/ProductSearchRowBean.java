@@ -13,28 +13,19 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.signout;
+package org.docksidestage.app.web.lidoisle.product;
 
-import javax.annotation.Resource;
-
-import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.app.web.base.login.HarborLoginAssist;
-import org.docksidestage.app.web.signin.SigninAction;
-import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.HtmlResponse;
+import java.time.LocalDateTime;
 
 /**
- * @author toshiaki.arai
  * @author jflute
  */
-public class SignoutAction extends HarborBaseAction {
+public class ProductSearchRowBean {
 
-    @Resource
-    private HarborLoginAssist harborLoginAssist;
-
-    @Execute
-    public HtmlResponse index() {
-        harborLoginAssist.logout();
-        return redirect(SigninAction.class);
-    }
+    public Integer productId;
+    public String productName;
+    public String productStatusName;
+    public Integer regularPrice;
+    public LocalDateTime registerDatetime;
+    public String productCategoryName;
 }

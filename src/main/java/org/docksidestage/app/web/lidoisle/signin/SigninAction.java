@@ -13,16 +13,15 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.signin;
+package org.docksidestage.app.web.lidoisle.signin;
 
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
-import org.docksidestage.app.web.mypage.MypageAction;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -38,23 +37,15 @@ public class SigninAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
-    @Execute
-    public HtmlResponse index() {
-        if (getUserBean().isPresent()) {
-            return redirect(MypageAction.class);
-        }
-        return asHtml(path_Signin_SigninJsp).useForm(SigninForm.class);
-    }
 
     @Execute
-    public HtmlResponse signin(SigninForm form) {
+    public JsonResponse<Object> index(SigninForm form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
             form.clearSecurityInfo();
-            return asHtml(path_Signin_SigninJsp);
+            return JsonResponse.asEmptyBody().httpStatus(400);
         });
-        return harborLoginAssist.loginRedirect(form.email, form.password, op -> op.rememberMe(form.rememberMe), () -> {
-            return redirect(MypageAction.class);
-        });
+        harborLoginAssist.login(form.email, form.password, op -> op.rememberMe(form.rememberMe));
+        return JsonResponse.asEmptyBody();
     }
 
     private void moreValidate(SigninForm form, HarborMessages messages) {

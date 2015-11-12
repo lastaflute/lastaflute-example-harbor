@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.member;
+package org.docksidestage.app.web.lidoisle.member;
 
 import java.time.LocalDateTime;
 
@@ -25,7 +25,7 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -41,19 +41,20 @@ public class MemberListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
+
     @Execute
-    public HtmlResponse index(OptionalThing<Integer> pageNumber, MemberSearchForm form) {
+    public JsonResponse<PagingResultBean<MemberSearchRowBean>> index(OptionalThing<Integer> pageNumber, MemberSearchForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Member_MemberListJsp);
+            return JsonResponse.asEmptyBody().httpStatus(400);
         });
-        PagingResultBean<Member> page = selectMemberPage(pageNumber.orElse(1), form);
-        PagingResultBean<MemberSearchRowBean> beans = page.mappingList(member -> {
+        Integer pageNumberValue = pageNumber.orElse(1);
+        PagingResultBean<Member> page = selectMemberPage(pageNumberValue, form);
+
+        PagingResultBean<MemberSearchRowBean> bean = page.mappingList(member -> {
             return mappingToBean(member);
         });
-        return asHtml(path_Member_MemberListJsp).renderWith(data -> {
-            data.register("beans", beans);
-            registerPagingNavi(data, page, form);
-        });
+
+        return asJson(bean);
     }
 
     // ===================================================================================

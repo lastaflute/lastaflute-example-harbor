@@ -13,15 +13,14 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.signout;
+package org.docksidestage.app.web.lidoisle.signout;
 
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
-import org.docksidestage.app.web.signin.SigninAction;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author toshiaki.arai
@@ -33,8 +32,8 @@ public class SignoutAction extends HarborBaseAction {
     private HarborLoginAssist harborLoginAssist;
 
     @Execute
-    public HtmlResponse index() {
+    public JsonResponse<Void> index() {
         harborLoginAssist.logout();
-        return redirect(SigninAction.class);
+        return JsonResponse.asEmptyBody();
     }
 }

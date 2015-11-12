@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.mypage;
+package org.docksidestage.app.web.lidoisle.mypage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,8 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.login.AllowAnyoneAccess;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
@@ -35,8 +36,9 @@ public class MypageAction extends HarborBaseAction {
     @Resource
     protected ProductBhv productBhv;
 
+    @AllowAnyoneAccess // TODO (s.tadokoro) Remove this when JSON Login feature is implemented.
     @Execute
-    public HtmlResponse index() {
+    public JsonResponse<List<MypageProductBean>> index() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {
             cb.query().addOrderBy_RegularPrice_Desc();
             cb.fetchFirst(3);
@@ -44,8 +46,6 @@ public class MypageAction extends HarborBaseAction {
         List<MypageProductBean> beans = memberList.stream().map(member -> {
             return new MypageProductBean(member);
         }).collect(Collectors.toList());
-        return asHtml(path_Mypage_MypageHtml).renderWith(data -> {
-            data.register("beans", beans);
-        });
+        return asJson(beans);
     }
 }

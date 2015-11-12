@@ -34,10 +34,10 @@ import org.lastaflute.core.security.InvertibleCryptographer;
 import org.lastaflute.core.security.OneWayCryptographer;
 import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
-//import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
+import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
 import org.lastaflute.web.direction.FwWebDirection;
-import org.lastaflute.web.servlet.filter.cors.CorsHook;
 import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
+import org.lastaflute.web.servlet.filter.cors.CorsHook;
 
 /**
  * @author jflute

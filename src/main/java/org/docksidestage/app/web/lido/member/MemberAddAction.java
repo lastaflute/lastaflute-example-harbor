@@ -13,47 +13,48 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.signin;
+package org.docksidestage.app.web.lido.member;
 
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.app.web.base.login.HarborLoginAssist;
-import org.docksidestage.mylasta.action.HarborMessages;
-import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.JsonResponse;
+import org.docksidestage.dbflute.exbhv.MemberBhv;
 
 /**
  * @author jflute
  */
-public class SigninAction extends HarborBaseAction {
+public class MemberAddAction extends HarborBaseAction {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private MemberBhv memberBhv;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
 
-    @Execute
-    public JsonResponse<Object> index(SigninForm form) {
-        validate(form, messages -> moreValidate(form, messages), () -> {
-            form.clearSecurityInfo();
-            return JsonResponse.asEmptyBody().httpStatus(400);
-        });
-        harborLoginAssist.login(form.email, form.password, op -> op.rememberMe(form.rememberMe));
-        return JsonResponse.asEmptyBody();
-    }
-
-    private void moreValidate(SigninForm form, HarborMessages messages) {
-        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
-            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
-                messages.addErrorsLoginFailure("email");
-            }
-        }
-    }
-
+    // TODO (s.tadokoro) implement
+    //    @Execute
+    //    public HtmlResponse index() {
+    //        return asHtml(path_Member_MemberAddJsp).useForm(MemberAddForm.class);
+    //    }
+    //
+    //    @Execute
+    //    public HtmlResponse register(MemberAddForm form) {
+    //        validate(form, messages -> {} , () -> {
+    //            return asHtml(path_Member_MemberAddJsp);
+    //        });
+    //        Member member = new Member();
+    //        member.setMemberName(form.memberName);
+    //        member.setMemberAccount(form.memberAccount);
+    //        member.setBirthdate(form.birthdate);
+    //        member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
+    //        if (member.isMemberStatusCodeFormalized()) {
+    //            member.setFormalizedDatetime(currentDateTime());
+    //        }
+    //        memberBhv.insert(member);
+    //        return redirect(MemberListAction.class);
+    //    }
 }

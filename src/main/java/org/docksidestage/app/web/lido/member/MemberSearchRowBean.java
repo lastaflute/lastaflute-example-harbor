@@ -13,19 +13,20 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.product;
+package org.docksidestage.app.web.lido.member;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author jflute
  */
-public class ProductSearchRowBean {
+public class MemberSearchRowBean {
 
-    public Integer productId;
-    public String productName;
-    public String productStatusName;
-    public Integer regularPrice;
-    public LocalDateTime registerDatetime;
-    public String productCategoryName;
+    public Integer memberId;
+    public String memberName;
+    public String memberStatusName;
+    public LocalDate formalizedDate;
+    public String updateDatetime;
+    public boolean withdrawalMember;
+    public Integer purchaseCount;
 }

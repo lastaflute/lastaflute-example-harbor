@@ -1,4 +1,4 @@
-package org.docksidestage.app.web.lidoisle.signup;
+package org.docksidestage.app.web.lido.signup;
 
 import org.hibernate.validator.constraints.NotBlank;
 

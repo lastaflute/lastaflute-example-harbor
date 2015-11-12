@@ -13,45 +13,21 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.member;
+package org.docksidestage.app.web.lido.member;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.docksidestage.dbflute.allcommon.CDef;
-import org.lastaflute.web.validation.ClientError;
-import org.lastaflute.web.validation.Required;
 
 /**
  * @author jflute
  */
-public class MemberEditForm {
+public class MemberSearchForm {
 
-    @Required(groups = ClientError.class)
-    public Integer memberId;
-
-    @Required
     public String memberName;
-
-    @Required
-    public String memberAccount;
-
-    public LocalDate birthdate;
-
-    public LocalDate formalizedDate;
-
-    @Required
     public CDef.MemberStatus memberStatus;
-
-    @Required(groups = ClientError.class)
-    public LocalDateTime latestLoginDatetime;
-
-    @Required(groups = ClientError.class)
-    public LocalDateTime updateDatetime; // only view
-
-    @Required(groups = ClientError.class)
-    public CDef.MemberStatus previousStatus;
-
-    @Required(groups = ClientError.class)
-    public Long versionNo;
+    public String purchaseProductName;
+    public boolean unpaid;
+    public LocalDate formalizedFrom;
+    public LocalDate formalizedTo;
 }

@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.mypage;
+package org.docksidestage.app.web.lido.mypage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,20 +31,20 @@ import org.lastaflute.web.response.JsonResponse;
 /**
  * @author jflute
  */
-public class MypageAction extends HarborBaseAction {
+public class LidoMypageAction extends HarborBaseAction {
 
     @Resource
     protected ProductBhv productBhv;
 
     @AllowAnyoneAccess // TODO (s.tadokoro) Remove this when JSON Login feature is implemented.
     @Execute
-    public JsonResponse<List<MypageProductBean>> index() {
+    public JsonResponse<List<LidoMypageProductBean>> index() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {
             cb.query().addOrderBy_RegularPrice_Desc();
             cb.fetchFirst(3);
         });
-        List<MypageProductBean> beans = memberList.stream().map(member -> {
-            return new MypageProductBean(member);
+        List<LidoMypageProductBean> beans = memberList.stream().map(member -> {
+            return new LidoMypageProductBean(member);
         }).collect(Collectors.toList());
         return asJson(beans);
     }

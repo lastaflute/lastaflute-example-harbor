@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.product;
+package org.docksidestage.app.web.lido.product;
 
 import javax.annotation.Resource;
 

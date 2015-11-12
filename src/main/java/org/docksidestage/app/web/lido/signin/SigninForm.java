@@ -13,20 +13,25 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.member;
+package org.docksidestage.app.web.lido.signin;
 
-import java.time.LocalDate;
+import org.lastaflute.web.validation.Required;
 
 /**
+ * The form of member's Login.
  * @author jflute
  */
-public class MemberSearchRowBean {
+public class SigninForm {
 
-    public Integer memberId;
-    public String memberName;
-    public String memberStatusName;
-    public LocalDate formalizedDate;
-    public String updateDatetime;
-    public boolean withdrawalMember;
-    public Integer purchaseCount;
+    @Required
+    public String email;
+
+    @Required
+    public String password;
+
+    public boolean rememberMe;
+
+    public void clearSecurityInfo() {
+        password = null;
+    }
 }

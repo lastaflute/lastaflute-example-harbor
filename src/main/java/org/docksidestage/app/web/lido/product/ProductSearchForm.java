@@ -13,25 +13,21 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.signin;
+package org.docksidestage.app.web.lido.product;
 
-import org.lastaflute.web.validation.Required;
+import org.docksidestage.dbflute.allcommon.CDef;
+import org.hibernate.validator.constraints.Length;
 
 /**
- * The form of member's Login.
  * @author jflute
  */
-public class SigninForm {
+public class ProductSearchForm {
 
-    @Required
-    public String email;
+    @Length(max = 10)
+    public String productName;
 
-    @Required
-    public String password;
+    public CDef.ProductStatus productStatus;
 
-    public boolean rememberMe;
-
-    public void clearSecurityInfo() {
-        password = null;
-    }
+    @Length(max = 5)
+    public String purchaseMemberName;
 }

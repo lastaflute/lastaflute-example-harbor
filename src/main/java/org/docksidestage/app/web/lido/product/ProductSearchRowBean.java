@@ -13,21 +13,19 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.lidoisle.product;
+package org.docksidestage.app.web.lido.product;
 
-import org.docksidestage.dbflute.allcommon.CDef;
-import org.hibernate.validator.constraints.Length;
+import java.time.LocalDateTime;
 
 /**
  * @author jflute
  */
-public class ProductSearchForm {
+public class ProductSearchRowBean {
 
-    @Length(max = 10)
+    public Integer productId;
     public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    @Length(max = 5)
-    public String purchaseMemberName;
+    public String productStatusName;
+    public Integer regularPrice;
+    public LocalDateTime registerDatetime;
+    public String productCategoryName;
 }

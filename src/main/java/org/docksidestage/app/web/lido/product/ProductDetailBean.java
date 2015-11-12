@@ -1,4 +1,4 @@
-package org.docksidestage.app.web.lidoisle.product;
+package org.docksidestage.app.web.lido.product;
 
 public class ProductDetailBean {
     public Integer productId;

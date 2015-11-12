@@ -1,16 +1,16 @@
-package org.docksidestage.app.web.lidoisle.mypage;
+package org.docksidestage.app.web.lido.mypage;
 
 import org.docksidestage.dbflute.exentity.Product;
 
 /**
  * @author jflute
  */
-public class MypageProductBean {
+public class LidoMypageProductBean {
 
     public final String productName;
     public final Integer regularPrice;
 
-    public MypageProductBean(Product product) {
+    public LidoMypageProductBean(Product product) {
         this.productName = product.getProductName();
         this.regularPrice = product.getRegularPrice();
     }

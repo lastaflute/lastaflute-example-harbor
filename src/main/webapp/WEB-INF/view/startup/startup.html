@@ -38,11 +38,10 @@
 <!--/* main contents */-->
 
 <div class="contents">
-	<h2 class="pg-content-title">Start up!!</h2>
-	<section class="sign-in-box">
-		<form styleClass="signin-form" action="#" th:action="@{/startup/}">
+	<h2 class="sg-content-title">Start up!!</h2>
+	<section class="startup-box">
+		<form action="#" th:action="@{/startup/}" method="post" class="startup-form">
 			<p th:if="${bean.isComplete}" th:text="new Project created!: ${bean.projectPath}"></p>
-			<la:errors/>
 			<ul>
 				<li>
 					<p>Domain:</p>
@@ -50,7 +49,7 @@
 					<span th:style="'color : red;'" th:each="er : ${errors.part('domain')}" th:text="${er.message}"/>
 				</li>
 				<li>
-					<p>Service Name</p>
+					<p>Service Name:</p>
 					<input type="text" name="serviceName" th:value="${serviceName}" placeholder="input service name e.g. dancers"/>
 					<span th:style="'color : red;'" th:each="er : ${errors.part('serviceName')}" th:text="${er.message}"/>
 				</li>

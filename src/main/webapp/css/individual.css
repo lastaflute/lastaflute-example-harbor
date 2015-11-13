@@ -41,7 +41,7 @@
 }
 
 /* -------------------------------------------------
-                                     Product list
+                                          Product
 ------------------------------------------------- */
 .product-search-box {
 	width: 960px;
@@ -100,7 +100,7 @@
 }
 
 /* -------------------------------------------------
-                                     Purchase list
+                                         Purchase
 ------------------------------------------------- */
 .purchase-search-box {
 	width: 960px;
@@ -159,7 +159,7 @@
 }
 
 /* -------------------------------------------------
-                                             Member
+                                           Member
 ------------------------------------------------- */
 .member-search-box {
 	width: 960px;
@@ -227,7 +227,7 @@
 }
 
 /* -------------------------------------------------
-                                             Profile
+                                          Profile
 ------------------------------------------------- */
 .profile-contents-box {
 	width: 960px;
@@ -241,4 +241,40 @@
 
 .profile-product-box {
 	margin-top: 32px;
+}
+
+/* -------------------------------------------------
+                                         Start Up
+------------------------------------------------- */
+.startup-box {
+	width: 320px;
+	margin: 32px auto;
+	border: solid 4px #E5E5E5;
+	padding: 24px 64px;
+}
+.startup-form {
+}
+.startup-form li {
+	padding: 6px 0;
+}
+.startup-form li p {
+	padding-bottom: 6px;
+	color: #444;
+}
+.startup-form input[type="text"] {
+	padding: 6px 8px;
+	width: 60%;
+}
+.startup-form input[type="submit"] {
+	margin-top: 8px;
+	padding: 10px 32px;
+	height: 36px;
+	background-color: #882255;
+	border: 1px solid #882255;
+	color: #FFF;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: top;
+	cursor: pointer;
 }

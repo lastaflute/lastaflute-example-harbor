@@ -116,13 +116,12 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     //                                                                               =====
     @Override
     protected void prepareWebDirection(FwWebDirection direction) {
-        final String allowOrigin = "http://localhost:5000"; // #simple_for_example should be environment configuration
-        direction.directCors(new CorsHook(allowOrigin)); // #change_it
         direction.directRequest(createUserLocaleProcessProvider(), createUserTimeZoneProcessProvider());
         direction.directCookie(createCookieResourceProvider());
         direction.directAdjustment(createActionAdjustmentProvider());
         direction.directMessage(nameList -> nameList.add("harbor_message"), "harbor_label");
         direction.directApiCall(createApiFailureHook());
+        direction.directCors(new CorsHook("http://localhost:5000")); // #change_it
         direction.directHtmlRendering(createHtmlRenderingProvider());
     }
 

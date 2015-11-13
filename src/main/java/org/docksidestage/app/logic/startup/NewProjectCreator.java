@@ -141,6 +141,8 @@ public class NewProjectCreator {
                 filtered = textIO.readFilteringLine(canonicalPath, createPomXmlFilter());
             } else if (canonicalPath.endsWith("lastafluteMap.dfprop")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createLastaFluteMapFilter());
+            } else if (canonicalPath.endsWith("HarborFwAssistantDirector.java")) {
+                filtered = textIO.readFilteringLine(canonicalPath, createFwAssistantDirectorFilter());
             } else {
                 filtered = textIO.readFilteringLine(canonicalPath, line -> filterServiceName(line));
             }
@@ -262,6 +264,18 @@ public class NewProjectCreator {
                 } else {
                     return filterServiceName(line);
                 }
+            }
+        };
+    }
+
+    protected FileTextLineFilter createFwAssistantDirectorFilter() {
+        return new FileTextLineFilter() {
+            @Override
+            public String filter(String line) {
+                if (line.trim().startsWith("direction.directCors")) {
+                    return null;
+                }
+                return line;
             }
         };
     }

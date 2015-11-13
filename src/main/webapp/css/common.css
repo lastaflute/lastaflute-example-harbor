@@ -3,11 +3,23 @@
 /* -------------------------------------------------
                                      Common Style
 ------------------------------------------------- */
-
+html, body {
+	height: 100%;
+}
 body {
 	font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
 	background-color: #FAFCF2;
-	color: #444;
+	color: #555;
+}
+a {
+	color: #0C52C4;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.sg-content {
+	padding-bottom: 60px;
 }
 .wrap {
 	max-width: 960px;
@@ -15,6 +27,39 @@ body {
 	margin-right: auto;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+.sg-content .wrap {
+	margin-top: 40px;
+}
+.sg-content .wrap.col-2:after {
+	content: "";
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+.wrap.col-2 .main-col {
+	width: 700px;
+	float: right;
+	margin-top: 30px;
+}
+
+.wrap.col-2 .side-col {
+	width: 220px;
+	float: left;
+	margin-top: 30px;
+}
+.sg-container {
+	box-sizing: border-box;
+	min-height: 100%;
+	padding-bottom: 50px;
+	position: relative;
+}
+hr {
+	border: none;
+	border-bottom: 1px solid #dadada;
+	margin: 0;
+	margin-top: 60px;
 }
 /* -------------------------------------------------
                                            Header
@@ -57,8 +102,6 @@ body {
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
-.nav-user {
-}
 
 /* dropdown menu */
 ul.nav-user li{
@@ -87,6 +130,7 @@ ul.child li a{
 ul.nav-user li a:hover{
 	opacity: 0.8;
 }
+
 /* -------------------------------------------------
                                              Main
 ------------------------------------------------- */
@@ -110,10 +154,13 @@ ul.nav-user li a:hover{
                                            Footer
 ------------------------------------------------- */
 footer {
+	width: 100%;
 	height: 50px;
 	line-height: 50px;
 	background-color: #882255;
 	color: #FAFAFA;
+	position: absolute;
+	bottom: 0;
 }
 footer a:LINK, footer a:VISITED {
 	width: 100%;
@@ -134,4 +181,223 @@ footer:after {
 .copyright {
 	display: inline-block;
 	float: right;
+}
+
+/* -------------------------------------------------
+                                           Headding
+------------------------------------------------- */
+
+.sg-content h2 {
+	font-size: 42px;
+}
+
+.sg-content h3 {
+	font-size: 28px;
+}
+
+.sg-content h4 {
+	font-size: 24px;
+}
+
+.sg-content h5 {
+	font-size: 18px;
+}
+
+.sg-content h1 + * {
+	margin-top: 32px;
+}
+.sg-content h2 + * {
+	margin-top: 26px;
+}
+.sg-content h3 + * {
+	margin-top: 18px;
+}
+.sg-content h4 + * {
+	margin-top: 14px;
+}
+.sg-content h5 + * {
+	margin-top: 12px;
+}
+.sg-content h6 + * {
+	margin-top: 10px;
+}
+
+.sg-content * + h1,
+.sg-content * + h2,
+.sg-content * + h3,
+.sg-content * + h4,
+.sg-content * + h5,
+.sg-content * + h6{
+	margin-top: 1em;
+}
+
+.page-title {
+	border-bottom: 1px solid #882255;
+	padding-bottom: 14px;
+}
+
+/* -------------------------------------------------
+                                           Side Menu
+------------------------------------------------- */
+.side-menu li > a {
+	display: block;
+	padding: 14px 10px;
+	border-bottom: 1px #ddd solid;
+	color: #555
+}
+.side-menu li > a:hover,
+.side-menu li.current > a {
+	border-bottom: 1px solid #882255;
+	text-decoration: none;
+}
+
+/* -------------------------------------------------
+                                               Panel
+------------------------------------------------- */
+.panel {
+	background: #fff;
+	padding: 30px 40px;
+	box-shadow: 0 0 2px rgba(0,0,0,0.1);
+}
+
+/* -------------------------------------------------
+                                               Form
+------------------------------------------------- */
+form.form{
+	
+}
+* + form.form {
+	margin-top: 40px;
+}
+form.form dl {
+	display: block;
+}
+form.form dl + dl {
+	margin-top: 20px;
+}
+form.form dt label {
+	color: #777;
+}
+form.form dd {
+	margin-top: 6px;
+}
+form.form input,
+form.form textarea {
+	box-sizing: border-box;
+	border: 1px #aaa solid;
+	padding: 8px 10px;
+	width: 100%;
+	font-size: 85%;
+}
+
+form.form input[type="radio"],
+form.form input[type="checkbox"],
+form.form input[type="submit"],
+form.form input[type="button"] {
+	width: auto;
+}
+
+form.form input:focus,
+form.form textarea:focus {
+	outline: 1px #882255 solid;
+}
+
+form.form .btnBox {
+	margin-top: 10px;
+	text-align: right;
+}
+
+/* -------------------------------------------------
+                                             Table
+------------------------------------------------- */
+.table {
+	width: 100%;
+	table-layout: fixed;
+	background: #fff;
+	margin-top: 20px;
+}
+
+.table th,
+.table td {
+	padding: 0.7em 1.4em;
+}
+
+.table.table-stripe tbody tr:nth-child(odd) th,
+.table.table-stripe tbody tr:nth-child(odd) td{
+	background: #fafafa;
+}
+
+.table th {
+	text-align: left;
+	font-weight: bold;
+}
+
+table thead th {
+		border-bottom: 3px solid rgba(0,0,0,0.05);
+}
+
+.table tbody th,
+.table tbody td {
+	border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* -------------------------------------------------
+                                             Button
+------------------------------------------------- */
+
+a.btn, 
+button.btn {
+	position: relative;
+	display: inline-block;
+	border: none;
+	text-decoration: none;
+	background: none;
+	border: none;
+	color: #555;
+	font-size: 14px;
+	padding: 0.6em 1em;
+	border-radius: 4px;
+	cursor: pointer;
+	outline: none;
+	top: 0;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+a.btn:hover, 
+button.btn:hover {
+	top: 1px;
+}
+
+a.btn.btn-default, 
+button.btn.btn-default {
+	background: #fff;
+	box-shadow: 0 1px 2px #dadada;
+}
+
+a.btn.btn-success,
+button.btn.btn-success {
+	background: #006635;
+	color: #fff;
+}
+
+a.btn.btn-info,
+button.btn.btn-info {
+	background: #020066;
+	color: #fff;
+}
+
+a.btn.btn-caution,
+button.btn.btn-caution {
+	background: #da680b;
+	color: #fff;
+}
+
+a.btn.btn-danger,
+button.btn.btn-danger {
+	background: #b30909;
+	color: #fff;
+}
+
+.btn + .btn {
+	margin-left: 0.6em;
 }

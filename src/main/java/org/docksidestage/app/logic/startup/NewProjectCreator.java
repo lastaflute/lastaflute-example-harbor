@@ -275,7 +275,10 @@ public class NewProjectCreator {
                 if (line.trim().startsWith("direction.directCors")) {
                     return null;
                 }
-                return line;
+                if (line.trim().endsWith("CorsHook;")) {
+                    return null;
+                }
+                return filterServiceName(line);
             }
         };
     }

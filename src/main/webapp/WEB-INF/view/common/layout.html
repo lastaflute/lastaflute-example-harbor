@@ -13,12 +13,11 @@
 <header th:fragment="header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="sg-main-title"><a href="#" th:href="@{/}">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a href="#" th:href="@{/}">Harbor<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
-				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Product</span></a></li>
-				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Member</span></a></li>
-				<li><a href="../member/purchase/member_purchase_list.html" th:href="@{/member/purchase/list/}"><span class="link-block">Purchase</span></a></li>
-				<li><a href="../various/various_upload.html" th:href="@{/various/upload/}"><span class="link-block">upload</span></a></li>
+				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Products</span></a></li>
+				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Members</span></a></li>
+				<li><a href="../withdrawal/withdrawal.html" th:href="@{/withdrawal/}"><span class="link-block">Withdrawal</span></a></li>
 			</ul>
 			<ul class="nav-user">
 				<li>
@@ -26,8 +25,7 @@
 					<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
 					<ul class="child">
 						<li><a href="#" th:href="@{/profile/}">Profile</a></li>
-						<li><a href="#">setting</a></li>
-						<li><a href="#" th:href="@{/logout/}">logout</a></li>
+						<li><a href="#" th:href="@{/signout/}">Sign out</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -37,8 +35,6 @@
 <main>
 <!--/* main contents */-->
 	${param.contents}
-
-
 
 <!--/* paging navi */-->
 <div class="paging-navi" th:fragment="paging-navi" th:if="${pagingNavi}">
@@ -53,15 +49,14 @@
 <!--/*/ </th:block> /*/-->
 </div>
 
-
 </main>
 <footer th:fragment="footer">
 	<div class="wrap">
 		<ul class="footer-link">
 			<li><a href="http://dbflute.seasar.org/">DBFlute Top</a></li>
-			<li><a href="http://dbflute.seasar.org/ja/manual/reference/example/index.html">DBFlute Example</a></li>
+			<li><a href="http://dbflute.seasar.org/lastaflute">LastaFlute Top</a></li>
 		</ul>
-		<p class="copyright">&copy; Lasta Flute project</p>
+		<p class="copyright">&copy; LastaFlute project</p>
 	</div>
 </footer>
 <!--/*/ <th:block th:fragment="afterScript"> /*/-->

@@ -9,25 +9,23 @@
 	<title>Preview Title</title>
 <!--/*/ </th:block> /*/-->
 <!--/* individual Css write to after */-->
-
 </head>
 <body>
 <header th:replace="/common/layout.html :: header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="sg-main-title"><a href="#">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a href="#">Maihama<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
-				<li><a href="../product/product_list.html" ><span class="link-block">Product</span></a></li>
-				<li><a href="../member/member_list.html" ><span class="link-block">Member</span></a></li>
-				<li><a href="../member/purchase/member_purchase_list.html"><span class="link-block">Purchase</span></a></li>
-				<li><a href="../various/various_upload.html"><span class="link-block">upload</span></a></li>
+				<li><a href="../product/product_list.html" ><span class="link-block">Products</span></a></li>
+				<li><a href="../member/member_list.html" ><span class="link-block">Members</span></a></li>
+				<li><a href="../withdrawal/withdrawal.html"><span class="link-block">Withdrawal</span></a></li>
 			</ul>
 			<ul class="nav-user">
 				<li>
 					<p class="nameHeader">Welcome, Mr.Guest</p>
 					<ul class="child">
-						<li><a href="#">setting</a></li>
-						<li><a href="#">logout</a></li>
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Sign out</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -35,12 +33,10 @@
 	</section>
 </header>
 <main>
-<!--/* main contents */-->
-
 <div class="contents">
-	<h2 class="sg-content-title" th:text="#{labels.product.list.title}">labels.product.list.title</h2>
+	<h2 class="content-title" th:text="#{labels.product.list.title}">labels.product.list.title</h2>
 	<section class="product-search-box">
-		<h3 class="sg-content-title-second">Search Condition</h3>
+		<h3 class="content-title-second">Search Condition</h3>
 		<form class="product-search-form" action="#" th:action="@{/product/list/}" method="get">
 			<ul class="product-search-condition-list">
 				<li>
@@ -63,8 +59,8 @@
 		</form>
 	</section>
 	<section class="product-result-box">
-		<h3 class="sg-content-title-second">Search Results</h3>
-		<table class="product-list-tbl">
+		<h3 class="content-title-second">Search Results</h3>
+		<table class="list-tbl">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -85,24 +81,18 @@
 			</tbody>
 		</table>
 		<section class="product-list-paging-box">
-			<div th:replace="/common/layout.html :: paging-navi (pagingNavi=${pagingNavi})">
-			<!--
-			<c:import url="${viewPrefix}/common/paging_navi.jsp"/>
-			 -->
-			</div>
+			<div th:replace="/common/layout.html :: paging-navi (pagingNavi=${pagingNavi})"></div>
 		</section>
 	</section>
 </div>
-
-
 </main>
 <footer th:replace="/common/layout.html :: footer">
 	<div class="wrap">
 		<ul class="footer-link">
 			<li><a href="http://dbflute.seasar.org/">DBFlute Top</a></li>
-			<li><a href="http://dbflute.seasar.org/ja/manual/reference/example/index.html">DBFlute Example</a></li>
+			<li><a href="http://dbflute.seasar.org/lastaflute">LastaFlute Top</a></li>
 		</ul>
-		<p class="copyright">&copy; Lasta Flute project</p>
+		<p class="copyright">&copy; LastaFlute project</p>
 	</div>
 </footer>
 <!--/*/ <th:block th:include="/common/layout.html :: afterScript"> /*/-->

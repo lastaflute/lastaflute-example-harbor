@@ -8,23 +8,23 @@
 	<link rel="stylesheet" type="text/css" href="../../../css/individual.css" />
 	<title>Preview Title</title>
 <!--/*/ </th:block> /*/-->
+
 </head>
+<body>
 <div class="contents">
 	<h2 class="sg-content-title" th:text="#{labels.error.message.title}">labels.error.message.title</h2>
-	<ul th:unless="${errors.empty}" style="display: none" th:style="'color : red;'">
-		<li th:each="er : ${errors.all}" th:text="${er.message}"></li>
+	<ul th:unless="${errors.empty}" th:style="'color : red;'">
+		<li th:each="er : ${errors.all}" th:text="${er.message}"/>
 	</ul>
-	<div class="listback">
-		<a href="product_detail.html" th:href="@{/member/list/" th:text="#{labels.error.message.title}">labels.error.message.title</a>
-	</div>
 </div>
+
 <footer th:replace="/common/layout.html :: footer">
 	<div class="wrap">
 		<ul class="footer-link">
 			<li><a href="http://dbflute.seasar.org/">DBFlute Top</a></li>
 			<li><a href="http://dbflute.seasar.org/ja/manual/reference/example/index.html">DBFlute Example</a></li>
 		</ul>
-		<p class="copyright">&copy; Lasta Flute project</p>
+		<p class="copyright">&copy; LastaFlute project</p>
 	</div>
 </footer>
 <!--/*/ <th:block th:include="/common/layout.html :: afterScript"> /*/-->

@@ -3,29 +3,29 @@
 <head>
 <!--/*/ <th:block th:fragment="head (title)"> /*/-->
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="../../../css/reset.css" th:href="@{/css/reset.css}"/>
-	<link rel="stylesheet" type="text/css" href="../../../css/common.css" th:href="@{/css/common.css}"/>
-	<link rel="stylesheet" type="text/css" href="../../../css/individual.css" th:href="@{/css/individual.css}"/>
-	<title th:text="'LastaFlute Example | ' + ${title}">${param.title}</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" href="../../../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}" href="../../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/individual.css}" href="../../../css/individual.css"/>
+	<title th:text="${title} + ' | Harbor'">title</title>
 <!--/*/ </th:block> /*/-->
 </head>
 <body>
 <header th:fragment="header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="main-title"><a href="#" th:href="@{/}">Harbor<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a th:href="@{/}" href="#">Harbor<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
-				<li><a href="../product/product_list.html" th:href="@{/product/list/}"><span class="link-block">Products</span></a></li>
-				<li><a href="../member/member_list.html" th:href="@{/member/list/}"><span class="link-block">Members</span></a></li>
-				<li><a href="../withdrawal/withdrawal.html" th:href="@{/withdrawal/}"><span class="link-block">Withdrawal</span></a></li>
+				<li><a th:href="@{/product/list/}" href="../product/product_list.html"><span class="link-block">Products</span></a></li>
+				<li><a th:href="@{/member/list/}" href="../member/member_list.html"><span class="link-block">Members</span></a></li>
+				<li><a th:href="@{/withdrawal/}" href="../withdrawal/withdrawal.html"><span class="link-block">Withdrawal</span></a></li>
 			</ul>
 			<ul class="nav-user">
 				<li>
 					<p th:if="${headerBean.isLogin}" class="nameHeader" th:text="'Hello, ' + ${headerBean.memberName}">Hello, ${f:h(headerBean.memberName)}</p>
 					<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
 					<ul class="child">
-						<li><a href="#" th:href="@{/profile/}">Profile</a></li>
-						<li><a href="#" th:href="@{/signout/}">Sign out</a></li>
+						<li><a th:href="@{/profile/}" href="#">Profile</a></li>
+						<li><a th:href="@{/signout/}" href="#">Sign out</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -33,8 +33,6 @@
 	</section>
 </header>
 <main>
-<!--/* main contents */-->
-	${param.contents}
 
 <!--/* paging navi */-->
 <div class="paging-navi" th:fragment="paging-navi" th:if="${pagingNavi}">

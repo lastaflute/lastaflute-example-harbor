@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!--/*/ <th:block th:include="/common/layout.html :: head (#{labels.product.list.title})"> /*/-->
+<!--/*/ <th:block th:include="/common/layout.html :: head (title='Start Up')"> /*/-->
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
@@ -14,7 +14,7 @@
 <header th:replace="/common/layout.html :: header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="main-title"><a href="#">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a href="#">Harbor<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
 				<li><a href="../product/product_list.html" ><span class="link-block">Products</span></a></li>
 				<li><a href="../member/member_list.html" ><span class="link-block">Members</span></a></li>
@@ -35,7 +35,7 @@
 <main>
 <div class="contents">
 	<h2 class="content-title">Start up!!</h2>
-	<section class="startup-box">
+	<section class="content-box">
 		<form action="#" th:action="@{/startup/}" method="post" class="startup-form">
 			<p th:if="${bean.isComplete}" th:text="new Project created!: ${bean.projectPath}"></p>
 			<ul>

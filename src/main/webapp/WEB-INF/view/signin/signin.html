@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!--/*/ <th:block th:include="/common/layout.html :: head (#{labels.signin.title})"> /*/-->
+<!--/*/ <th:block th:include="/common/layout.html :: head (title=#{labels.signin.title})"> /*/-->
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="../../../css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
@@ -14,7 +14,7 @@
 <header th:replace="/common/layout.html :: header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="main-title"><a href="#">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a href="#">Harbor<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
 				<li><a href="../product/product_list.html" ><span class="link-block">Products</span></a></li>
 				<li><a href="../member/member_list.html" ><span class="link-block">Members</span></a></li>

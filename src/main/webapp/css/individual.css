@@ -8,7 +8,7 @@
                                           Sign In
 ------------------------------------------------- */
 .sign-in-box {
-	width: 320px;
+	width: 420px;
 	margin: 32px auto;
 	border: solid 4px #E5E5E5;
 	padding: 24px 64px;
@@ -30,6 +30,30 @@
 	margin-top: 8px;
 	padding: 10px 32px;
 	height: 36px;
+	background-color: #660032;
+	border: 1px solid #660032;
+	color: #FFF;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+
+/* -------------------------------------------------
+                                          Sign up 
+------------------------------------------------- */
+
+.signup-form input[type="text"],.signup-form input[type="password"] {
+	margin-top: 4px;
+	padding: 6px 8px;
+	width: 80%;
+}
+.signup-form input[type="submit"] {
+	margin-top: 8px;
+	padding: 10px 32px;
+	height: 36px;
 	background-color: #882255;
 	border: 1px solid #882255;
 	color: #FFF;
@@ -41,11 +65,11 @@
 }
 
 /* -------------------------------------------------
-                                          Product
+                                     Product list
 ------------------------------------------------- */
 .product-search-box {
-	width: 960px;
 	margin: 32px auto 0;
+	width: 960px;
 }
 .product-search-condition-list {
 	width: 100%;
@@ -75,23 +99,8 @@
 	cursor: pointer;
 }
 .product-result-box {
-	width: 960px;
 	margin: 32px auto 0;
-}
-.product-list-tbl {
-	width: 100%;
-	margin: 12px auto 0;
-}
-.product-list-tbl th {
-	border: solid 1px #CCC;
-	padding: 6px 0;
-	background-color: #888;
-	color: #FAFCF2;
-}
-.product-list-tbl td {
-	padding: 6px 0;
-	border: solid 1px #CCC;
-	text-align: center;
+	width: 960px;
 }
 .product-list-paging-box {
 	text-align: right;
@@ -100,181 +109,46 @@
 }
 
 /* -------------------------------------------------
-                                         Purchase
+                                           My Page
 ------------------------------------------------- */
-.purchase-search-box {
+.recent-purchase-box {
 	width: 960px;
 	margin: 32px auto 0;
 }
-.purchase-search-condition-list {
-	width: 100%;
-	margin-top: 12px;
-}
-.purchase-search-condition-list li {
-	height: 32px;
-}
-.purchase-search-condition-list li span {
-	display: inline-block;
-	padding-right: 8px;
-}
-.purchase-search-form input[type="text"] {
-	padding: 2px 6px;	
-}
-.purchase-search-form input[type="submit"] {
-	margin-top: 8px;
-	padding: 10px 32px;
-	height: 36px;
-	background-color: #882255;
-	border: 1px solid #882255;
-	color: #FFF;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	vertical-align: top;
-	cursor: pointer;
-}
-.purchase-result-box {
-	width: 960px;
+.follow-box {
 	margin: 32px auto 0;
-}
-.purchase-list-tbl {
-	width: 100%;
-	margin: 12px auto 0;
-}
-.purchase-list-tbl th {
-	border: solid 1px #CCC;
-	padding: 6px 0;
-	background-color: #888;
-	color: #FAFCF2;
-}
-.purchase-list-tbl td {
-	padding: 6px 0;
-	border: solid 1px #CCC;
-	text-align: center;
-}
-.purchase-list-paging-box {
-	text-align: right;
-	margin: 10px 10px 20px 0;
-	font-size: 18px;
 }
 
 /* -------------------------------------------------
-                                           Member
+                                        Withdrawal
+------------------------------------------------- */
+.select-withdrawal-reason {
+	margin: 32px auto 0;
+}
+.withdrawal-reason-list{
+	margin: 8px auto 0;
+}
+.withdrawal-reason-element{
+	padding: 5px;
+}
+.withdrawal-write-reason{
+	margin:5px 0px;
+}
+
+/* -------------------------------------------------
+                                        member list
 ------------------------------------------------- */
 .member-search-box {
 	width: 960px;
-	margin: 32px auto 0;
+	margin: 20px auto;
 }
-.member-search-condition-list {
-	width: 100%;
-	margin-top: 12px;
-}
-.member-search-condition-list li {
-	height: 32px;
-}
-.member-search-condition-list li span {
-	display: inline-block;
-	padding-right: 8px;
-}
-.member-search-form input[type="text"] {
-	padding: 2px 6px;	
-}
-.member-search-form input[type="submit"] {
-	margin-top: 8px;
-	padding: 10px 32px;
-	height: 36px;
-	background-color: #882255;
-	border: 1px solid #882255;
-	color: #FFF;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	vertical-align: top;
-	cursor: pointer;
-}
+
 .member-result-box {
 	width: 960px;
-	margin: 32px auto 0;
-}
-.member-list-tbl {
-	width: 100%;
-	margin: 12px auto 0;
-}
-.member-list-tbl th {
-	border: solid 1px #CCC;
-	padding: 6px 0;
-	background-color: #888;
-	color: #FAFCF2;
-}
-.member-list-tbl td {
-	padding: 6px 0;
-	border: solid 1px #CCC;
-	text-align: center;
-}
-.member-list-paging-box {
-	text-align: right;
-	margin: 10px 10px 20px 0;
-	font-size: 18px;
-}
-.member-input-box {
-	width: 960px;
-	margin: 32px auto 0;
-}
-.member-input-tbl td {
-	padding: 6px 0;
-	border: solid 1px #CCC;
-	text-align: center;
+	margin: 20px auto;
 }
 
-/* -------------------------------------------------
-                                          Profile
-------------------------------------------------- */
 .profile-contents-box {
 	width: 960px;
-    margin: 32px auto 0;
-	padding-bottom: 20px;
-}
-
-.profile-info-detail > li {
-	margin-top: 10px;
-}
-
-.profile-product-box {
-	margin-top: 32px;
-}
-
-/* -------------------------------------------------
-                                         Start Up
-------------------------------------------------- */
-.startup-box {
-	width: 320px;
-	margin: 32px auto;
-	border: solid 4px #E5E5E5;
-	padding: 24px 64px;
-}
-.startup-form {
-}
-.startup-form li {
-	padding: 6px 0;
-}
-.startup-form li p {
-	padding-bottom: 6px;
-	color: #444;
-}
-.startup-form input[type="text"] {
-	padding: 6px 8px;
-	width: 60%;
-}
-.startup-form input[type="submit"] {
-	margin-top: 8px;
-	padding: 10px 32px;
-	height: 36px;
-	background-color: #882255;
-	border: 1px solid #882255;
-	color: #FFF;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	vertical-align: top;
-	cursor: pointer;
+	margin: 20px auto;
 }

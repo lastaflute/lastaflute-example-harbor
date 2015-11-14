@@ -2,7 +2,7 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="contents">
-	<h2 class="sg-content-title"><la:caption key="labels.product.detail.title"/></h2>
+	<h2 class="content-title"><la:caption key="labels.product.detail.title"/></h2>
 	<table>
 		<tr>
 			<td><label>product</label></td>

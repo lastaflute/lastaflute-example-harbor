@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="contents">
-	<h2 class="sg-content-title" th:text="#{labels.error.message.title}">labels.error.message.title</h2>
+	<h2 class="content-title" th:text="#{labels.error.message.title}">labels.error.message.title</h2>
 	<ul th:unless="${errors.empty}" th:style="'color : red;'">
 		<li th:each="er : ${errors.all}" th:text="${er.message}"/>
 	</ul>

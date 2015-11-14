@@ -3,7 +3,7 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="">
-	<h2 class="sg-content-title"><la:caption key="labels.signup.title"/></h2>
+	<h2 class="content-title"><la:caption key="labels.signup.title"/></h2>
 	<la:errors/>
 	<section class="sign-in-box">
 		<la:form styleClass="signin-form">

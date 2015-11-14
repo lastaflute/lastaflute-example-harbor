@@ -2,9 +2,9 @@
 <c:param name="contents">
 <!-- <main> start main content -->
 <div class="contents">
-	<h2 class="sg-content-title">Purchase List</h2>
+	<h2 class="content-title">Purchase List</h2>
 	<section class="product-result-box">
-		<h3 class="sg-content-title-second">Purchase List</h3>
+		<h3 class="content-title-second">Purchase List</h3>
 		<table class="product-list-tbl">
 			<thead>
 				<tr>

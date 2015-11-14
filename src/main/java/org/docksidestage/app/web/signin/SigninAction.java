@@ -43,14 +43,14 @@ public class SigninAction extends HarborBaseAction {
         if (getUserBean().isPresent()) {
             return redirect(MypageAction.class);
         }
-        return asHtml(path_Signin_SigninJsp).useForm(SigninForm.class);
+        return asHtml(path_Signin_SigninHtml).useForm(SigninForm.class);
     }
 
     @Execute
     public HtmlResponse signin(SigninForm form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
             form.clearSecurityInfo();
-            return asHtml(path_Signin_SigninJsp);
+            return asHtml(path_Signin_SigninHtml);
         });
         return harborLoginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
@@ -60,7 +60,7 @@ public class SigninAction extends HarborBaseAction {
     private void moreValidate(SigninForm form, HarborMessages messages) {
         if (isNotEmpty(form.account) && isNotEmpty(form.password)) {
             if (!harborLoginAssist.checkUserLoginable(form.account, form.password)) {
-                messages.addErrorsLoginFailure("email");
+                messages.addErrorsLoginFailure("account");
             }
         }
     }

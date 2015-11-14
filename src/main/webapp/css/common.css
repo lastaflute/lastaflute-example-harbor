@@ -18,7 +18,7 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-.sg-content {
+.content {
 	padding-bottom: 60px;
 }
 .wrap {
@@ -28,10 +28,10 @@ a:hover {
 	padding-left: 20px;
 	padding-right: 20px;
 }
-.sg-content .wrap {
+.content .wrap {
 	margin-top: 40px;
 }
-.sg-content .wrap.col-2:after {
+.content .wrap.col-2:after {
 	content: "";
 	display: block;
 	clear: both;
@@ -49,7 +49,7 @@ a:hover {
 	float: left;
 	margin-top: 30px;
 }
-.sg-container {
+.container {
 	box-sizing: border-box;
 	min-height: 100%;
 	padding-bottom: 50px;
@@ -77,7 +77,7 @@ hr {
 	background-color: #882255;
 	color: #FAFAFA;
 }
-.sg-main-title {
+.main-title {
 	height: 54px;
 	line-height: 54px;
 	padding: 0 16px 0 8px;
@@ -85,7 +85,7 @@ hr {
 	float: left;
 	font-size: 32px;
 }
-.sg-main-title span {
+.main-title span {
 	font-size: 12px;
 }
 .nav-home > li:HOVER {
@@ -134,7 +134,7 @@ ul.nav-user li a:hover{
 /* -------------------------------------------------
                                              Main
 ------------------------------------------------- */
-.sg-content-title {
+.content-title {
 	width: 936px;
 	height: 40px;
 	line-height: 40px;
@@ -144,22 +144,22 @@ ul.nav-user li a:hover{
 	font-size: 32px;
 	font-weight: bold;
 }
-.sg-content-title-second {
+.content-title-second {
 	border-left: solid 6px #888;
 	padding-left: 8px;
 	font-size: 24px;
 }
-.sg-list-tbl {
+.list-tbl {
 	width: 100%;
 	margin: 12px auto 0;
 }
-.sg-list-tbl th {
+.list-tbl th {
 	border: solid 1px #CCC;
 	padding: 6px 0;
 	background-color: #888;
 	color: #FAFCF2;
 }
-.sg-list-tbl td {
+.list-tbl td {
 	padding: 6px 0;
 	border: solid 1px #CCC;
 	text-align: center;
@@ -202,47 +202,47 @@ footer:after {
                                            Headding
 ------------------------------------------------- */
 
-.sg-content h2 {
+.content h2 {
 	font-size: 42px;
 }
 
-.sg-content h3 {
+.content h3 {
 	font-size: 28px;
 }
 
-.sg-content h4 {
+.content h4 {
 	font-size: 24px;
 }
 
-.sg-content h5 {
+.content h5 {
 	font-size: 18px;
 }
 
-.sg-content h1 + * {
+.content h1 + * {
 	margin-top: 32px;
 }
-.sg-content h2 + * {
+.content h2 + * {
 	margin-top: 26px;
 }
-.sg-content h3 + * {
+.content h3 + * {
 	margin-top: 18px;
 }
-.sg-content h4 + * {
+.content h4 + * {
 	margin-top: 14px;
 }
-.sg-content h5 + * {
+.content h5 + * {
 	margin-top: 12px;
 }
-.sg-content h6 + * {
+.content h6 + * {
 	margin-top: 10px;
 }
 
-.sg-content * + h1,
-.sg-content * + h2,
-.sg-content * + h3,
-.sg-content * + h4,
-.sg-content * + h5,
-.sg-content * + h6{
+.content * + h1,
+.content * + h2,
+.content * + h3,
+.content * + h4,
+.content * + h5,
+.content * + h6{
 	margin-top: 1em;
 }
 

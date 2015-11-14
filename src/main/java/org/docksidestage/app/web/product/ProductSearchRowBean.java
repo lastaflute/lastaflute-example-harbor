@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.product;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author jflute
@@ -24,8 +24,8 @@ public class ProductSearchRowBean {
 
     public Integer productId;
     public String productName;
-    public String productStatusName;
+    public String productStatus;
+    public String productCategory;
     public Integer regularPrice;
-    public LocalDateTime registerDatetime;
-    public String productCategoryName;
+    public LocalDate latestPurchaseDate;
 }

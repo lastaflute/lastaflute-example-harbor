@@ -10,7 +10,7 @@ How are you? Thank you for signing up to Maihama!
 
 You are now temporaly registered to the site. 
 Please click on the link below to become a formal member. 
-http:///*pmb.domain*//signup/register//*pmb.token*/
+http:///*pmb.domain*//signup/register//*pmb.account*///*pmb.token*//
 
 We hope you will enjoy your time in Maihama.
 /* this is no comment */

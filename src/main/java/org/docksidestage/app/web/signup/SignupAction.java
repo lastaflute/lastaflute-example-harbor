@@ -7,12 +7,14 @@ import javax.annotation.Resource;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
+import org.docksidestage.app.web.signin.SigninAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exbhv.MemberSecurityBhv;
 import org.docksidestage.dbflute.exbhv.MemberServiceBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.MemberSecurity;
 import org.docksidestage.dbflute.exentity.MemberService;
+import org.docksidestage.mylasta.action.HarborMessages;
 import org.docksidestage.mylasta.direction.HarborConfig;
 import org.docksidestage.mylasta.mail.member.WelcomeMemberPostcard;
 import org.lastaflute.core.mail.Postbox;
@@ -29,9 +31,6 @@ public class SignupAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -52,45 +51,48 @@ public class SignupAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Signup_SignupJsp).useForm(SignupAction.class);
+        return asHtml(path_Signup_SignupHtml).useForm(SignupForm.class);
     }
 
     @Execute
     public HtmlResponse signup(SignupForm form) {
         validate(form, messages -> {
-            int count = memberBhv.selectCount(cb -> {
-                cb.query().setMemberAccount_Equal(form.account);
-            });
-            if (count > 0) {
-                messages.addErrorsSignupAccountAlreadyExists("account");
-            }
+            moreValidate(form, messages);
         } , () -> {
-            return asHtml(path_Signup_SignupJsp);
+            return asHtml(path_Signup_SignupHtml);
         });
         Integer memberId = newMember(form);
-        harborLoginAssist.identityLogin(memberId.longValue(), op -> {}); // no remember-me here
+        harborLoginAssist.identityLogin(memberId, op -> {}); // no remember-me here
 
         WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
             postcard.setFrom(harborConfig.getMailAddressSupport(), "Harbor Support");
             postcard.addTo(deriveMemberMailAddress(form));
             postcard.setDomain(harborConfig.getServerDomain());
-            postcard.setMemberName(form.name);
+            postcard.setMemberName(form.memberName);
+            postcard.setAccount(form.memberAccount);
             postcard.setToken(generateToken());
         });
         return redirect(MypageAction.class);
     }
 
-    private String deriveMemberMailAddress(SignupForm form) {
-        return form.account + "@docksidestage.org"; // #simple_for_example
-    }
-
-    private String generateToken() {
-        return primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // #simple_for_example
+    private void moreValidate(SignupForm form, HarborMessages messages) {
+        if (isNotEmpty(form.memberAccount)) {
+            int count = memberBhv.selectCount(cb -> {
+                cb.query().setMemberAccount_Equal(form.memberAccount);
+            });
+            if (count > 0) {
+                messages.addErrorsSignupAccountAlreadyExists("memberAccount");
+            }
+        }
     }
 
     @Execute
-    public HtmlResponse register() {
-        return asHtml(path_Signup_SignupJsp).useForm(SignupAction.class);
+    public HtmlResponse register(String account, String token) { // from mail link
+        Member member = new Member();
+        member.setMemberAccount(account);
+        member.setMemberStatusCode_Formalized();
+        memberBhv.update(member);
+        return redirect(SigninAction.class);
     }
 
     // ===================================================================================
@@ -98,8 +100,8 @@ public class SignupAction extends HarborBaseAction {
     //                                                                        ============
     private Integer newMember(SignupForm form) {
         Member member = new Member();
-        member.setMemberAccount(form.account);
-        member.setMemberName(form.name);
+        member.setMemberName(form.memberName);
+        member.setMemberAccount(form.memberAccount);
         member.setMemberStatusCode_Provisional();
         memberBhv.insert(member);
 
@@ -117,5 +119,13 @@ public class SignupAction extends HarborBaseAction {
         service.setServiceRankCode_Plastic();
         memberServiceBhv.insert(service);
         return member.getMemberId();
+    }
+
+    private String deriveMemberMailAddress(SignupForm form) {
+        return form.memberAccount + "@harborstage.org"; // #simple_for_example
+    }
+
+    private String generateToken() {
+        return primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
     }
 }

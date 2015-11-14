@@ -17,16 +17,17 @@ package org.docksidestage.app.web.lido.signin;
 
 import javax.annotation.Resource;
 
+import org.docksidestage.app.web.RootAction;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.lastaflute.web.Execute;
-import org.lastaflute.web.response.JsonResponse;
+import org.lastaflute.web.response.HtmlResponse;
 
 /**
  * @author jflute
  */
-public class SigninAction extends HarborBaseAction {
+public class LidoSigninAction extends HarborBaseAction {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -37,23 +38,30 @@ public class SigninAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
-
     @Execute
-    public JsonResponse<Object> index(SigninForm form) {
-        validate(form, messages -> moreValidate(form, messages), () -> {
-            form.clearSecurityInfo();
-            return JsonResponse.asEmptyBody().httpStatus(400);
-        });
-        harborLoginAssist.login(form.email, form.password, op -> op.rememberMe(form.rememberMe));
-        return JsonResponse.asEmptyBody();
+    public HtmlResponse index() {
+        if (getUserBean().isPresent()) {
+            return redirect(RootAction.class);
+        }
+        return asHtml(path_Signin_SigninHtml).useForm(LidoSigninForm.class);
     }
 
-    private void moreValidate(SigninForm form, HarborMessages messages) {
-        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
-            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
+    @Execute
+    public HtmlResponse signin(LidoSigninForm form) {
+        validate(form, messages -> moreValidate(form, messages), () -> {
+            form.clearSecurityInfo();
+            return asHtml(path_Signin_SigninHtml);
+        });
+        return harborLoginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
+            return redirect(RootAction.class);
+        });
+    }
+
+    private void moreValidate(LidoSigninForm form, HarborMessages messages) {
+        if (isNotEmpty(form.account) && isNotEmpty(form.password)) {
+            if (!harborLoginAssist.checkUserLoginable(form.account, form.password)) {
                 messages.addErrorsLoginFailure("email");
             }
         }
     }
-
 }

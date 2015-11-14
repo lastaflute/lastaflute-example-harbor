@@ -14,7 +14,7 @@
 <header th:replace="/common/layout.html :: header">
 	<section class="nav-main cf">
 		<div class="wrap">
-			<h1 class="main-title"><a href="#">Maihama<span> (LastaFlute Example)</span></a></h1>
+			<h1 class="main-title"><a href="#">Harbor<span> (LastaFlute Example)</span></a></h1>
 			<ul class="nav-home">
 				<li><a href="../product/product_list.html" ><span class="link-block">Products</span></a></li>
 				<li><a href="../member/member_list.html" ><span class="link-block">Members</span></a></li>
@@ -36,22 +36,24 @@
 <div class="contents">
 	<h2 class="content-title" th:text="#{labels.product.list.title}">labels.product.list.title</h2>
 	<section class="product-search-box">
-		<h3 class="content-title-second">Search Condition</h3>
+		<h3 class="content-title-second" th:text="#{labels.search.condition}">labels.search.condition</h3>
 		<form class="product-search-form" action="#" th:action="@{/product/list/}" method="get">
 			<ul class="product-search-condition-list">
 				<li>
-					<span>Product Name</span><input type="text" name="productName" th:value="${productName}"/>
+					<span th:text="#{labels.productName}">labels.productName</span>
+					<input type="text" name="productName" th:value="${productName}"/>
 					<span th:style="'color : red;'" th:each="er : ${errors.part('productName')}" th:text="${er.message}"/>
 				</li>
 				<li>
-					<span th:text="#{labels.product.status}">labels.product.status</span>
+					<span th:text="#{labels.productStatus}">labels.productStatus</span>
 					<select la:property="productStatus">
 						<option value="" th:text="#{labels.listbox.caption.tell}"></option>
 						<option la:optionCls="ProductStatus"></option>
 					</select>
 				</li>
 				<li>
-					<span>Purchased Member</span><input type="text" name="purchaseMemberName" th:value="${purchaseMemberName}"/>
+					<span th:text="#{labels.purchase} + ' ' + #{labels.member}">labels.purchase labels.member</span>
+					<input type="text" name="purchaseMemberName" th:value="${purchaseMemberName}"/>
 					<span th:style="'color : red;'" th:each="er : ${errors.part('purchaseMemberName')}" th:text="${er.message}"/>
 				</li>
 			</ul>
@@ -59,24 +61,26 @@
 		</form>
 	</section>
 	<section class="product-result-box">
-		<h3 class="content-title-second">Search Results</h3>
+		<h3 class="content-title-second" th:text="#{labels.search.result}">labels.search.result</h3>
 		<table class="list-tbl">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Category</th>
-					<th>Registration</th>
+					<th th:text="#{labels.id}">labels.id</th>
+					<th th:text="#{labels.productName}">labels.productName</th>
+					<th th:text="#{labels.status}">labels.status</th>
+					<th th:text="#{labels.category}">labels.category</th>
+					<th th:text="#{labels.price}">labels.price</th>
+					<th th:text="#{labels.product.list.latestPurchaseDate}">labels.product.item.latestPurchaseDate</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="bean : ${beans}">
 					<td th:text="${bean.productId}">${f:h(bean.productId)}</td>
-					<td><a href="product_detail.html" th:href="@{/product/detail/{productId}(productId=${bean.productId})}" th:text="${bean.productName}">${f:h(bean.productName)}</a></td>
+					<td><a th:href="@{/product/detail/{productId}(productId=${bean.productId})}" href="product_detail.html" th:text="${bean.productName}">${f:h(bean.productName)}</a></td>
+					<td th:text="${bean.productStatus}">${f:h(bean.productStatus)}</td>
+					<td th:text="${bean.productCategory}">${f:h(bean.productCategory)}</td>
 					<td th:text="${bean.regularPrice}">${f:h(bean.regularPrice)}</td>
-					<td th:text="${bean.productCategoryName}">${f:h(bean.productCategoryName)}</td>
-					<td th:text="${bean.registerDatetime}">${f:h(bean.registerDatetime)}</td>
+					<td th:text="${bean.latestPurchaseDate}">${f:h(bean.latestPurchaseDate)}</td>
 				</tr>
 			</tbody>
 		</table>

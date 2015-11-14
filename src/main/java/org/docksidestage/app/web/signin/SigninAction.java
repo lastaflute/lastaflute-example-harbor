@@ -52,14 +52,14 @@ public class SigninAction extends HarborBaseAction {
             form.clearSecurityInfo();
             return asHtml(path_Signin_SigninJsp);
         });
-        return harborLoginAssist.loginRedirect(form.email, form.password, op -> op.rememberMe(form.rememberMe), () -> {
+        return harborLoginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
         });
     }
 
     private void moreValidate(SigninForm form, HarborMessages messages) {
-        if (isNotEmpty(form.email) && isNotEmpty(form.password)) {
-            if (!harborLoginAssist.checkUserLoginable(form.email, form.password)) {
+        if (isNotEmpty(form.account) && isNotEmpty(form.password)) {
+            if (!harborLoginAssist.checkUserLoginable(form.account, form.password)) {
                 messages.addErrorsLoginFailure("email");
             }
         }

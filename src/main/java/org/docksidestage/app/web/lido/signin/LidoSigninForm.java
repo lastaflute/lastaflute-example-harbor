@@ -21,10 +21,10 @@ import org.lastaflute.web.validation.Required;
  * The form of member's Login.
  * @author jflute
  */
-public class SigninForm {
+public class LidoSigninForm {
 
     @Required
-    public String email;
+    public String account;
 
     @Required
     public String password;

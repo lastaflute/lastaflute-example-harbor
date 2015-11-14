@@ -65,17 +65,20 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /purchase/purchase_list.jsp */
     HtmlNext path_Purchase_PurchaseListJsp = new HtmlNext("/purchase/purchase_list.jsp");
 
+    /** The path of the HTML: /signin/signin.html */
+    HtmlNext path_Signin_SigninHtml = new HtmlNext("/signin/signin.html");
+
     /** The path of the HTML: /signin/signin.jsp */
     HtmlNext path_Signin_SigninJsp = new HtmlNext("/signin/signin.jsp");
+
+    /** The path of the HTML: /signup/signup.html */
+    HtmlNext path_Signup_SignupHtml = new HtmlNext("/signup/signup.html");
 
     /** The path of the HTML: /signup/signup.jsp */
     HtmlNext path_Signup_SignupJsp = new HtmlNext("/signup/signup.jsp");
 
     /** The path of the HTML: /startup/startup.html */
     HtmlNext path_Startup_StartupHtml = new HtmlNext("/startup/startup.html");
-
-    /** The path of the HTML: /startup/startup.jsp */
-    HtmlNext path_Startup_StartupJsp = new HtmlNext("/startup/startup.jsp");
 
     /** The path of the HTML: /various/various_upload.jsp */
     HtmlNext path_Various_VariousUploadJsp = new HtmlNext("/various/various_upload.jsp");

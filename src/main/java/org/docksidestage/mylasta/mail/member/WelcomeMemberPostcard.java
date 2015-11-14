@@ -50,7 +50,7 @@ public class WelcomeMemberPostcard extends LaTypicalPostcard {
 
     @Override
     protected String[] getPropertyNames() {
-        return new String[] {"memberName", "domain", "token"};
+        return new String[] {"memberName", "domain", "account", "token"};
     }
 
     // ===================================================================================
@@ -114,6 +114,15 @@ public class WelcomeMemberPostcard extends LaTypicalPostcard {
      */
     public void setDomain(String domain) {
         registerVariable("domain", domain);
+    }
+
+    /**
+     * Set the value of account, used in parameter comment. <br>
+     * Even if empty string, treated as empty plainly. So "IF pmb != null" is false if empty.
+     * @param account The parameter value of account. (NotNull)
+     */
+    public void setAccount(String account) {
+        registerVariable("account", account);
     }
 
     /**

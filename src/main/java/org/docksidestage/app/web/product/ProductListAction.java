@@ -23,7 +23,6 @@ import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
-import org.docksidestage.dbflute.exbhv.ProductStatusBhv;
 import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
@@ -40,8 +39,6 @@ public class ProductListAction extends HarborBaseAction {
     //                                                                           =========
     @Resource
     private ProductBhv productBhv;
-    @Resource
-    private ProductStatusBhv productStatusBhv;
 
     // ===================================================================================
     //                                                                             Execute
@@ -70,9 +67,9 @@ public class ProductListAction extends HarborBaseAction {
             cb.ignoreNullOrEmptyQuery();
             cb.setupSelect_ProductStatus();
             cb.setupSelect_ProductCategory();
-            cb.specify().derivedPurchase().count(purchaseCB -> {
-                purchaseCB.specify().columnPurchaseId();
-            } , Product.ALIAS_purchaseCount);
+            cb.specify().derivedPurchase().max(purchaseCB -> {
+                purchaseCB.specify().columnPurchaseDatetime();
+            } , Product.ALIAS_latestPurchaseDate);
             cb.query().setProductName_LikeSearch(form.productName, op -> op.likeContain());
             final String purchaseMemberName = form.purchaseMemberName;
             if (isNotEmpty(purchaseMemberName)) {
@@ -94,14 +91,14 @@ public class ProductListAction extends HarborBaseAction {
         ProductSearchRowBean bean = new ProductSearchRowBean();
         bean.productId = product.getProductId();
         bean.productName = product.getProductName();
-        bean.regularPrice = product.getRegularPrice();
-        bean.registerDatetime = product.getRegisterDatetime();
         product.getProductStatus().alwaysPresent(status -> {
-            bean.productStatusName = status.getProductStatusName();
+            bean.productStatus = status.getProductStatusName();
         });
         product.getProductCategory().alwaysPresent(category -> {
-            bean.productCategoryName = category.getProductCategoryName();
+            bean.productCategory = category.getProductCategoryName();
         });
+        bean.regularPrice = product.getRegularPrice();
+        bean.latestPurchaseDate = toDate(product.getLatestPurchaseDate()).orElse(null);
         return bean;
     }
 }

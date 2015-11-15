@@ -40,28 +40,6 @@
 	</session-config>
 
     <!-- ================================================================================= -->
-    <!--                                                                      Welcome File -->
-    <!--                                                                      ============ -->
-	<!--
-	<welcome-file-list>
-	</welcome-file-list>
-	-->
-
-    <!-- ================================================================================= -->
-    <!--                                                                        JSP Config -->
-    <!--                                                                        ========== -->
-    <!-- #migration change taglib definition -->
-	<jsp-config>
-		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
-			<el-ignored>false</el-ignored>
-			<page-encoding>UTF-8</page-encoding>
-			<scripting-invalid>false</scripting-invalid>
-			<include-prelude>/WEB-INF/view/common/common.jsp</include-prelude>
-		</jsp-property-group>
-	</jsp-config>
-
-    <!-- ================================================================================= -->
     <!--                                                                        Error Page -->
     <!--                                                                        ========== -->
 	<error-page><error-code>400</error-code><location>/error/400.html</location></error-page>

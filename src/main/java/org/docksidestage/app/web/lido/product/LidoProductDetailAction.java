@@ -56,6 +56,7 @@ public class LidoProductDetailAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
+    @SuppressWarnings("unused")
     private Product selectProduct(int productId) {
         return productBhv.selectEntity(cb -> {
             cb.setupSelect_ProductCategory();
@@ -68,6 +69,7 @@ public class LidoProductDetailAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
+    @SuppressWarnings("unused")
     private ProductDetailBean mappingToBean(Product product) {
         ProductDetailBean bean = new ProductDetailBean();
         bean.productId = product.getProductId();

@@ -61,6 +61,7 @@ public class LidoProductListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
+    @SuppressWarnings("unused")
     private PagingResultBean<Product> selectProductPage(int pageNumber, ProductSearchForm form) {
         verifyParameterTrue("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
         return productBhv.selectPage(cb -> {
@@ -87,6 +88,7 @@ public class LidoProductListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
+    @SuppressWarnings("unused")
     private ProductSearchRowBean mappingToBean(Product product) {
         ProductSearchRowBean bean = new ProductSearchRowBean();
         bean.productId = product.getProductId();

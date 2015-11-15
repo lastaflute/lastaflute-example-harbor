@@ -38,13 +38,13 @@ public class LidoMypageAction extends HarborBaseAction {
 
     @AllowAnyoneAccess // TODO (s.tadokoro) Remove this when JSON Login feature is implemented.
     @Execute
-    public JsonResponse<List<LidoMypageProductBean>> index() {
+    public JsonResponse<List<MypageProductBean>> index() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {
             cb.query().addOrderBy_RegularPrice_Desc();
             cb.fetchFirst(3);
         });
-        List<LidoMypageProductBean> beans = memberList.stream().map(member -> {
-            return new LidoMypageProductBean(member);
+        List<MypageProductBean> beans = memberList.stream().map(member -> {
+            return new MypageProductBean(member);
         }).collect(Collectors.toList());
         return asJson(beans);
     }

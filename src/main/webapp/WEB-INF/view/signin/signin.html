@@ -34,9 +34,9 @@
 </header>
 <main>
 <div class="contents">
-	<h2 class="content-title" th:text="#{labels.signup.title}">labels.signup.title</h2>
+	<h2 class="content-title" th:text="#{labels.signin.title}">labels.signin.title</h2>
 	<section class="sign-in-box">
-		<form styleClass="signin-form" action="#" th:action="@{/signin/}" method="post">
+		<form class="signin-form" th:action="@{/signin/}" action="#" method="post">
 			<ul>
 				<li>
 					<span th:text="#{labels.account}">labels.account</span>
@@ -49,7 +49,7 @@
 					<span th:style="'color : red;'" th:each="er : ${errors.part('password')}" th:text="${er.message}"/>
 				</li>
 				<li>
-					<label><input type="checkbox" name="rememberMe" th:text="#{labels.signin.rememberMe}"></input></label>
+					<label><input type="checkbox" name="rememberMe" th:text="#{labels.signin.rememberMe}"/></label>
 				</li>
 				<li>
 					<input type="submit" name="signin" th:value="#{labels.signin.button}" value="labels.signin.button"/>

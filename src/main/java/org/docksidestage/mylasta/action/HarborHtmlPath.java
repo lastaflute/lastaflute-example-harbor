@@ -47,12 +47,6 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /profile/profile.html */
     HtmlNext path_Profile_ProfileHtml = new HtmlNext("/profile/profile.html");
 
-    /** The path of the HTML: /profile/profile.jsp */
-    HtmlNext path_Profile_ProfileJsp = new HtmlNext("/profile/profile.jsp");
-
-    /** The path of the HTML: /purchase/purchase_list.jsp */
-    HtmlNext path_Purchase_PurchaseListJsp = new HtmlNext("/purchase/purchase_list.jsp");
-
     /** The path of the HTML: /signin/signin.html */
     HtmlNext path_Signin_SigninHtml = new HtmlNext("/signin/signin.html");
 
@@ -62,9 +56,9 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /startup/startup.html */
     HtmlNext path_Startup_StartupHtml = new HtmlNext("/startup/startup.html");
 
-    /** The path of the HTML: /withdrawal/withdrawal.jsp */
-    HtmlNext path_Withdrawal_WithdrawalJsp = new HtmlNext("/withdrawal/withdrawal.jsp");
+    /** The path of the HTML: /withdrawal/withdrawal.html */
+    HtmlNext path_Withdrawal_WithdrawalHtml = new HtmlNext("/withdrawal/withdrawal.html");
 
-    /** The path of the HTML: /withdrawal/withdrawal_confirm.jsp */
-    HtmlNext path_Withdrawal_WithdrawalConfirmJsp = new HtmlNext("/withdrawal/withdrawal_confirm.jsp");
+    /** The path of the HTML: /withdrawal/withdrawal_confirm.html */
+    HtmlNext path_Withdrawal_WithdrawalConfirmHtml = new HtmlNext("/withdrawal/withdrawal_confirm.html");
 }

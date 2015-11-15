@@ -33,15 +33,15 @@ public class WithdrawalAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Withdrawal_WithdrawalJsp).useForm(WithdrawalForm.class);
+        return asHtml(path_Withdrawal_WithdrawalHtml).useForm(WithdrawalForm.class);
     }
 
     @Execute
     public HtmlResponse confirm(WithdrawalForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Withdrawal_WithdrawalJsp);
+            return asHtml(path_Withdrawal_WithdrawalHtml);
         });
-        return asHtml(path_Withdrawal_WithdrawalConfirmJsp);
+        return asHtml(path_Withdrawal_WithdrawalConfirmHtml);
     }
 
     @Execute

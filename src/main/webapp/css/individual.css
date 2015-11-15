@@ -24,7 +24,7 @@
 }
 .signin-form input[type="text"],.signin-form input[type="password"] {
 	padding: 6px 8px;
-	width: 80%;
+	width: 40%;
 }
 .signin-form input[type="submit"] {
 	margin-top: 8px;

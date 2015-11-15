@@ -153,6 +153,9 @@ ul.nav-user li a:hover{
 	width: 960px;
 	margin: 32px auto 0;
 }
+.errors {
+	color: red;
+}
 .list-tbl {
 	width: 100%;
 	margin: 12px auto 0;

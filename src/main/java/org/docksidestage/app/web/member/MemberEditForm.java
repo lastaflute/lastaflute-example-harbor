@@ -43,10 +43,8 @@ public class MemberEditForm {
     @Required
     public CDef.MemberStatus memberStatus;
 
-    @Required(groups = ClientError.class)
-    public LocalDateTime latestLoginDatetime;
+    public LocalDateTime latestLoginDatetime; // only view
 
-    @Required(groups = ClientError.class)
     public LocalDateTime updateDatetime; // only view
 
     @Required(groups = ClientError.class)

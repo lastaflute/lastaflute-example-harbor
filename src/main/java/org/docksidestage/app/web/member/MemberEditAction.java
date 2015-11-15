@@ -40,7 +40,7 @@ public class MemberEditAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index(Integer memberId) {
         Member member = selectMember(memberId);
-        return asHtml(path_Member_MemberEditJsp).useForm(MemberEditForm.class, op -> op.setup(form -> {
+        return asHtml(path_Member_MemberEditHtml).useForm(MemberEditForm.class, op -> op.setup(form -> {
             form.memberId = member.getMemberId();
             form.memberName = member.getMemberName();
             form.memberAccount = member.getMemberAccount();
@@ -57,7 +57,7 @@ public class MemberEditAction extends HarborBaseAction {
     @Execute
     public HtmlResponse update(MemberEditForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Member_MemberEditJsp);
+            return asHtml(path_Member_MemberEditHtml);
         });
         Member member = new Member();
         member.setMemberId(form.memberId);
@@ -80,7 +80,7 @@ public class MemberEditAction extends HarborBaseAction {
     @Execute
     public HtmlResponse withdrawal(MemberEditForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Member_MemberEditJsp);
+            return asHtml(path_Member_MemberEditHtml);
         });
         Member member = new Member();
         member.setMemberId(form.memberId);

@@ -45,10 +45,10 @@ public class ProductDetailAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index(Integer productId) {
         validate(productId, messages -> {} , () -> {
-            return asHtml(path_Product_ProductListJsp);
+            return asHtml(path_Product_ProductListHtml);
         });
         Product product = selectProduct(productId);
-        return asHtml(path_Product_ProductDetailJsp).renderWith(data -> {
+        return asHtml(path_Product_ProductDetailHtml).renderWith(data -> {
             data.register("product", mappingToBean(product));
         });
     }

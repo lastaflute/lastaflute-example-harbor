@@ -30,6 +30,6 @@ public class MemberPurchaseListAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index(Integer memberId, Integer pageNumber) {
         throw404("now making...");
-        return asHtml(path_MemberPurchase_MemberPurchaseListJsp);
+        return null;
     }
 }

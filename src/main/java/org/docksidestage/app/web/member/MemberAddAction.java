@@ -39,13 +39,13 @@ public class MemberAddAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Member_MemberAddJsp).useForm(MemberAddForm.class);
+        return asHtml(path_Member_MemberAddHtml).useForm(MemberAddForm.class);
     }
 
     @Execute
     public HtmlResponse register(MemberAddForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(path_Member_MemberAddJsp);
+            return asHtml(path_Member_MemberAddHtml);
         });
         Member member = new Member();
         member.setMemberName(form.memberName);

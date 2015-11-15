@@ -182,6 +182,9 @@ public class HarborLabels extends ActionMessages {
     /** The key of the message: Remember me? */
     public static final String LABELS_SIGNIN_REMEMBER_ME = "{labels.signin.rememberMe}";
 
+    /** The key of the message: Sign In Reminder */
+    public static final String LABELS_SIGNIN_REMINDER_TITLE = "{labels.signin.reminder.title}";
+
     /** The key of the message: @[labels.list] of @[labels.product] */
     public static final String LABELS_PRODUCT_LIST_TITLE = "{labels.product.list.title}";
 
@@ -226,6 +229,18 @@ public class HarborLabels extends ActionMessages {
 
     /** The key of the message: Dockside Support */
     public static final String LABELS_MAIL_SUPPORT_PERSONAL = "{labels.mail.support.personal}";
+
+    /** The key of the message: Notice */
+    public static final String LABELS_ERROR_MESSAGE_TITLE = "{labels.error.message.title}";
+
+    /** The key of the message: -- */
+    public static final String LABELS_LISTBOX_CAPTION_SHORT = "{labels.listbox.caption.short}";
+
+    /** The key of the message: ---- */
+    public static final String LABELS_LISTBOX_CAPTION_LONG = "{labels.listbox.caption.long}";
+
+    /** The key of the message: select */
+    public static final String LABELS_LISTBOX_CAPTION_TELL = "{labels.listbox.caption.tell}";
 
     /**
      * Assert the property is not null.

@@ -16,9 +16,8 @@
 		<!-- Main Framework -->
 		<dbflute.version>1.1.0-sp8</dbflute.version>
 		<h2.jdbc.version>1.4.188</h2.jdbc.version>
-		<lastaflute.version>0.6.6-RC1</lastaflute.version>
-		<lasta.thymeleaf.version>0.2.1-RC1</lasta.thymeleaf.version>
-		<lasta.taglib.version>0.6.0</lasta.taglib.version> <!-- will be deleted -->
+		<lastaflute.version>0.6.6-RC3</lastaflute.version>
+		<lasta.thymeleaf.version>0.2.1-RC2</lasta.thymeleaf.version>
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.12</slf4j.version>
@@ -250,11 +249,6 @@
 			<artifactId>lasta-thymeleaf</artifactId>
 			<version>${lasta.thymeleaf.version}</version>
 		</dependency>
-		<dependency> <!-- will be deleted -->
-			<groupId>org.lastaflute</groupId>
-			<artifactId>lasta-taglib</artifactId>
-			<version>${lasta.taglib.version}</version>
-		</dependency>
 
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                               Partner Library -->
@@ -284,35 +278,12 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>${jsp.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency> <!-- tomcat does not provides, jetty's two jar files so here -->
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version> <!-- contains taglibs.standard -->
-			<!-- should be as jar file in executable war to detect tld files -->
-			<scope>runtime</scope> 
-		</dependency>
 
 		<!-- jetty -->
 		<dependency>
 			<groupId>org.dbflute.jetty</groupId>
 			<artifactId>jetty-boot</artifactId>
 			<version>${jetty.boot.version}</version>
-		</dependency>
-		<dependency> <!-- jetty-all does not contain JSP -->
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>9.2.13.v20150730</version>
-			<scope>runtime</scope>
-			<exclusions> <!-- jstl already exists -->
-				<exclusion><groupId>org.eclipse.jetty.orbit</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>
-				<exclusion><groupId>org.glassfish.web</groupId><artifactId>javax.servlet.jsp.jstl</artifactId></exclusion>
-			</exclusions>
 		</dependency>
  
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->

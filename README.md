@@ -27,7 +27,7 @@ and login by user 'Pixy' and password 'sea', and can see debug log at console.
 public class HarborBoot {
 
     public static void main(String[] args) {
-        new JettyBoot(8090, "/harbor").useTldDetect().asDevelopment(isNoneEnv()).bootAwait();
+        new JettyBoot(8090, "/harbor").asDevelopment(isNoneEnv()).bootAwait();
     }
 }
 ```

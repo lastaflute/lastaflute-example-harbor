@@ -5,12 +5,12 @@ import org.docksidestage.dbflute.exentity.Product;
 /**
  * @author jflute
  */
-public class LidoMypageProductBean {
+public class MypageProductBean {
 
     public final String productName;
     public final Integer regularPrice;
 
-    public LidoMypageProductBean(Product product) {
+    public MypageProductBean(Product product) {
         this.productName = product.getProductName();
         this.regularPrice = product.getRegularPrice();
     }

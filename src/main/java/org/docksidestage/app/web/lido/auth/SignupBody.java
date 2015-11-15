@@ -1,17 +1,17 @@
-package org.docksidestage.app.web.lido.signup;
+package org.docksidestage.app.web.lido.auth;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author annie_pocket
  */
-public class SignupForm {
+public class SignupBody {
 
     // Member
     @NotBlank
-    public String name;
+    public String memberName;
     @NotBlank
-    public String account;
+    public String memberAccount;
 
     // Member Security
     @NotBlank

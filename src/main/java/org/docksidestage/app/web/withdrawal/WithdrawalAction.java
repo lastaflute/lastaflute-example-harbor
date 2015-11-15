@@ -38,7 +38,11 @@ public class WithdrawalAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse confirm(WithdrawalForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {
+            if (form.reasonCode == null && isEmpty(form.reasonInput)) {
+                messages.addConstraintsRequiredMessage("reasonCode");
+            }
+        } , () -> {
             return asHtml(path_Withdrawal_WithdrawalHtml);
         });
         return asHtml(path_Withdrawal_WithdrawalConfirmHtml);
@@ -46,6 +50,9 @@ public class WithdrawalAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse done(WithdrawalForm form) {
+        validate(form, message -> {} , () -> {
+            return asHtml(path_Withdrawal_WithdrawalHtml);
+        });
         Integer memberId = getUserBean().get().getMemberId();
 
         MemberWithdrawal withdrawal = new MemberWithdrawal();

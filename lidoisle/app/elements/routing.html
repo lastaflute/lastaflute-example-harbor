@@ -24,6 +24,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     // Routes
     page('/', scrollToTop, function() {
+      app.route = 'home';
+    });
+
+    page('/login', scrollToTop, function() {
+      app.route = 'login';
+    });
+
+    page('/mypage', scrollToTop, function() {
       app.route = 'mypage';
     });
 
@@ -34,6 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/users/:name', scrollToTop, function(data) {
       app.route = 'user-info';
       app.params = data.params;
+      console.log(data);
     });
 
     page('/contact', scrollToTop, function() {

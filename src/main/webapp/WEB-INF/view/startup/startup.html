@@ -42,12 +42,12 @@
 				<li>
 					<p>Domain:</p>
 					<input type="text" name="domain" th:value="${domain}" placeholder="input domain e.g. org.dancingdb"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('domain')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('domain')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<p>Service Name:</p>
 					<input type="text" name="serviceName" th:value="${serviceName}" placeholder="input service name e.g. dancers"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('serviceName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('serviceName')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<input type="submit" name="create" value="Let's create your project!"/>

@@ -48,7 +48,7 @@
         <li class="withdrawal-reason-element">
           <div>Withdrawal Reason</div>
           <textarea rows="3" cols="30" class="withdrawal-write-reason" name="reasonInput" />
-          <span th:style="'color : red;'" th:each="er : ${errors.part('reasonInput')}" th:text="${er.message}"/>
+          <span class="errors" th:each="er : ${errors.part('reasonInput')}" th:text="${er.message}"/>
         </li>
       </ul>
       <input type="submit" th:value="#{labels.confirm}" value="confirm"/>

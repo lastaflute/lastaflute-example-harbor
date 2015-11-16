@@ -42,12 +42,12 @@
 				<li>
 					<span>Member Name</span>
 					<input type="text" name="memberName" th:value="${memberName}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('productName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('productName')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span>Purchase Product</span>
 					<input type="text" name="purchaseProductName" th:value="${purchaseProductName}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('purchaseProductName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('purchaseProductName')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span>Member Status</span>

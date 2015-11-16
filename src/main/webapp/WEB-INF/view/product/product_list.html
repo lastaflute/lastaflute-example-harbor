@@ -42,7 +42,7 @@
 				<li>
 					<span th:text="#{labels.productName}">labels.productName</span>
 					<input type="text" name="productName" th:value="${productName}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('productName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('productName')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span th:text="#{labels.productStatus}">labels.productStatus</span>
@@ -54,7 +54,7 @@
 				<li>
 					<span th:text="#{labels.purchase} + ' ' + #{labels.member}">labels.purchase labels.member</span>
 					<input type="text" name="purchaseMemberName" th:value="${purchaseMemberName}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('purchaseMemberName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('purchaseMemberName')}" th:text="${er.message}"/>
 				</li>
 			</ul>
 			<input type="submit" th:value="#{labels.search}" value="search"/>

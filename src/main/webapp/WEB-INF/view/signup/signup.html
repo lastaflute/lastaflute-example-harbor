@@ -41,27 +41,27 @@
 				<li>
 					<span th:text="#{labels.memberName}">labels.memberName</span>
 					<input type="text" name="memberName" th:value="${memberName}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('memberName')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('memberName')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span th:text="#{labels.memberAccount}">labels.memberAccount</span>
 					<input type="text" name="memberAccount" th:value="${memberAccount}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('memberAccount')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('memberAccount')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span th:text="#{labels.password}">labels.password</span>
 					<input type="password" name="password" th:value="${password}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('password')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('password')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span th:text="#{labels.reminderQuestion}">labels.reminderQuestion</span>
 					<input type="password" name="reminderQuestion" th:value="${reminderQuestion}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('reminderQuestion')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('reminderQuestion')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<span th:text="#{labels.reminderAnswer}">labels.reminderAnswer</span>
 					<input type="password" name="reminderAnswer" th:value="${reminderAnswer}"/>
-					<span th:style="'color : red;'" th:each="er : ${errors.part('reminderAnswer')}" th:text="${er.message}"/>
+					<span class="errors" th:each="er : ${errors.part('reminderAnswer')}" th:text="${er.message}"/>
 				</li>
 				<li>
 					<input type="submit" name="signup" th:value="#{labels.signup.button}" value="labels.signup.button"/>

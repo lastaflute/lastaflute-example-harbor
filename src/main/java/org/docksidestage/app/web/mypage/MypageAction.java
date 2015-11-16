@@ -37,11 +37,11 @@ public class MypageAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse index() {
-        ListResultBean<Product> memberList = productBhv.selectList(cb -> {
+        ListResultBean<Product> productList = productBhv.selectList(cb -> {
             cb.query().addOrderBy_RegularPrice_Desc();
             cb.fetchFirst(3);
         });
-        List<MypageProductBean> beans = memberList.stream().map(member -> {
+        List<MypageProductBean> beans = productList.stream().map(member -> {
             return new MypageProductBean(member);
         }).collect(Collectors.toList());
         return asHtml(path_Mypage_MypageHtml).renderWith(data -> {

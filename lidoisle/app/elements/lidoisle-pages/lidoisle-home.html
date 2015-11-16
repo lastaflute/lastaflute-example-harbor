@@ -1,0 +1,77 @@
+<dom-module id="lidoisle-home">
+  <link rel="import" href="../lidoisle-form/lidoisle-signup.html">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      .container {
+        width: 1200px;
+        margin: 0 auto;
+        padding: 50px 0;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 44px;
+        margin-top: 0;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 1.8;
+        color: #666;
+      }
+
+      .titleAndLeadArea {
+        width: 800px;
+        float: left;
+      }
+
+      .signupArea {
+        width: 360px;
+        float: right;
+      }
+
+    </style>
+    <div class="container">
+      <div class="titleAndLeadArea">
+        <h1>Greatest Shopping Experience Ever!</h1>
+        <p>Welcome to Maihama Lido Isle! Casual? Or Formal? No Probrem!<br>Here's EVERYTHING What You Need!</p>
+      </div>
+      <div class="signupArea">
+        <lidoisle-signup></lidoisle-signup>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-home',
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Welcome!',
+            notify: true
+          }
+        },
+        sendboughtAjax: function() {
+          var _this = this;
+          _this.$.boughtAjax.generateRequest();
+        },
+        boughtResponse: function() {
+        this.myPurchase = this.$.boughtAjax.lastResponse;
+      },
+      handleError: function(e) {
+        console.error(e);
+      },
+      });
+    })();
+  </script>
+
+</dom-module>

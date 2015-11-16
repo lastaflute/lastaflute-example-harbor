@@ -17,8 +17,7 @@
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
-  <link rel="import" href="elements/lidoisle-home/lidoisle-mypage.html">
-  <link rel="import" href="elements/lidoisle-home/lidoisle-bought.html">
+  <link rel="import" href="elements/lidoisle-pages/lidoisle-home.html">
   <!-- endreplace-->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -27,110 +26,30 @@
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-
-    <paper-drawer-panel id="paperDrawerPanel">
-      <!-- Drawer Scroll Header Panel -->
-      <paper-scroll-header-panel drawer fixed>
-
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="paper-font-title">Menu</span>
-        </paper-toolbar>
-
-        <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="mypage" href="/" on-click="onDataRouteClick">
-            <iron-icon icon="face"></iron-icon>
-            <span>Mypage</span>
-          </a>
-
-          <a data-route="bought" href="/bought" on-click="onDataRouteClick">
-            <iron-icon icon="shopping-basket"></iron-icon>
-            <span>Bought</span>
-          </a>
-
-          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
-          </a>
-        </paper-menu>
-      </paper-scroll-header-panel>
-
-      <!-- Main Area -->
-      <paper-scroll-header-panel main condenses keep-condensed-header>
-
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar" class="tall">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-          <span class="flex"></span>
-
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
-
-          <!-- Application name -->
-          <div class="middle middle-container center horizontal layout">
-            <div class="app-name">Maihama Lido Isle</div>
-          </div>
-
-          <!-- Application sub title -->
-          <div class="bottom bottom-container center horizontal layout">
-            <div class="bottom-title paper-font-subhead">Exective Shopping Experiance.</div>
-          </div>
-
-        </paper-toolbar>
-
-        <!-- Main Content -->
-        <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section data-route="mypage">
-              <paper-material elevation="1">
-                <lidoisle-mypage></lidoisle-mypage>
-              </paper-material>
-            </section>
-
-            <section data-route="bought">
-              <paper-material elevation="1">
-                <h2 class="page-title">Bought</h2>
-                <p>買ったもの</p>
-                <lidoisle-bought></lidoisle-bought>
-              </paper-material>
-            </section>
-
-            <section data-route="contact">
-              <paper-material elevation="1">
-                <h2 class="page-title">Contact</h2>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section>
-
-          </iron-pages>
-        </div>
-      </paper-scroll-header-panel>
-    </paper-drawer-panel>
-
-    <!-- Uncomment next block to enable Service Worker support (1/2) -->
-    <!--
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="fastest"
-                         cache-config-file="cache-config.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
-    -->
-
+    <header>
+      <h1>Maihama Lido Isle</h1>
+      <p>Shopping experience makes you leap.</p>
+    </header>
+    <div class="content">
+      <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <section data-route="home">
+          <lidoisle-home></lidoisle-home>
+        </section>
+        <section data-route="login">
+          <paper-material elevation="1">
+            ここがログイン
+          </paper-material>
+        </section>
+        <section data-route="app">
+          ログインした先
+          <lidoisle-app></lidoisle-app>
+        </section>
+      </iron-pages>
+    </div>
+    <paper-toast id="toast"></paper-toast>
   </template>
-
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
 </body>
-
 </html>

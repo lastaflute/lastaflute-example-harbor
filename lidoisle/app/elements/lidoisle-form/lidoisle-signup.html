@@ -1,0 +1,66 @@
+<dom-module id="lidoisle-signup">
+  <link rel="import" href="../../../bower_components/iron-form/iron-form.html">
+  <link rel="import" href="../../../bower_components/gold-email-input/gold-email-input.html">
+  <link rel="import" href="../../../bower_components/paper-input/all-imports.html">
+  <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+  <link rel="import" type="css" href="./lidoisle-form.css">
+  <template>
+    <style include="shared-styles"></style>
+    <div class="inner">
+      <h2>Sign Up</h2>
+      <form is="iron-form" id="signupForm">
+        <paper-input name="accountName" label="Name" required auto-validate value=""></paper-input>
+        <gold-email-input label="Email" required name="email" auto-validate value="" id="email"></gold-email-input>
+        <paper-input name="password" label="Password" type="password" required auto-validate value=""></paper-input>
+        <div class="button-area">
+          <paper-spinner id="spinner"></paper-spinner>
+          <paper-button on-click="notImpl" raised>Create Account</paper-button>
+        </div>
+        <a href="/login">Already have a account?</a>
+      </form>
+    </div>
+    
+    <iron-ajax
+      with-credentials
+      id="signupAjax"
+      url="http://10.199.30.146:8090/lido/login"
+      method="POST"
+      content-type="application/json"
+      handle-as="json"
+      on-response="signupResponse"
+      on-error="signupError"></iron-ajax>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-signup',
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Welcome!',
+            notify: true
+          }
+        },
+        sendboughtAjax: function() {
+          var _this = this;
+          _this.$.boughtAjax.generateRequest();
+        },
+        boughtResponse: function() {
+          this.myPurchase = this.$.boughtAjax.lastResponse;
+        },
+        handleError: function(e) {
+          console.error(e);
+        },
+        notImpl: function() {
+          var toast = document.querySelector('#toast');
+          toast.text = 'Not Implemented!';
+          toast.show();
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

@@ -33,21 +33,25 @@
           <span class="paper-font-title">Menu</span>
         </paper-toolbar>
         <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="mypage" href="/app/mypage">
-            <iron-icon icon="face"></iron-icon>
-            <span>Mypage</span>
-          </a>
-          <a data-route="bought" href="/app/bought">
-            <iron-icon icon="shopping-basket"></iron-icon>
-            <span>Bought</span>
-          </a>
-          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
-          </a>
+          <template is="dom-if" if="{{isPublic}}">
+            <a data-route="home" href="/">
+              <iron-icon icon="home"></iron-icon>
+              <span>Home</span>
+            </a>
+          </template>
+          <template is="dom-if" if="{{isApp}}">
+            <a data-route="mypage" href="/app/mypage">
+              <iron-icon icon="face"></iron-icon>
+              <span>Mypage</span>
+            </a>
+            <a data-route="bought" href="/app/bought">
+              <iron-icon icon="shopping-basket"></iron-icon>
+              <span>Bought</span>
+            </a>
+          </template>
         </paper-menu>
       </paper-scroll-header-panel>
-      <paper-scroll-header-panel main condenses keep-condensed-header>
+      <paper-header-panel main>
         <paper-toolbar id="header">
           <h1>Maihama Lido Isle</h1>
           <p>Shopping experience makes you leap.</p>
@@ -56,11 +60,6 @@
           <section data-route="home">
             <lidoisle-home></lidoisle-home>
           </section>
-          <section data-route="login">
-            <paper-material elevation="1">
-              ここがログイン
-            </paper-material>
-          </section>
           <section data-route="mypage">
             <h2 class="page-title">マイページ</h2>
           </section>
@@ -68,7 +67,7 @@
             <h2 class="page-title">買ったもの</h2>
           </section>
         </iron-pages>
-      </paper-scroll-header-panel>
+      </paper-header-panel>
     </paper-drawer-panel>
       
     </div>

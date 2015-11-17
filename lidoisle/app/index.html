@@ -8,16 +8,16 @@
   <!-- Place favicon.ico in the `app/` directory -->
 
   <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
-  <link rel="import" href="elements/elements.html">
-  <link rel="import" href="elements/lidoisle-pages/lidoisle-home.html">
+  <link rel="import" href="/elements/elements.html">
+  <link rel="import" href="/elements/lidoisle-pages/lidoisle-home.html">
   <!-- endreplace-->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -26,30 +26,56 @@
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-    <header>
-      <h1>Maihama Lido Isle</h1>
-      <p>Shopping experience makes you leap.</p>
-    </header>
     <div class="content">
-      <iron-pages attr-for-selected="data-route" selected="{{route}}">
-        <section data-route="home">
-          <lidoisle-home></lidoisle-home>
-        </section>
-        <section data-route="login">
-          <paper-material elevation="1">
-            ここがログイン
-          </paper-material>
-        </section>
-        <section data-route="app">
-          ログインした先
-          <lidoisle-app></lidoisle-app>
-        </section>
-      </iron-pages>
+    <paper-drawer-panel>
+      <paper-scroll-header-panel drawer>
+        <paper-toolbar id="drawerToolbar">
+          <span class="paper-font-title">Menu</span>
+        </paper-toolbar>
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="mypage" href="/app/mypage">
+            <iron-icon icon="face"></iron-icon>
+            <span>Mypage</span>
+          </a>
+          <a data-route="bought" href="/app/bought">
+            <iron-icon icon="shopping-basket"></iron-icon>
+            <span>Bought</span>
+          </a>
+          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
+            <iron-icon icon="mail"></iron-icon>
+            <span>Contact</span>
+          </a>
+        </paper-menu>
+      </paper-scroll-header-panel>
+      <paper-scroll-header-panel main condenses keep-condensed-header>
+        <paper-toolbar id="header">
+          <h1>Maihama Lido Isle</h1>
+          <p>Shopping experience makes you leap.</p>
+        </paper-toolbar>
+        <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <section data-route="home">
+            <lidoisle-home></lidoisle-home>
+          </section>
+          <section data-route="login">
+            <paper-material elevation="1">
+              ここがログイン
+            </paper-material>
+          </section>
+          <section data-route="mypage">
+            <h2 class="page-title">マイページ</h2>
+          </section>
+          <section data-route="bought">
+            <h2 class="page-title">買ったもの</h2>
+          </section>
+        </iron-pages>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+      
     </div>
     <paper-toast id="toast"></paper-toast>
   </template>
   <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js"></script>
+  <script src="/scripts/app.js"></script>
   <!-- endbuild-->
 </body>
 </html>

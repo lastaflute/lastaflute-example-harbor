@@ -39,7 +39,7 @@
     <div class="container">
       <div class="titleAndLeadArea">
         <h1>Greatest Shopping Experience Ever!</h1>
-        <p>Welcome to Maihama Lido Isle! Casual? Or Formal? No Probrem!<br>Here's EVERYTHING What You Need!</p>
+        <p>Welcome to Maihama Lido Isle! Casual? Or Formal? No Problem!<br>Here's EVERYTHING You Need!</p>
       </div>
       <div class="signupArea">
         <lidoisle-signup></lidoisle-signup>
@@ -50,26 +50,8 @@
   <script>
     (function() {
       'use strict';
-      
       Polymer({
-        is: 'lidoisle-home',
-        properties: {
-          greeting: {
-            type: String,
-            value: 'Welcome!',
-            notify: true
-          }
-        },
-        sendboughtAjax: function() {
-          var _this = this;
-          _this.$.boughtAjax.generateRequest();
-        },
-        boughtResponse: function() {
-        this.myPurchase = this.$.boughtAjax.lastResponse;
-      },
-      handleError: function(e) {
-        console.error(e);
-      },
+        is: 'lidoisle-home'
       });
     })();
   </script>

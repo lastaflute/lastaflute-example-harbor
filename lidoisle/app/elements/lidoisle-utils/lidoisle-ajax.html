@@ -1,0 +1,49 @@
+<dom-module id="lidoisle-ajax.html">
+  <template>
+    <iron-ajax
+      id="baseAjax"
+      with-credentials
+      handle-as="json"
+      on-response="handleResponse"
+      on-error="handleError"></iron-ajax>
+  </template>
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-ajax.html',
+        ready: function(){
+          var _this = this;
+          document.addEventListener('pageChanged', function(e){
+            var selected = e.detail.selected;
+            var action;
+            
+            switch(selected) {
+              case 'mypage': 
+                action = 'lido/mypage';
+              break;
+              case 'product': action = 'lido/product/list';
+              break;
+            }
+
+            var url = 'http://localhost:8090/harbor/' + action;
+            
+            _this.sendAjax(url);
+          });
+        },
+        sendAjax: function(url) {
+          this.$.baseAjax.toRequestOptions({'url': url});
+          this.$.baseAjax.generateRequest();
+        },
+        handleResponse: function() {
+          this.app.data = this.$.baseAjax.lastResponse;
+        },
+        handleError: function(e) {
+          console.error(e);
+        },
+      });
+    })();
+  </script>
+
+</dom-module>

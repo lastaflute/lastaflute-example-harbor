@@ -81,7 +81,7 @@ public class LidoProductListAction extends HarborBaseAction {
             }
             cb.query().addOrderBy_ProductName_Asc();
             cb.query().addOrderBy_ProductId_Asc();
-            cb.paging(getPagingPageSize(), pageNumber);
+            cb.paging(Integer.MAX_VALUE, pageNumber); // Simple Implement for example.
         });
     }
 

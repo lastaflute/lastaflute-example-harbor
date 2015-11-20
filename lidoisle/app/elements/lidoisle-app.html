@@ -1,4 +1,29 @@
 <dom-module id="lidoisle-app">
+  <style>
+    section {
+      padding: 20px 40px;
+    }
+    
+    paper-menu {
+      padding-top: 0;
+    }
+
+    paper-menu a {
+      display: block;
+      padding: 20px 16px;
+      color: #666;
+      text-decoration: none;
+    }
+
+    paper-menu a span {
+      margin-left: 10px;
+    }
+
+    paper-input paper-icon-button {
+      padding: 0;
+      margin-right: 4px;
+    }
+  </style>
   <template>
     <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
     <style include="shared-styles"></style>
@@ -7,16 +32,21 @@
         <paper-toolbar id="drawerToolbar">
           <span class="paper-font-title">Menu</span>
         </paper-toolbar>
-        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-click="sendAjax"> 
+        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}"> 
         
-          <a data-route="mypage" href="/app/mypage">
+          <a data-route="mypage" href="/app/mypage" on-click="sendAjax">
             <iron-icon icon="face"></iron-icon>
             <span>Mypage</span>
           </a>
         
-          <a data-route="bought" href="/app/bought">
-            <iron-icon icon="shopping-basket"></iron-icon>
-            <span>Bought</span>
+          <a data-route="bought" href="/app/product" on-click="sendAjax">
+            <iron-icon icon="card-giftcard"></iron-icon>
+            <span>Products</span>
+          </a>
+
+          <a href="#" on-click="logOut">
+            <iron-icon icon="open-in-new"></iron-icon>
+            <span>Log Out</span>
           </a>
         
         </paper-menu>
@@ -31,16 +61,53 @@
         <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
           <section data-route="mypage">
-            <h2 class="page-title">マイページ</h2>
-            <template is="dom-repeat" items="{{page}}">
-              <h1>{{item.productName}}</h1>
-              <p>{{item.regularPrice}}</p>
-            </template>
+            <h2 class="page-title">My Page</h2>
+            <h3>Items you bought:</h3>
+            <table class="table">
+              <thead>
+                <th>Name</th>
+                <th>Price</th>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="{{mypage}}">
+                  <tr>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.regularPrice}}</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
           </section>
 
-          <section data-route="bought">
-            <h2 class="page-title">買ったもの</h2>
-            <p>{{page}</p>
+          <section data-route="product">
+            <h2 class="page-title">Products</h2>
+            <paper-input label="Product Name Search" type="search" value="{{searchString::input}}">
+              <paper-icon-button prefix icon="search"></paper-icon-button>
+            </paper-input>
+            <table class="table">
+              <colgroup>
+                <col width="100px">
+                <col>
+                <col>
+                <col>
+              </colgroup>
+              <thead>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Price</th>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="{{products.items}}" filter="{{computeFilter(searchString)}}">
+                  <tr>
+                    <td>{{item.productId}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.productStatusName}}</td>
+                    <td>{{item.regularPrice}}</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
           </section>
 
         </iron-pages>
@@ -48,11 +115,21 @@
     </paper-drawer-panel> 
     
     <iron-ajax
+      auto
       id="mypageAjax"
       url="http://localhost:8090/harbor/lido/mypage"
       with-credentials
       handle-as="json"
-      on-response="handleResponse"
+      on-response="mypageResponse"
+      on-error="handleError"></iron-ajax>
+
+    <iron-ajax
+      auto
+      id="productAjax"
+      url="http://localhost:8090/harbor/lido/product/list"
+      with-credentials
+      handle-as="json"
+      on-response="productResponse"
       on-error="handleError"></iron-ajax>
   </template>
 
@@ -70,13 +147,28 @@
             type: Object
           }
         },
+        computeFilter: function(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(products) {
+            var name = products.productName.toLowerCase();
+            return (name.indexOf(string) !== -1);
+          };
+        }
+      },
         sendAjax: function() {
           console.log(this.route);
           document.querySelector('#' + this.route + 'Ajax').generateRequest();
         },
-        handleResponse: function() {
-          this.page = document.querySelector('#' + this.route + 'Ajax').lastResponse;
-          console.log(this.page);
+        mypageResponse: function() {
+          this.mypage = document.querySelector('#mypageAjax').lastResponse;
+        },
+        productResponse: function() {
+          this.products = document.querySelector('#productAjax').lastResponse;
         },
         ajaxError: function(e) {
           var toast = document.querySelector('#toast');

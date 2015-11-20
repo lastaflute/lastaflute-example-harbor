@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class SigninBody {
 
     @NotBlank
-    public String email;
+    public String account;
 
     @NotBlank
     public String password;

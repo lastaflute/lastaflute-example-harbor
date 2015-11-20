@@ -17,13 +17,17 @@ package org.docksidestage.app.web.lido.product;
 
 import javax.annotation.Resource;
 
+import org.dbflute.optional.OptionalEntity;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
+import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
+ * @author iwamatsu0430
  */
 @AllowAnyoneAccess
 public class LidoProductDetailAction extends HarborBaseAction {
@@ -31,45 +35,32 @@ public class LidoProductDetailAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
     @Resource
     private ProductBhv productBhv;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
-
-    // TODO (s.tadokoro) implement
-    //    @Execute
-    //    public HtmlResponse index(Integer productId) {
-    //        validate(productId, messages -> {} , () -> {
-    //            return asHtml(path_Product_ProductListJsp);
-    //        });
-    //        Product product = selectProduct(productId);
-    //        return asHtml(path_Product_ProductDetailJsp).renderWith(data -> {
-    //            data.register("product", mappingToBean(product));
-    //        });
-    //    }
+    @Execute
+    public JsonResponse<ProductDetailBean> index(Integer productId) {
+        return selectProduct(productId).map(product -> {
+            return asJson(mappingToBean(product));
+        }).get(); // #simple_for_example
+    }
 
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
-    @SuppressWarnings("unused")
-    private Product selectProduct(int productId) {
+    private OptionalEntity<Product> selectProduct(int productId) {
         return productBhv.selectEntity(cb -> {
             cb.setupSelect_ProductCategory();
             cb.query().setProductId_Equal(productId);
-        }).orElseThrow(() -> {
-            return of404("Not found the product: " + productId); // mistake or user joke
         });
     }
 
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
-    @SuppressWarnings("unused")
     private ProductDetailBean mappingToBean(Product product) {
         ProductDetailBean bean = new ProductDetailBean();
         bean.productId = product.getProductId();

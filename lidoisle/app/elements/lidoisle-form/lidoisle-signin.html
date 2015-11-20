@@ -1,0 +1,63 @@
+<dom-module id="lidoisle-signin">
+  <link rel="import" href="../../../bower_components/iron-form/iron-form.html">
+  <link rel="import" href="../../../bower_components/gold-email-input/gold-email-input.html">
+  <link rel="import" href="../../../bower_components/paper-input/all-imports.html">
+  <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+  <link rel="import" type="css" href="./lidoisle-form.css">
+  <template>
+    <style include="shared-styles"></style>
+    <div class="inner">
+      <h2>Sign In</h2>
+      <form is="iron-form" id="signinForm">
+        <gold-email-input label="Email" required name="email" auto-validate id="email"></gold-email-input>
+        <paper-input name="password" label="Password" type="password" id="pass" required auto-validate ></paper-input>
+        <div class="button-area">
+          <paper-spinner id="spinner"></paper-spinner>
+          <paper-button on-click="sendAjax" raised>Sign In</paper-button>
+        </div>
+      </form>
+    </div>
+    
+    <iron-ajax
+      with-credentials
+      id="signinAjax"
+      url="http://localhost:8090/harbor/lido/auth/signin"
+      method="POST"
+      content-type="application/json"
+      handle-as="json"
+      on-response="ajaxResponse"
+      on-error="ajaxError"></iron-ajax>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'lidoisle-signin',
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Welcome!',
+            notify: true
+          }
+        },
+        sendAjax: function() {
+          var data = this.$.signinForm.serialize();
+          this.$.signinAjax.body = data;
+          this.$.signinAjax.generateRequest();
+        },
+        ajaxResponse: function() {
+          location.href = '/app/mypage/';
+        },
+        ajaxError: function(e) {
+          var toast = document.querySelector('#toast');
+          toast.text = 'Invalid!'; 
+          toast.show(); 
+          console.log(e);
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

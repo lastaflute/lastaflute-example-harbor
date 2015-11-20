@@ -25,28 +25,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // Routes
     page('/', scrollToTop, function() {
       app.route = 'home';
+      app.isPublic = 'true';
     });
 
-    page('/login', scrollToTop, function() {
-      app.route = 'login';
-    });
-
-    page('/mypage', scrollToTop, function() {
-      app.route = 'mypage';
-    });
-
-    page('/bought', scrollToTop, function() {
-      app.route = 'bought';
-    });
-
-    page('/users/:name', scrollToTop, function(data) {
-      app.route = 'user-info';
-      app.params = data.params;
-      console.log(data);
-    });
-
-    page('/contact', scrollToTop, function() {
-      app.route = 'contact';
+    page('/app/:action', scrollToTop, function(data) {
+      // TODO (s.tadokoro) ログイン判定処理
+      app.route = data.params.action;
+      app.isPublic = 'false';
     });
 
     // add #! before urls

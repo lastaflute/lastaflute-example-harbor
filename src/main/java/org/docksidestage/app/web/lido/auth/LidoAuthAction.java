@@ -59,9 +59,9 @@ public class LidoAuthAction extends HarborBaseAction {
     @AllowAnyoneAccess
     public JsonResponse<Object> signin(SigninBody body) {
         validateApi(body, messages -> {});
-        String email = body.email;
+        String account = body.account;
         String password = body.password;
-        harborLoginAssist.login(email, password, op -> {});
+        harborLoginAssist.login(account, password, op -> {});
         return JsonResponse.asEmptyBody();
     }
 

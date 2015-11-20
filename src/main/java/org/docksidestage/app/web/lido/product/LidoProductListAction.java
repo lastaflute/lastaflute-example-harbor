@@ -18,14 +18,19 @@ package org.docksidestage.app.web.lido.product;
 import javax.annotation.Resource;
 
 import org.dbflute.cbean.result.PagingResultBean;
+import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.base.paging.SearchPagingBean;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exbhv.ProductStatusBhv;
 import org.docksidestage.dbflute.exentity.Product;
+import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author jflute
+ * @author iwamatsu0430
  */
 @AllowAnyoneAccess
 public class LidoProductListAction extends HarborBaseAction {
@@ -41,44 +46,39 @@ public class LidoProductListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
-
-    // TODO (s.tadokoro) implement
-    //    @Execute
-    //    public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
-    //        validate(form, messages -> {} , () -> {
-    //            return asHtml(path_Product_ProductListHtml);
-    //        });
-    //        PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), form);
-    //        List<ProductSearchRowBean> beans = page.mappingList(product -> {
-    //            return mappingToBean(product);
-    //        });
-    //        return asHtml(path_Product_ProductListHtml).renderWith(data -> {
-    //            data.register("beans", beans);
-    //            registerPagingNavi(data, page, form);
-    //        });
-    //    }
+    @Execute
+    public JsonResponse<SearchPagingBean<ProductRowBean>> index(OptionalThing<Integer> pageNumber, ProductSearchBody body) {
+        validateApi(body, messages -> {});
+        PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), body);
+        SearchPagingBean<ProductRowBean> bean = createPagingBean(page);
+        bean.items = page.mappingList(product -> {
+            return mappingToBean(product);
+        });
+        return asJson(bean);
+    }
 
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
-    @SuppressWarnings("unused")
-    private PagingResultBean<Product> selectProductPage(int pageNumber, ProductSearchForm form) {
+    private PagingResultBean<Product> selectProductPage(int pageNumber, ProductSearchBody body) {
         verifyParameterTrue("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
         return productBhv.selectPage(cb -> {
-            cb.ignoreNullOrEmptyQuery();
             cb.setupSelect_ProductStatus();
             cb.setupSelect_ProductCategory();
             cb.specify().derivedPurchase().count(purchaseCB -> {
                 purchaseCB.specify().columnPurchaseId();
             } , Product.ALIAS_purchaseCount);
-            cb.query().setProductName_LikeSearch(form.productName, op -> op.likeContain());
-            final String purchaseMemberName = form.purchaseMemberName;
-            if (isNotEmpty(purchaseMemberName)) {
+            if (isNotEmpty(body.productName)) {
+                cb.query().setProductName_LikeSearch(body.productName, op -> op.likeContain());
+            }
+            if (isNotEmpty(body.purchaseMemberName)) {
                 cb.query().existsPurchase(purchaseCB -> {
-                    purchaseCB.query().queryMember().setMemberName_LikeSearch(purchaseMemberName, op -> op.likeContain());
+                    purchaseCB.query().queryMember().setMemberName_LikeSearch(body.purchaseMemberName, op -> op.likeContain());
                 });
             }
-            cb.query().setProductStatusCode_Equal_AsProductStatus(form.productStatus);
+            if (body.productStatus != null) {
+                cb.query().setProductStatusCode_Equal_AsProductStatus(body.productStatus);
+            }
             cb.query().addOrderBy_ProductName_Asc();
             cb.query().addOrderBy_ProductId_Asc();
             cb.paging(getPagingPageSize(), pageNumber);
@@ -88,19 +88,14 @@ public class LidoProductListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
-    @SuppressWarnings("unused")
-    private ProductSearchRowBean mappingToBean(Product product) {
-        ProductSearchRowBean bean = new ProductSearchRowBean();
+    private ProductRowBean mappingToBean(Product product) {
+        ProductRowBean bean = new ProductRowBean();
         bean.productId = product.getProductId();
         bean.productName = product.getProductName();
-        bean.regularPrice = product.getRegularPrice();
-        bean.registerDatetime = product.getRegisterDatetime();
         product.getProductStatus().alwaysPresent(status -> {
             bean.productStatusName = status.getProductStatusName();
         });
-        product.getProductCategory().alwaysPresent(category -> {
-            bean.productCategoryName = category.getProductCategoryName();
-        });
+        bean.regularPrice = product.getRegularPrice();
         return bean;
     }
 }

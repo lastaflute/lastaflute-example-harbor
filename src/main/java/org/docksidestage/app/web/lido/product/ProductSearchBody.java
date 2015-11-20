@@ -15,17 +15,15 @@
  */
 package org.docksidestage.app.web.lido.product;
 
-import java.time.LocalDateTime;
+import org.docksidestage.dbflute.allcommon.CDef;
 
 /**
  * @author jflute
+ * @author iwamatsu0430
  */
-public class ProductSearchRowBean {
+public class ProductSearchBody {
 
-    public Integer productId;
     public String productName;
-    public String productStatusName;
-    public Integer regularPrice;
-    public LocalDateTime registerDatetime;
-    public String productCategoryName;
+    public CDef.ProductStatus productStatus;
+    public String purchaseMemberName;
 }

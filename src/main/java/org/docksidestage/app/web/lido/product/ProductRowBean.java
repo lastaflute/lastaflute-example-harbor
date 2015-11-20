@@ -15,19 +15,14 @@
  */
 package org.docksidestage.app.web.lido.product;
 
-import org.docksidestage.dbflute.allcommon.CDef;
-import org.hibernate.validator.constraints.Length;
-
 /**
  * @author jflute
+ * @author iwamatsu0430
  */
-public class ProductSearchForm {
+public class ProductRowBean {
 
-    @Length(max = 10)
+    public Integer productId;
     public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    @Length(max = 5)
-    public String purchaseMemberName;
+    public String productStatusName;
+    public Integer regularPrice;
 }

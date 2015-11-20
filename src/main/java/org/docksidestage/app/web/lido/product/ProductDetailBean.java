@@ -2,6 +2,7 @@ package org.docksidestage.app.web.lido.product;
 
 /**
  * @author jflute
+ * @author iwamatsu0430
  */
 public class ProductDetailBean {
 

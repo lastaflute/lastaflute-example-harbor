@@ -29,6 +29,7 @@ import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.logic.i18n.I18nDateLogic;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.base.paging.PagingNavi;
+import org.docksidestage.app.web.base.paging.SearchPagingBean;
 import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.docksidestage.mylasta.action.HarborUserBean;
@@ -189,6 +190,15 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
                 op.fillLimit();
             }
         } , form);
+    }
+
+    /**
+     * Create paging bean for JSON.
+     * @param page The selected result bean of paging. (NotNull)
+     * @return The new-created bean of paging. (NotNull)
+     */
+    protected <ENTITY extends Entity, BEAN> SearchPagingBean<BEAN> createPagingBean(PagingResultBean<ENTITY> page) {
+        return new SearchPagingBean<BEAN>(page);
     }
 
     /**

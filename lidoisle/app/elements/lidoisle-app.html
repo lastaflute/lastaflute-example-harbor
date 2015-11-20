@@ -19,6 +19,10 @@
       margin-left: 10px;
     }
 
+    paper-input {
+      margin-top: -20px;
+    }
+
     paper-input paper-icon-button {
       padding: 0;
       margin-right: 4px;
@@ -131,6 +135,13 @@
       handle-as="json"
       on-response="productResponse"
       on-error="handleError"></iron-ajax>
+
+    <iron-ajax
+      id="logoutAjax"
+      url="http://localhost:8090/harbor/lido/auth/signout"
+      with-credentials
+      on-response="logoutResponse"
+      on-error="handleError"></iron-ajax>
   </template>
 
   <script>
@@ -175,7 +186,14 @@
           toast.text = 'Invalid!'; 
           toast.show(); 
           console.log(e);
+        },
+        logOut: function() {
+          document.querySelector('#logoutAjax').generateRequest();
+        },
+        logoutResponse: function() {
+          location.href = '/';
         }
+
       });
     })();
   </script>

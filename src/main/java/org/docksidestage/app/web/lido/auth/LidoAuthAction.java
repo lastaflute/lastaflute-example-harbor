@@ -66,6 +66,7 @@ public class LidoAuthAction extends HarborBaseAction {
     }
 
     @Execute
+    @AllowAnyoneAccess
     public JsonResponse<Object> signout() {
         harborLoginAssist.logout();
         return JsonResponse.asEmptyBody();

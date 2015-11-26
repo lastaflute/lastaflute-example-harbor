@@ -127,6 +127,8 @@ public class NewProjectCreator {
                 filtered = textIO.readFilteringLine(canonicalPath, createAdditionalForeignKeyFilter());
             } else if (canonicalPath.endsWith("classificationDefinitionMap.dfprop")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createClassificationDefinitionFilter());
+            } else if (canonicalPath.endsWith("classificationDeploymentMap.dfprop")) {
+                filtered = textIO.readFilteringLine(canonicalPath, createClassificationDeploymentFilter());
             } else if (canonicalPath.endsWith("basicInfoMap.dfprop")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createBasicInfoMapFilter());
             } else if (canonicalPath.endsWith("databaseInfoMap.dfprop")) {
@@ -203,6 +205,15 @@ public class NewProjectCreator {
                     return filterServiceName(line);
                 }
             }
+        };
+    }
+
+    protected FileTextLineFilter createClassificationDeploymentFilter() {
+        return line -> {
+            if (line.startsWith("    ; PURCHASE_PAYMENT = ")) {
+                return null;
+            }
+            return filterServiceName(line);
         };
     }
 

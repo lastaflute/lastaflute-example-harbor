@@ -32,7 +32,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>0.5.4</utflute.version>
+		<utflute.version>0.5.5</utflute.version>
 		<javaparser.version>2.2.2</javaparser.version>
 	</properties>
 

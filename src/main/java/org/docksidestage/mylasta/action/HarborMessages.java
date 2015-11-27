@@ -27,16 +27,16 @@ public class HarborMessages extends HarborLabels {
     /** The serial version UID for object serialization. (Default) */
     private static final long serialVersionUID = 1L;
 
-    /** The key of the message: <font color="red"><ul> */
+    /** The key of the message: &lt;font color="red"&gt;&lt;ul&gt; */
     public static final String ERRORS_HEADER = "{errors.header}";
 
-    /** The key of the message: </ul></font> */
+    /** The key of the message: &lt;/ul&gt;&lt;/font&gt; */
     public static final String ERRORS_FOOTER = "{errors.footer}";
 
-    /** The key of the message: <li> */
+    /** The key of the message: &lt;li&gt; */
     public static final String ERRORS_PREFIX = "{errors.prefix}";
 
-    /** The key of the message: </li> */
+    /** The key of the message: &lt;/li&gt; */
     public static final String ERRORS_SUFFIX = "{errors.suffix}";
 
     /** The key of the message: must be false */
@@ -51,7 +51,7 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: must be greater than ${inclusive == true ? 'or equal to ' : ''}{value} */
     public static final String CONSTRAINTS_DecimalMin_MESSAGE = "{constraints.DecimalMin.message}";
 
-    /** The key of the message: numeric value out of bounds (<{integer} digits>.<{fraction} digits> expected) */
+    /** The key of the message: numeric value out of bounds (&lt;{integer} digits&gt;.&lt;{fraction} digits&gt; expected) */
     public static final String CONSTRAINTS_Digits_MESSAGE = "{constraints.Digits.message}";
 
     /** The key of the message: must be in the future */
@@ -153,7 +153,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'errors.header' with parameters.
      * <pre>
-     * message: <font color="red"><ul>
+     * message: &lt;font color="red"&gt;&lt;ul&gt;
      * comment: ------------
      * </pre>
      * @param property The property name for the message. (NotNull)
@@ -168,7 +168,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'errors.footer' with parameters.
      * <pre>
-     * message: </ul></font>
+     * message: &lt;/ul&gt;&lt;/font&gt;
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @return this. (NotNull)
@@ -182,7 +182,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'errors.prefix' with parameters.
      * <pre>
-     * message: <li>
+     * message: &lt;li&gt;
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @return this. (NotNull)
@@ -196,7 +196,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'errors.suffix' with parameters.
      * <pre>
-     * message: </li>
+     * message: &lt;/li&gt;
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @return this. (NotNull)
@@ -269,7 +269,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'constraints.Digits.message' with parameters.
      * <pre>
-     * message: numeric value out of bounds (<{integer} digits>.<{fraction} digits> expected)
+     * message: numeric value out of bounds (&lt;{integer} digits&gt;.&lt;{fraction} digits&gt; expected)
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @param integer The parameter integer for message. (NotNull)

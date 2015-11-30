@@ -39,6 +39,7 @@ public class MemberEditAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer memberId) {
+        saveToken();
         Member member = selectMember(memberId);
         return asHtml(path_Member_MemberEditHtml).useForm(MemberEditForm.class, op -> op.setup(form -> {
             form.memberId = member.getMemberId();
@@ -56,6 +57,9 @@ public class MemberEditAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse update(MemberEditForm form) {
+        verifyToken(() -> {
+            return asHtml(path_Member_MemberEditHtml);
+        });
         validate(form, messages -> {} , () -> {
             return asHtml(path_Member_MemberEditHtml);
         });

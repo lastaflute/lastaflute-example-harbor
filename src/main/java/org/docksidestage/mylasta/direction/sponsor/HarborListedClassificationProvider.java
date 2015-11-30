@@ -16,6 +16,7 @@
 package org.docksidestage.mylasta.direction.sponsor;
 
 import java.util.Locale;
+import java.util.function.Function;
 
 import org.dbflute.jdbc.ClassificationMeta;
 import org.dbflute.optional.OptionalObject;
@@ -34,22 +35,36 @@ public class HarborListedClassificationProvider implements ListedClassificationP
     public ClassificationMeta provide(String classificationName) throws ProvidedClassificationNotFoundException {
         final ClassificationMeta onMainSchema = findOnMainSchema(classificationName);
         if (onMainSchema == null) {
-            String msg = "Not found the classification: " + classificationName;
-            throw new ProvidedClassificationNotFoundException(msg);
+            throw new ProvidedClassificationNotFoundException("Not found the classification: " + classificationName);
         }
         return onMainSchema;
     }
 
     protected ClassificationMeta findOnMainSchema(String classificationName) throws ProvidedClassificationNotFoundException {
-        String searchName = classificationName;
-        if (classificationName.contains(".")) {
-            final String dbName = Srl.substringFirstFront(classificationName, ".");
-            if (dbName.equals(DBCurrent.getInstance().projectName())) {
-                searchName = Srl.substringFirstRear(classificationName, ".");
-            } else {
-                return null;
-            }
+        final String projectDelimiter = "-"; // dot means group delimiter so use other mark here
+        if (classificationName.contains(projectDelimiter)) { // e.g. sea$land: means land classification in sea project
+            final String projectName = Srl.substringFirstFront(classificationName, projectDelimiter);
+            final String pureName = Srl.substringFirstRear(classificationName, projectDelimiter);
+            return chooseClassificationFinder(projectName).apply(pureName);
+        } else { // e.g. sea: means sea classification
+            return getDefaultClassificationFinder().apply(classificationName);
         }
+    }
+
+    protected Function<String, ClassificationMeta> chooseClassificationFinder(String projectName)
+            throws ProvidedClassificationNotFoundException {
+        if (DBCurrent.getInstance().projectName().equals(projectName)) {
+            return searchName -> valueOfOnMainSchema(searchName);
+        } else {
+            throw new ProvidedClassificationNotFoundException("Unknown DBFlute project name: " + projectName);
+        }
+    }
+
+    protected Function<String, ClassificationMeta> getDefaultClassificationFinder() {
+        return searchName -> valueOfOnMainSchema(searchName);
+    }
+
+    protected ClassificationMeta valueOfOnMainSchema(String searchName) {
         try {
             return CDef.DefMeta.valueOf(searchName);
         } catch (IllegalArgumentException ignored) { // not found

@@ -37,6 +37,7 @@
 	<h2 class="content-title" th:text="#{labels.member.edit.title}">labels.member.edit.title</h2>
 	<section class="member-input-box">
 		<form th:action="@{/member/edit/}" action="#" method="post">
+			<input type="hidden" la:token="true"/>
 			<table>
 				<tr>
 					<td>Member Name</td>

@@ -103,7 +103,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     /** (会員ID)MEMBER_ID: {PK, ID, NotNull, INTEGER(10), FK to MEMBER_ADDRESS} */
     protected Integer _memberId;
 
-    /** (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)} */
+    /** (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)} */
     protected String _memberName;
 
     /** (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)} */
@@ -645,7 +645,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     }
 
     /**
-     * [get] (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)} <br>
+     * [get] (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)} <br>
      * 会員のフルネームの名称。<br>
      * 苗字と名前を分けて管理することが多いが、ここでは単純にひとまとめ。
      * @return The value of the column 'MEMBER_NAME'. (basically NotNull if selected: for the constraint)
@@ -656,7 +656,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     }
 
     /**
-     * [set] (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)} <br>
+     * [set] (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)} <br>
      * 会員のフルネームの名称。<br>
      * 苗字と名前を分けて管理することが多いが、ここでは単純にひとまとめ。
      * @param memberName The value of the column 'MEMBER_NAME'. (basically NotNull if update: for the constraint)

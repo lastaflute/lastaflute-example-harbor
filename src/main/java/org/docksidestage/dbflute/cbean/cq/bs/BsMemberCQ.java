@@ -186,14 +186,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
      * @return this. (NotNull)
      */
     public BsMemberCQ addOrderBy_MemberName_Asc() { regOBA("MEMBER_NAME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
      * @return this. (NotNull)
      */
     public BsMemberCQ addOrderBy_MemberName_Desc() { regOBD("MEMBER_NAME"); return this; }

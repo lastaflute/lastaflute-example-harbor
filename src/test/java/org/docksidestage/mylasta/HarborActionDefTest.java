@@ -15,8 +15,8 @@
  */
 package org.docksidestage.mylasta;
 
-import java.lang.reflect.Modifier;
-
+import org.dbflute.utflute.lastaflute.police.ActionComponentPolice;
+import org.dbflute.utflute.lastaflute.police.NonActionExtendsLastaActionPolice;
 import org.docksidestage.unit.UnitHarborTestCase;
 
 /**
@@ -25,22 +25,10 @@ import org.docksidestage.unit.UnitHarborTestCase;
 public class HarborActionDefTest extends UnitHarborTestCase {
 
     public void test_component() throws Exception {
-        // ## Arrange ##
-        String appWebPkg = ".app.web.";
-        String actionSuffix = "Action";
+        policeStoryOfJavaClassChase(new ActionComponentPolice(tp -> getComponent(tp)));
+    }
 
-        // ## Act ##
-        policeStoryOfJavaClassChase((srcFile, clazz) -> {
-            if (clazz.isInterface() || Modifier.isAbstract(clazz.getModifiers())) { // e.g. BaseAction
-                return;
-            }
-            final String className = clazz.getName();
-            if (className.contains(appWebPkg) && className.endsWith(actionSuffix)) {
-                // ## Assert ##
-                markHere("exists");
-                getComponent(clazz); // expect no exception
-            }
-        });
-        assertMarked("exists");
+    public void test_nonActionExtendsLastaAction() throws Exception {
+        policeStoryOfJavaClassChase(new NonActionExtendsLastaActionPolice());
     }
 }

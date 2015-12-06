@@ -15,42 +15,20 @@
  */
 package org.docksidestage.mylasta.direction.sponsor;
 
-import java.util.Locale;
 import java.util.function.Function;
 
 import org.dbflute.jdbc.ClassificationMeta;
-import org.dbflute.optional.OptionalObject;
-import org.dbflute.optional.OptionalThing;
-import org.dbflute.util.Srl;
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.allcommon.DBCurrent;
-import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
+import org.lastaflute.db.dbflute.classification.TypicalListedClassificationProvider;
 import org.lastaflute.db.dbflute.exception.ProvidedClassificationNotFoundException;
 
 /**
  * @author jflute
  */
-public class HarborListedClassificationProvider implements ListedClassificationProvider {
+public class HarborListedClassificationProvider extends TypicalListedClassificationProvider {
 
-    public ClassificationMeta provide(String classificationName) throws ProvidedClassificationNotFoundException {
-        final ClassificationMeta onMainSchema = findOnMainSchema(classificationName);
-        if (onMainSchema == null) {
-            throw new ProvidedClassificationNotFoundException("Not found the classification: " + classificationName);
-        }
-        return onMainSchema;
-    }
-
-    protected ClassificationMeta findOnMainSchema(String classificationName) throws ProvidedClassificationNotFoundException {
-        final String projectDelimiter = "-"; // dot means group delimiter so use other mark here
-        if (classificationName.contains(projectDelimiter)) { // e.g. sea$land: means land classification in sea project
-            final String projectName = Srl.substringFirstFront(classificationName, projectDelimiter);
-            final String pureName = Srl.substringFirstRear(classificationName, projectDelimiter);
-            return chooseClassificationFinder(projectName).apply(pureName);
-        } else { // e.g. sea: means sea classification
-            return getDefaultClassificationFinder().apply(classificationName);
-        }
-    }
-
+    @Override
     protected Function<String, ClassificationMeta> chooseClassificationFinder(String projectName)
             throws ProvidedClassificationNotFoundException {
         if (DBCurrent.getInstance().projectName().equals(projectName)) {
@@ -60,6 +38,7 @@ public class HarborListedClassificationProvider implements ListedClassificationP
         }
     }
 
+    @Override
     protected Function<String, ClassificationMeta> getDefaultClassificationFinder() {
         return searchName -> valueOfOnMainSchema(searchName);
     }
@@ -70,10 +49,5 @@ public class HarborListedClassificationProvider implements ListedClassificationP
         } catch (IllegalArgumentException ignored) { // not found
             return null; // handled later
         }
-    }
-
-    @Override
-    public OptionalThing<String> determineAlias(Locale locale) {
-        return OptionalObject.empty();
     }
 }

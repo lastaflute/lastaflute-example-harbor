@@ -1,8 +1,8 @@
 # /---------------------------------------------------------------------------
-# outsideSqlDefinitionMap: (NotRequired - Default map:{})
+# outsideSqlMap: (NotRequired - Default map:{})
 #
 # The various settings about outsideSql. 
-# 
+#
 # o isGenerateProcedureParameterBean: (NotRequired - Default false)
 # o isGenerateProcedureCustomizeEntity: (NotRequired - Default false)
 # o targetProcedureCatalogList: (NotRequired - Default list:{})
@@ -10,14 +10,14 @@
 # o targetProcedureNameList: (NotRequired - Default list:{})
 # o executionMetaProcedureNameList: (NotRequired - Default list:{})
 # o procedureSynonymHandlingType: (NotRequired - Default NONE)
-# o isRequiredSqlTitle: (NotRequired - Default false)
-# o isRequiredSqlDescription: (NotRequired - Default false)
+# o isRequiredSqlTitle: (NotRequired - Default true)
+# o isRequiredSqlDescription: (NotRequired - Default true)
 # o sqlFileEncoding: (NotRequired - Default 'UTF-8')
 # o sqlDirectory: (NotRequired - Default generateOutputDirectory & resourceOutputDirectory)
 # o sql2EntityOutputDirectory: (NotRequired - Default generateOutputDirectory)
 # o applicationOutsideSqlMap: (NotRequired - Default map:{})
 # o sqlPackage: (NotRequired - Default all packages)
-# 
+#
 # *The line that starts with '#' means comment-out.
 #
 map:{
@@ -89,7 +89,7 @@ map:{
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # o isRequiredSqlTitle: (NotRequired - Default false)
+    # o isRequiredSqlTitle: (NotRequired - Default true)
     #   [true]
     #     You should always write the title of outsideSql.
     #     If it doesn't exist, the OutsideSqlTest task fails.
@@ -97,11 +97,11 @@ map:{
     #   [false]
     #     Non.
     #
-    ; isRequiredSqlTitle = true
+    #; isRequiredSqlTitle = true
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # o isRequiredSqlDescription: (NotRequired - Default false)
+    # o isRequiredSqlDescription: (NotRequired - Default true)
     #   [true]
     #     You should always write the description of outsideSql.
     #     If it doesn't exist, the OutsideSqlTest task fails.
@@ -109,7 +109,7 @@ map:{
     #   [false]
     #     Non.
     #
-    ; isRequiredSqlDescription = true
+    #; isRequiredSqlDescription = true
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

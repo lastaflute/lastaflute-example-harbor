@@ -135,7 +135,7 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: retry because of illegal transition */
     public static final String ERRORS_APP_ILLEGAL_TRANSITION = "{errors.app.illegal.transition}";
 
-    /** The key of the message: others might be updated, so retry */
+    /** The key of the message: others might be deleted, so retry */
     public static final String ERRORS_APP_DB_ALREADY_DELETED = "{errors.app.db.already.deleted}";
 
     /** The key of the message: others might be updated, so retry */
@@ -683,7 +683,7 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'errors.app.db.already.deleted' with parameters.
      * <pre>
-     * message: others might be updated, so retry
+     * message: others might be deleted, so retry
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @return this. (NotNull)

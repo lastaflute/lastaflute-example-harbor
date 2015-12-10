@@ -97,6 +97,7 @@ table, th {
 th {
     background-color: #E4AAA4;
     font-size: 0.8em;
+    padding: 0 0.2em 0 0.2em;
 }
 td {
     border-bottom: 1px dotted #aaa;
@@ -111,6 +112,14 @@ td {
     color: #3F7E5E;
     padding:0.5em 0 0.5em 1em;
     margin-bottom: 1em;
+}
+.fieldcomment {
+    font-size: 0.8em;
+    color: #3F7E5E;
+}
+.fieldannotations {
+    font-size: 0.8em;
+    color: #666666;
 }
 .rownumcell {
     text-align: center;
@@ -458,7 +467,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -467,47 +476,47 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>memberName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>memberAccount</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>birthdate</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">4</td>
         <td>memberStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
 </table>
@@ -547,7 +556,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -556,118 +565,118 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>memberId</td>
         <td><p title="java.lang.Integer">Integer</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>memberName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>memberAccount</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">4</td>
         <td>birthdate</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">5</td>
         <td>formalizedDate</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">6</td>
         <td>memberStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">7</td>
         <td>latestLoginDatetime</td>
         <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">8</td>
         <td>updateDatetime</td>
         <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">9</td>
         <td>previousStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">10</td>
         <td>versionNo</td>
         <td><p title="java.lang.Long">Long</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
 </table>
@@ -693,7 +702,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -702,118 +711,118 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>memberId</td>
         <td><p title="java.lang.Integer">Integer</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>memberName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>memberAccount</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">4</td>
         <td>birthdate</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">5</td>
         <td>formalizedDate</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">6</td>
         <td>memberStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">7</td>
         <td>latestLoginDatetime</td>
         <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">8</td>
         <td>updateDatetime</td>
         <td><p title="java.time.LocalDateTime">LocalDateTime</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">9</td>
         <td>previousStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">10</td>
         <td>versionNo</td>
         <td><p title="java.lang.Long">Long</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required{groups=[ClientError]}
+        <td class="fieldannotations">
+            &#64;Required{groups=[ClientError]}
         </td>
     </tr>
 </table>
@@ -839,7 +848,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -848,66 +857,66 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>memberName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>memberStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$MemberStatus">MemberStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>purchaseProductName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">4</td>
         <td>unpaid</td>
         <td><p title="boolean">boolean</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">5</td>
         <td>formalizedFrom</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">6</td>
         <td>formalizedTo</td>
         <td><p title="java.time.LocalDate">LocalDate</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
 </table>
@@ -975,7 +984,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -984,33 +993,33 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>productName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>productStatus</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$ProductStatus">ProductStatus</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>purchaseMemberName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
 </table>
@@ -1078,7 +1087,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1087,35 +1096,35 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>email</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>password</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Required
+        <td class="fieldannotations">
+            &#64;Required
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>rememberMe</td>
         <td><p title="boolean">boolean</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
 </table>
@@ -1169,7 +1178,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1178,60 +1187,60 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>name</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            NotBlank
+        <td class="fieldannotations">
+            &#64;NotBlank
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>account</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            NotBlank
+        <td class="fieldannotations">
+            &#64;NotBlank
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">3</td>
         <td>password</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            NotBlank
+        <td class="fieldannotations">
+            &#64;NotBlank
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">4</td>
         <td>reminderQuestion</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            NotBlank
+        <td class="fieldannotations">
+            &#64;NotBlank
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">5</td>
         <td>reminderAnswer</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            NotBlank
+        <td class="fieldannotations">
+            &#64;NotBlank
         </td>
     </tr>
 </table>
@@ -1271,7 +1280,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1280,24 +1289,24 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>domain</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Size{message=Domainが入力されていません, min=1}
+        <td class="fieldannotations">
+            &#64;Size{message=Domainが入力されていません, min=1}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>serviceName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Size{message=Service Nameが入力されていません, min=1}
+        <td class="fieldannotations">
+            &#64;Size{message=Service Nameが入力されていません, min=1}
         </td>
     </tr>
 </table>
@@ -1323,7 +1332,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1332,24 +1341,24 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>domain</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Size{message=Domainが入力されていません, min=1}
+        <td class="fieldannotations">
+            &#64;Size{message=Domainが入力されていません, min=1}
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>serviceName</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Size{message=Service Nameが入力されていません, min=1}
+        <td class="fieldannotations">
+            &#64;Size{message=Service Nameが入力されていません, min=1}
         </td>
     </tr>
 </table>
@@ -1389,7 +1398,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1398,23 +1407,23 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>reasonCode</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$WithdrawalReason">WithdrawalReason</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>reasonInput</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Length{max=3}
+        <td class="fieldannotations">
+            &#64;Length{max=3}
         </td>
     </tr>
 </table>
@@ -1440,7 +1449,7 @@ table.child, table.child td, table.child th {
     <tr>
         <th class="rownumhead">No.</th>
         <th>name</th>
-        <th>class</th>
+        <th>type</th>
         <th>comment</th>
         <th>annotations</th>
     </tr>
@@ -1449,23 +1458,23 @@ table.child, table.child td, table.child th {
         <td class="rownumcell" rowspan="1">1</td>
         <td>reasonCode</td>
         <td><p title="org.docksidestage.dbflute.allcommon.CDef$WithdrawalReason">WithdrawalReason</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
+        <td class="fieldannotations">
         </td>
     </tr>
     <tr>
         <td class="rownumcell" rowspan="1">2</td>
         <td>reasonInput</td>
         <td><p title="java.lang.String">String</p></td>
-        <td>
+        <td class="fieldcomment">
         	<p title=""></p>
         	<p></p>
         </td>
-        <td>
-            Length{max=3}
+        <td class="fieldannotations">
+            &#64;Length{max=3}
         </td>
     </tr>
 </table>

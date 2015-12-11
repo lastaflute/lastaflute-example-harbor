@@ -5,7 +5,7 @@ indent_style = space
 charset = utf-8
 end_of_line = lf
 
-[*.{html,xml}]
+[*.{html,xml,css}]
 indent_style = tab
 
 [*.{js,json}]

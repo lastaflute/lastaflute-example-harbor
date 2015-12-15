@@ -21,6 +21,7 @@ import org.docksidestage.mylasta.direction.sponsor.HarborActionAdjustmentProvide
 import org.docksidestage.mylasta.direction.sponsor.HarborApiFailureHook;
 import org.docksidestage.mylasta.direction.sponsor.HarborCookieResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborCurtainBeforeHook;
+import org.docksidestage.mylasta.direction.sponsor.HarborJsonResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborListedClassificationProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborMailDeliveryDepartmentCreator;
 import org.docksidestage.mylasta.direction.sponsor.HarborSecurityResourceProvider;
@@ -78,6 +79,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
 
         direction.directSecurity(createSecurityResourceProvider());
         direction.directTime(createTimeResourceProvider());
+        direction.directJson(createJsonResourceProvider());
         direction.directMail(createMailDeliveryDepartmentCreator().create());
     }
 
@@ -93,6 +95,10 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected HarborTimeResourceProvider createTimeResourceProvider() {
         return new HarborTimeResourceProvider(harborConfig);
+    }
+
+    protected HarborJsonResourceProvider createJsonResourceProvider() {
+        return new HarborJsonResourceProvider();
     }
 
     protected HarborMailDeliveryDepartmentCreator createMailDeliveryDepartmentCreator() {

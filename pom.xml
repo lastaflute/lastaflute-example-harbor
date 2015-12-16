@@ -277,7 +277,7 @@
 			<version>${servlet.version}</version>
 		</dependency>
 
-		<!-- jetty -->
+		<!-- boot -->
 		<dependency>
 			<groupId>org.dbflute.jetty</groupId>
 			<artifactId>jetty-boot</artifactId>
@@ -287,7 +287,7 @@
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                          GoodNeighbor Library -->
 		<!--                                                           = = = = = = = = = = -->
-		<!-- commons: lang -->
+		<!-- commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

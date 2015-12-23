@@ -41,13 +41,11 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     // if (HTTP Status: 200) { // success
     //     JsonBean bean = parseJsonAsSuccess(response);
     //     ...(do process per action)
-    // } else if (HTTP Status: 400 to 499) { // validation error, application exception, client exception
-    //     try {
-    //         FailureBean bean = parseJsonAsFailure(response);
-    //         ...(show bean.messageList or do process per bean.failureType)
-    //     } catch (ParseFailureException e) { // e.g. 404 from web server, web container
-    //         showSystemError(e);
-    //     }
+    // } else if (HTTP Status: 400) { // e.g. validation error, application exception, client exception
+    //     FailureBean bean = parseJsonAsFailure(response);
+    //     ...(show bean.messageList or do process per bean.failureType)
+    // } else if (HTTP Status: 404) { // e.g. real not found, invalid parameter
+    //     showNotFoundError();
     // } else { // basically 500, server exception
     //     showSystemError();
     // }

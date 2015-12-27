@@ -16,7 +16,9 @@
 package org.docksidestage.mylasta;
 
 import org.dbflute.utflute.lastaflute.police.ActionComponentPolice;
-import org.dbflute.utflute.lastaflute.police.NonActionExtendsLastaActionPolice;
+import org.dbflute.utflute.lastaflute.police.NonActionExtendsActionPolice;
+import org.dbflute.utflute.lastaflute.police.NonWebHasWebReferencePolice;
+import org.dbflute.utflute.lastaflute.police.WebPackageNinjaReferencePolice;
 import org.docksidestage.unit.UnitHarborTestCase;
 
 /**
@@ -28,7 +30,15 @@ public class HarborActionDefTest extends UnitHarborTestCase {
         policeStoryOfJavaClassChase(new ActionComponentPolice(tp -> getComponent(tp)));
     }
 
-    public void test_nonActionExtendsLastaAction() throws Exception {
-        policeStoryOfJavaClassChase(new NonActionExtendsLastaActionPolice());
+    public void test_nonActionExtendsAction() throws Exception {
+        policeStoryOfJavaClassChase(new NonActionExtendsActionPolice());
+    }
+
+    public void test_nonWebHasWebReference() throws Exception {
+        policeStoryOfJavaClassChase(new NonWebHasWebReferencePolice());
+    }
+
+    public void test_webPackageNinjaReferencePolice() throws Exception {
+        policeStoryOfJavaClassChase(new WebPackageNinjaReferencePolice());
     }
 }

@@ -16,6 +16,7 @@
 package org.docksidestage.mylasta;
 
 import org.dbflute.utflute.lastaflute.police.ActionComponentPolice;
+import org.dbflute.utflute.lastaflute.police.HotDeployDestroyerPolice;
 import org.dbflute.utflute.lastaflute.police.NonActionExtendsActionPolice;
 import org.dbflute.utflute.lastaflute.police.NonWebHasWebReferencePolice;
 import org.dbflute.utflute.lastaflute.police.WebPackageNinjaReferencePolice;
@@ -28,6 +29,10 @@ public class HarborActionDefTest extends UnitHarborTestCase {
 
     public void test_component() throws Exception {
         policeStoryOfJavaClassChase(new ActionComponentPolice(tp -> getComponent(tp)));
+    }
+
+    public void test_hotDeployDestroyer() throws Exception {
+        policeStoryOfJavaClassChase(new HotDeployDestroyerPolice(tp -> getComponent(tp)));
     }
 
     public void test_nonActionExtendsAction() throws Exception {

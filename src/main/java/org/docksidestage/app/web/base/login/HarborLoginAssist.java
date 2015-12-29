@@ -29,7 +29,7 @@ import org.docksidestage.mylasta.direction.HarborConfig;
 import org.lastaflute.core.magic.async.AsyncManager;
 import org.lastaflute.core.time.TimeManager;
 import org.lastaflute.db.jta.stage.TransactionStage;
-import org.lastaflute.web.login.LoginManager;
+import org.lastaflute.web.login.PrimaryLoginManager;
 import org.lastaflute.web.login.TypicalLoginAssist;
 import org.lastaflute.web.login.option.LoginSpecifiedOption;
 
@@ -37,7 +37,7 @@ import org.lastaflute.web.login.option.LoginSpecifiedOption;
  * @author jflute
  */
 public class HarborLoginAssist extends TypicalLoginAssist<Integer, HarborUserBean, Member> // #change_it also UserBean
-        implements LoginManager {
+        implements PrimaryLoginManager {
 
     // ===================================================================================
     //                                                                           Attribute

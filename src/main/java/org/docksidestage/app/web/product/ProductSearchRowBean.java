@@ -17,15 +17,22 @@ package org.docksidestage.app.web.product;
 
 import java.time.LocalDate;
 
+import org.lastaflute.web.validation.Required;
+
 /**
  * @author jflute
  */
 public class ProductSearchRowBean {
 
+    @Required
     public Integer productId;
+    @Required
     public String productName;
+    @Required
     public String productStatus;
+    @Required
     public String productCategory;
+    @Required
     public Integer regularPrice;
     public LocalDate latestPurchaseDate;
 }

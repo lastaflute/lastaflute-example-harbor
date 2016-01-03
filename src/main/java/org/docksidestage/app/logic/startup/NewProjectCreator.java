@@ -23,6 +23,7 @@ import org.dbflute.helper.filesystem.FileHierarchyTracingHandler;
 import org.dbflute.helper.filesystem.FileTextIO;
 import org.dbflute.helper.filesystem.FileTextLineFilter;
 import org.dbflute.util.Srl;
+import org.dbflute.util.Srl.ScopeInfo;
 import org.lastaflute.di.util.LdiFileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -312,7 +313,11 @@ public class NewProjectCreator {
         final String toGroupId = "<groupId>mysql</groupId>";
         final String artifactId = "<artifactId>mysql-connector-java</artifactId>";
         final String toVersion = "<version>${mysql.jdbc.version}</version>";
-        line = Srl.replace(line, "<h2.jdbc.version>1.4.188</h2.jdbc.version>", toProperty);
+        final ScopeInfo h2version = Srl.extractScopeFirst(line, "<h2.jdbc.version>", "</h2.jdbc.version>");
+        if (h2version != null) {
+            final String version = h2version.getContent();
+            line = Srl.replace(line, "<h2.jdbc.version>" + version + "</h2.jdbc.version>", toProperty);
+        }
         line = Srl.replace(line, "<groupId>com.h2database</groupId>", toGroupId);
         line = Srl.replace(line, "<artifactId>h2</artifactId>", artifactId);
         line = Srl.replace(line, "<version>${h2.jdbc.version}</version>", toVersion);

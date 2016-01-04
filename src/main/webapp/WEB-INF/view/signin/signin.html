@@ -41,12 +41,12 @@
 				<li>
 					<span th:text="#{labels.account}">labels.account</span>
 					<input type="text" name="account" th:value="${account}" th:placeholder="#{labels.signin.input.account}"/>
-					<span class="errors" th:each="er : ${errors.part('account')}" th:text="${er.message}"/>
+					<span la:errors="account"/>
 				</li>
 				<li>
 					<span th:text="#{labels.password}">labels.password</span>
 					<input type="password" name="password" th:value="${password}" th:placeholder="#{labels.signin.input.password}"/>
-					<span class="errors" th:each="er : ${errors.part('password')}" th:text="${er.message}"/>
+					<span la:errors="password"/>
 				</li>
 				<li>
 					<label><input type="checkbox" name="rememberMe" th:text="#{labels.signin.rememberMe}"/></label>

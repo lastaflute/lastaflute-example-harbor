@@ -15,6 +15,9 @@
  */
 package org.docksidestage.unit;
 
+import java.util.List;
+import java.util.Map;
+
 import org.dbflute.utflute.lastaflute.WebContainerTestCase;
 
 /**
@@ -38,4 +41,13 @@ import org.dbflute.utflute.lastaflute.WebContainerTestCase;
  * @author jflute
  */
 public abstract class UnitHarborTestCase extends WebContainerTestCase {
+
+    protected <ELEMENT> List<ELEMENT> requiredBeans(Map<String, Object> htmlData, Class<ELEMENT> beanType) {
+        @SuppressWarnings("unchecked")
+        List<ELEMENT> beans = (List<ELEMENT>) htmlData.get("beans");
+        assertNotNull(beans);
+        assertHasAnyElement(beans);
+        assertTrue(beanType.isAssignableFrom(beans.get(0).getClass()));
+        return beans;
+    }
 }

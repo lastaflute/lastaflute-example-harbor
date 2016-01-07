@@ -15,7 +15,6 @@
  */
 package org.docksidestage.mylasta;
 
-import org.dbflute.utflute.core.document.DocumentGenerator;
 import org.docksidestage.unit.UnitHarborTestCase;
 
 /**
@@ -24,7 +23,6 @@ import org.docksidestage.unit.UnitHarborTestCase;
 public class HarborLastaDocTest extends UnitHarborTestCase {
 
     public void test_document() throws Exception {
-        DocumentGenerator generator = new DocumentGenerator();
-        generator.saveLastaDocMeta();
+        saveLastaDocMeta();
     }
 }

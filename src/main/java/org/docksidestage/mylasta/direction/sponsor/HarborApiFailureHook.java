@@ -15,16 +15,14 @@
  */
 package org.docksidestage.mylasta.direction.sponsor;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.dbflute.optional.OptionalThing;
 import org.lastaflute.web.api.ApiFailureHook;
 import org.lastaflute.web.api.ApiFailureResource;
+import org.lastaflute.web.api.BusinessFailureMapping;
 import org.lastaflute.web.login.exception.LoginFailureException;
 import org.lastaflute.web.login.exception.LoginRequiredException;
 import org.lastaflute.web.response.ApiResponse;
@@ -55,13 +53,13 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                          Definition
     //                                                                          ==========
     protected static final int BUSINESS_FAILURE_STATUS = HttpServletResponse.SC_BAD_REQUEST;
-    protected static final Map<Class<?>, TooSimpleFailureType> failureTypeMap; // for application exception
+    protected static final BusinessFailureMapping<TooSimpleFailureType> failureTypeMapping; // for application exception
 
     static { // you can add mapping of failure type with exception
-        final Map<Class<?>, TooSimpleFailureType> makingMap = new HashMap<Class<?>, TooSimpleFailureType>();
-        makingMap.put(LoginFailureException.class, TooSimpleFailureType.LOGIN_FAILURE);
-        makingMap.put(LoginRequiredException.class, TooSimpleFailureType.LOGIN_REQUIRED);
-        failureTypeMap = Collections.unmodifiableMap(makingMap);
+        failureTypeMapping = new BusinessFailureMapping<TooSimpleFailureType>(failureMap -> {
+            failureMap.put(LoginFailureException.class, TooSimpleFailureType.LOGIN_FAILURE);
+            failureMap.put(LoginRequiredException.class, TooSimpleFailureType.LOGIN_REQUIRED);
+        });
     }
 
     // ===================================================================================
@@ -75,24 +73,11 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
 
     @Override
     public ApiResponse handleApplicationException(ApiFailureResource resource, RuntimeException cause) {
-        final TooSimpleFailureType failureType = findAssignableValue(failureTypeMap, cause.getClass()).orElseGet(() -> {
+        final TooSimpleFailureType failureType = failureTypeMapping.findAssignable(cause).orElseGet(() -> {
             return TooSimpleFailureType.APPLICATION_EXCEPTION;
         });
         final TooSimpleFailureBean bean = createFailureBean(failureType, resource);
         return asJson(bean).httpStatus(BUSINESS_FAILURE_STATUS);
-    }
-
-    protected <VALUE> OptionalThing<VALUE> findAssignableValue(Map<Class<?>, VALUE> map, Class<?> key) {
-        final VALUE found = map.get(key);
-        if (found != null) {
-            return OptionalThing.of(found);
-        } else {
-            return OptionalThing.migratedFrom(map.entrySet().stream().filter(entry -> {
-                return entry.getKey().isAssignableFrom(key);
-            }).map(entry -> entry.getValue()).findFirst(), () -> {
-                throw new IllegalStateException("Not found the exception type in the map: " + map.keySet());
-            });
-        }
     }
 
     // ===================================================================================

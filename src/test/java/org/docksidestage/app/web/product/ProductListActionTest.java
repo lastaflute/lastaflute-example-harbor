@@ -1,8 +1,7 @@
 package org.docksidestage.app.web.product;
 
-import java.util.Map;
-
 import org.dbflute.optional.OptionalThing;
+import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.unit.UnitHarborTestCase;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -22,8 +21,8 @@ public class ProductListActionTest extends UnitHarborTestCase {
         HtmlResponse response = action.index(OptionalThing.of(2), form);
 
         // ## Assert ##
-        Map<String, Object> htmlData = validateHtmlData(response);
-        requiredBeans(htmlData, ProductSearchRowBean.class).forEach(bean -> {
+        TestingHtmlData htmlData = validateHtmlData(response);
+        htmlData.requiredList("beans", ProductSearchRowBean.class).forEach(bean -> {
             log(bean);
             assertContains(bean.productName, form.productName);
         });

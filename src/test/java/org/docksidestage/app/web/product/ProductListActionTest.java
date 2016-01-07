@@ -16,15 +16,16 @@ public class ProductListActionTest extends UnitHarborTestCase {
         inject(action);
         ProductSearchForm form = new ProductSearchForm();
         form.productName = "a";
+        int pageNumber = 2;
 
         // ## Act ##
-        HtmlResponse response = action.index(OptionalThing.of(2), form);
+        HtmlResponse response = action.index(OptionalThing.of(pageNumber), form);
 
         // ## Assert ##
         TestingHtmlData htmlData = validateHtmlData(response);
         htmlData.requiredList("beans", ProductSearchRowBean.class).forEach(bean -> {
             log(bean);
-            assertContains(bean.productName, form.productName);
+            assertContainsIgnoreCase(bean.productName, form.productName);
         });
     }
 }

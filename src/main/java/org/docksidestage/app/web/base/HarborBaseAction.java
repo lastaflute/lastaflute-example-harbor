@@ -23,9 +23,9 @@ import javax.annotation.Resource;
 
 import org.dbflute.Entity;
 import org.dbflute.cbean.result.PagingResultBean;
-import org.dbflute.hook.AccessContext;
 import org.dbflute.optional.OptionalObject;
 import org.dbflute.optional.OptionalThing;
+import org.docksidestage.app.logic.context.AccessContextLogic;
 import org.docksidestage.app.logic.i18n.I18nDateLogic;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.base.paging.PagingNavi;
@@ -35,7 +35,6 @@ import org.docksidestage.mylasta.action.HarborMessages;
 import org.docksidestage.mylasta.action.HarborUserBean;
 import org.docksidestage.mylasta.direction.HarborConfig;
 import org.lastaflute.db.dbflute.accesscontext.AccessContextArranger;
-import org.lastaflute.db.dbflute.accesscontext.AccessContextResource;
 import org.lastaflute.web.TypicalAction;
 import org.lastaflute.web.login.LoginManager;
 import org.lastaflute.web.response.ActionResponse;
@@ -69,6 +68,8 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     private HarborConfig harborConfig;
     @Resource
     private HarborLoginAssist harborLoginAssist;
+    @Resource
+    private AccessContextLogic accessContextLogic;
     @Resource
     private I18nDateLogic i18nDateLogic;
 
@@ -114,22 +115,8 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     @Override
     protected AccessContextArranger newAccessContextArranger() { // for framework
         return resource -> {
-            final AccessContext context = new AccessContext();
-            context.setAccessLocalDateTimeProvider(() -> currentDateTime());
-            context.setAccessUserProvider(() -> buildAccessUserTrace(resource));
-            return context;
+            return accessContextLogic.create(resource, () -> myUserType(), () -> getUserBean(), () -> myAppType());
         };
-    }
-
-    private String buildAccessUserTrace(AccessContextResource resource) {
-        // #app_customize you can customize the user trace for common column
-        final StringBuilder sb = new StringBuilder();
-        sb.append(myUserType().map(userType -> userType + ":").orElse(""));
-        sb.append(getUserBean().map(bean -> bean.getUserId()).orElseGet(() -> -1));
-        sb.append(",").append(myAppType()).append(",").append(resource.getModuleName());
-        final String trace = sb.toString();
-        final int columnSize = 200;
-        return trace.length() > columnSize ? trace.substring(0, columnSize) : trace;
     }
 
     // ===================================================================================

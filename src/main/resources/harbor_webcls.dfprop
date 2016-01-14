@@ -1,0 +1,24 @@
+# /---------------------------------------------------------------------------
+# webcls: (NotRequired - Default map:{})
+#
+# The definition of classification.
+#
+# Specification:
+# map: {
+#     [classification-name] = list:{
+#         ; map:{ topComment=[comment]; codeType=[String(default) or Number or Boolean] }
+#         ; map:{ refCls=[projectName]@[DB classification name] ; refType=[included or exists or matches] }
+#         ; map:{ code=[code]; name=[name]; alias=[alias]; comment=[comment] }
+#     }
+# }
+#
+# *The line that starts with '#' means comment-out.
+#
+map:{
+    ; SearchMemberStatus = list:{
+        ; map:{ topComment=MemberStatus for search condition ; codeType=String }
+        ; map:{ refCls=maihamadb@MemberStatus ; refType=included }
+        ; map:{ code=ALL; name=All; alias=All Statuses; comment=without status filter }
+    }
+}
+# ----------------/

@@ -15,7 +15,14 @@
  */
 package org.docksidestage.dbflute.allcommon;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.dbflute.jdbc.Classification;
 import org.dbflute.jdbc.ClassificationCodeType;
@@ -29,36 +36,60 @@ import org.dbflute.jdbc.ClassificationUndefinedHandlingType;
 public interface CDef extends Classification {
 
     /** The empty array for no sisters. */
-    String[] EMPTY_SISTERS = new String[]{};
+    String[] EMPTY_SISTERS = new String[] {};
 
     /** The empty map for no sub-items. */
     @SuppressWarnings("unchecked")
-    Map<String, Object> EMPTY_SUB_ITEM_MAP = (Map<String, Object>)Collections.EMPTY_MAP;
+    Map<String, Object> EMPTY_SUB_ITEM_MAP = (Map<String, Object>) Collections.EMPTY_MAP;
 
     /**
      * general boolean classification for every flg-column
      */
     public enum Flg implements CDef {
         /** Checked: means yes */
-        True("1", "Checked", new String[] {"true"})
-        ,
+        True("1", "Checked", new String[] { "true" }),
         /** Unchecked: means no */
-        False("0", "Unchecked", new String[] {"false"})
-        ;
+        False("0", "Unchecked", new String[] { "false" });
         private static final Map<String, Flg> _codeValueMap = new HashMap<String, Flg>();
+
         static {
             for (Flg value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private Flg(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.Flg; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private Flg(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.Flg;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -70,8 +101,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static Flg codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof Flg) { return (Flg)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof Flg) {
+                return (Flg) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -81,8 +116,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static Flg nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -102,7 +143,10 @@ public interface CDef extends Classification {
             return new ArrayList<Flg>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -110,28 +154,51 @@ public interface CDef extends Classification {
      */
     public enum MemberStatus implements CDef {
         /** Formalized: as formal member, allowed to use all service */
-        Formalized("FML", "Formalized", EMPTY_SISTERS)
-        ,
+        Formalized("FML", "Formalized", EMPTY_SISTERS),
         /** Withdrawal: withdrawal is fixed, not allowed to use service */
-        Withdrawal("WDL", "Withdrawal", EMPTY_SISTERS)
-        ,
+        Withdrawal("WDL", "Withdrawal", EMPTY_SISTERS),
         /** Provisional: first status after entry, allowed to use only part of service */
-        Provisional("PRV", "Provisional", EMPTY_SISTERS)
-        ;
+        Provisional("PRV", "Provisional", EMPTY_SISTERS);
         private static final Map<String, MemberStatus> _codeValueMap = new HashMap<String, MemberStatus>();
+
         static {
             for (MemberStatus value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private MemberStatus(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.MemberStatus; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private MemberStatus(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.MemberStatus;
+        }
 
         /**
          * Is the classification in the group? <br>
@@ -154,8 +221,12 @@ public interface CDef extends Classification {
         }
 
         public boolean inGroup(String groupName) {
-            if ("serviceAvailable".equals(groupName)) { return isServiceAvailable(); }
-            if ("shortOfFormalized".equals(groupName)) { return isShortOfFormalized(); }
+            if ("serviceAvailable".equals(groupName)) {
+                return isServiceAvailable();
+            }
+            if ("shortOfFormalized".equals(groupName)) {
+                return isShortOfFormalized();
+            }
             return false;
         }
 
@@ -165,8 +236,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static MemberStatus codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof MemberStatus) { return (MemberStatus)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof MemberStatus) {
+                return (MemberStatus) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -176,8 +251,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static MemberStatus nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -214,12 +295,19 @@ public interface CDef extends Classification {
          * @return The snapshot list of classification elements in the group. (NotNull, EmptyAllowed: if the group is not found)
          */
         public static List<MemberStatus> groupOf(String groupName) {
-            if ("serviceAvailable".equals(groupName)) { return listOfServiceAvailable(); }
-            if ("shortOfFormalized".equals(groupName)) { return listOfShortOfFormalized(); }
+            if ("serviceAvailable".equals(groupName)) {
+                return listOfServiceAvailable();
+            }
+            if ("shortOfFormalized".equals(groupName)) {
+                return listOfShortOfFormalized();
+            }
             return new ArrayList<MemberStatus>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -227,34 +315,55 @@ public interface CDef extends Classification {
      */
     public enum ServiceRank implements CDef {
         /** PLATINUM: platinum rank */
-        Platinum("PLT", "PLATINUM", EMPTY_SISTERS)
-        ,
+        Platinum("PLT", "PLATINUM", EMPTY_SISTERS),
         /** GOLD: gold rank */
-        Gold("GLD", "GOLD", EMPTY_SISTERS)
-        ,
+        Gold("GLD", "GOLD", EMPTY_SISTERS),
         /** SILVER: silver rank */
-        Silver("SIL", "SILVER", EMPTY_SISTERS)
-        ,
+        Silver("SIL", "SILVER", EMPTY_SISTERS),
         /** BRONZE: bronze rank */
-        Bronze("BRZ", "BRONZE", EMPTY_SISTERS)
-        ,
+        Bronze("BRZ", "BRONZE", EMPTY_SISTERS),
         /** PLASTIC: plastic rank */
-        Plastic("PLS", "PLASTIC", EMPTY_SISTERS)
-        ;
+        Plastic("PLS", "PLASTIC", EMPTY_SISTERS);
         private static final Map<String, ServiceRank> _codeValueMap = new HashMap<String, ServiceRank>();
+
         static {
             for (ServiceRank value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private ServiceRank(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.ServiceRank; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private ServiceRank(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.ServiceRank;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -266,8 +375,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static ServiceRank codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof ServiceRank) { return (ServiceRank)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof ServiceRank) {
+                return (ServiceRank) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -277,8 +390,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static ServiceRank nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -298,7 +417,10 @@ public interface CDef extends Classification {
             return new ArrayList<ServiceRank>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -306,31 +428,53 @@ public interface CDef extends Classification {
      */
     public enum Region implements CDef {
         /** AMERICA */
-        America("1", "AMERICA", EMPTY_SISTERS)
-        ,
+        America("1", "AMERICA", EMPTY_SISTERS),
         /** CANADA */
-        Canada("2", "CANADA", EMPTY_SISTERS)
-        ,
+        Canada("2", "CANADA", EMPTY_SISTERS),
         /** CHINA */
-        China("3", "CHINA", EMPTY_SISTERS)
-        ,
+        China("3", "CHINA", EMPTY_SISTERS),
         /** CHIBA */
-        Chiba("4", "CHIBA", EMPTY_SISTERS)
-        ;
+        Chiba("4", "CHIBA", EMPTY_SISTERS);
         private static final Map<String, Region> _codeValueMap = new HashMap<String, Region>();
+
         static {
             for (Region value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private Region(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.Region; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private Region(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.Region;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -342,8 +486,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static Region codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof Region) { return (Region)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof Region) {
+                return (Region) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -353,8 +501,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static Region nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -374,7 +528,10 @@ public interface CDef extends Classification {
             return new ArrayList<Region>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -382,31 +539,53 @@ public interface CDef extends Classification {
      */
     public enum WithdrawalReason implements CDef {
         /** SIT: site is not kindness */
-        Sit("SIT", "SIT", EMPTY_SISTERS)
-        ,
+        Sit("SIT", "SIT", EMPTY_SISTERS),
         /** PRD: no attractive product */
-        Prd("PRD", "PRD", EMPTY_SISTERS)
-        ,
+        Prd("PRD", "PRD", EMPTY_SISTERS),
         /** FRT: because of furiten */
-        Frt("FRT", "FRT", EMPTY_SISTERS)
-        ,
+        Frt("FRT", "FRT", EMPTY_SISTERS),
         /** OTH: other reasons */
-        Oth("OTH", "OTH", EMPTY_SISTERS)
-        ;
+        Oth("OTH", "OTH", EMPTY_SISTERS);
         private static final Map<String, WithdrawalReason> _codeValueMap = new HashMap<String, WithdrawalReason>();
+
         static {
             for (WithdrawalReason value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private WithdrawalReason(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.WithdrawalReason; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private WithdrawalReason(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.WithdrawalReason;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -418,8 +597,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static WithdrawalReason codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof WithdrawalReason) { return (WithdrawalReason)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof WithdrawalReason) {
+                return (WithdrawalReason) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -429,8 +612,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static WithdrawalReason nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -450,7 +639,10 @@ public interface CDef extends Classification {
             return new ArrayList<WithdrawalReason>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -458,34 +650,55 @@ public interface CDef extends Classification {
      */
     public enum ProductCategory implements CDef {
         /** Music */
-        Music("MSC", "Music", EMPTY_SISTERS)
-        ,
+        Music("MSC", "Music", EMPTY_SISTERS),
         /** Food */
-        Food("FOD", "Food", EMPTY_SISTERS)
-        ,
+        Food("FOD", "Food", EMPTY_SISTERS),
         /** Herb: of Food */
-        Herb("HEB", "Herb", EMPTY_SISTERS)
-        ,
+        Herb("HEB", "Herb", EMPTY_SISTERS),
         /** MusicCD: of Music */
-        MusicCD("MCD", "MusicCD", EMPTY_SISTERS)
-        ,
+        MusicCD("MCD", "MusicCD", EMPTY_SISTERS),
         /** Instruments: of Music */
-        Instruments("INS", "Instruments", EMPTY_SISTERS)
-        ;
+        Instruments("INS", "Instruments", EMPTY_SISTERS);
         private static final Map<String, ProductCategory> _codeValueMap = new HashMap<String, ProductCategory>();
+
         static {
             for (ProductCategory value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private ProductCategory(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.ProductCategory; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private ProductCategory(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.ProductCategory;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -497,8 +710,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static ProductCategory codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof ProductCategory) { return (ProductCategory)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof ProductCategory) {
+                return (ProductCategory) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -508,8 +725,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static ProductCategory nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -529,7 +752,10 @@ public interface CDef extends Classification {
             return new ArrayList<ProductCategory>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -537,28 +763,51 @@ public interface CDef extends Classification {
      */
     public enum ProductStatus implements CDef {
         /** OnSaleProduction */
-        OnSaleProduction("ONS", "OnSaleProduction", EMPTY_SISTERS)
-        ,
+        OnSaleProduction("ONS", "OnSaleProduction", EMPTY_SISTERS),
         /** ProductionStop */
-        ProductionStop("PST", "ProductionStop", EMPTY_SISTERS)
-        ,
+        ProductionStop("PST", "ProductionStop", EMPTY_SISTERS),
         /** SaleStop */
-        SaleStop("SST", "SaleStop", EMPTY_SISTERS)
-        ;
+        SaleStop("SST", "SaleStop", EMPTY_SISTERS);
         private static final Map<String, ProductStatus> _codeValueMap = new HashMap<String, ProductStatus>();
+
         static {
             for (ProductStatus value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private ProductStatus(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.ProductStatus; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private ProductStatus(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.ProductStatus;
+        }
 
         public boolean inGroup(String groupName) {
             return false;
@@ -570,8 +819,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static ProductStatus codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof ProductStatus) { return (ProductStatus)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof ProductStatus) {
+                return (ProductStatus) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -581,8 +834,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static ProductStatus nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -602,7 +861,10 @@ public interface CDef extends Classification {
             return new ArrayList<ProductStatus>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     /**
@@ -610,28 +872,51 @@ public interface CDef extends Classification {
      */
     public enum PaymentMethod implements CDef {
         /** by hand: payment by hand, face-to-face */
-        ByHand("HAN", "by hand", EMPTY_SISTERS)
-        ,
+        ByHand("HAN", "by hand", EMPTY_SISTERS),
         /** bank transfer: bank transfer payment */
-        BankTransfer("BAK", "bank transfer", EMPTY_SISTERS)
-        ,
+        BankTransfer("BAK", "bank transfer", EMPTY_SISTERS),
         /** credit card: credit card payment */
-        CreditCard("CRC", "credit card", EMPTY_SISTERS)
-        ;
+        CreditCard("CRC", "credit card", EMPTY_SISTERS);
         private static final Map<String, PaymentMethod> _codeValueMap = new HashMap<String, PaymentMethod>();
+
         static {
             for (PaymentMethod value : values()) {
                 _codeValueMap.put(value.code().toLowerCase(), value);
-                for (String sister : value.sisterSet()) { _codeValueMap.put(sister.toLowerCase(), value); }
+                for (String sister : value.sisterSet()) {
+                    _codeValueMap.put(sister.toLowerCase(), value);
+                }
             }
         }
-        private String _code; private String _alias; private Set<String> _sisterSet;
-        private PaymentMethod(String code, String alias, String[] sisters)
-        { _code = code; _alias = alias; _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters))); }
-        public String code() { return _code; } public String alias() { return _alias; }
-        public Set<String> sisterSet() { return _sisterSet; }
-        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
-        public ClassificationMeta meta() { return CDef.DefMeta.PaymentMethod; }
+
+        private String _code;
+        private String _alias;
+        private Set<String> _sisterSet;
+
+        private PaymentMethod(String code, String alias, String[] sisters) {
+            _code = code;
+            _alias = alias;
+            _sisterSet = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(sisters)));
+        }
+
+        public String code() {
+            return _code;
+        }
+
+        public String alias() {
+            return _alias;
+        }
+
+        public Set<String> sisterSet() {
+            return _sisterSet;
+        }
+
+        public Map<String, Object> subItemMap() {
+            return EMPTY_SUB_ITEM_MAP;
+        }
+
+        public ClassificationMeta meta() {
+            return CDef.DefMeta.PaymentMethod;
+        }
 
         /**
          * Is the classification in the group? <br>
@@ -644,7 +929,9 @@ public interface CDef extends Classification {
         }
 
         public boolean inGroup(String groupName) {
-            if ("recommended".equals(groupName)) { return isRecommended(); }
+            if ("recommended".equals(groupName)) {
+                return isRecommended();
+            }
             return false;
         }
 
@@ -654,8 +941,12 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
          */
         public static PaymentMethod codeOf(Object code) {
-            if (code == null) { return null; }
-            if (code instanceof PaymentMethod) { return (PaymentMethod)code; }
+            if (code == null) {
+                return null;
+            }
+            if (code instanceof PaymentMethod) {
+                return (PaymentMethod) code;
+            }
             return _codeValueMap.get(code.toString().toLowerCase());
         }
 
@@ -665,8 +956,14 @@ public interface CDef extends Classification {
          * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
          */
         public static PaymentMethod nameOf(String name) {
-            if (name == null) { return null; }
-            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+            if (name == null) {
+                return null;
+            }
+            try {
+                return valueOf(name);
+            } catch (RuntimeException ignored) {
+                return null;
+            }
         }
 
         /**
@@ -693,129 +990,240 @@ public interface CDef extends Classification {
          * @return The snapshot list of classification elements in the group. (NotNull, EmptyAllowed: if the group is not found)
          */
         public static List<PaymentMethod> groupOf(String groupName) {
-            if ("recommended".equals(groupName)) { return listOfRecommended(); }
+            if ("recommended".equals(groupName)) {
+                return listOfRecommended();
+            }
             return new ArrayList<PaymentMethod>(4);
         }
 
-        @Override public String toString() { return code(); }
+        @Override
+        public String toString() {
+            return code();
+        }
     }
 
     public enum DefMeta implements ClassificationMeta {
         /** general boolean classification for every flg-column */
-        Flg
-        ,
+        Flg,
         /** status of member from entry to withdrawal */
-        MemberStatus
-        ,
+        MemberStatus,
         /** rank of service member gets */
-        ServiceRank
-        ,
+        ServiceRank,
         /** mainly region of member address */
-        Region
-        ,
+        Region,
         /** reason for member withdrawal */
-        WithdrawalReason
-        ,
+        WithdrawalReason,
         /** category of product. self reference */
-        ProductCategory
-        ,
+        ProductCategory,
         /** status for product */
-        ProductStatus
-        ,
+        ProductStatus,
         /** method of payment for purchase */
-        PaymentMethod
-        ;
+        PaymentMethod;
         public String classificationName() {
             return name(); // same as definition name
         }
 
         public Classification codeOf(Object code) {
-            if ("Flg".equals(name())) { return CDef.Flg.codeOf(code); }
-            if ("MemberStatus".equals(name())) { return CDef.MemberStatus.codeOf(code); }
-            if ("ServiceRank".equals(name())) { return CDef.ServiceRank.codeOf(code); }
-            if ("Region".equals(name())) { return CDef.Region.codeOf(code); }
-            if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.codeOf(code); }
-            if ("ProductCategory".equals(name())) { return CDef.ProductCategory.codeOf(code); }
-            if ("ProductStatus".equals(name())) { return CDef.ProductStatus.codeOf(code); }
-            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.codeOf(code); }
+            if ("Flg".equals(name())) {
+                return CDef.Flg.codeOf(code);
+            }
+            if ("MemberStatus".equals(name())) {
+                return CDef.MemberStatus.codeOf(code);
+            }
+            if ("ServiceRank".equals(name())) {
+                return CDef.ServiceRank.codeOf(code);
+            }
+            if ("Region".equals(name())) {
+                return CDef.Region.codeOf(code);
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return CDef.WithdrawalReason.codeOf(code);
+            }
+            if ("ProductCategory".equals(name())) {
+                return CDef.ProductCategory.codeOf(code);
+            }
+            if ("ProductStatus".equals(name())) {
+                return CDef.ProductStatus.codeOf(code);
+            }
+            if ("PaymentMethod".equals(name())) {
+                return CDef.PaymentMethod.codeOf(code);
+            }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         public Classification nameOf(String name) {
-            if ("Flg".equals(name())) { return CDef.Flg.valueOf(name); }
-            if ("MemberStatus".equals(name())) { return CDef.MemberStatus.valueOf(name); }
-            if ("ServiceRank".equals(name())) { return CDef.ServiceRank.valueOf(name); }
-            if ("Region".equals(name())) { return CDef.Region.valueOf(name); }
-            if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.valueOf(name); }
-            if ("ProductCategory".equals(name())) { return CDef.ProductCategory.valueOf(name); }
-            if ("ProductStatus".equals(name())) { return CDef.ProductStatus.valueOf(name); }
-            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.valueOf(name); }
+            if ("Flg".equals(name())) {
+                return CDef.Flg.valueOf(name);
+            }
+            if ("MemberStatus".equals(name())) {
+                return CDef.MemberStatus.valueOf(name);
+            }
+            if ("ServiceRank".equals(name())) {
+                return CDef.ServiceRank.valueOf(name);
+            }
+            if ("Region".equals(name())) {
+                return CDef.Region.valueOf(name);
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return CDef.WithdrawalReason.valueOf(name);
+            }
+            if ("ProductCategory".equals(name())) {
+                return CDef.ProductCategory.valueOf(name);
+            }
+            if ("ProductStatus".equals(name())) {
+                return CDef.ProductStatus.valueOf(name);
+            }
+            if ("PaymentMethod".equals(name())) {
+                return CDef.PaymentMethod.valueOf(name);
+            }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         public List<Classification> listAll() {
-            if ("Flg".equals(name())) { return toClassificationList(CDef.Flg.listAll()); }
-            if ("MemberStatus".equals(name())) { return toClassificationList(CDef.MemberStatus.listAll()); }
-            if ("ServiceRank".equals(name())) { return toClassificationList(CDef.ServiceRank.listAll()); }
-            if ("Region".equals(name())) { return toClassificationList(CDef.Region.listAll()); }
-            if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.listAll()); }
-            if ("ProductCategory".equals(name())) { return toClassificationList(CDef.ProductCategory.listAll()); }
-            if ("ProductStatus".equals(name())) { return toClassificationList(CDef.ProductStatus.listAll()); }
-            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.listAll()); }
+            if ("Flg".equals(name())) {
+                return toClassificationList(CDef.Flg.listAll());
+            }
+            if ("MemberStatus".equals(name())) {
+                return toClassificationList(CDef.MemberStatus.listAll());
+            }
+            if ("ServiceRank".equals(name())) {
+                return toClassificationList(CDef.ServiceRank.listAll());
+            }
+            if ("Region".equals(name())) {
+                return toClassificationList(CDef.Region.listAll());
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return toClassificationList(CDef.WithdrawalReason.listAll());
+            }
+            if ("ProductCategory".equals(name())) {
+                return toClassificationList(CDef.ProductCategory.listAll());
+            }
+            if ("ProductStatus".equals(name())) {
+                return toClassificationList(CDef.ProductStatus.listAll());
+            }
+            if ("PaymentMethod".equals(name())) {
+                return toClassificationList(CDef.PaymentMethod.listAll());
+            }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         public List<Classification> groupOf(String groupName) {
-            if ("Flg".equals(name())) { return toClassificationList(CDef.Flg.groupOf(groupName)); }
-            if ("MemberStatus".equals(name())) { return toClassificationList(CDef.MemberStatus.groupOf(groupName)); }
-            if ("ServiceRank".equals(name())) { return toClassificationList(CDef.ServiceRank.groupOf(groupName)); }
-            if ("Region".equals(name())) { return toClassificationList(CDef.Region.groupOf(groupName)); }
-            if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.groupOf(groupName)); }
-            if ("ProductCategory".equals(name())) { return toClassificationList(CDef.ProductCategory.groupOf(groupName)); }
-            if ("ProductStatus".equals(name())) { return toClassificationList(CDef.ProductStatus.groupOf(groupName)); }
-            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.groupOf(groupName)); }
+            if ("Flg".equals(name())) {
+                return toClassificationList(CDef.Flg.groupOf(groupName));
+            }
+            if ("MemberStatus".equals(name())) {
+                return toClassificationList(CDef.MemberStatus.groupOf(groupName));
+            }
+            if ("ServiceRank".equals(name())) {
+                return toClassificationList(CDef.ServiceRank.groupOf(groupName));
+            }
+            if ("Region".equals(name())) {
+                return toClassificationList(CDef.Region.groupOf(groupName));
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return toClassificationList(CDef.WithdrawalReason.groupOf(groupName));
+            }
+            if ("ProductCategory".equals(name())) {
+                return toClassificationList(CDef.ProductCategory.groupOf(groupName));
+            }
+            if ("ProductStatus".equals(name())) {
+                return toClassificationList(CDef.ProductStatus.groupOf(groupName));
+            }
+            if ("PaymentMethod".equals(name())) {
+                return toClassificationList(CDef.PaymentMethod.groupOf(groupName));
+            }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         @SuppressWarnings("unchecked")
         private List<Classification> toClassificationList(List<?> clsList) {
-            return (List<Classification>)clsList;
+            return (List<Classification>) clsList;
         }
 
         public ClassificationCodeType codeType() {
-            if ("Flg".equals(name())) { return ClassificationCodeType.Number; }
-            if ("MemberStatus".equals(name())) { return ClassificationCodeType.String; }
-            if ("ServiceRank".equals(name())) { return ClassificationCodeType.String; }
-            if ("Region".equals(name())) { return ClassificationCodeType.Number; }
-            if ("WithdrawalReason".equals(name())) { return ClassificationCodeType.String; }
-            if ("ProductCategory".equals(name())) { return ClassificationCodeType.String; }
-            if ("ProductStatus".equals(name())) { return ClassificationCodeType.String; }
-            if ("PaymentMethod".equals(name())) { return ClassificationCodeType.String; }
+            if ("Flg".equals(name())) {
+                return ClassificationCodeType.Number;
+            }
+            if ("MemberStatus".equals(name())) {
+                return ClassificationCodeType.String;
+            }
+            if ("ServiceRank".equals(name())) {
+                return ClassificationCodeType.String;
+            }
+            if ("Region".equals(name())) {
+                return ClassificationCodeType.Number;
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return ClassificationCodeType.String;
+            }
+            if ("ProductCategory".equals(name())) {
+                return ClassificationCodeType.String;
+            }
+            if ("ProductStatus".equals(name())) {
+                return ClassificationCodeType.String;
+            }
+            if ("PaymentMethod".equals(name())) {
+                return ClassificationCodeType.String;
+            }
             return ClassificationCodeType.String; // as default
         }
 
         public ClassificationUndefinedHandlingType undefinedHandlingType() {
-            if ("Flg".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("MemberStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("ServiceRank".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("Region".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("WithdrawalReason".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("ProductCategory".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("ProductStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
-            if ("PaymentMethod".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("Flg".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("MemberStatus".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("ServiceRank".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("Region".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("WithdrawalReason".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("ProductCategory".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("ProductStatus".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
+            if ("PaymentMethod".equals(name())) {
+                return ClassificationUndefinedHandlingType.EXCEPTION;
+            }
             return ClassificationUndefinedHandlingType.LOGGING; // as default
         }
 
         public static CDef.DefMeta meta(String classificationName) { // instead of valueOf()
-            if (classificationName == null) { throw new IllegalArgumentException("The argument 'classificationName' should not be null."); }
-            if ("Flg".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.Flg; }
-            if ("MemberStatus".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.MemberStatus; }
-            if ("ServiceRank".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.ServiceRank; }
-            if ("Region".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.Region; }
-            if ("WithdrawalReason".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.WithdrawalReason; }
-            if ("ProductCategory".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.ProductCategory; }
-            if ("ProductStatus".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.ProductStatus; }
-            if ("PaymentMethod".equalsIgnoreCase(classificationName)) { return CDef.DefMeta.PaymentMethod; }
+            if (classificationName == null) {
+                throw new IllegalArgumentException("The argument 'classificationName' should not be null.");
+            }
+            if ("Flg".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.Flg;
+            }
+            if ("MemberStatus".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.MemberStatus;
+            }
+            if ("ServiceRank".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.ServiceRank;
+            }
+            if ("Region".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.Region;
+            }
+            if ("WithdrawalReason".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.WithdrawalReason;
+            }
+            if ("ProductCategory".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.ProductCategory;
+            }
+            if ("ProductStatus".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.ProductStatus;
+            }
+            if ("PaymentMethod".equalsIgnoreCase(classificationName)) {
+                return CDef.DefMeta.PaymentMethod;
+            }
             throw new IllegalStateException("Unknown classification: " + classificationName);
         }
     }

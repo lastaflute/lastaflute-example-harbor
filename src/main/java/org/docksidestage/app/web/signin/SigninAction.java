@@ -43,7 +43,7 @@ public class SigninAction extends HarborBaseAction {
         if (getUserBean().isPresent()) {
             return redirect(MypageAction.class);
         }
-        return asHtml(path_Signin_SigninHtml).useForm(SigninForm.class);
+        return asHtml(path_Signin_SigninHtml);
     }
 
     @Execute

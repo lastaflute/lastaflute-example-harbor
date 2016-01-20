@@ -4412,7 +4412,7 @@
 					<child_cardinality>0..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
-					<name>FK_MEMBER_FLLOWING_MY_MEMBER_ID</name>
+					<name>FK_MEMBER_FOLLOWING_MY_MEMBER_ID</name>
 					<on_delete_action>RESTRICT</on_delete_action>
 					<on_update_action>RESTRICT</on_update_action>
 					<source_xp>-1</source_xp>

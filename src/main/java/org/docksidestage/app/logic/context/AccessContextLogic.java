@@ -64,7 +64,7 @@ public class AccessContextLogic {
         return context;
     }
 
-    private <ID> String buildAccessUserTrace(AccessContextResource resource, UserTypeSupplier userTypeSupplier,
+    private String buildAccessUserTrace(AccessContextResource resource, UserTypeSupplier userTypeSupplier,
             UserBeanSupplier userBeanSupplier, AppTypeSupplier appTypeSupplier) {
         // #change_it you can customize the user trace for common column
         final StringBuilder sb = new StringBuilder();

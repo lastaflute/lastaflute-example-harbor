@@ -88,7 +88,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected HarborSecurityResourceProvider createSecurityResourceProvider() { // #change_it_first
-        final InvertibleCryptographer inver = InvertibleCryptographer.createAesCipher("harbor:dockside");
+        final InvertibleCryptographer inver = InvertibleCryptographer.createAesCipher("harbor:dockside:");
         final OneWayCryptographer oneWay = OneWayCryptographer.createSha256Cryptographer();
         return new HarborSecurityResourceProvider(inver, oneWay);
     }
@@ -140,7 +140,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected HarborCookieResourceProvider createCookieResourceProvider() { // #change_it_first
-        final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dockside:harbor");
+        final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dockside:harbor:");
         return new HarborCookieResourceProvider(harborConfig, cr);
     }
 

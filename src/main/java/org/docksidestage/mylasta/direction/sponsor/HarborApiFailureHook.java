@@ -16,6 +16,7 @@
 package org.docksidestage.mylasta.direction.sponsor;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -102,18 +103,18 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     }
 
     protected TooSimpleFailureBean createFailureBean(TooSimpleFailureType failureType, ApiFailureResource resource) {
-        return new TooSimpleFailureBean(failureType, resource.getMessageList());
+        return new TooSimpleFailureBean(failureType, resource.getPropertyMessageMap());
     }
 
     public static class TooSimpleFailureBean {
 
         public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
         public final TooSimpleFailureType failureType;
-        public final List<String> messageList;
+        public final Map<String, List<String>> messageMap;
 
-        public TooSimpleFailureBean(TooSimpleFailureType failureType, List<String> messageList) {
+        public TooSimpleFailureBean(TooSimpleFailureType failureType, Map<String, List<String>> messageMap) {
             this.failureType = failureType;
-            this.messageList = messageList;
+            this.messageMap = messageMap;
         }
     }
 

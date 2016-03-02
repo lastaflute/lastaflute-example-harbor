@@ -38,7 +38,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     // [Front-side Implementation Image]
     //
     // if (HTTP Status: 200) { // success
-    //     JsonBean bean = parseJsonAsSuccess(response);
+    //     XxxJsonBean bean = parseJsonAsSuccess(response);
     //     ...(do process per action)
     // } else if (HTTP Status: 400) { // e.g. validation error, application exception, client exception
     //     FailureBean bean = parseJsonAsFailure(response);

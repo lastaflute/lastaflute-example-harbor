@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda Arrow" enabled="true" name="_arrow">-&gt; ${cursor}</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda BiParameter as Inline" enabled="true" name="_bili">(${first}, ${second}) -&gt; ${cursor}</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda BiParameter as Linefeed" enabled="true" name="_bill">(${first}, ${second}) -&gt; {
     ${cursor}
-}</template><template autoinsert="true" context="java" deleted="false" description="Java8: forEach()" enabled="true" name="_foreach">${var}.forEach(${newName} -&gt; {
+}</template><template autoinsert="true" context="java-members" deleted="false" description="Commons Logging Logger" enabled="true" name="_clogger">${:import(org.apache.commons.logging.Log,
+	org.apache.commons.logging.LogFactory)}private static final Log
+	LOG = LogFactory.getLog(${enclosing_type}.class);</template><template autoinsert="true" context="java" deleted="false" description="Java8: forEach()" enabled="true" name="_foreach">${var}.forEach(${newName} -&gt; {
     ${cursor}
 });</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda KeyValue as Inline" enabled="true" name="_kvli">(key, value) -&gt; ${cursor}</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda KeyValue as Linefeed" enabled="true" name="_kvll">(key, value) -&gt; {
     ${cursor}
@@ -14,15 +16,9 @@ public JsonResponse&lt;${bean}&gt; ${method}(Long ${object}Id, ${body}Body body)
     return asJson(bean);
 }</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda Arrow as Inline" enabled="true" name="_li">${var} -&gt; ${var}.${newName}</template><template autoinsert="true" context="java" deleted="false" description="Java8: Lambda Arrow with Linefeed" enabled="true" name="_ll">${var} -&gt; {
     ${var}.${newName}
-}</template><template autoinsert="true" context="java-members" deleted="false" description="Commons Logging Logger" enabled="true" name="_clogger">${:import(org.apache.commons.logging.Log,
-	org.apache.commons.logging.LogFactory)}private static final Log
-	LOG = LogFactory.getLog(${enclosing_type}.class);</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: .addOrderBy_..." enabled="true" name="_order">.addOrderBy_${columnName}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: cb.query()" enabled="true" name="_query">${var}.query()</template><template autoinsert="true" context="java" deleted="false" description="Java8: collect toList()" enabled="true" name="_scolist">${:import(java.util.stream.Collectors)}.collect(Collectors.toList())</template><template autoinsert="true" context="java" deleted="false" description="Java8: collect toMap()" enabled="true" name="_scomap">${:import(java.util.stream.Collectors)}.collect(Collectors.toMap(bean -&gt; bean.get${newName}, bean -&gt; bean))</template><template autoinsert="true" context="java" deleted="false" description="Java8: stream().filter()" enabled="true" name="_sfilter">${var}.stream().filter(${newName} -&gt; {
-    return ${newName}${cursor};
-});</template><template autoinsert="true" context="java-members" deleted="false" description="Slf4j Logger" enabled="true" name="_logger">${:import(org.slf4j.Logger,
+}</template><template autoinsert="true" context="java-members" deleted="false" description="Slf4j Logger" enabled="true" name="_logger">${:import(org.slf4j.Logger,
 	org.slf4j.LoggerFactory)}private static final Logger
-	logger = LoggerFactory.getLogger(${enclosing_type}.class);</template><template autoinsert="true" context="java" deleted="false" description="Java8: stream().map()" enabled="true" name="_smap">${var}.stream().map(${newName} -&gt; {
-    return ${newName}${cursor};
-});</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: cb.specify()" enabled="true" name="_specify">${var}.specify()</template><template autoinsert="true" context="java" deleted="false" description="TagComment: Accessor" enabled="true" name="_taacce">    // ===================================================================================
+	logger = LoggerFactory.getLogger(${enclosing_type}.class);</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: .addOrderBy_..." enabled="true" name="_order">.addOrderBy_${columnName}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: cb.query()" enabled="true" name="_query">${var}.query()</template><template autoinsert="true" context="java" deleted="false" description="Java8: collect toList()" enabled="true" name="_scolist">${:import(java.util.stream.Collectors)}.collect(Collectors.toList())</template><template autoinsert="true" context="java" deleted="false" description="Java8: collect toMap()" enabled="true" name="_scomap">${:import(java.util.stream.Collectors)}.collect(Collectors.toMap(bean -&gt; bean.get${newName}, bean -&gt; bean))</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: cb.specify()" enabled="true" name="_specify">${var}.specify()</template><template autoinsert="true" context="java" deleted="false" description="TagComment: Accessor" enabled="true" name="_taacce">    // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========</template><template autoinsert="true" context="java" deleted="false" description="TagComment: Assist Logic" enabled="true" name="_taassl">	// ===================================================================================
 	//                                                                        Assist Logic
@@ -117,7 +113,7 @@ ${cursor}
 		${imp:import(org.eclipse.swt.SWT)}${cursor}				
 	}
 });</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for OrScopeQueryAndPart" enabled="true" name="andCBLambda">andCB -&gt; {
-    andCB.query().set${columnName}
+    andCB.query().set${Column}
 }</template><template autoinsert="false" context="java-statements" deleted="false" description="add an element to an array" enabled="true" id="org.eclipse.jdt.ui.templates.arrayadd" name="arrayadd">${array_type}[] ${result:newName(array)} = new ${array_type}[${array}.length + 1];
 System.arraycopy(${array}, 0, ${result}, 0, ${array}.length);
 ${result}[${array}.length]= ${var};</template><template autoinsert="false" context="java-statements" deleted="false" description="merge two arrays into one" enabled="true" id="org.eclipse.jdt.ui.templates.arraymerge" name="arraymerge">${array_type}[] ${result:newName(array1)} = new ${array_type}[${array1:array}.length + ${array}.length];
@@ -144,29 +140,27 @@ ${imp:import(org.eclipse.swt.SWT, org.eclipse.swt.events.SelectionAdapter, org.e
 	${cursor}// ${todo}: handle exception
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ConditionBean" enabled="true" name="cbLambda">cb -&gt; {
     cb.${method}
-}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for SpecifyColumn" enabled="true" name="colCBLambda">colCB -&gt; {
-    colCB.specify().column${columnName}
-}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Combo" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.combo" name="Combo">${comboType:newType(org.eclipse.swt.widgets.Combo)} ${combo:newName(org.eclipse.swt.widgets.Combo)}= new ${comboType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.DROP_DOWN, 'SWT.DROP_DOWN | SWT.READ_ONLY')});
+}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for SpecifyColumn" enabled="true" name="colCBLambda">colCB -&gt; colCB.specify().column${Column}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Combo" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.combo" name="Combo">${comboType:newType(org.eclipse.swt.widgets.Combo)} ${combo:newName(org.eclipse.swt.widgets.Combo)}= new ${comboType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.DROP_DOWN, 'SWT.DROP_DOWN | SWT.READ_ONLY')});
 ${combo}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(true, false)}, ${vex:link(false, true)}));
 ${combo}.setItems(${word_selection}${});
 ${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Composite with GridLayout" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.gridcomposite" name="Composite">${compositeType:newType(org.eclipse.swt.widgets.Composite)} ${composite:newName(org.eclipse.swt.widgets.Composite)}= new ${compositeType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.BORDER)});
 ${composite}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
 ${composite}.setLayout(new ${layoutType:newType(org.eclipse.swt.layout.GridLayout)}(${numberColumns:link(1, 2, 3, 4, 5)}, ${equalColumns:link(false, true)}));
 ${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Configuration" enabled="true" name="confLambda">conf -&gt; conf.${method}</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for renderWith()" enabled="true" name="dataLambda">data -&gt; {
-    data.register(${nameOfData}, ${var});
+    data.register(${name}, ${value});
 }</template><template autoinsert="false" context="swt-statements" deleted="false" description="new DateTime" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.datetime" name="DateTime">${dateType:newType(org.eclipse.swt.widgets.DateTime)} ${dateTime:newName(org.eclipse.swt.widgets.DateTime)}= new ${dateType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.CALENDAR | SWT.SHORT', 'SWT.CALENDAR | SWT.MEDIUM', 'SWT.CALENDAR | SWT.LONG', 'SWT.TIME | SWT.SHORT', 'SWT.TIME | SWT.MEDIUM', 'SWT.TIME | SWT.LONG', 'SWT.DATE | SWT.SHORT', 'SWT.DATE | SWT.MEDIUM', 'SWT.DATE | SWT.LONG')});
 ${dateTime}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
-${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for DerivedReferrer" enabled="true" name="derivedCBLambda">${var}CB -&gt; {
-    ${var}CB.specify().column${columnName}
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for DerivedReferrer" enabled="true" name="derivedCBLambda">${table}CB -&gt; {
+    ${table}CB.specify().column${Column}
 }</template><template autoinsert="false" context="java-statements" deleted="false" description="do while statement" enabled="true" id="org.eclipse.jdt.ui.templates.do" name="do">do {
 	${line_selection}${cursor}
 } while (${condition:var(boolean)});</template><template autoinsert="false" context="java-statements" deleted="false" description="else block" enabled="true" id="org.eclipse.jdt.ui.templates.else" name="else">else {
 	${cursor}
 }</template><template autoinsert="false" context="java-statements" deleted="false" description="else if block" enabled="true" id="org.eclipse.jdt.ui.templates.elseif" name="elseif">else if (${condition:var(boolean)}) {
 	${cursor}
-}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity" enabled="true" name="entityLambda">${var} -&gt; {
+}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity" enabled="true" name="entityLambda">${table} -&gt; {
     ${var}.${method}
-}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity List" enabled="true" name="entityListLambda">${var}List -&gt; {
+}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity List" enabled="true" name="entityListLambda">${table}List -&gt; {
     ${cursor}
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for general Error Response" enabled="true" name="errorResponseLambda">() -&gt; {
     return asHtml(path_${newName});
@@ -213,6 +207,10 @@ ${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="fals
 	${cursor}
 } else {
 	
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="if statement checking for not null" enabled="true" id="org.eclipse.jdt.ui.templates.ifnotnull" name="ifNotNull">if (${name:var} != null) {
+	${cursor}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="if statement checking for null" enabled="true" id="org.eclipse.jdt.ui.templates.ifnull" name="ifNull">if (${name:var} == null) {
+	${cursor}
 }</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Image" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.image" name="Image">${labelType:newType(org.eclipse.swt.widgets.Label)} ${image:newName(org.eclipse.swt.widgets.Label)}= new ${labelType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.BORDER)});
 ${image}.setLayoutData(new ${type:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, CENTER, END, FILL)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
 ${image}.setImage(${word_selection}${});
@@ -239,9 +237,9 @@ ${link}.addSelectionListener(new SelectionAdapter() {
 ${imp:import(org.eclipse.swt.SWT, org.eclipse.swt.events.SelectionAdapter, org.eclipse.swt.events.SelectionEvent)}${cursor}</template><template autoinsert="false" context="swt-statements" deleted="false" description="new List" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.list" name="List">${type:newType(org.eclipse.swt.widgets.List)} ${list:newName(org.eclipse.swt.widgets.List)}= new ${type}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link('SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL', 'SWT.MULTI | SWT.V_SCROLL', SWT.MULTI, 'SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL', 'SWT.SINGLE | SWT.V_SCROLL', SWT.SINGLE)});
 ${list}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
 ${list}.setItems(${word_selection}${});
-${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ReferrerLoader" enabled="true" name="loaderLambda">${var}Loader -&gt; {
-    ${var}Loader.load${referrer}
-}</template><template autoinsert="false" context="java-statements" deleted="false" description="explicit lock aquisition" enabled="true" id="org.eclipse.jdt.ui.templates.lock" name="lock">${lock:var(java.util.concurrent.locks.Lock)}.lock();
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ReferrerLoader" enabled="true" name="loaderLambda">${base}Loader -&gt; {
+    ${base}Loader.load${Referrer}
+}</template><template autoinsert="false" context="java-statements" deleted="false" description="explicit lock acquisition" enabled="true" id="org.eclipse.jdt.ui.templates.lock" name="lock">${lock:var(java.util.concurrent.locks.Lock)}.lock();
 try {
 	${line_selection}${cursor}
 } finally {
@@ -275,7 +273,7 @@ ${display}.dispose();</template><template autoinsert="true" context="java" delet
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for one argument as Inline" enabled="true" name="oneArgInLambda">${var} -&gt; ${var}.${method}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for one argument" enabled="true" name="oneArgLambda">${var} -&gt; {
     ${var}.${method}
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ConditionOption" enabled="true" name="opLambda">op -&gt; op.${method}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for OrScopeQuery" enabled="true" name="orCBLambda">orCB -&gt; {
-    orCB.query().set${columnName}
+    orCB.query().set${Column}
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for Mail Postcard" enabled="true" name="postcardLambda">postcard -&gt; {
     postcard.setFrom(${fromAddress}, ${personal});
     postcard.addTo(${toAddress});
@@ -292,8 +290,8 @@ ${display}.dispose();</template><template autoinsert="true" context="java" delet
 }</template><template autoinsert="true" context="java-members" deleted="false" description="Insert Test method(Quick JUnit)" enabled="true" id="junit.extensions.eclipse.quick" name="Q">@${testType:newType(org.junit.Test)}
 public void ${testname}() throws Exception {
 	${junit:importStatic('org.junit.Assert.*')}${cursor} 
-}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Referrer" enabled="true" name="refCBLambda">${var}CB -&gt; {
-    ${var}CB.query().addOrderBy_${columnName}
+}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Referrer" enabled="true" name="refCBLambda">${referrer}CB -&gt; {
+    ${referrer}CB.query().addOrderBy_${Column}
 }</template><template autoinsert="false" context="java" deleted="false" description="runnable" enabled="true" id="org.eclipse.jdt.ui.templates.runnable" name="runnable">new Runnable() {
 	public void run() {
 		${line_selection}
@@ -302,8 +300,8 @@ public void ${testname}() throws Exception {
 ${sash}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
 ${imp:import(org.eclipse.swt.SWT)}${cursor}
 
-${sash}.setWeights(new int[] {1, 1});</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ScalarCondition" enabled="true" name="scalarCBLambda">${var}CB -&gt; {
-    ${var}CB.specify().column${columnName}
+${sash}.setWeights(new int[] {1, 1});</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for ScalarCondition" enabled="true" name="scalarCBLambda">${table}CB -&gt; {
+    ${table}CB.specify().column${Column}
 }</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Scale" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.scale" name="Scale">${scaleType:newType(org.eclipse.swt.widgets.Scale)} ${scale:newName(org.eclipse.swt.widgets.Scale)}= new ${scaleType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.HORIZONTAL, SWT.VERTICAL)});
 ${scale}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(BEGINNING, FILL, CENTER, END)}, SWT.${vertical:link(CENTER, TOP, BOTTOM, FILL)}, ${hex:link(false, true)}, ${vex:link(false, true)}));
 ${scale}.setMaximum(${max:link(100)});
@@ -338,8 +336,8 @@ ${range}.foreground= ${fColor:link(null, 'Display.getDefault().getSystemColor(SW
 ${range}.background= ${bColor:link(null, 'Display.getDefault().getSystemColor(SWT.COLOR_BLACK)', 'Display.getDefault().getSystemColor(SWT.COLOR_WHITE)', 'Display.getDefault().getSystemColor(SWT.COLOR_RED)', 'Display.getDefault().getSystemColor(SWT.COLOR_BLUE)', 'Display.getDefault().getSystemColor(SWT.COLOR_GREEN)')};
 ${range}.fontStyle= ${fStyle:link(SWT.NORMAL, SWT.ITALIC, SWT.BOLD)};
 ${text:var(org.eclipse.swt.custom.StyledText)}.setStyleRange(${range});
-${imp:import(org.eclipse.swt.SWT, org.eclipse.swt.widgets.Display)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for SubQuery" enabled="true" name="subCBLambda">${var}CB -&gt; {
-    ${var}CB.query().set${columnName}
+${imp:import(org.eclipse.swt.SWT, org.eclipse.swt.widgets.Display)}${cursor}</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for SubQuery" enabled="true" name="subCBLambda">${table}CB -&gt; {
+    ${table}CB.query().set${Column}
 }</template><template autoinsert="false" context="java-statements" deleted="false" description="switch case statement" enabled="true" id="org.eclipse.jdt.ui.templates.switch" name="switch">switch (${key}) {
 	case ${value}:
 		${cursor}
@@ -412,7 +410,7 @@ ${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for Transaction Stage" enabled="true" name="txLambda">tx -&gt; {
     ${cursor}
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Union" enabled="true" name="unionCBLambda">unionCB -&gt; {
-    unionCB.query().set${columnName}
+    unionCB.query().set${Column}
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for Validation Error" enabled="true" name="validationErrorLambda">() -&gt; {
     return asHtml(path_${newName});
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for Validation Messages" enabled="true" name="validationMessagesLambda">messages -&gt; messages.add${newName}</template><template autoinsert="false" context="java-statements" deleted="false" description="iterate with enumeration" enabled="true" id="org.eclipse.jdt.ui.templates.while_enumeration" name="while">while (${en:var(java.util.Enumeration)}.hasMoreElements()) {

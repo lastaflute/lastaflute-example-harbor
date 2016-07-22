@@ -159,7 +159,7 @@ ${imp:import(org.eclipse.swt.SWT)}${cursor}</template><template autoinsert="true
 }</template><template autoinsert="false" context="java-statements" deleted="false" description="else if block" enabled="true" id="org.eclipse.jdt.ui.templates.elseif" name="elseif">else if (${condition:var(boolean)}) {
 	${cursor}
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity" enabled="true" name="entityLambda">${table} -&gt; {
-    ${var}.${method}
+    ${table}.${method}
 }</template><template autoinsert="true" context="java" deleted="false" description="DBFlute: Trick for Entity List" enabled="true" name="entityListLambda">${table}List -&gt; {
     ${cursor}
 }</template><template autoinsert="true" context="java" deleted="false" description="LastaFlute: Trick for general Error Response" enabled="true" name="errorResponseLambda">() -&gt; {

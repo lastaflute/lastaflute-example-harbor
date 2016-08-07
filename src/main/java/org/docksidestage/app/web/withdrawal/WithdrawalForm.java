@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
  */
 public class WithdrawalForm {
 
-    public CDef.WithdrawalReason reasonCode;
+    public CDef.WithdrawalReason selectedReason;
 
     @Length(max = 3)
     public String reasonInput;

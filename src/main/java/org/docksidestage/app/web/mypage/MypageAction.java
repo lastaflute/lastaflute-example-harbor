@@ -32,20 +32,58 @@ import org.lastaflute.web.response.HtmlResponse;
  */
 public class MypageAction extends HarborBaseAction {
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     @Resource
     private ProductBhv productBhv;
 
+    // ===================================================================================
+    //                                                                             Execute
+    //                                                                             =======
     @Execute
     public HtmlResponse index() {
+        List<MypageProductBean> recentProducts = mappingToProducts(selectRecentProductList());
+        List<MypageProductBean> highPriceProducts = mappingToProducts(selectHighPriceProductList());
+        return asHtml(path_Mypage_MypageHtml).renderWith(data -> {
+            data.register("recentProducts", recentProducts);
+            data.register("highPriceProducts", highPriceProducts);
+        });
+    }
+
+    // ===================================================================================
+    //                                                                              Select
+    //                                                                              ======
+    private ListResultBean<Product> selectRecentProductList() {
         ListResultBean<Product> productList = productBhv.selectList(cb -> {
+            cb.specify().derivedPurchase().max(purchaseCB -> {
+                purchaseCB.specify().columnPurchaseDatetime();
+            }, Product.ALIAS_latestPurchaseDate);
+            cb.query().existsPurchase(purchaseCB -> {
+                purchaseCB.query().setMemberId_Equal(getUserBean().get().getMemberId());
+            });
+            cb.query().addSpecifiedDerivedOrderBy_Desc(Product.ALIAS_latestPurchaseDate);
+            cb.query().addOrderBy_ProductId_Asc();
+            cb.fetchFirst(3);
+        });
+        return productList;
+    }
+
+    private ListResultBean<Product> selectHighPriceProductList() {
+        ListResultBean<Product> productList = productBhv.selectList(cb -> {
+            cb.query().existsPurchase(purchaseCB -> {
+                purchaseCB.query().setMemberId_Equal(getUserBean().get().getMemberId());
+            });
             cb.query().addOrderBy_RegularPrice_Desc();
             cb.fetchFirst(3);
         });
-        List<MypageProductBean> beans = productList.stream().map(member -> {
-            return new MypageProductBean(member);
-        }).collect(Collectors.toList());
-        return asHtml(path_Mypage_MypageHtml).renderWith(data -> {
-            data.register("beans", beans);
-        });
+        return productList;
+    }
+
+    // ===================================================================================
+    //                                                                             Mapping
+    //                                                                             =======
+    private List<MypageProductBean> mappingToProducts(List<Product> productList) {
+        return productList.stream().map(product -> new MypageProductBean(product)).collect(Collectors.toList());
     }
 }

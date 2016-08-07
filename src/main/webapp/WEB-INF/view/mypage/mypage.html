@@ -35,24 +35,47 @@
 <main>
 <div class="contents">
 	<h2 class="content-title">My Page</h2>
-	<section class="recent-purchase-box">
-		<section class="follow-box">
-			<h3>FOLLOW</h3>
-		</section>
-		<table>
-			<thead>
-				<tr>
-					<th>ProductName</th>
-					<th>RegularPrice</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="bean : ${beans}">
-					<td th:text="${bean.productName}"></td>
-					<td th:text="${bean.regularPrice}"></td>
-				</tr>
-			</tbody>
-		</table>
+	<section class="mypage-product-box">
+		<ul>
+			<li>
+				<h3>Recent Products</h3>
+				<table class="list-tbl">
+					<thead>
+						<tr>
+							<th>ProductName</th>
+							<th>RegularPrice</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product : ${recentProducts}">
+							<td th:text="${product.productName}"></td>
+							<td th:text="${product.regularPrice}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</li>
+			<li>
+				<h3>High-Price Products</h3>
+				<table class="list-tbl">
+					<thead>
+						<tr>
+							<th>ProductName</th>
+							<th>RegularPrice</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product : ${highPriceProducts}">
+							<td th:text="${product.productName}"></td>
+							<td th:text="${product.regularPrice}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</li>
+		</ul>
+	</section>
+	<section class="mypage-following-box">
+		<h3>Your Following</h3>
+		making now
 	</section>
 </div>
 </main>

@@ -30,6 +30,8 @@ import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.JsonResponse;
 
+// the 'lido' package is example for JSON API in simple project
+// client application is riot.js in lidoisle directory
 /**
  * @author jflute
  * @author iwamatsu0430

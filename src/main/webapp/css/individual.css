@@ -16,11 +16,18 @@
 /* ---------------------------------------------------------------------------------------
                                                                                    My Page
                                                                                    ---- */
-.recent-purchase-box {
+.mypage-product-box {
 	width: 960px;
 	margin: 32px auto 0;
 }
-.follow-box {
+.mypage-product-box table {
+	margin-bottom: 12px;
+}
+.mypage-product-box table th {
+	text-align: center;
+}
+.mypage-following-box {
+	width: 960px;
 	margin: 32px auto 0;
 }
 
@@ -152,6 +159,12 @@
 /* ---------------------------------------------------------------------------------------
                                                                                 Withdrawal
                                                                                 ------- */
+.withdrawal-box {
+	width: 420px;
+	margin: 32px auto;
+	border: solid 4px #E5E5E5;
+	padding: 24px 64px;
+}
 .select-withdrawal-reason {
 	margin: 32px auto 0;
 }

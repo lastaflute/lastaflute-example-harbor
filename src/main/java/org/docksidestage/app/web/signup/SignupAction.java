@@ -37,9 +37,9 @@ public class SignupAction extends HarborBaseAction {
     @Resource
     private Postbox postbox;
     @Resource
-    private HarborConfig harborConfig;
+    private HarborConfig config;
     @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private HarborLoginAssist loginAssist;
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -61,12 +61,12 @@ public class SignupAction extends HarborBaseAction {
             return asHtml(path_Signup_SignupHtml);
         });
         Integer memberId = newMember(form);
-        harborLoginAssist.identityLogin(memberId, op -> {}); // no remember-me here
+        loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
 
         WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
-            postcard.setFrom(harborConfig.getMailAddressSupport(), "Harbor Support");
+            postcard.setFrom(config.getMailAddressSupport(), "Harbor Support");
             postcard.addTo(deriveMemberMailAddress(form));
-            postcard.setDomain(harborConfig.getServerDomain());
+            postcard.setDomain(config.getServerDomain());
             postcard.setMemberName(form.memberName);
             postcard.setAccount(form.memberAccount);
             postcard.setToken(generateToken());
@@ -106,7 +106,7 @@ public class SignupAction extends HarborBaseAction {
 
         MemberSecurity security = new MemberSecurity();
         security.setMemberId(member.getMemberId());
-        security.setLoginPassword(harborLoginAssist.encryptPassword(form.password));
+        security.setLoginPassword(loginAssist.encryptPassword(form.password));
         security.setReminderQuestion(form.reminderQuestion);
         security.setReminderAnswer(form.reminderAnswer);
         security.setReminderUseCount(0);

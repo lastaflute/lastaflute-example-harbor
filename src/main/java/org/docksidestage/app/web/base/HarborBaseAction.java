@@ -55,9 +55,9 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     @Resource
     private DoubleSubmitManager doubleSubmitManager;
     @Resource
-    private HarborLoginAssist harborLoginAssist;
-    @Resource
     private AccessContextLogic accessContextLogic;
+    @Resource
+    private HarborLoginAssist loginAssist;
 
     // ===================================================================================
     //                                                                               Hook
@@ -121,7 +121,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     // #app_customize return empty if login is unused
     @Override
     protected OptionalThing<HarborUserBean> getUserBean() { // application may call, overriding for co-variant
-        return harborLoginAssist.getSavedUserBean();
+        return loginAssist.getSavedUserBean();
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
 
     @Override
     protected OptionalThing<LoginManager> myLoginManager() { // for framework
-        return OptionalThing.of(harborLoginAssist);
+        return OptionalThing.of(loginAssist);
     }
 
     // ===================================================================================

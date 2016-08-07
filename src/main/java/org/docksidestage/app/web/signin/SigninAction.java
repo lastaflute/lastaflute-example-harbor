@@ -34,7 +34,7 @@ public class SigninAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private HarborLoginAssist loginAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -53,14 +53,14 @@ public class SigninAction extends HarborBaseAction {
             form.clearSecurityInfo();
             return asHtml(path_Signin_SigninHtml);
         });
-        return harborLoginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
+        return loginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
         });
     }
 
     private void moreValidate(SigninForm form, HarborMessages messages) {
         if (LaStringUtil.isNotEmpty(form.account) && LaStringUtil.isNotEmpty(form.password)) {
-            if (!harborLoginAssist.checkUserLoginable(form.account, form.password)) {
+            if (!loginAssist.checkUserLoginable(form.account, form.password)) {
                 messages.addErrorsLoginFailure("account");
             }
         }

@@ -23,6 +23,7 @@ import org.docksidestage.app.web.mypage.MypageAction;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
+import org.lastaflute.web.login.credential.UserPasswordCredential;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
@@ -53,17 +54,20 @@ public class SigninAction extends HarborBaseAction {
             form.clearSecurityInfo();
             return asHtml(path_Signin_SigninHtml);
         });
-        return loginAssist.loginRedirect(form.account, form.password, op -> op.rememberMe(form.rememberMe), () -> {
+        return loginAssist.loginRedirect(createCredential(form), op -> op.rememberMe(form.rememberMe), () -> {
             return redirect(MypageAction.class);
         });
     }
 
     private void moreValidate(SigninForm form, HarborMessages messages) {
         if (LaStringUtil.isNotEmpty(form.account) && LaStringUtil.isNotEmpty(form.password)) {
-            if (!loginAssist.checkUserLoginable(form.account, form.password)) {
+            if (!loginAssist.checkUserLoginable(createCredential(form))) {
                 messages.addErrorsLoginFailure("account");
             }
         }
     }
 
+    private UserPasswordCredential createCredential(SigninForm form) {
+        return new UserPasswordCredential(form.account, form.password);
+    }
 }

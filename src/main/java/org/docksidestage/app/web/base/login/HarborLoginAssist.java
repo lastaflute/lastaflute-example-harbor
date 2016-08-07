@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.dbflute.optional.OptionalEntity;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.signin.SigninAction;
+import org.docksidestage.dbflute.cbean.MemberCB;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exbhv.MemberLoginBhv;
 import org.docksidestage.dbflute.exentity.Member;
@@ -31,6 +32,7 @@ import org.lastaflute.core.time.TimeManager;
 import org.lastaflute.db.jta.stage.TransactionStage;
 import org.lastaflute.web.login.PrimaryLoginManager;
 import org.lastaflute.web.login.TypicalLoginAssist;
+import org.lastaflute.web.login.credential.UserPasswordCredential;
 import org.lastaflute.web.login.option.LoginSpecifiedOption;
 
 /**
@@ -59,24 +61,26 @@ public class HarborLoginAssist extends TypicalLoginAssist<Integer, HarborUserBea
     //                                                                           Find User
     //                                                                           =========
     @Override
-    protected boolean doCheckUserLoginable(String email, String cipheredPassword) {
-        return memberBhv.selectCount(cb -> {
-            cb.query().arrangeLogin(email, cipheredPassword);
-        }) > 0;
+    protected void checkCredential(CredentialChecker checker) {
+        checker.check(UserPasswordCredential.class, credential -> {
+            return memberBhv.selectCount(cb -> arrangeLoginByCredential(cb, credential)) > 0;
+        });
     }
 
     @Override
-    protected OptionalEntity<Member> doFindLoginUser(String email, String cipheredPassword) {
-        return memberBhv.selectEntity(cb -> {
-            cb.query().arrangeLogin(email, cipheredPassword);
+    protected void resolveCredential(CredentialResolver resolver) {
+        resolver.resolve(UserPasswordCredential.class, credential -> {
+            return memberBhv.selectEntity(cb -> arrangeLoginByCredential(cb, credential));
         });
+    }
+
+    private void arrangeLoginByCredential(MemberCB cb, UserPasswordCredential credential) {
+        cb.query().arrangeLogin(credential.getUser(), encryptPassword(credential.getPassword()));
     }
 
     @Override
     protected OptionalEntity<Member> doFindLoginUser(Integer userId) {
-        return memberBhv.selectEntity(cb -> {
-            cb.query().arrangeLoginByIdentity(userId);
-        });
+        return memberBhv.selectEntity(cb -> cb.query().arrangeLoginByIdentity(userId));
     }
 
     // ===================================================================================

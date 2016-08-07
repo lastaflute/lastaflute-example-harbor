@@ -28,6 +28,7 @@ import org.docksidestage.dbflute.exentity.MemberService;
 import org.lastaflute.core.mail.Postbox;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
+import org.lastaflute.web.login.credential.UserPasswordCredential;
 import org.lastaflute.web.response.JsonResponse;
 
 /**
@@ -54,14 +55,14 @@ public class LidoAuthAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
-
     @Execute
     @AllowAnyoneAccess
     public JsonResponse<Object> signin(SigninBody body) {
         validateApi(body, messages -> {});
         String account = body.account;
         String password = body.password;
-        harborLoginAssist.login(account, password, op -> {});
+
+        harborLoginAssist.login(new UserPasswordCredential(account, password), op -> {});
         return JsonResponse.asEmptyBody();
     }
 

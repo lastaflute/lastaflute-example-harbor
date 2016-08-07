@@ -47,7 +47,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     protected static final String APP_TYPE = "HBR"; // #change_it_first
 
     /** The user type for Member, e.g. used by access context. */
-    protected static final String USER_TYPE = "M"; // #change_it_first
+    protected static final String USER_TYPE = "M"; // #change_it_first (can delete if no login)
 
     // ===================================================================================
     //                                                                           Attribute
@@ -107,23 +107,30 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     // ===================================================================================
     //                                                                           User Info
     //                                                                           =========
-    @Override
-    protected OptionalThing<HarborUserBean> getUserBean() { // to return as concrete class
-        return harborLoginAssist.getSavedUserBean(); // #app_customize return empty if login is unused
-    }
-
+    // -----------------------------------------------------
+    //                                      Application Info
+    //                                      ----------------
     @Override
     protected String myAppType() { // for framework
         return APP_TYPE;
     }
 
+    // -----------------------------------------------------
+    //                                            Login Info
+    //                                            ----------
+    // #app_customize return empty if login is unused
     @Override
-    protected OptionalThing<String> myUserType() { // for framework
-        return OptionalObject.of(USER_TYPE); // #app_customize return empty if login is unused
+    protected OptionalThing<HarborUserBean> getUserBean() { // application may call, overriding for co-variant
+        return harborLoginAssist.getSavedUserBean();
     }
 
     @Override
-    protected OptionalThing<LoginManager> myLoginManager() {
+    protected OptionalThing<String> myUserType() { // for framework
+        return OptionalObject.of(USER_TYPE);
+    }
+
+    @Override
+    protected OptionalThing<LoginManager> myLoginManager() { // for framework
         return OptionalThing.of(harborLoginAssist);
     }
 

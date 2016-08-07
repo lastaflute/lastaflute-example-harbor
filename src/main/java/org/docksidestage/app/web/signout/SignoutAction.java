@@ -30,11 +30,11 @@ import org.lastaflute.web.response.HtmlResponse;
 public class SignoutAction extends HarborBaseAction {
 
     @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private HarborLoginAssist loginAssist;
 
     @Execute
     public HtmlResponse index() {
-        harborLoginAssist.logout();
+        loginAssist.logout();
         return redirect(SigninAction.class);
     }
 }

@@ -23,7 +23,6 @@ import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
-import org.lastaflute.web.servlet.request.ResponseManager;
 
 /**
  * @author jflute
@@ -35,8 +34,6 @@ public class ProductDetailAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private ResponseManager responseManager;
-    @Resource
     private ProductBhv productBhv;
 
     // ===================================================================================
@@ -44,12 +41,10 @@ public class ProductDetailAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer productId) {
-        validate(productId, messages -> {}, () -> {
-            return asHtml(path_Product_ProductListHtml);
-        });
         Product product = selectProduct(productId);
+        ProductDetailBean bean = mappingToBean(product);
         return asHtml(path_Product_ProductDetailHtml).renderWith(data -> {
-            data.register("product", mappingToBean(product));
+            data.register("product", bean);
         });
     }
 

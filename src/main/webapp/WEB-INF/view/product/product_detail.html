@@ -35,16 +35,14 @@
 <main>
 <div class="contents">
 	<h2 class="content-title" th:text="#{labels.product.detail.title}">labels.product.detail.title</h2>
-	<table>
-		<tr>
-			<td><span th:text="#{labels.productName}">labels.productName</span></td>
-			<td th:text="${product.productName}"></td>
-		</tr>
-		<tr>
-			<td><span th:text="#{labels.category}">labels.category</span></td>
-			<td th:text="${product.categoryName}"></td>
-		</tr>
-	</table>
+	<section class="product-detail-box">
+		<dl class="product-detail-list">
+			<dt th:text="#{labels.productName}">labels.productName</dt>
+			<dd th:text="${product.productName}"/>
+			<dt th:text="#{labels.productCategoryName}">labels.productCategoryName</dt>
+			<dd th:text="${product.categoryName}"/>
+		</dl>
+	</section>
 </div>
 </main>
 <footer th:replace="/common/layout.html :: footer">

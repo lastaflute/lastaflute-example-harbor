@@ -91,7 +91,7 @@ public class SignupAction extends HarborBaseAction {
     }
 
     private String saveSignupToken() {
-        String token = primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
+        String token = primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // #simple_for_example
         sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token);
         return token;
     }
@@ -131,7 +131,7 @@ public class SignupAction extends HarborBaseAction {
         member.setMemberName(form.memberName);
         member.setMemberAccount(form.memberAccount);
         member.setMemberStatusCode_Provisional();
-        memberBhv.insert(member);
+        memberBhv.insert(member); // #simple_for_example same-name concurrent access as application exception
 
         MemberSecurity security = new MemberSecurity();
         security.setMemberId(member.getMemberId());

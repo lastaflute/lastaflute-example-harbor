@@ -1,72 +1,32 @@
 @charset "utf-8";
 
-/* -------------------------------------------------
-                                 Individual Style
-------------------------------------------------- */
-
-/* -------------------------------------------------
-                                          Sign In
-------------------------------------------------- */
-.sign-in-box {
-	width: 420px;
-	margin: 32px auto;
-	border: solid 4px #E5E5E5;
-	padding: 24px 64px;
-}
-.signin-form {
-}
-.signin-form li {
-	padding: 6px 0;
-}
-.signin-form li p {
-	padding-bottom: 6px;
-	color: #444;
-}
-.signin-form input[type="text"],.signin-form input[type="password"] {
-	padding: 6px 8px;
-	width: 40%;
-}
-.signin-form input[type="submit"] {
-	margin-top: 8px;
-	padding: 10px 32px;
-	height: 36px;
-	background-color: #660032;
-	border: 1px solid #660032;
-	color: #FFF;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	vertical-align: top;
-	cursor: pointer;
+/* ---------------------------------------------------------------------------------------
+                                                                                    Member
+                                                                                    --- */
+.member-search-box {
+	width: 960px;
+	margin: 20px auto;
 }
 
-
-/* -------------------------------------------------
-                                          Sign Up 
-------------------------------------------------- */
-
-.signup-form input[type="text"],.signup-form input[type="password"] {
-	margin-top: 4px;
-	padding: 6px 8px;
-	width: 80%;
-}
-.signup-form input[type="submit"] {
-	margin-top: 8px;
-	padding: 10px 32px;
-	height: 36px;
-	background-color: #882255;
-	border: 1px solid #882255;
-	color: #FFF;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	vertical-align: top;
-	cursor: pointer;
+.member-result-box {
+	width: 960px;
+	margin: 20px auto;
 }
 
-/* -------------------------------------------------
-                                         Products
-------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------
+                                                                                   My Page
+                                                                                   ---- */
+.recent-purchase-box {
+	width: 960px;
+	margin: 32px auto 0;
+}
+.follow-box {
+	margin: 32px auto 0;
+}
+
+/* ---------------------------------------------------------------------------------------
+                                                                                   Product
+                                                                                   ---- */
 .product-search-box {
 	width: 960px;
 	margin: 32px auto 0;
@@ -108,20 +68,90 @@
 	font-size: 18px;
 }
 
-/* -------------------------------------------------
-                                          My Page
-------------------------------------------------- */
-.recent-purchase-box {
+.product-detail-box {
+	margin: 32px auto 0;
 	width: 960px;
-	margin: 32px auto 0;
 }
-.follow-box {
-	margin: 32px auto 0;
+.product-detail-list {
+	width: 100%;
+}
+.product-detail-list dt {
+	color: #993366;
+	margin-top: 12px;
+}
+.product-detail-list dd {
+	margin-left: 24px;
 }
 
-/* -------------------------------------------------
-                                       Withdrawal
-------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------
+                                                                                   Profile
+                                                                                   ---- */
+.profile-contents-box {
+	width: 960px;
+	margin: 20px auto;
+}
+
+/* ---------------------------------------------------------------------------------------
+                                                                                   Sign In
+                                                                                   ---- */
+.sign-in-box {
+	width: 420px;
+	margin: 32px auto;
+	border: solid 4px #E5E5E5;
+	padding: 24px 64px;
+}
+.signin-form {
+}
+.signin-form li {
+	padding: 6px 0;
+}
+.signin-form li p {
+	padding-bottom: 6px;
+	color: #444;
+}
+.signin-form input[type="text"],.signin-form input[type="password"] {
+	padding: 6px 8px;
+	width: 40%;
+}
+.signin-form input[type="submit"] {
+	margin-top: 8px;
+	padding: 10px 32px;
+	height: 36px;
+	background-color: #660032;
+	border: 1px solid #660032;
+	color: #FFF;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------------------
+                                                                                   Sign Up
+                                                                                   ---- */
+.signup-form input[type="text"],.signup-form input[type="password"] {
+	margin-top: 4px;
+	padding: 6px 8px;
+	width: 80%;
+}
+.signup-form input[type="submit"] {
+	margin-top: 8px;
+	padding: 10px 32px;
+	height: 36px;
+	background-color: #882255;
+	border: 1px solid #882255;
+	color: #FFF;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------------------
+                                                                                Withdrawal
+                                                                                ------- */
 .select-withdrawal-reason {
 	margin: 32px auto 0;
 }
@@ -133,22 +163,4 @@
 }
 .withdrawal-write-reason{
 	margin:5px 0px;
-}
-
-/* -------------------------------------------------
-                                         Memmbers
-------------------------------------------------- */
-.member-search-box {
-	width: 960px;
-	margin: 20px auto;
-}
-
-.member-result-box {
-	width: 960px;
-	margin: 20px auto;
-}
-
-.profile-contents-box {
-	width: 960px;
-	margin: 20px auto;
 }

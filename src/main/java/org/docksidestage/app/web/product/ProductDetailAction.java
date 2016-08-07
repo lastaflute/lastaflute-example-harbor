@@ -23,6 +23,7 @@ import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.servlet.request.ResponseManager;
 
 /**
  * @author jflute
@@ -33,9 +34,8 @@ public class ProductDetailAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
+    @Resource
+    private ResponseManager responseManager;
     @Resource
     private ProductBhv productBhv;
 
@@ -44,7 +44,7 @@ public class ProductDetailAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer productId) {
-        validate(productId, messages -> {} , () -> {
+        validate(productId, messages -> {}, () -> {
             return asHtml(path_Product_ProductListHtml);
         });
         Product product = selectProduct(productId);
@@ -60,9 +60,7 @@ public class ProductDetailAction extends HarborBaseAction {
         return productBhv.selectEntity(cb -> {
             cb.setupSelect_ProductCategory();
             cb.query().setProductId_Equal(productId);
-        }).orElseThrow(() -> {
-            return of404("Not found the product: " + productId); // mistake or user joke
-        });
+        }).get();
     }
 
     // ===================================================================================

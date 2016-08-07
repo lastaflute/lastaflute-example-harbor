@@ -15,7 +15,7 @@
  */
 package org.docksidestage.dbflute.exentity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.docksidestage.dbflute.bsentity.BsProduct;
 
@@ -39,7 +39,7 @@ public class Product extends BsProduct {
     /** LATEST_PURCHASE_DATE: Derived Referrer Alias. */
     public static final String ALIAS_latestPurchaseDate = "LATEST_PURCHASE_DATE";
     /** LATEST_PURCHASE_DATE: (Derived Referrer) */
-    protected LocalDateTime _latestPurchaseDate;
+    protected LocalDate _latestPurchaseDate;
 
     /**
      * [get] PURCHASE_COUNT: (Derived Referrer)
@@ -61,7 +61,7 @@ public class Product extends BsProduct {
      * [get] LATEST_PURCHASE_DATE: (Derived Referrer)
      * @return The value of the column 'LATEST_PURCHASE_DATE'. (NullAllowed)
      */
-    public LocalDateTime getLatestPurchaseDate() {
+    public LocalDate getLatestPurchaseDate() {
         return _latestPurchaseDate;
     }
 
@@ -69,7 +69,7 @@ public class Product extends BsProduct {
      * [set] LATEST_PURCHASE_DATE: (Derived Referrer)
      * @param latestPurchaseDate The value of the column 'LATEST_PURCHASE_DATE'. (NullAllowed)
      */
-    public void setLatestPurchaseDate(LocalDateTime latestPurchaseDate) {
+    public void setLatestPurchaseDate(LocalDate latestPurchaseDate) {
         _latestPurchaseDate = latestPurchaseDate;
     }
 }

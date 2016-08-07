@@ -41,15 +41,6 @@ public interface HarborConfig extends HarborEnv {
     /** The key of the configuration. e.g. HRB */
     String COOKIE_REMEMBER_ME_HARBOR_KEY = "cookie.remember.me.harbor.key";
 
-    /** The key of the configuration. e.g. 4 */
-    String PAGING_PAGE_SIZE = "paging.page.size";
-
-    /** The key of the configuration. e.g. 3 */
-    String PAGING_PAGE_RANGE_SIZE = "paging.page.range.size";
-
-    /** The key of the configuration. e.g. true */
-    String PAGING_PAGE_RANGE_FILL_LIMIT = "paging.page.range.fill.limit";
-
     /**
      * Get the value of property as {@link String}.
      * @param propertyKey The key of the property. (NotNull)
@@ -127,60 +118,10 @@ public interface HarborConfig extends HarborEnv {
     /**
      * Get the value for the key 'cookie.remember.me.harbor.key'. <br>
      * The value is, e.g. HRB <br>
-     * comment: The cookie key of remember-me for Harbor
+     * comment: The cookie key of remember-me for Harbor #change_it_first
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getCookieRememberMeHarborKey();
-
-    /**
-     * Get the value for the key 'paging.page.size'. <br>
-     * The value is, e.g. 4 <br>
-     * comment: The size of one page for paging
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     */
-    String getPagingPageSize();
-
-    /**
-     * Get the value for the key 'paging.page.size' as {@link Integer}. <br>
-     * The value is, e.g. 4 <br>
-     * comment: The size of one page for paging
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     * @throws NumberFormatException When the property is not integer.
-     */
-    Integer getPagingPageSizeAsInteger();
-
-    /**
-     * Get the value for the key 'paging.page.range.size'. <br>
-     * The value is, e.g. 3 <br>
-     * comment: The size of page range for paging
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     */
-    String getPagingPageRangeSize();
-
-    /**
-     * Get the value for the key 'paging.page.range.size' as {@link Integer}. <br>
-     * The value is, e.g. 3 <br>
-     * comment: The size of page range for paging
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     * @throws NumberFormatException When the property is not integer.
-     */
-    Integer getPagingPageRangeSizeAsInteger();
-
-    /**
-     * Get the value for the key 'paging.page.range.fill.limit'. <br>
-     * The value is, e.g. true <br>
-     * comment: The option 'fillLimit' of page range for paging
-     * @return The value of found property. (NotNull: if not found, exception but basically no way)
-     */
-    String getPagingPageRangeFillLimit();
-
-    /**
-     * Is the property for the key 'paging.page.range.fill.limit' true? <br>
-     * The value is, e.g. true <br>
-     * comment: The option 'fillLimit' of page range for paging
-     * @return The determination, true or false. (if not found, exception but basically no way)
-     */
-    boolean isPagingPageRangeFillLimit();
 
     /**
      * The simple implementation for configuration.
@@ -221,30 +162,6 @@ public interface HarborConfig extends HarborEnv {
 
         public String getCookieRememberMeHarborKey() {
             return get(HarborConfig.COOKIE_REMEMBER_ME_HARBOR_KEY);
-        }
-
-        public String getPagingPageSize() {
-            return get(HarborConfig.PAGING_PAGE_SIZE);
-        }
-
-        public Integer getPagingPageSizeAsInteger() {
-            return getAsInteger(HarborConfig.PAGING_PAGE_SIZE);
-        }
-
-        public String getPagingPageRangeSize() {
-            return get(HarborConfig.PAGING_PAGE_RANGE_SIZE);
-        }
-
-        public Integer getPagingPageRangeSizeAsInteger() {
-            return getAsInteger(HarborConfig.PAGING_PAGE_RANGE_SIZE);
-        }
-
-        public String getPagingPageRangeFillLimit() {
-            return get(HarborConfig.PAGING_PAGE_RANGE_FILL_LIMIT);
-        }
-
-        public boolean isPagingPageRangeFillLimit() {
-            return is(HarborConfig.PAGING_PAGE_RANGE_FILL_LIMIT);
         }
     }
 }

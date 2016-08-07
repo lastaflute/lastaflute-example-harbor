@@ -22,8 +22,11 @@ import javax.annotation.Resource;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.base.paging.PagingAssist;
+import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -37,13 +40,17 @@ public class MemberListAction extends HarborBaseAction {
     //                                                                           =========
     @Resource
     private MemberBhv memberBhv;
+    @Resource
+    private PagingAssist pagingAssist;
+    @Resource
+    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, MemberSearchForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Member_MemberListHtml);
         });
         PagingResultBean<Member> page = selectMemberPage(pageNumber.orElse(1), form);
@@ -52,7 +59,7 @@ public class MemberListAction extends HarborBaseAction {
         });
         return asHtml(path_Member_MemberListHtml).renderWith(data -> {
             data.register("beans", beans);
-            registerPagingNavi(data, page, form);
+            pagingAssist.registerPagingNavi(data, page, form);
         });
     }
 
@@ -64,13 +71,13 @@ public class MemberListAction extends HarborBaseAction {
             cb.setupSelect_MemberStatus();
             cb.specify().derivedPurchase().count(purchaseCB -> {
                 purchaseCB.specify().columnPurchaseId();
-            } , Member.ALIAS_purchaseCount);
-            if (isNotEmpty(form.memberName)) {
+            }, Member.ALIAS_purchaseCount);
+            if (LaStringUtil.isNotEmpty(form.memberName)) {
                 cb.query().setMemberName_LikeSearch(form.memberName, op -> op.likeContain());
             }
-            if (isNotEmpty(form.purchaseProductName) || form.unpaid) {
+            if (LaStringUtil.isNotEmpty(form.purchaseProductName) || form.unpaid) {
                 cb.query().existsPurchase(purchaseCB -> {
-                    if (isNotEmpty(form.purchaseProductName)) {
+                    if (LaStringUtil.isNotEmpty(form.purchaseProductName)) {
                         purchaseCB.query().queryProduct().setProductName_LikeSearch(form.purchaseProductName, op -> op.likeContain());
                     }
                     if (form.unpaid) {
@@ -81,16 +88,16 @@ public class MemberListAction extends HarborBaseAction {
             if (form.memberStatus != null) {
                 cb.query().setMemberStatusCode_Equal_AsMemberStatus(form.memberStatus);
             }
-            OptionalThing<LocalDateTime> fromDate = toDateTime(form.formalizedFrom);
-            OptionalThing<LocalDateTime> toDate = toDateTime(form.formalizedTo);
-            if (fromDate.isPresent() || toDate.isPresent()) {
+            if (form.formalizedFrom != null || form.formalizedTo != null) {
+                OptionalThing<LocalDateTime> fromDate = displayAssist.toDateTime(form.formalizedFrom);
+                OptionalThing<LocalDateTime> toDate = displayAssist.toDateTime(form.formalizedTo);
                 cb.query().setFormalizedDatetime_FromTo(fromDate.orElse(null), toDate.orElse(null), op -> {
                     op.compareAsDate().allowOneSide();
                 });
             }
             cb.query().addOrderBy_UpdateDatetime_Desc();
             cb.query().addOrderBy_MemberId_Asc();
-            cb.paging(getPagingPageSize(), pageNumber);
+            cb.paging(4, pageNumber);
         });
     }
 
@@ -104,8 +111,11 @@ public class MemberListAction extends HarborBaseAction {
         member.getMemberStatus().alwaysPresent(status -> {
             bean.memberStatusName = status.getMemberStatusName();
         });
-        bean.formalizedDate = toDate(member.getFormalizedDatetime()).orElse(null);
-        bean.updateDatetime = toStringDateTime(member.getUpdateDatetime()).get();
+        LocalDateTime formalizedDatetime = member.getFormalizedDatetime();
+        if (formalizedDatetime != null) {
+            bean.formalizedDate = formalizedDatetime.toLocalDate();
+        }
+        bean.updateDatetime = displayAssist.toStringDateTime(member.getUpdateDatetime()).get();
         bean.withdrawalMember = member.isMemberStatusCodeWithdrawal();
         bean.purchaseCount = member.getPurchaseCount();
         return bean;

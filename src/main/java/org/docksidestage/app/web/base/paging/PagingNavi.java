@@ -32,7 +32,7 @@ import org.lastaflute.web.util.LaRequestUtil;
 /**
  * @author jflute
  */
-public class PagingNavi implements Serializable {
+public class PagingNavi implements Serializable { // #app_customize
 
     // ===================================================================================
     //                                                                          Definition
@@ -152,6 +152,15 @@ public class PagingNavi implements Serializable {
     }
 
     // ===================================================================================
+    //                                                                      Basic Override
+    //                                                                      ==============
+    @Override
+    public String toString() {
+        return "{display=" + displayPagingNavi + ", allRecordCount=" + allRecordCount + ", allPageCount=" + allPageCount
+                + ", currentPageNumber=" + currentPageNumber + "}";
+    }
+
+    // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     public boolean isDisplayPagingNavi() {
@@ -166,19 +175,15 @@ public class PagingNavi implements Serializable {
         return allPageCount;
     }
 
-    public List<PageNumberLink> getPageNumberLinkList() {
-        return pageNumberLinkList;
-    }
-
     public int getCurrentPageNumber() {
         return currentPageNumber;
     }
 
-    public boolean isExistsPreviousPage() { // 'is' prefix for EL expression
+    public boolean isExistsPreviousPage() { // 'is' prefix for e.g. EL expression
         return existsPreviousPage;
     }
 
-    public boolean isExistsNextPage() { // 'is' prefix for EL expression
+    public boolean isExistsNextPage() { // 'is' prefix for e.g. EL expression
         return existsNextPage;
     }
 
@@ -188,5 +193,9 @@ public class PagingNavi implements Serializable {
 
     public String getNextPageLinkHref() {
         return nextPageLinkHref;
+    }
+
+    public List<PageNumberLink> getPageNumberLinkList() {
+        return pageNumberLinkList;
     }
 }

@@ -37,7 +37,7 @@ import org.lastaflute.web.login.option.LoginSpecifiedOption;
  * @author jflute
  */
 public class HarborLoginAssist extends TypicalLoginAssist<Integer, HarborUserBean, Member> // #change_it also UserBean
-        implements PrimaryLoginManager {
+        implements PrimaryLoginManager { // #app_customize
 
     // ===================================================================================
     //                                                                           Attribute

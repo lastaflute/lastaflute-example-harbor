@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.dbflute.util.DfResourceUtil;
 import org.docksidestage.app.logic.startup.StartupLogic;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.lastaflute.core.magic.async.AsyncManager;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
@@ -23,6 +24,8 @@ public class StartupAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
+    private AsyncManager asyncManager;
+    @Resource
     private StartupLogic startupLogic;
 
     // ===================================================================================
@@ -37,7 +40,7 @@ public class StartupAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse create(StartupForm form) {
-        validate(form, message -> {} , () -> {
+        validate(form, message -> {}, () -> {
             return asHtml(path_Startup_StartupHtml).renderWith(data -> {
                 registerBean(data, new StartupBean());
             });
@@ -46,7 +49,7 @@ public class StartupAction extends HarborBaseAction {
         final String domain = form.domain;
         final String serviceName = form.serviceName;
         final File projectDir = getProjectDir();
-        async(() -> startupLogic.toHarbor(projectDir, domain, serviceName));
+        asyncManager.async(() -> startupLogic.toHarbor(projectDir, domain, serviceName));
 
         StartupBean bean = mappingToBean(serviceName, projectDir);
         return asHtml(path_Startup_StartupHtml).renderWith(data -> {

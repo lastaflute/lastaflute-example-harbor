@@ -13,44 +13,42 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.web.base;
+package org.docksidestage.app.web.base.view;
 
 import org.docksidestage.mylasta.action.HarborUserBean;
 
 /**
  * @author jflute
  */
-public class HarborHeaderBean {
+public class HeaderBean { // #change_it #delete_ifapi
 
-    private static final HarborHeaderBean EMPTY_INSTANCE = new HarborHeaderBean();
+    private static final HeaderBean EMPTY_INSTANCE = new HeaderBean();
 
     public final Integer memberId;
     public final String memberName;
     public final boolean isLogin;
 
-    private HarborHeaderBean() {
+    private HeaderBean() {
         this.memberId = null;
         this.memberName = null;
         this.isLogin = false;
     }
 
-    public HarborHeaderBean(HarborUserBean userBean) {
+    public HeaderBean(HarborUserBean userBean) {
         this.memberId = userBean.getMemberId();
         this.memberName = userBean.getMemberName();
         this.isLogin = true;
     }
 
-    public static HarborHeaderBean empty() {
+    public static HeaderBean empty() {
         return EMPTY_INSTANCE;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        sb.append(memberId);
-        sb.append(",");
-        sb.append(memberName);
+        sb.append("{").append(memberId);
+        sb.append(",").append(memberName);
         if (isLogin) {
             sb.append(", login");
         }

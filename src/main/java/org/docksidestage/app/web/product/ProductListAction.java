@@ -16,14 +16,18 @@
 package org.docksidestage.app.web.product;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.base.paging.PagingAssist;
+import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
@@ -39,22 +43,26 @@ public class ProductListAction extends HarborBaseAction {
     //                                                                           =========
     @Resource
     private ProductBhv productBhv;
+    @Resource
+    private PagingAssist pagingAssist;
+    @Resource
+    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Product_ProductListHtml);
         });
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), form);
-        List<ProductSearchRowBean> beans = page.mappingList(product -> {
+        List<ProductSearchRowBean> beans = page.stream().map(product -> {
             return mappingToBean(product);
-        });
+        }).collect(Collectors.toList());
         return asHtml(path_Product_ProductListHtml).renderWith(data -> {
             data.register("beans", beans);
-            registerPagingNavi(data, page, form);
+            pagingAssist.registerPagingNavi(data, page, form);
         });
     }
 
@@ -62,25 +70,27 @@ public class ProductListAction extends HarborBaseAction {
     //                                                                              Select
     //                                                                              ======
     private PagingResultBean<Product> selectProductPage(int pageNumber, ProductSearchForm form) {
-        verifyParameterTrue("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
+        verifyOrClientError("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
         return productBhv.selectPage(cb -> {
-            cb.ignoreNullOrEmptyQuery();
             cb.setupSelect_ProductStatus();
             cb.setupSelect_ProductCategory();
             cb.specify().derivedPurchase().max(purchaseCB -> {
                 purchaseCB.specify().columnPurchaseDatetime();
-            } , Product.ALIAS_latestPurchaseDate);
-            cb.query().setProductName_LikeSearch(form.productName, op -> op.likeContain());
-            final String purchaseMemberName = form.purchaseMemberName;
-            if (isNotEmpty(purchaseMemberName)) {
+            }, Product.ALIAS_latestPurchaseDate);
+            if (form.productName != null) {
+                cb.query().setProductName_LikeSearch(form.productName, op -> op.likeContain());
+            }
+            if (LaStringUtil.isNotEmpty(form.purchaseMemberName)) {
                 cb.query().existsPurchase(purchaseCB -> {
-                    purchaseCB.query().queryMember().setMemberName_LikeSearch(purchaseMemberName, op -> op.likeContain());
+                    purchaseCB.query().queryMember().setMemberName_LikeSearch(form.purchaseMemberName, op -> op.likeContain());
                 });
             }
-            cb.query().setProductStatusCode_Equal_AsProductStatus(form.productStatus);
+            if (form.productStatus != null) {
+                cb.query().setProductStatusCode_Equal_AsProductStatus(form.productStatus);
+            }
             cb.query().addOrderBy_ProductName_Asc();
             cb.query().addOrderBy_ProductId_Asc();
-            cb.paging(getPagingPageSize(), pageNumber);
+            cb.paging(4, pageNumber);
         });
     }
 
@@ -98,7 +108,7 @@ public class ProductListAction extends HarborBaseAction {
             bean.productCategory = category.getProductCategoryName();
         });
         bean.regularPrice = product.getRegularPrice();
-        bean.latestPurchaseDate = toDate(product.getLatestPurchaseDate()).orElse(null);
+        bean.latestPurchaseDate = product.getLatestPurchaseDate();
         return bean;
     }
 }

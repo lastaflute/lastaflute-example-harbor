@@ -8,6 +8,8 @@ import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exbhv.MemberWithdrawalBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.MemberWithdrawal;
+import org.lastaflute.core.time.TimeManager;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -20,9 +22,8 @@ public class WithdrawalAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // -----------------------------------------------------
-    //                                          DI Component
-    //                                          ------------
+    @Resource
+    private TimeManager timeManager;
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -39,10 +40,10 @@ public class WithdrawalAction extends HarborBaseAction {
     @Execute
     public HtmlResponse confirm(WithdrawalForm form) {
         validate(form, messages -> {
-            if (form.reasonCode == null && isEmpty(form.reasonInput)) {
+            if (form.reasonCode == null && LaStringUtil.isEmpty(form.reasonInput)) {
                 messages.addConstraintsRequiredMessage("reasonCode");
             }
-        } , () -> {
+        }, () -> {
             return asHtml(path_Withdrawal_WithdrawalHtml);
         });
         return asHtml(path_Withdrawal_WithdrawalConfirmHtml);
@@ -50,7 +51,7 @@ public class WithdrawalAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse done(WithdrawalForm form) {
-        validate(form, message -> {} , () -> {
+        validate(form, message -> {}, () -> {
             return asHtml(path_Withdrawal_WithdrawalHtml);
         });
         Integer memberId = getUserBean().get().getMemberId();
@@ -59,7 +60,7 @@ public class WithdrawalAction extends HarborBaseAction {
         withdrawal.setMemberId(memberId);
         withdrawal.setWithdrawalReasonCodeAsWithdrawalReason(form.reasonCode);
         withdrawal.setWithdrawalReasonInputText(form.reasonInput);
-        withdrawal.setWithdrawalDatetime(currentDateTime());
+        withdrawal.setWithdrawalDatetime(timeManager.currentDateTime());
         memberWithdrawalBhv.insert(withdrawal);
 
         // update status of member

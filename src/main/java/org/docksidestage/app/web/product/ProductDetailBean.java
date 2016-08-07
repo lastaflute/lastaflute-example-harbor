@@ -1,5 +1,6 @@
 package org.docksidestage.app.web.product;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.lastaflute.web.validation.Required;
 
 /**
@@ -17,4 +18,9 @@ public class ProductDetailBean {
     public Integer regularPrice;
     @Required
     public String productHandleCode;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

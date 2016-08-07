@@ -19,6 +19,7 @@ import org.docksidestage.mylasta.direction.HarborConfig;
 import org.docksidestage.mylasta.mail.member.WelcomeMemberPostcard;
 import org.lastaflute.core.mail.Postbox;
 import org.lastaflute.core.security.PrimaryCipher;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -32,19 +33,19 @@ public class SignupAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private MemberBhv memberBhv;
-    @Resource
-    private MemberSecurityBhv memberSecurityBhv;
-    @Resource
-    private MemberServiceBhv memberServiceBhv;
-    @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private PrimaryCipher primaryCipher;
     @Resource
     private Postbox postbox;
     @Resource
     private HarborConfig harborConfig;
     @Resource
-    private PrimaryCipher primaryCipher;
+    private HarborLoginAssist harborLoginAssist;
+    @Resource
+    private MemberBhv memberBhv;
+    @Resource
+    private MemberSecurityBhv memberSecurityBhv;
+    @Resource
+    private MemberServiceBhv memberServiceBhv;
 
     // ===================================================================================
     //                                                                             Execute
@@ -56,9 +57,7 @@ public class SignupAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse signup(SignupForm form) {
-        validate(form, messages -> {
-            moreValidate(form, messages);
-        } , () -> {
+        validate(form, messages -> moreValidate(form, messages), () -> {
             return asHtml(path_Signup_SignupHtml);
         });
         Integer memberId = newMember(form);
@@ -76,7 +75,7 @@ public class SignupAction extends HarborBaseAction {
     }
 
     private void moreValidate(SignupForm form, HarborMessages messages) {
-        if (isNotEmpty(form.memberAccount)) {
+        if (LaStringUtil.isNotEmpty(form.memberAccount)) {
             int count = memberBhv.selectCount(cb -> {
                 cb.query().setMemberAccount_Equal(form.memberAccount);
             });

@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
+import org.lastaflute.core.time.TimeManager;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -31,6 +32,8 @@ public class MemberAddAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    @Resource
+    private TimeManager timeManager;
     @Resource
     private MemberBhv memberBhv;
 
@@ -44,7 +47,7 @@ public class MemberAddAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse register(MemberAddForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Member_MemberAddHtml);
         });
         Member member = new Member();
@@ -53,7 +56,7 @@ public class MemberAddAction extends HarborBaseAction {
         member.setBirthdate(form.birthdate);
         member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
         if (member.isMemberStatusCodeFormalized()) {
-            member.setFormalizedDatetime(currentDateTime());
+            member.setFormalizedDatetime(timeManager.currentDateTime());
         }
         memberBhv.insert(member);
         return redirect(MemberListAction.class);

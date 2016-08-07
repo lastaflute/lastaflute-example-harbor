@@ -23,28 +23,26 @@ import java.util.TimeZone;
 import org.dbflute.helper.HandyDate;
 import org.dbflute.optional.OptionalThing;
 import org.dbflute.util.DfTypeUtil;
-import org.dbflute.util.Srl;
 
 /**
  * @author jflute
  */
 public class I18nDateLogic {
 
-    // #app_customize if no i18n, remove time-zone from argument and change class name
     // ===================================================================================
     //                                                                     Date Conversion
     //                                                                     ===============
     // -----------------------------------------------------
     //                                         to Local Date
     //                                         -------------
-    public OptionalThing<LocalDate> toDate(Object exp, TimeZone timeZone) { // application may call
-        return OptionalThing.ofNullable(DfTypeUtil.toLocalDate(exp, timeZone, myDatePattern()), () -> {
+    public OptionalThing<LocalDate> toDate(Object exp, String pattern, TimeZone timeZone) {
+        return OptionalThing.ofNullable(DfTypeUtil.toLocalDate(exp, timeZone, pattern), () -> {
             throw new IllegalStateException("Not found the converted local date: exp=" + exp);
         });
     }
 
-    public OptionalThing<LocalDateTime> toDateTime(Object exp, TimeZone timeZone) { // application may call
-        return OptionalThing.ofNullable(DfTypeUtil.toLocalDateTime(exp, timeZone, myDatePattern()), () -> {
+    public OptionalThing<LocalDateTime> toDateTime(Object exp, String pattern, TimeZone timeZone) {
+        return OptionalThing.ofNullable(DfTypeUtil.toLocalDateTime(exp, timeZone, pattern), () -> {
             throw new IllegalStateException("Not found the converted local date-time: exp=" + exp);
         });
     }
@@ -52,48 +50,28 @@ public class I18nDateLogic {
     // -----------------------------------------------------
     //                                        to String Date
     //                                        --------------
-    public OptionalThing<String> toStringDate(LocalDate date, TimeZone timeZone) { // application may call
+    public OptionalThing<String> toStringDate(LocalDate date, String pattern, TimeZone timeZone) {
         return OptionalThing.ofNullable(date, () -> {
             throw new IllegalStateException("Not found the specified local date for date expression.");
-        }).map(dt -> new HandyDate(dt, timeZone).toDisp(myDatePattern(), myLocale()));
+        }).map(dt -> new HandyDate(dt, timeZone).toDisp(pattern, getStandardLocale()));
     }
 
-    public OptionalThing<String> toStringDate(LocalDateTime dateTime, TimeZone timeZone) { // application may call
+    public OptionalThing<String> toStringDate(LocalDateTime dateTime, String pattern, TimeZone timeZone) {
         return OptionalThing.ofNullable(dateTime, () -> {
             throw new IllegalStateException("Not found the specified local date-time for date expression.");
-        }).map(dt -> new HandyDate(dt, timeZone).toDisp(myDatePattern(), myLocale()));
+        }).map(dt -> new HandyDate(dt, timeZone).toDisp(pattern, getStandardLocale()));
     }
 
-    public OptionalThing<String> toStringDateTime(LocalDateTime dateTime, TimeZone timeZone) { // application may call
+    public OptionalThing<String> toStringDateTime(LocalDateTime dateTime, String pattern, TimeZone timeZone) {
         return OptionalThing.ofNullable(dateTime, () -> {
             throw new IllegalStateException("Not found the specified local date-time for date-time expression.");
-        }).map(dt -> new HandyDate(dateTime, timeZone).toDisp(myDateTimePattern(), myLocale()));
+        }).map(dt -> new HandyDate(dateTime, timeZone).toDisp(pattern, getStandardLocale()));
     }
 
     // -----------------------------------------------------
     //                                   Conversion Resource
     //                                   -------------------
-    // #app_customize if pattern and locale are changed by user, move it to method arguments
-    protected String myDatePattern() {
-        return "yyyy-MM-dd";
-    }
-
-    protected String myDateTimePattern() {
-        return "yyyy-MM-dd HH:mm:ss";
-    }
-
-    protected Locale myLocale() {
-        return Locale.ENGLISH;
-    }
-
-    // ===================================================================================
-    //                                                                      General Helper
-    //                                                                      ==============
-    protected boolean isEmpty(String str) {
-        return Srl.is_Null_or_Empty(str);
-    }
-
-    protected boolean isNotEmpty(String str) {
-        return Srl.is_NotNull_and_NotEmpty(str);
+    protected Locale getStandardLocale() {
+        return Locale.ENGLISH; // #app_customzie you can change or accept it as argument
     }
 }

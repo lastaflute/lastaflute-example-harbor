@@ -21,6 +21,7 @@ import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
 import org.docksidestage.mylasta.action.HarborMessages;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -58,7 +59,7 @@ public class SigninAction extends HarborBaseAction {
     }
 
     private void moreValidate(SigninForm form, HarborMessages messages) {
-        if (isNotEmpty(form.account) && isNotEmpty(form.password)) {
+        if (LaStringUtil.isNotEmpty(form.account) && LaStringUtil.isNotEmpty(form.password)) {
             if (!harborLoginAssist.checkUserLoginable(form.account, form.password)) {
                 messages.addErrorsLoginFailure("account");
             }

@@ -18,8 +18,10 @@ package org.docksidestage.app.web.member;
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
+import org.lastaflute.core.time.TimeManager;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -32,7 +34,11 @@ public class MemberEditAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
+    private TimeManager timeManager;
+    @Resource
     private MemberBhv memberBhv;
+    @Resource
+    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -47,7 +53,9 @@ public class MemberEditAction extends HarborBaseAction {
             form.memberAccount = member.getMemberAccount();
             form.memberStatus = member.getMemberStatusCodeAsMemberStatus();
             form.birthdate = member.getBirthdate();
-            form.formalizedDate = toDate(member.getFormalizedDatetime()).orElse(null); // to yyyyMMdd
+            displayAssist.toDate(member.getFormalizedDatetime()).ifPresent(formalizedDate -> {
+                form.formalizedDate = formalizedDate;
+            });
             form.latestLoginDatetime = member.getLatestLoginDatetime();
             form.updateDatetime = member.getUpdateDatetime();
             form.previousStatus = member.getMemberStatusCodeAsMemberStatus(); // to determine new formalized member
@@ -60,18 +68,20 @@ public class MemberEditAction extends HarborBaseAction {
         verifyToken(() -> {
             return asHtml(path_Member_MemberEditHtml);
         });
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Member_MemberEditHtml);
         });
         Member member = new Member();
         member.setMemberId(form.memberId);
         member.setMemberName(form.memberName);
-        member.setBirthdate(toDate(form.birthdate).orElse(null));
+        displayAssist.toDate(form.birthdate).ifPresent(birthdate -> {
+            member.setBirthdate(birthdate);
+        });
         member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
         member.setMemberAccount(form.memberAccount);
         if (member.isMemberStatusCodeFormalized()) {
             if (form.previousStatus.isShortOfFormalized()) {
-                member.setFormalizedDatetime(currentDateTime());
+                member.setFormalizedDatetime(timeManager.currentDateTime());
             }
         } else if (member.isMemberStatusCode_ShortOfFormalized()) {
             member.setFormalizedDatetime(null);
@@ -83,7 +93,7 @@ public class MemberEditAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse withdrawal(MemberEditForm form) {
-        validate(form, messages -> {} , () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Member_MemberEditHtml);
         });
         Member member = new Member();
@@ -101,7 +111,7 @@ public class MemberEditAction extends HarborBaseAction {
         return memberBhv.selectEntity(cb -> {
             cb.specify().derivedMemberLogin().max(loginCB -> {
                 loginCB.specify().columnLoginDatetime();
-            } , Member.ALIAS_latestLoginDatetime);
+            }, Member.ALIAS_latestLoginDatetime);
             cb.query().setMemberId_Equal(memberId);
             cb.query().setMemberStatusCode_InScope_ServiceAvailable();
         }).get(); // exclusive control if not found

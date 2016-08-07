@@ -20,10 +20,12 @@ import javax.annotation.Resource;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.app.web.base.paging.PagingAssist;
 import org.docksidestage.app.web.base.paging.SearchPagingBean;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exbhv.ProductStatusBhv;
 import org.docksidestage.dbflute.exentity.Product;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.JsonResponse;
@@ -42,6 +44,8 @@ public class LidoProductListAction extends HarborBaseAction {
     private ProductBhv productBhv;
     @Resource
     private ProductStatusBhv productStatusBhv;
+    @Resource
+    private PagingAssist pagingAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -50,7 +54,7 @@ public class LidoProductListAction extends HarborBaseAction {
     public JsonResponse<SearchPagingBean<ProductRowBean>> index(OptionalThing<Integer> pageNumber, ProductSearchBody body) {
         validateApi(body, messages -> {});
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), body);
-        SearchPagingBean<ProductRowBean> bean = createPagingBean(page);
+        SearchPagingBean<ProductRowBean> bean = pagingAssist.createPagingBean(page);
         bean.items = page.mappingList(product -> {
             return mappingToBean(product);
         });
@@ -61,17 +65,17 @@ public class LidoProductListAction extends HarborBaseAction {
     //                                                                              Select
     //                                                                              ======
     private PagingResultBean<Product> selectProductPage(int pageNumber, ProductSearchBody body) {
-        verifyParameterTrue("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
+        verifyOrClientError("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
         return productBhv.selectPage(cb -> {
             cb.setupSelect_ProductStatus();
             cb.setupSelect_ProductCategory();
             cb.specify().derivedPurchase().count(purchaseCB -> {
                 purchaseCB.specify().columnPurchaseId();
-            } , Product.ALIAS_purchaseCount);
-            if (isNotEmpty(body.productName)) {
+            }, Product.ALIAS_purchaseCount);
+            if (LaStringUtil.isNotEmpty(body.productName)) {
                 cb.query().setProductName_LikeSearch(body.productName, op -> op.likeContain());
             }
-            if (isNotEmpty(body.purchaseMemberName)) {
+            if (LaStringUtil.isNotEmpty(body.purchaseMemberName)) {
                 cb.query().existsPurchase(purchaseCB -> {
                     purchaseCB.query().queryMember().setMemberName_LikeSearch(body.purchaseMemberName, op -> op.likeContain());
                 });

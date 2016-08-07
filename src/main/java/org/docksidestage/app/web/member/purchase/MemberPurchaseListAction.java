@@ -15,21 +15,27 @@
  */
 package org.docksidestage.app.web.member.purchase;
 
+import javax.annotation.Resource;
+
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.servlet.request.ResponseManager;
 
 /**
  * @author jflute
  */
 public class MemberPurchaseListAction extends HarborBaseAction {
 
+    @Resource
+    private ResponseManager responseManager;
+
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer memberId, Integer pageNumber) {
-        throw404("now making...");
+        responseManager.new404("now making...");
         return null;
     }
 }

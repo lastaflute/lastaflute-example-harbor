@@ -26,7 +26,7 @@ import org.dbflute.cbean.result.PagingResultBean;
  * @author iwamatsu0430
  * @author jflute
  */
-public class SearchPagingBean<BEAN> {
+public class SearchPagingBean<BEAN> { // #app_customize
 
     public int currentPage;
     public int itemsPerPage;

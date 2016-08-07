@@ -22,12 +22,19 @@ import org.lastaflute.core.security.PrimaryCipher;
 import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.servlet.request.ResponseManager;
+import org.lastaflute.web.servlet.session.SessionManager;
 
 /**
  * @author annie_pocket
  * @author jflute
  */
 public class SignupAction extends HarborBaseAction {
+
+    // ===================================================================================
+    //                                                                          Definition
+    //                                                                          ==========
+    private static final String SIGNUP_TOKEN_KEY = "signupToken";
 
     // ===================================================================================
     //                                                                           Attribute
@@ -37,15 +44,19 @@ public class SignupAction extends HarborBaseAction {
     @Resource
     private Postbox postbox;
     @Resource
-    private HarborConfig config;
+    private SessionManager sessionManager;
     @Resource
-    private HarborLoginAssist loginAssist;
+    private ResponseManager responseManager;
+    @Resource
+    private HarborConfig config;
     @Resource
     private MemberBhv memberBhv;
     @Resource
     private MemberSecurityBhv memberSecurityBhv;
     @Resource
     private MemberServiceBhv memberServiceBhv;
+    @Resource
+    private HarborLoginAssist loginAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -63,14 +74,8 @@ public class SignupAction extends HarborBaseAction {
         Integer memberId = newMember(form);
         loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
 
-        WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
-            postcard.setFrom(config.getMailAddressSupport(), "Harbor Support");
-            postcard.addTo(deriveMemberMailAddress(form));
-            postcard.setDomain(config.getServerDomain());
-            postcard.setMemberName(form.memberName);
-            postcard.setAccount(form.memberAccount);
-            postcard.setToken(generateToken());
-        });
+        String signupToken = saveSignupToken();
+        sendSignupMail(form, signupToken);
         return redirect(MypageAction.class);
     }
 
@@ -85,18 +90,42 @@ public class SignupAction extends HarborBaseAction {
         }
     }
 
+    private String saveSignupToken() {
+        String token = primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
+        sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token);
+        return token;
+    }
+
+    private void sendSignupMail(SignupForm form, String signupToken) {
+        WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
+            postcard.setFrom(config.getMailAddressSupport(), "Harbor Support"); // #simple_for_example
+            postcard.addTo(form.memberAccount + "@docksidestage.org"); // #simple_for_example
+            postcard.setDomain(config.getServerDomain());
+            postcard.setMemberName(form.memberName);
+            postcard.setAccount(form.memberAccount);
+            postcard.setToken(signupToken);
+        });
+    }
+
     @Execute
     public HtmlResponse register(String account, String token) { // from mail link
-        Member member = new Member();
-        member.setMemberAccount(account);
-        member.setMemberStatusCode_Formalized();
-        memberBhv.update(member);
+        verifySignupTokenMatched(account, token);
+        updateStatusFormalized(account);
         return redirect(SigninAction.class);
     }
 
+    private void verifySignupTokenMatched(String account, String token) {
+        String saved = sessionManager.getAttribute(SIGNUP_TOKEN_KEY, String.class).orElseTranslatingThrow(cause -> {
+            return responseManager.new404("Not found the signupToken in session: " + account, op -> op.cause(cause));
+        });
+        if (!saved.equals(token)) {
+            throw responseManager.new404("Unmatched signupToken in session: saved=" + saved + ", requested=" + token);
+        }
+    }
+
     // ===================================================================================
-    //                                                                        Assist Logic
-    //                                                                        ============
+    //                                                                              Update
+    //                                                                              ======
     private Integer newMember(SignupForm form) {
         Member member = new Member();
         member.setMemberName(form.memberName);
@@ -120,11 +149,10 @@ public class SignupAction extends HarborBaseAction {
         return member.getMemberId();
     }
 
-    private String deriveMemberMailAddress(SignupForm form) {
-        return form.memberAccount + "@harborstage.org"; // #simple_for_example
-    }
-
-    private String generateToken() {
-        return primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
+    private void updateStatusFormalized(String account) {
+        Member member = new Member();
+        member.setMemberAccount(account);
+        member.setMemberStatusCode_Formalized();
+        memberBhv.updateNonstrict(member);
     }
 }

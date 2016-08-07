@@ -15,6 +15,8 @@
  */
 package org.docksidestage.app.web.lido.auth;
 
+import java.util.Random;
+
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
@@ -25,24 +27,43 @@ import org.docksidestage.dbflute.exbhv.MemberServiceBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.dbflute.exentity.MemberSecurity;
 import org.docksidestage.dbflute.exentity.MemberService;
+import org.docksidestage.mylasta.action.HarborMessages;
+import org.docksidestage.mylasta.direction.HarborConfig;
+import org.docksidestage.mylasta.mail.member.WelcomeMemberPostcard;
 import org.lastaflute.core.mail.Postbox;
+import org.lastaflute.core.security.PrimaryCipher;
+import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.login.credential.UserPasswordCredential;
 import org.lastaflute.web.response.JsonResponse;
+import org.lastaflute.web.servlet.request.ResponseManager;
+import org.lastaflute.web.servlet.session.SessionManager;
 
 /**
- * @author jflute
- * @author iwamatsu0430
  * @author s.tadokoro
+ * @author jflute
  */
 public class LidoAuthAction extends HarborBaseAction {
+
+    // ===================================================================================
+    //                                                                          Definition
+    //                                                                          ==========
+    private static final String SIGNUP_TOKEN_KEY = "signupToken";
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private HarborLoginAssist harborLoginAssist;
+    private PrimaryCipher primaryCipher;
+    @Resource
+    private Postbox postbox;
+    @Resource
+    private ResponseManager responseManager;
+    @Resource
+    private SessionManager sessionManager;
+    @Resource
+    private HarborConfig config;
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -50,47 +71,91 @@ public class LidoAuthAction extends HarborBaseAction {
     @Resource
     private MemberServiceBhv memberServiceBhv;
     @Resource
-    private Postbox postbox;
+    private HarborLoginAssist loginAssist;
 
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
+    // -----------------------------------------------------
+    //                                           Sign in/out
+    //                                           -----------
     @Execute
     @AllowAnyoneAccess
-    public JsonResponse<Object> signin(SigninBody body) {
+    public JsonResponse<Void> signin(SigninBody body) {
         validateApi(body, messages -> {});
-        String account = body.account;
-        String password = body.password;
-
-        harborLoginAssist.login(new UserPasswordCredential(account, password), op -> {});
+        loginAssist.login(new UserPasswordCredential(body.account, body.password), op -> {});
         return JsonResponse.asEmptyBody();
     }
 
     @Execute
-    @AllowAnyoneAccess
-    public JsonResponse<Object> signout() {
-        harborLoginAssist.logout();
+    public JsonResponse<Void> signout() {
+        loginAssist.logout();
         return JsonResponse.asEmptyBody();
     }
 
+    // -----------------------------------------------------
+    //                                               Sign up
+    //                                               -------
     @Execute
-    public JsonResponse<Object> register(SignupBody body) {
+    public JsonResponse<Void> signup(SignupBody body) {
         validateApi(body, messages -> {
+            moreValidate(body, messages);
+        });
+        Integer memberId = newMember(body);
+        loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
+
+        String signupToken = saveSignupToken();
+        sendSignupMail(body, signupToken);
+        return JsonResponse.asEmptyBody();
+    }
+
+    private void moreValidate(SignupBody body, HarborMessages messages) {
+        if (LaStringUtil.isNotEmpty(body.memberAccount)) {
             int count = memberBhv.selectCount(cb -> {
                 cb.query().setMemberAccount_Equal(body.memberAccount);
             });
             if (count > 0) {
-                messages.addErrorsSignupAccountAlreadyExists("account");
+                messages.addErrorsSignupAccountAlreadyExists("memberAccount");
             }
+        }
+    }
+
+    private String saveSignupToken() {
+        String token = primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // simple for example
+        sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token);
+        return token;
+    }
+
+    private void sendSignupMail(SignupBody body, String signupToken) {
+        WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
+            postcard.setFrom(config.getMailAddressSupport(), "Harbor Support"); // #simple_for_example
+            postcard.addTo(body.memberAccount + "@docksidestage.org"); // #simple_for_example
+            postcard.setDomain(config.getServerDomain());
+            postcard.setMemberName(body.memberName);
+            postcard.setAccount(body.memberAccount);
+            postcard.setToken(signupToken);
         });
-        Integer memberId = newMember(body);
-        harborLoginAssist.identityLogin(memberId.longValue(), op -> {}); // no remember-me here
+    }
+
+    @Execute
+    public JsonResponse<Void> register(String account, String token) { // from mail link
+        verifySignupTokenMatched(account, token);
+        updateStatusFormalized(account);
         return JsonResponse.asEmptyBody();
     }
 
+    private void verifySignupTokenMatched(String account, String token) {
+        String saved = sessionManager.getAttribute(SIGNUP_TOKEN_KEY, String.class).orElseTranslatingThrow(cause -> {
+            return responseManager.new404("Not found the signupToken in session: " + account, op -> op.cause(cause));
+        });
+        if (!saved.equals(token)) {
+            throw responseManager.new404("Unmatched signupToken in session: saved=" + saved + ", requested=" + token);
+        }
+    }
+
     // ===================================================================================
-    //                                                                        Assist Logic
-    //                                                                        ============
+    //                                                                              Update
+    //                                                                              ======
     private Integer newMember(SignupBody body) {
         Member member = new Member();
         member.setMemberAccount(body.memberAccount);
@@ -100,7 +165,7 @@ public class LidoAuthAction extends HarborBaseAction {
 
         MemberSecurity security = new MemberSecurity();
         security.setMemberId(member.getMemberId());
-        security.setLoginPassword(harborLoginAssist.encryptPassword(body.password));
+        security.setLoginPassword(loginAssist.encryptPassword(body.password));
         security.setReminderQuestion(body.reminderQuestion);
         security.setReminderAnswer(body.reminderAnswer);
         security.setReminderUseCount(0);
@@ -112,5 +177,12 @@ public class LidoAuthAction extends HarborBaseAction {
         service.setServiceRankCode_Plastic();
         memberServiceBhv.insert(service);
         return member.getMemberId();
+    }
+
+    private void updateStatusFormalized(String account) {
+        Member member = new Member();
+        member.setMemberAccount(account);
+        member.setMemberStatusCode_Formalized();
+        memberBhv.updateNonstrict(member);
     }
 }

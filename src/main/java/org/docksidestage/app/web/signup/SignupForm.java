@@ -4,6 +4,7 @@ import org.lastaflute.web.validation.Required;
 
 /**
  * @author annie_pocket
+ * @author jflute
  */
 public class SignupForm {
 

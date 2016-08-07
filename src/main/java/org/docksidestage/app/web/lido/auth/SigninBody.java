@@ -1,21 +1,15 @@
 package org.docksidestage.app.web.lido.auth;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.lastaflute.web.validation.Required;
 
 /**
- * The form of member's Login.
+ * @author s.tadokoro
  * @author jflute
- * @author iwamatsu0430
  */
 public class SigninBody {
 
-    @NotBlank
+    @Required
     public String account;
-
-    @NotBlank
+    @Required
     public String password;
-
-    public void clearSecurityInfo() {
-        password = null;
-    }
 }

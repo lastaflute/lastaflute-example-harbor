@@ -29,14 +29,15 @@ import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.JsonResponse;
 
 /**
+ * @author s.tadokoro
  * @author jflute
  */
 public class LidoMypageAction extends HarborBaseAction {
 
     @Resource
-    protected ProductBhv productBhv;
+    private ProductBhv productBhv;
 
-    @AllowAnyoneAccess // TODO (s.tadokoro) Remove this when JSON Login feature is implemented.
+    @AllowAnyoneAccess // TODO s.tadokoro Remove this when JSON Login feature is implemented.
     @Execute
     public JsonResponse<List<MypageProductBean>> index() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {

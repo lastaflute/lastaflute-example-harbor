@@ -1,23 +1,24 @@
 package org.docksidestage.app.web.lido.auth;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.lastaflute.web.validation.Required;
 
 /**
- * @author annie_pocket
+ * @author s.tadokoro
+ * @author jflute
  */
 public class SignupBody {
 
-    // Member
-    @NotBlank
+    // member
+    @Required
     public String memberName;
-    @NotBlank
+    @Required
     public String memberAccount;
 
-    // Member Security
-    @NotBlank
+    // security
+    @Required
     public String password;
-    @NotBlank
+    @Required
     public String reminderQuestion;
-    @NotBlank
+    @Required
     public String reminderAnswer;
 }

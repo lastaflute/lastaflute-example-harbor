@@ -15,14 +15,20 @@
  */
 package org.docksidestage.app.web.lido.product;
 
+import org.lastaflute.web.validation.Required;
+
 /**
  * @author jflute
  * @author iwamatsu0430
  */
 public class ProductRowBean {
 
+    @Required
     public Integer productId;
+    @Required
     public String productName;
+    @Required
     public String productStatusName;
+    @Required
     public Integer regularPrice;
 }

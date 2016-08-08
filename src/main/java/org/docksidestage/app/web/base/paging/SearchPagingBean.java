@@ -15,29 +15,48 @@
  */
 package org.docksidestage.app.web.base.paging;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.dbflute.Entity;
 import org.dbflute.cbean.result.PagingResultBean;
+import org.lastaflute.web.validation.Required;
 
 /**
- * @param <BEAN> The type of Search List Row bean
+ * @param <BEAN> The type of row bean
  * @author iwamatsu0430
  * @author jflute
  */
 public class SearchPagingBean<BEAN> { // #app_customize
 
-    public int currentPage;
-    public int itemsPerPage;
-    public int totalItems;
-    public int totalPages;
-    public List<BEAN> items = new ArrayList<>();
+    /** page size */
+    @Required
+    public final Integer itemsPerPage;
 
-    public SearchPagingBean(PagingResultBean<? extends Entity> page) {
+    /** current page number */
+    @Required
+    public final Integer currentPage;
+
+    /** count of total items (records) */
+    @Required
+    public final Integer totalItems;
+
+    /** count of total pages */
+    @Required
+    public final Integer totalPages;
+
+    /** paging data */
+    @NotNull
+    @Valid
+    public final List<BEAN> items;
+
+    public SearchPagingBean(PagingResultBean<? extends Entity> page, List<BEAN> items) {
         this.itemsPerPage = page.getPageSize();
         this.currentPage = page.getCurrentPageNumber();
         this.totalItems = page.getAllRecordCount();
         this.totalPages = page.getAllPageCount();
+        this.items = items;
     }
 }

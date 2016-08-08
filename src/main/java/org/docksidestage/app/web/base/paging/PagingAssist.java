@@ -15,6 +15,8 @@
  */
 package org.docksidestage.app.web.base.paging;
 
+import java.util.List;
+
 import org.dbflute.Entity;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.lastaflute.web.response.render.RenderData;
@@ -44,9 +46,10 @@ public class PagingAssist { // #app_customize
     /**
      * Create paging bean for JSON response.
      * @param page The selected result bean of paging. (NotNull)
+     * @param items The list of actual data to display. (NotNull)
      * @return The new-created bean of paging. (NotNull)
      */
-    public <ENTITY extends Entity, BEAN> SearchPagingBean<BEAN> createPagingBean(PagingResultBean<ENTITY> page) { // application may call
-        return new SearchPagingBean<BEAN>(page);
+    public <ENTITY extends Entity, BEAN> SearchPagingBean<BEAN> createPagingBean(PagingResultBean<ENTITY> page, List<BEAN> items) { // application may call
+        return new SearchPagingBean<BEAN>(page, items);
     }
 }

@@ -15,6 +15,9 @@
  */
 package org.docksidestage.app.web.lido.product;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.annotation.Resource;
 
 import org.dbflute.cbean.result.PagingResultBean;
@@ -55,11 +58,13 @@ public class LidoProductListAction extends HarborBaseAction {
     @Execute
     public JsonResponse<SearchPagingBean<ProductRowBean>> index(OptionalThing<Integer> pageNumber, ProductSearchBody body) {
         validateApi(body, messages -> {});
+
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), body);
-        SearchPagingBean<ProductRowBean> bean = pagingAssist.createPagingBean(page);
-        bean.items = page.mappingList(product -> {
+        List<ProductRowBean> items = page.stream().map(product -> {
             return mappingToBean(product);
-        });
+        }).collect(Collectors.toList());
+
+        SearchPagingBean<ProductRowBean> bean = pagingAssist.createPagingBean(page, items);
         return asJson(bean);
     }
 

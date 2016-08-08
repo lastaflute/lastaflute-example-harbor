@@ -35,15 +35,15 @@ public class WithdrawalAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Withdrawal_WithdrawalHtml);
+        return asEntryHtml();
     }
 
     @Execute
     public HtmlResponse confirm(WithdrawalForm form) {
         validate(form, messages -> moreValidation(form, messages), () -> {
-            return asHtml(path_Withdrawal_WithdrawalHtml);
+            return asEntryHtml();
         });
-        return asHtml(path_Withdrawal_WithdrawalConfirmHtml);
+        return asConfirmHtml();
     }
 
     private void moreValidation(WithdrawalForm form, HarborMessages messages) {
@@ -55,7 +55,7 @@ public class WithdrawalAction extends HarborBaseAction {
     @Execute
     public HtmlResponse done(WithdrawalForm form) {
         validate(form, message -> {}, () -> {
-            return asHtml(path_Withdrawal_WithdrawalHtml);
+            return asEntryHtml();
         });
         Integer memberId = getUserBean().get().getMemberId();
         insertWithdrawal(form, memberId);
@@ -80,5 +80,16 @@ public class WithdrawalAction extends HarborBaseAction {
         member.setMemberId(memberId);
         member.setMemberStatusCode_Withdrawal();
         memberBhv.updateNonstrict(member);
+    }
+
+    // ===================================================================================
+    //                                                                        Assist Logic
+    //                                                                        ============
+    private HtmlResponse asEntryHtml() {
+        return asHtml(path_Withdrawal_WithdrawalEntryHtml);
+    }
+
+    private HtmlResponse asConfirmHtml() {
+        return asHtml(path_Withdrawal_WithdrawalConfirmHtml);
     }
 }

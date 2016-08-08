@@ -25,7 +25,7 @@ import org.dbflute.optional.OptionalThing;
 import org.docksidestage.dbflute.allcommon.*;
 
 /**
- * The definition of app classification.
+ * The definition of application classification.
  * @author FreeGen
  */
 public interface AppCDef extends Classification {

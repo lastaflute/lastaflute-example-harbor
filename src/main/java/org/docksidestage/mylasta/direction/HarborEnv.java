@@ -77,7 +77,7 @@ public interface HarborEnv {
     /** The key of the configuration. e.g. 10 */
     String JDBC_CONNECTION_POOLING_SIZE = "jdbc.connection.pooling.size";
 
-    /** The key of the configuration. e.g. localhost:8091 */
+    /** The key of the configuration. e.g. localhost:8090/harbor */
     String SERVER_DOMAIN = "server.domain";
 
     /**
@@ -284,7 +284,7 @@ public interface HarborEnv {
 
     /**
      * Get the value for the key 'server.domain'. <br>
-     * The value is, e.g. localhost:8091 <br>
+     * The value is, e.g. localhost:8090/harbor <br>
      * comment: domain to access this application from internet, e.g. for registration mail
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */

@@ -56,9 +56,9 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /startup/startup.html */
     HtmlNext path_Startup_StartupHtml = new HtmlNext("/startup/startup.html");
 
-    /** The path of the HTML: /withdrawal/withdrawal.html */
-    HtmlNext path_Withdrawal_WithdrawalHtml = new HtmlNext("/withdrawal/withdrawal.html");
-
     /** The path of the HTML: /withdrawal/withdrawal_confirm.html */
     HtmlNext path_Withdrawal_WithdrawalConfirmHtml = new HtmlNext("/withdrawal/withdrawal_confirm.html");
+
+    /** The path of the HTML: /withdrawal/withdrawal_entry.html */
+    HtmlNext path_Withdrawal_WithdrawalEntryHtml = new HtmlNext("/withdrawal/withdrawal_entry.html");
 }

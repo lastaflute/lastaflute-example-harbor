@@ -18,21 +18,23 @@ package org.docksidestage.mylasta.direction.sponsor;
 import java.util.function.Function;
 
 import org.dbflute.jdbc.ClassificationMeta;
+import org.dbflute.optional.OptionalThing;
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.allcommon.DBCurrent;
+import org.docksidestage.mylasta.appcls.AppCDef;
 import org.lastaflute.db.dbflute.classification.TypicalListedClassificationProvider;
 import org.lastaflute.db.dbflute.exception.ProvidedClassificationNotFoundException;
 
 /**
  * @author jflute
  */
-public class HarborListedClassificationProvider extends TypicalListedClassificationProvider {
+public class HarborListedClassificationProvider extends TypicalListedClassificationProvider { // basically for HTML response
 
     @Override
     protected Function<String, ClassificationMeta> chooseClassificationFinder(String projectName)
             throws ProvidedClassificationNotFoundException {
         if (DBCurrent.getInstance().projectName().equals(projectName)) {
-            return searchName -> valueOfOnMainSchema(searchName);
+            return clsName -> onMainSchema(clsName).orElse(null); // null means not found
         } else {
             throw new ProvidedClassificationNotFoundException("Unknown DBFlute project name: " + projectName);
         }
@@ -40,14 +42,18 @@ public class HarborListedClassificationProvider extends TypicalListedClassificat
 
     @Override
     protected Function<String, ClassificationMeta> getDefaultClassificationFinder() {
-        return searchName -> valueOfOnMainSchema(searchName);
+        return clsName -> {
+            return onMainSchema(clsName).orElseGet(() -> {
+                return onAppCls(clsName).orElse(null); // null means not found
+            });
+        };
     }
 
-    protected ClassificationMeta valueOfOnMainSchema(String searchName) {
-        try {
-            return CDef.DefMeta.valueOf(searchName);
-        } catch (IllegalArgumentException ignored) { // not found
-            return null; // handled later
-        }
+    protected OptionalThing<ClassificationMeta> onMainSchema(String clsName) {
+        return findMeta(CDef.DefMeta.class, clsName);
+    }
+
+    protected OptionalThing<ClassificationMeta> onAppCls(String clsName) {
+        return findMeta(AppCDef.DefMeta.class, clsName);
     }
 }

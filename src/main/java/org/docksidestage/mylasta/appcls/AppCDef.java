@@ -223,6 +223,7 @@ public interface AppCDef extends Classification {
 
         public static AppCDef.DefMeta meta(String classificationName) { // instead of valueOf()
             if (classificationName == null) { throw new IllegalArgumentException("The argument 'classificationName' should not be null."); }
+            if ("SearchMemberStatus".equalsIgnoreCase(classificationName)) { return AppCDef.DefMeta.SearchMemberStatus; }
             throw new IllegalStateException("Unknown classification: " + classificationName);
         }
     }

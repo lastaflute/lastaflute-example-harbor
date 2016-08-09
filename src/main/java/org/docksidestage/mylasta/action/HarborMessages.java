@@ -16,7 +16,7 @@
 package org.docksidestage.mylasta.action;
 
 import org.docksidestage.mylasta.action.HarborLabels;
-import org.lastaflute.web.ruts.message.ActionMessage;
+import org.lastaflute.core.message.UserMessage;
 
 /**
  * The keys for message.
@@ -161,7 +161,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsHeader(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_HEADER));
+        add(property, new UserMessage(ERRORS_HEADER));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsFooter(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_FOOTER));
+        add(property, new UserMessage(ERRORS_FOOTER));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsPrefix(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_PREFIX));
+        add(property, new UserMessage(ERRORS_PREFIX));
         return this;
     }
 
@@ -203,7 +203,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsSuffix(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_SUFFIX));
+        add(property, new UserMessage(ERRORS_SUFFIX));
         return this;
     }
 
@@ -218,7 +218,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsAssertFalseMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_AssertFalse_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_AssertFalse_MESSAGE));
         return this;
     }
 
@@ -232,7 +232,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsAssertTrueMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_AssertTrue_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_AssertTrue_MESSAGE));
         return this;
     }
 
@@ -247,7 +247,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsDecimalMaxMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_DecimalMax_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_DecimalMax_MESSAGE, value));
         return this;
     }
 
@@ -262,7 +262,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsDecimalMinMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_DecimalMin_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_DecimalMin_MESSAGE, value));
         return this;
     }
 
@@ -278,7 +278,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsDigitsMessage(String property, String integer, String fraction) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Digits_MESSAGE, integer, fraction));
+        add(property, new UserMessage(CONSTRAINTS_Digits_MESSAGE, integer, fraction));
         return this;
     }
 
@@ -292,7 +292,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsFutureMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Future_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_Future_MESSAGE));
         return this;
     }
 
@@ -307,7 +307,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsMaxMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Max_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_Max_MESSAGE, value));
         return this;
     }
 
@@ -322,7 +322,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsMinMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Min_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_Min_MESSAGE, value));
         return this;
     }
 
@@ -336,7 +336,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsNotNullMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_NotNull_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_NotNull_MESSAGE));
         return this;
     }
 
@@ -350,7 +350,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsNullMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Null_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_Null_MESSAGE));
         return this;
     }
 
@@ -364,7 +364,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsPastMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Past_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_Past_MESSAGE));
         return this;
     }
 
@@ -379,7 +379,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsPatternMessage(String property, String regexp) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Pattern_MESSAGE, regexp));
+        add(property, new UserMessage(CONSTRAINTS_Pattern_MESSAGE, regexp));
         return this;
     }
 
@@ -395,7 +395,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsSizeMessage(String property, String min, String max) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Size_MESSAGE, min, max));
+        add(property, new UserMessage(CONSTRAINTS_Size_MESSAGE, min, max));
         return this;
     }
 
@@ -410,7 +410,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsCreditCardNumberMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_CreditCardNumber_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_CreditCardNumber_MESSAGE));
         return this;
     }
 
@@ -425,7 +425,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsEanMessage(String property, String type) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_EAN_MESSAGE, type));
+        add(property, new UserMessage(CONSTRAINTS_EAN_MESSAGE, type));
         return this;
     }
 
@@ -439,7 +439,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsEmailMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Email_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_Email_MESSAGE));
         return this;
     }
 
@@ -455,7 +455,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsLengthMessage(String property, String min, String max) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Length_MESSAGE, min, max));
+        add(property, new UserMessage(CONSTRAINTS_Length_MESSAGE, min, max));
         return this;
     }
 
@@ -470,7 +470,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsLuhnCheckMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_LuhnCheck_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_LuhnCheck_MESSAGE, value));
         return this;
     }
 
@@ -485,7 +485,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsMod10CheckMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Mod10Check_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_Mod10Check_MESSAGE, value));
         return this;
     }
 
@@ -500,7 +500,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsMod11CheckMessage(String property, String value) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Mod11Check_MESSAGE, value));
+        add(property, new UserMessage(CONSTRAINTS_Mod11Check_MESSAGE, value));
         return this;
     }
 
@@ -516,7 +516,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsModCheckMessage(String property, String value, String modType) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_ModCheck_MESSAGE, value, modType));
+        add(property, new UserMessage(CONSTRAINTS_ModCheck_MESSAGE, value, modType));
         return this;
     }
 
@@ -530,7 +530,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsNotBlankMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_NotBlank_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_NotBlank_MESSAGE));
         return this;
     }
 
@@ -544,7 +544,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsNotEmptyMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_NotEmpty_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_NotEmpty_MESSAGE));
         return this;
     }
 
@@ -559,7 +559,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsParametersScriptAssertMessage(String property, String script) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_ParametersScriptAssert_MESSAGE, script));
+        add(property, new UserMessage(CONSTRAINTS_ParametersScriptAssert_MESSAGE, script));
         return this;
     }
 
@@ -575,7 +575,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsRangeMessage(String property, String min, String max) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Range_MESSAGE, min, max));
+        add(property, new UserMessage(CONSTRAINTS_Range_MESSAGE, min, max));
         return this;
     }
 
@@ -589,7 +589,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsSafeHtmlMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_SafeHtml_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_SafeHtml_MESSAGE));
         return this;
     }
 
@@ -604,7 +604,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsScriptAssertMessage(String property, String script) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_ScriptAssert_MESSAGE, script));
+        add(property, new UserMessage(CONSTRAINTS_ScriptAssert_MESSAGE, script));
         return this;
     }
 
@@ -618,7 +618,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsUrlMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_URL_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_URL_MESSAGE));
         return this;
     }
 
@@ -632,7 +632,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsRequiredMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_Required_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_Required_MESSAGE));
         return this;
     }
 
@@ -647,7 +647,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addConstraintsTypeAnyMessage(String property, String propertyType) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(CONSTRAINTS_TypeAny_MESSAGE, propertyType));
+        add(property, new UserMessage(CONSTRAINTS_TypeAny_MESSAGE, propertyType));
         return this;
     }
 
@@ -662,7 +662,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsLoginFailure(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_LOGIN_FAILURE));
+        add(property, new UserMessage(ERRORS_LOGIN_FAILURE));
         return this;
     }
 
@@ -676,7 +676,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsAppIllegalTransition(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_APP_ILLEGAL_TRANSITION));
+        add(property, new UserMessage(ERRORS_APP_ILLEGAL_TRANSITION));
         return this;
     }
 
@@ -690,7 +690,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsAppDbAlreadyDeleted(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_APP_DB_ALREADY_DELETED));
+        add(property, new UserMessage(ERRORS_APP_DB_ALREADY_DELETED));
         return this;
     }
 
@@ -704,7 +704,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsAppDbAlreadyUpdated(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_APP_DB_ALREADY_UPDATED));
+        add(property, new UserMessage(ERRORS_APP_DB_ALREADY_UPDATED));
         return this;
     }
 
@@ -718,7 +718,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsAppDbAlreadyExists(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_APP_DB_ALREADY_EXISTS));
+        add(property, new UserMessage(ERRORS_APP_DB_ALREADY_EXISTS));
         return this;
     }
 
@@ -732,7 +732,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsAppDoubleSubmitRequest(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_APP_DOUBLE_SUBMIT_REQUEST));
+        add(property, new UserMessage(ERRORS_APP_DOUBLE_SUBMIT_REQUEST));
         return this;
     }
 
@@ -746,7 +746,7 @@ public class HarborMessages extends HarborLabels {
      */
     public HarborMessages addErrorsSignupAccountAlreadyExists(String property) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS));
+        add(property, new UserMessage(ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS));
         return this;
     }
 }

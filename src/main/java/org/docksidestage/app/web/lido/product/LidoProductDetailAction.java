@@ -17,7 +17,6 @@ package org.docksidestage.app.web.lido.product;
 
 import javax.annotation.Resource;
 
-import org.dbflute.optional.OptionalEntity;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
@@ -28,8 +27,8 @@ import org.lastaflute.web.response.JsonResponse;
 // the 'lido' package is example for JSON API in simple project
 // client application is riot.js in lidoisle directory
 /**
+ * @author s.tadokoro
  * @author jflute
- * @author iwamatsu0430
  */
 @AllowAnyoneAccess
 public class LidoProductDetailAction extends HarborBaseAction {
@@ -45,19 +44,18 @@ public class LidoProductDetailAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public JsonResponse<ProductDetailBean> index(Integer productId) {
-        return selectProduct(productId).map(product -> {
-            return asJson(mappingToBean(product));
-        }).get();
+        Product product = selectProduct(productId);
+        return asJson(mappingToBean(product));
     }
 
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
-    private OptionalEntity<Product> selectProduct(int productId) {
+    private Product selectProduct(int productId) {
         return productBhv.selectEntity(cb -> {
             cb.setupSelect_ProductCategory();
             cb.query().setProductId_Equal(productId);
-        });
+        }).get();
     }
 
     // ===================================================================================

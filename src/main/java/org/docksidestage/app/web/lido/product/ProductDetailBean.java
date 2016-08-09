@@ -3,8 +3,8 @@ package org.docksidestage.app.web.lido.product;
 import org.lastaflute.web.validation.Required;
 
 /**
+ * @author s.tadokoro
  * @author jflute
- * @author iwamatsu0430
  */
 public class ProductDetailBean {
 

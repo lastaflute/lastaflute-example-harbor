@@ -24,12 +24,12 @@ import org.hibernate.validator.constraints.Length;
  */
 public class ProductSearchForm {
 
-    @Length(max = 10)
+    @Length(max = 10) // #simple_for_example just for validtion example
     public String productName;
 
     public CDef.ProductStatus productStatus;
 
-    @Length(max = 5)
+    @Length(max = 5) // #simple_for_example just for validtion example
     public String purchaseMemberName;
 
     @Override

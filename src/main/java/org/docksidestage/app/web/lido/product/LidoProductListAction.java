@@ -36,8 +36,8 @@ import org.lastaflute.web.response.JsonResponse;
 // the 'lido' package is example for JSON API in simple project
 // client application is riot.js in lidoisle directory
 /**
+ * @author s.tadokoro
  * @author jflute
- * @author iwamatsu0430
  */
 @AllowAnyoneAccess
 public class LidoProductListAction extends HarborBaseAction {
@@ -92,7 +92,7 @@ public class LidoProductListAction extends HarborBaseAction {
             }
             cb.query().addOrderBy_ProductName_Asc();
             cb.query().addOrderBy_ProductId_Asc();
-            cb.paging(Integer.MAX_VALUE, pageNumber); // Simple Implement for example.
+            cb.paging(Integer.MAX_VALUE, pageNumber); // #later: waiting for client side implementation by jflute
         });
     }
 

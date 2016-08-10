@@ -43,7 +43,7 @@ public class MemberAddAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index() {
         saveToken();
-        return asHtml(path_Member_MemberAddHtml).useForm(MemberAddForm.class);
+        return asHtml(path_Member_MemberAddHtml);
     }
 
     @Execute

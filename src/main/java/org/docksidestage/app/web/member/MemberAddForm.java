@@ -19,6 +19,7 @@ import java.time.LocalDate;
 
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.lastaflute.web.validation.Required;
+import org.lastaflute.web.validation.theme.conversion.ValidateTypeFailure;
 
 /**
  * @author jflute
@@ -31,6 +32,7 @@ public class MemberAddForm {
     @Required
     public String memberAccount;
 
+    @ValidateTypeFailure // using calendar so basically unneeded but just in case
     public LocalDate birthdate;
 
     @Required

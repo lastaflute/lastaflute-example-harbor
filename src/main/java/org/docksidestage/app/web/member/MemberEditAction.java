@@ -45,49 +45,22 @@ public class MemberEditAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer memberId) {
-        saveToken();
         Member member = selectMember(memberId);
+        saveToken();
         return asHtml(path_Member_MemberEditHtml).useForm(MemberEditForm.class, op -> op.setup(form -> {
-            form.memberId = member.getMemberId();
-            form.memberName = member.getMemberName();
-            form.memberAccount = member.getMemberAccount();
-            form.memberStatus = member.getMemberStatusCodeAsMemberStatus();
-            form.birthdate = member.getBirthdate();
-            displayAssist.toDate(member.getFormalizedDatetime()).ifPresent(formalizedDate -> {
-                form.formalizedDate = formalizedDate;
-            });
-            form.latestLoginDatetime = member.getLatestLoginDatetime();
-            form.updateDatetime = member.getUpdateDatetime();
-            form.previousStatus = member.getMemberStatusCodeAsMemberStatus(); // to determine new formalized member
-            form.versionNo = member.getVersionNo();
+            mappingToForm(member, form);
         }));
     }
 
     @Execute
     public HtmlResponse update(MemberEditForm form) {
-        verifyToken(() -> {
-            return asHtml(path_Member_MemberEditHtml);
-        });
         validate(form, messages -> {}, () -> {
             return asHtml(path_Member_MemberEditHtml);
         });
-        Member member = new Member();
-        member.setMemberId(form.memberId);
-        member.setMemberName(form.memberName);
-        displayAssist.toDate(form.birthdate).ifPresent(birthdate -> {
-            member.setBirthdate(birthdate);
+        verifyToken(() -> {
+            return asHtml(path_Error_ShowErrorsHtml);
         });
-        member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
-        member.setMemberAccount(form.memberAccount);
-        if (member.isMemberStatusCodeFormalized()) {
-            if (form.previousStatus.isShortOfFormalized()) {
-                member.setFormalizedDatetime(timeManager.currentDateTime());
-            }
-        } else if (member.isMemberStatusCode_ShortOfFormalized()) {
-            member.setFormalizedDatetime(null);
-        }
-        member.setVersionNo(form.versionNo);
-        memberBhv.update(member);
+        Member member = updateMember(form);
         return redirectById(MemberEditAction.class, member.getMemberId());
     }
 
@@ -107,13 +80,51 @@ public class MemberEditAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                              Select
     //                                                                              ======
-    protected Member selectMember(Integer memberId) {
+    private Member selectMember(Integer memberId) {
         return memberBhv.selectEntity(cb -> {
             cb.specify().derivedMemberLogin().max(loginCB -> {
                 loginCB.specify().columnLoginDatetime();
             }, Member.ALIAS_latestLoginDatetime);
             cb.query().setMemberId_Equal(memberId);
             cb.query().setMemberStatusCode_InScope_ServiceAvailable();
-        }).get(); // exclusive control if not found
+        }).get(); // automatically exclusive controlled if not found
+    }
+
+    // ===================================================================================
+    //                                                                              Update
+    //                                                                              ======
+    private Member updateMember(MemberEditForm form) {
+        Member member = new Member();
+        member.setMemberId(form.memberId);
+        member.setMemberName(form.memberName);
+        member.setBirthdate(displayAssist.toDate(form.birthdate).orElse(null)); // update as null if none
+        member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
+        member.setMemberAccount(form.memberAccount);
+        if (member.isMemberStatusCodeFormalized()) {
+            if (form.previousStatus.isShortOfFormalized()) {
+                member.setFormalizedDatetime(timeManager.currentDateTime());
+            }
+        } else if (member.isMemberStatusCode_ShortOfFormalized()) {
+            member.setFormalizedDatetime(null);
+        }
+        member.setVersionNo(form.versionNo);
+        memberBhv.update(member);
+        return member;
+    }
+
+    // ===================================================================================
+    //                                                                             Mapping
+    //                                                                             =======
+    private void mappingToForm(Member member, MemberEditForm form) {
+        form.memberId = member.getMemberId();
+        form.memberName = member.getMemberName();
+        form.memberAccount = member.getMemberAccount();
+        form.memberStatus = member.getMemberStatusCodeAsMemberStatus();
+        form.birthdate = member.getBirthdate();
+        form.formalizedDate = displayAssist.toDate(member.getFormalizedDatetime()).orElse(null);
+        form.latestLoginDatetime = member.getLatestLoginDatetime();
+        form.updateDatetime = member.getUpdateDatetime();
+        form.previousStatus = member.getMemberStatusCodeAsMemberStatus(); // to determine new formalized member
+        form.versionNo = member.getVersionNo();
     }
 }

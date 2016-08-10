@@ -17,16 +17,25 @@ package org.docksidestage.app.web.member;
 
 import java.time.LocalDate;
 
+import org.lastaflute.web.validation.Required;
+
 /**
  * @author jflute
  */
 public class MemberSearchRowBean {
 
+    @Required
     public Integer memberId;
+    @Required
     public String memberName;
+    @Required
     public String memberStatusName;
+    /** null if provisional member */
     public LocalDate formalizedDate;
+    @Required
     public String updateDatetime;
-    public boolean withdrawalMember;
+    @Required
+    public Boolean withdrawalMember; // wrapper type to avoid empty setting 
+    @Required
     public Integer purchaseCount;
 }

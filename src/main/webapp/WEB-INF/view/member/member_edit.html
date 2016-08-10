@@ -38,18 +38,28 @@
 	<section class="member-input-box">
 		<form th:action="@{/member/edit/}" action="#" method="post">
 			<input type="hidden" la:token="true"/>
+			<span la:errors="_global"/>
 			<table>
 				<tr>
 					<td>Member Name</td>
-					<td><input type="text" name="memberName" th:value="${memberName}" th:class="${errors.exists('memberName')} ? 'valid-error'"/></td>
+					<td>
+						<input type="text" name="memberName" th:value="${memberName}" th:class="${errors.exists('memberName')} ? 'valid-error'"/>
+						<span la:errors="memberName"/>
+					</td>
 				</tr>
 				<tr>
 					<td>Member Account</td>
-					<td><input type="text" name="memberAccount" th:value="${memberAccount}" th:class="${errors.exists('memberAccount')} ? 'valid-error'"/></td>
+					<td>
+						<input type="text" name="memberAccount" th:value="${memberAccount}" th:class="${errors.exists('memberAccount')} ? 'valid-error'"/>
+						<span la:errors="memberAccount"/>
+					</td>
 				</tr>
 				<tr>
 					<td>Birthdate</td>
-					<td><input type="date" name="birthdate" th:value="${birthdate}" th:class="${errors.exists('birthdate')} ? 'valid-error'"/></td>
+					<td>
+						<input type="date" name="birthdate" th:value="${birthdate}" th:class="${errors.exists('birthdate')} ? 'valid-error'"/>
+						<span la:errors="birthdate"/>
+					</td>
 				</tr>
 				<tr>
 					<td>Member Status</td>
@@ -58,6 +68,7 @@
 							<option value="" th:text="#{labels.listbox.caption.tell}"></option>
 							<option la:optionCls="MemberStatus"></option>
 						</select>
+						<span la:errors="memberStatus"/>
 					</td>
 				</tr>
 			</table>

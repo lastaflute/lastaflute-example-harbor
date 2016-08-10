@@ -67,6 +67,7 @@ public class MemberListAction extends HarborBaseAction {
     //                                                                              Select
     //                                                                              ======
     protected PagingResultBean<Member> selectMemberPage(int pageNumber, MemberSearchForm form) {
+        verifyOrIllegalTransition("The pageNumber should be positive number: " + pageNumber, pageNumber > 0);
         return memberBhv.selectPage(cb -> {
             cb.setupSelect_MemberStatus();
             cb.specify().derivedPurchase().count(purchaseCB -> {
@@ -111,10 +112,9 @@ public class MemberListAction extends HarborBaseAction {
         member.getMemberStatus().alwaysPresent(status -> {
             bean.memberStatusName = status.getMemberStatusName();
         });
-        LocalDateTime formalizedDatetime = member.getFormalizedDatetime();
-        if (formalizedDatetime != null) {
-            bean.formalizedDate = formalizedDatetime.toLocalDate();
-        }
+        displayAssist.toDate(member.getFormalizedDatetime()).ifPresent(date -> {
+            bean.formalizedDate = date;
+        });
         bean.updateDatetime = displayAssist.toStringDateTime(member.getUpdateDatetime()).get();
         bean.withdrawalMember = member.isMemberStatusCodeWithdrawal();
         bean.purchaseCount = member.getPurchaseCount();

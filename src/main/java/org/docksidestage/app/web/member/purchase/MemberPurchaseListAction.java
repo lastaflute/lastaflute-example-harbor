@@ -27,6 +27,9 @@ import org.lastaflute.web.servlet.request.ResponseManager;
  */
 public class MemberPurchaseListAction extends HarborBaseAction {
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     @Resource
     private ResponseManager responseManager;
 
@@ -35,7 +38,6 @@ public class MemberPurchaseListAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(Integer memberId, Integer pageNumber) {
-        responseManager.new404("now making...");
-        return null;
+        throw responseManager.new404("now making...");
     }
 }

@@ -27,18 +27,6 @@ public class HarborMessages extends HarborLabels {
     /** The serial version UID for object serialization. (Default) */
     private static final long serialVersionUID = 1L;
 
-    /** The key of the message: &lt;font color="red"&gt;&lt;ul&gt; */
-    public static final String ERRORS_HEADER = "{errors.header}";
-
-    /** The key of the message: &lt;/ul&gt;&lt;/font&gt; */
-    public static final String ERRORS_FOOTER = "{errors.footer}";
-
-    /** The key of the message: &lt;li&gt; */
-    public static final String ERRORS_PREFIX = "{errors.prefix}";
-
-    /** The key of the message: &lt;/li&gt; */
-    public static final String ERRORS_SUFFIX = "{errors.suffix}";
-
     /** The key of the message: must be false */
     public static final String CONSTRAINTS_AssertFalse_MESSAGE = "{constraints.AssertFalse.message}";
 
@@ -149,63 +137,6 @@ public class HarborMessages extends HarborLabels {
 
     /** The key of the message: the account already exists so input others */
     public static final String ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS = "{errors.signup.account.already.exists}";
-
-    /**
-     * Add the created action message for the key 'errors.header' with parameters.
-     * <pre>
-     * message: &lt;font color="red"&gt;&lt;ul&gt;
-     * comment: ------------
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsHeader(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_HEADER));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'errors.footer' with parameters.
-     * <pre>
-     * message: &lt;/ul&gt;&lt;/font&gt;
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsFooter(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_FOOTER));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'errors.prefix' with parameters.
-     * <pre>
-     * message: &lt;li&gt;
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsPrefix(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_PREFIX));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'errors.suffix' with parameters.
-     * <pre>
-     * message: &lt;/li&gt;
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsSuffix(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_SUFFIX));
-        return this;
-    }
 
     /**
      * Add the created action message for the key 'constraints.AssertFalse.message' with parameters.

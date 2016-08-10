@@ -35,6 +35,7 @@ public class ProductSearchRowBean {
     public String productCategory;
     @Required
     public Integer regularPrice;
+
     public LocalDate latestPurchaseDate;
 
     @Override

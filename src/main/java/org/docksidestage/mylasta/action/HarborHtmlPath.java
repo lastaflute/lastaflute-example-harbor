@@ -50,6 +50,9 @@ public interface HarborHtmlPath {
     /** The path of the HTML: /signin/signin.html */
     HtmlNext path_Signin_SigninHtml = new HtmlNext("/signin/signin.html");
 
+    /** The path of the HTML: /signin/signin_reminder.html */
+    HtmlNext path_Signin_SigninReminderHtml = new HtmlNext("/signin/signin_reminder.html");
+
     /** The path of the HTML: /signup/signup.html */
     HtmlNext path_Signup_SignupHtml = new HtmlNext("/signup/signup.html");
 

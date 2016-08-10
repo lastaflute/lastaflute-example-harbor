@@ -29,6 +29,6 @@ public class ProductSearchBody {
 
     public CDef.ProductStatus productStatus;
 
-    @Length(max = 10) // #simple_for_example just for validtion example
+    @Length(max = 5) // #simple_for_example just for validtion example
     public String purchaseMemberName;
 }

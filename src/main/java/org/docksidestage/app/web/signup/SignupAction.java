@@ -71,7 +71,7 @@ public class SignupAction extends HarborBaseAction {
         validate(form, messages -> moreValidate(form, messages), () -> {
             return asHtml(path_Signup_SignupHtml);
         });
-        Integer memberId = newMember(form);
+        Integer memberId = insertProvisionalMember(form);
         loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
 
         String signupToken = saveSignupToken();
@@ -108,9 +108,9 @@ public class SignupAction extends HarborBaseAction {
     }
 
     @Execute
-    public HtmlResponse register(String account, String token) { // from mail link
+    public HtmlResponse formalize(String account, String token) { // from mail link
         verifySignupTokenMatched(account, token);
-        updateStatusFormalized(account);
+        updateMemberAsFormalized(account);
         return redirect(SigninAction.class);
     }
 
@@ -126,7 +126,7 @@ public class SignupAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    private Integer newMember(SignupForm form) {
+    private Integer insertProvisionalMember(SignupForm form) {
         Member member = new Member();
         member.setMemberName(form.memberName);
         member.setMemberAccount(form.memberAccount);
@@ -149,9 +149,9 @@ public class SignupAction extends HarborBaseAction {
         return member.getMemberId();
     }
 
-    private void updateStatusFormalized(String account) {
+    private void updateMemberAsFormalized(String account) {
         Member member = new Member();
-        member.setMemberAccount(account);
+        member.uniqueBy(account);
         member.setMemberStatusCode_Formalized();
         memberBhv.updateNonstrict(member);
     }

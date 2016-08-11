@@ -38,6 +38,7 @@ public class MemberSearchForm {
 
     @ValidateTypeFailure // you can customize message by "constraints.TypeLocalDate.message"
     public LocalDate formalizedFrom;
+
     @ValidateTypeFailure
     public LocalDate formalizedTo;
 }

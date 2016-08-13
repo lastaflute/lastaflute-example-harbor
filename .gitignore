@@ -1,6 +1,8 @@
 /target
 /bin
-/dbflute-intro.jar
 /*.iml
 /.idea
 .DS_Store
+/tomcat.*
+/dbflute-intro.jar
+trial_config.ignored

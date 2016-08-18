@@ -36,7 +36,7 @@ public class ProfileAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    protected MemberBhv memberBhv;
+    private MemberBhv memberBhv;
 
     // ===================================================================================
     //                                                                             Execute

@@ -15,6 +15,7 @@
  */
 package org.docksidestage.app.web.lido.product;
 
+import org.docksidestage.mylasta.helper.MyToString;
 import org.lastaflute.web.validation.Required;
 
 /**
@@ -31,4 +32,9 @@ public class ProductRowBean {
     public String productStatusName;
     @Required
     public Integer regularPrice;
+
+    @Override
+    public String toString() {
+        return MyToString.of(this);
+    }
 }

@@ -16,10 +16,9 @@ public class ProductListActionTest extends UnitHarborTestCase {
         inject(action);
         ProductSearchForm form = new ProductSearchForm();
         form.productName = "a";
-        int pageNumber = 2;
 
         // ## Act ##
-        HtmlResponse response = action.index(OptionalThing.of(pageNumber), form);
+        HtmlResponse response = action.index(OptionalThing.of(2), form);
 
         // ## Assert ##
         TestingHtmlData htmlData = validateHtmlData(response);

@@ -24,7 +24,7 @@ import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.paging.PagingAssist;
-import org.docksidestage.app.web.base.paging.SearchPagingBean;
+import org.docksidestage.app.web.base.paging.SearchPagingResult;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exbhv.ProductStatusBhv;
 import org.docksidestage.dbflute.exentity.Product;
@@ -56,15 +56,15 @@ public class LidoProductListAction extends HarborBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<SearchPagingBean<ProductRowBean>> index(OptionalThing<Integer> pageNumber, ProductSearchBody body) {
+    public JsonResponse<SearchPagingResult<ProductRowResult>> index(OptionalThing<Integer> pageNumber, ProductSearchBody body) {
         validateApi(body, messages -> {});
 
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), body);
-        List<ProductRowBean> items = page.stream().map(product -> {
+        List<ProductRowResult> items = page.stream().map(product -> {
             return mappingToBean(product);
         }).collect(Collectors.toList());
 
-        SearchPagingBean<ProductRowBean> bean = pagingAssist.createPagingBean(page, items);
+        SearchPagingResult<ProductRowResult> bean = pagingAssist.createPagingBean(page, items);
         return asJson(bean);
     }
 
@@ -99,8 +99,8 @@ public class LidoProductListAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
-    private ProductRowBean mappingToBean(Product product) {
-        ProductRowBean bean = new ProductRowBean();
+    private ProductRowResult mappingToBean(Product product) {
+        ProductRowResult bean = new ProductRowResult();
         bean.productId = product.getProductId();
         bean.productName = product.getProductName();
         product.getProductStatus().alwaysPresent(status -> {

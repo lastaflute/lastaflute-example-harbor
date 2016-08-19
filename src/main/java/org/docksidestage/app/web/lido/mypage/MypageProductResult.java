@@ -6,14 +6,14 @@ import org.lastaflute.web.validation.Required;
 /**
  * @author jflute
  */
-public class MypageProductBean {
+public class MypageProductResult {
 
     @Required
     public final String productName;
     @Required
     public final Integer regularPrice;
 
-    public MypageProductBean(Product product) {
+    public MypageProductResult(Product product) {
         this.productName = product.getProductName();
         this.regularPrice = product.getRegularPrice();
     }

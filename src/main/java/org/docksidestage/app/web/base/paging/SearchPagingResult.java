@@ -29,7 +29,7 @@ import org.lastaflute.web.validation.Required;
  * @author iwamatsu0430
  * @author jflute
  */
-public class SearchPagingBean<BEAN> { // #app_customize
+public class SearchPagingResult<BEAN> { // #app_customize
 
     /** page size */
     @Required
@@ -52,7 +52,7 @@ public class SearchPagingBean<BEAN> { // #app_customize
     @Valid
     public final List<BEAN> items;
 
-    public SearchPagingBean(PagingResultBean<? extends Entity> page, List<BEAN> items) {
+    public SearchPagingResult(PagingResultBean<? extends Entity> page, List<BEAN> items) {
         this.itemsPerPage = page.getPageSize();
         this.currentPage = page.getCurrentPageNumber();
         this.totalItems = page.getAllRecordCount();

@@ -43,7 +43,7 @@ public class LidoProductDetailAction extends HarborBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<ProductDetailBean> index(Integer productId) {
+    public JsonResponse<ProductDetailResult> index(Integer productId) {
         Product product = selectProduct(productId);
         return asJson(mappingToBean(product));
     }
@@ -61,8 +61,8 @@ public class LidoProductDetailAction extends HarborBaseAction {
     // ===================================================================================
     //                                                                             Mapping
     //                                                                             =======
-    private ProductDetailBean mappingToBean(Product product) {
-        ProductDetailBean bean = new ProductDetailBean();
+    private ProductDetailResult mappingToBean(Product product) {
+        ProductDetailResult bean = new ProductDetailResult();
         bean.productId = product.getProductId();
         bean.productName = product.getProductName();
         bean.regularPrice = product.getRegularPrice();

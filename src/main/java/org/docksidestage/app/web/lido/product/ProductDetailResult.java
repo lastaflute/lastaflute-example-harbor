@@ -6,7 +6,7 @@ import org.lastaflute.web.validation.Required;
  * @author s.tadokoro
  * @author jflute
  */
-public class ProductDetailBean {
+public class ProductDetailResult {
 
     @Required
     public Integer productId;

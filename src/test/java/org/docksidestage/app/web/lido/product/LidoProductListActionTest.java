@@ -2,7 +2,7 @@ package org.docksidestage.app.web.lido.product;
 
 import org.dbflute.optional.OptionalThing;
 import org.dbflute.utflute.lastaflute.mock.TestingJsonData;
-import org.docksidestage.app.web.base.paging.SearchPagingBean;
+import org.docksidestage.app.web.base.paging.SearchPagingResult;
 import org.docksidestage.unit.UnitHarborTestCase;
 import org.lastaflute.web.response.JsonResponse;
 
@@ -19,11 +19,11 @@ public class LidoProductListActionTest extends UnitHarborTestCase {
         body.productName = "P";
 
         // ## Act ##
-        JsonResponse<SearchPagingBean<ProductRowBean>> response = action.index(OptionalThing.of(1), body);
+        JsonResponse<SearchPagingResult<ProductRowResult>> response = action.index(OptionalThing.of(1), body);
 
         // ## Assert ##
         showJson(response);
-        TestingJsonData<SearchPagingBean<ProductRowBean>> data = validateJsonData(response);
+        TestingJsonData<SearchPagingResult<ProductRowResult>> data = validateJsonData(response);
         data.getJsonBean().items.forEach(bean -> {
             log(bean);
             assertTrue(bean.productName.contains(body.productName));

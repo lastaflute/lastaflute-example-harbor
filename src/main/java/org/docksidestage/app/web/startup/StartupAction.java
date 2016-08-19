@@ -5,13 +5,12 @@ import java.io.File;
 import javax.annotation.Resource;
 
 import org.dbflute.util.DfResourceUtil;
+import org.dbflute.util.Srl;
 import org.docksidestage.app.logic.startup.StartupLogic;
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.lastaflute.core.magic.async.AsyncManager;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
-import org.lastaflute.web.response.render.RenderData;
 
 /**
  * @author iwamatsu0430
@@ -24,8 +23,6 @@ public class StartupAction extends HarborBaseAction {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private AsyncManager asyncManager;
-    @Resource
     private StartupLogic startupLogic;
 
     // ===================================================================================
@@ -33,42 +30,30 @@ public class StartupAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index() {
-        return asHtml(path_Startup_StartupHtml).useForm(StartupForm.class).renderWith(data -> {
-            registerBean(data, new StartupBean());
-        });
+        return asHtml(path_Startup_StartupHtml);
     }
 
     @Execute
     public HtmlResponse create(StartupForm form) {
-        validate(form, message -> {}, () -> {
-            return asHtml(path_Startup_StartupHtml).renderWith(data -> {
-                registerBean(data, new StartupBean());
-            });
+        validate(form, messages -> {}, () -> {
+            return asHtml(path_Startup_StartupHtml);
         });
 
-        final String domain = form.domain;
-        final String serviceName = form.serviceName;
-        final File projectDir = getProjectDir();
-        asyncManager.async(() -> startupLogic.toHarbor(projectDir, domain, serviceName));
+        File projectDir = getProjectDir();
+        startupLogic.toHarbor(projectDir, form.domain, form.serviceName);
 
-        StartupBean bean = mappingToBean(serviceName, projectDir);
+        StartupBean bean = mappingToBean(form, projectDir);
         return asHtml(path_Startup_StartupHtml).renderWith(data -> {
-            registerBean(data, bean);
+            data.register("bean", bean);
         });
     }
 
-    private File getProjectDir() {
+    private File getProjectDir() { // e.g. [workspace]/[project]/target/classes
         return DfResourceUtil.getBuildDir(getClass()).getParentFile().getParentFile();
     }
 
-    private StartupBean mappingToBean(String serviceName, File projectDir) {
-        StartupBean bean = new StartupBean();
-        bean.isComplete = true;
-        bean.projectPath = projectDir.getPath() + "/" + serviceName;
-        return bean;
-    }
-
-    private void registerBean(RenderData data, StartupBean bean) {
-        data.register("bean", bean);
+    private StartupBean mappingToBean(StartupForm form, File projectDir) {
+        String projectPath = Srl.replace(projectDir.getParentFile().getPath(), "\\", "/") + "/" + form.serviceName;
+        return new StartupBean(projectPath);
     }
 }

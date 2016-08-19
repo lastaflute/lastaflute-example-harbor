@@ -162,6 +162,28 @@
 }
 
 /* ---------------------------------------------------------------------------------------
+                                                                                   Startup
+                                                                                   ---- */
+.startup-box {
+	width: 420px;
+	margin: 32px auto;
+	border: solid 4px #E5E5E5;
+	padding: 24px 64px;
+}
+.startup-list {
+	margin: 8px auto 0;
+}
+.startup-list li {
+	height: 32px;
+}
+.startup-result-box {
+	margin: 8px auto;
+}
+.startup-result-path {
+	color: #771143;
+}
+
+/* ---------------------------------------------------------------------------------------
                                                                                 Withdrawal
                                                                                 ------- */
 .withdrawal-box {
@@ -173,12 +195,12 @@
 .select-withdrawal-reason {
 	margin: 32px auto 0;
 }
-.withdrawal-reason-list{
+.withdrawal-reason-list {
 	margin: 8px auto 0;
 }
-.withdrawal-reason-element{
+.withdrawal-reason-element {
 	padding: 5px;
 }
-.withdrawal-write-reason{
+.withdrawal-write-reason {
 	margin:5px 0px;
 }

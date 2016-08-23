@@ -44,12 +44,12 @@ public class PagingAssist { // #app_customize
     //                                                                       JSON Response
     //                                                                       =============
     /**
-     * Create paging bean for JSON response.
+     * Create paging result for JSON response.
      * @param page The selected result bean of paging. (NotNull)
      * @param items The list of actual data to display. (NotNull)
-     * @return The new-created bean of paging. (NotNull)
+     * @return The new-created result of paging. (NotNull)
      */
-    public <ENTITY extends Entity, BEAN> SearchPagingResult<BEAN> createPagingBean(PagingResultBean<ENTITY> page, List<BEAN> items) { // application may call
+    public <ENTITY extends Entity, BEAN> SearchPagingResult<BEAN> createPagingResult(PagingResultBean<ENTITY> page, List<BEAN> items) { // application may call
         return new SearchPagingResult<BEAN>(page, items);
     }
 }

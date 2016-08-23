@@ -64,8 +64,8 @@ public class LidoProductListAction extends HarborBaseAction {
             return mappingToBean(product);
         }).collect(Collectors.toList());
 
-        SearchPagingResult<ProductRowResult> bean = pagingAssist.createPagingBean(page, items);
-        return asJson(bean);
+        SearchPagingResult<ProductRowResult> result = pagingAssist.createPagingResult(page, items);
+        return asJson(result);
     }
 
     // ===================================================================================

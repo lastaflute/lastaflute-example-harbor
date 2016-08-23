@@ -31,32 +31,32 @@ import org.lastaflute.web.validation.Required;
  */
 public class SearchPagingResult<BEAN> { // #app_customize
 
-    /** page size */
+    /** row count per one page */
     @Required
-    public final Integer itemsPerPage;
+    public final Integer pageSize;
 
-    /** current page number */
+    /** number of current page */
     @Required
-    public final Integer currentPage;
+    public final Integer currentPageNumber;
 
-    /** count of total items (records) */
+    /** count of all records */
     @Required
-    public final Integer totalItems;
+    public final Integer allRecordCount;
 
-    /** count of total pages */
+    /** count of all pages */
     @Required
-    public final Integer totalPages;
+    public final Integer allPageCount;
 
-    /** paging data */
+    /** paging data for current page */
     @NotNull
     @Valid
-    public final List<BEAN> items;
+    public final List<BEAN> rows;
 
-    public SearchPagingResult(PagingResultBean<? extends Entity> page, List<BEAN> items) {
-        this.itemsPerPage = page.getPageSize();
-        this.currentPage = page.getCurrentPageNumber();
-        this.totalItems = page.getAllRecordCount();
-        this.totalPages = page.getAllPageCount();
-        this.items = items;
+    public SearchPagingResult(PagingResultBean<? extends Entity> page, List<BEAN> rows) {
+        this.pageSize = page.getPageSize();
+        this.currentPageNumber = page.getCurrentPageNumber();
+        this.allRecordCount = page.getAllRecordCount();
+        this.allPageCount = page.getAllPageCount();
+        this.rows = rows;
     }
 }

@@ -51,7 +51,7 @@ public class HarborLoginAssist extends TypicalLoginAssist<Integer, HarborUserBea
     @Resource
     private TransactionStage transactionStage;
     @Resource
-    private HarborConfig harborConfig;
+    private HarborConfig config;
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -93,7 +93,7 @@ public class HarborLoginAssist extends TypicalLoginAssist<Integer, HarborUserBea
 
     @Override
     protected OptionalThing<String> getCookieRememberMeKey() {
-        return OptionalThing.of(harborConfig.getCookieRememberMeHarborKey());
+        return OptionalThing.of(config.getCookieRememberMeHarborKey());
     }
 
     @Override

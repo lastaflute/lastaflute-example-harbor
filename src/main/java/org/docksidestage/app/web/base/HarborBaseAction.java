@@ -17,7 +17,6 @@ package org.docksidestage.app.web.base;
 
 import javax.annotation.Resource;
 
-import org.dbflute.optional.OptionalObject;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.logic.context.AccessContextLogic;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
@@ -126,7 +125,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
 
     @Override
     protected OptionalThing<String> myUserType() { // for framework
-        return OptionalObject.of(USER_TYPE);
+        return OptionalThing.of(USER_TYPE);
     }
 
     @Override

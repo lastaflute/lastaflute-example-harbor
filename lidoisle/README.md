@@ -1,10 +1,15 @@
-# LidoIsle
+LidoIsle
+=======================
 Client for Maihama Harbor
 
-## How To Run
-1. `$ cd lidoisle`
-2. `$ bower install`
-3. `$ npm install`
-4. `$ gulp serve`
+# How to set up
+1. (install node, gulp, bower if non-existent in your computer)
+ 1. `$ brew install node`
+ 2. `$ npm install -g gulp`
+ 3. `$ npm install -g bower`
+2. install components of bower, npm for application (at lidoisle directory)
+ 1. `$ bower install`
+ 2. `$ npm install`
 
-do with `sudo` if not permitted.
+# How to boot
+`$ gulp serve`

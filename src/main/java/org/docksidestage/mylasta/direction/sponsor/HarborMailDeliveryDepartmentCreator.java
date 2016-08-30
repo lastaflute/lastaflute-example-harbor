@@ -43,13 +43,13 @@ public class HarborMailDeliveryDepartmentCreator {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final HarborConfig harborConfig;
+    protected final HarborConfig config;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public HarborMailDeliveryDepartmentCreator(HarborConfig harborConfig) {
-        this.harborConfig = harborConfig;
+    public HarborMailDeliveryDepartmentCreator(HarborConfig config) {
+        this.config = config;
     }
 
     // ===================================================================================
@@ -65,10 +65,10 @@ public class HarborMailDeliveryDepartmentCreator {
     protected SMailPostalParkingLot createPostalParkingLot() {
         final SMailPostalParkingLot parkingLot = new SMailPostalParkingLot();
         final SMailPostalMotorbike motorbike = new SMailPostalMotorbike();
-        final String hostAndPort = harborConfig.getMailSmtpServerMainHostAndPort();
+        final String hostAndPort = config.getMailSmtpServerMainHostAndPort();
         final List<String> hostPortList = DfStringUtil.splitListTrimmed(hostAndPort, ":");
         motorbike.registerConnectionInfo(hostPortList.get(0), Integer.parseInt(hostPortList.get(1)));
-        motorbike.registerReturnPath(harborConfig.getMailReturnPath());
+        motorbike.registerReturnPath(config.getMailReturnPath());
         parkingLot.registerMotorbikeAsMain(motorbike);
         return parkingLot;
     }
@@ -78,11 +78,11 @@ public class HarborMailDeliveryDepartmentCreator {
     //                                      ----------------
     protected SMailPostalPersonnel createPostalPersonnel() {
         final SMailDogmaticPostalPersonnel personnel = createDogmaticPostalPersonnel();
-        return harborConfig.isMailSendMock() ? personnel.asTraining() : personnel;
+        return config.isMailSendMock() ? personnel.asTraining() : personnel;
     }
 
     protected SMailDogmaticPostalPersonnel createDogmaticPostalPersonnel() { // #ext_point e.g. locale, database
-        final String testPrefix = harborConfig.getMailSubjectTestPrefix();
+        final String testPrefix = config.getMailSubjectTestPrefix();
         final AsyncManager asyncManager = getAsyncManager();
         final MessageManager messageManager = getMessageManager();
         return new SMailDogmaticPostalPersonnel() {

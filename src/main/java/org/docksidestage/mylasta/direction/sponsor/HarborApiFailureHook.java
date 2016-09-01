@@ -28,6 +28,7 @@ import org.lastaflute.web.login.exception.LoginFailureException;
 import org.lastaflute.web.login.exception.LoginRequiredException;
 import org.lastaflute.web.response.ApiResponse;
 import org.lastaflute.web.response.JsonResponse;
+import org.lastaflute.web.validation.Required;
 
 /**
  * @author jflute
@@ -35,7 +36,7 @@ import org.lastaflute.web.response.JsonResponse;
 public class HarborApiFailureHook implements ApiFailureHook { // #change_it for handling API failure
 
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-    // [Front-side Implementation Image]
+    // [Front-side Implementation Example]
     //
     // if (HTTP Status: 200) { // success
     //     XxxJsonBean bean = parseJsonAsSuccess(response);
@@ -68,8 +69,8 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                    ================
     @Override
     public ApiResponse handleValidationError(ApiFailureResource resource) {
-        final TooSimpleFailureBean bean = createFailureBean(TooSimpleFailureType.VALIDATION_ERROR, resource);
-        return asJson(bean).httpStatus(BUSINESS_FAILURE_STATUS);
+        final TooSimpleFailureResult result = createFailureResult(TooSimpleFailureType.VALIDATION_ERROR, resource);
+        return asJson(result).httpStatus(BUSINESS_FAILURE_STATUS);
     }
 
     @Override
@@ -77,8 +78,8 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
         final TooSimpleFailureType failureType = failureTypeMapping.findAssignable(cause).orElseGet(() -> {
             return TooSimpleFailureType.APPLICATION_EXCEPTION;
         });
-        final TooSimpleFailureBean bean = createFailureBean(failureType, resource);
-        return asJson(bean).httpStatus(BUSINESS_FAILURE_STATUS);
+        final TooSimpleFailureResult result = createFailureResult(failureType, resource);
+        return asJson(result).httpStatus(BUSINESS_FAILURE_STATUS);
     }
 
     // ===================================================================================
@@ -86,8 +87,8 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                      ==============
     @Override
     public OptionalThing<ApiResponse> handleClientException(ApiFailureResource resource, RuntimeException cause) {
-        final TooSimpleFailureBean bean = createFailureBean(TooSimpleFailureType.CLIENT_EXCEPTION, resource);
-        return OptionalThing.of(asJson(bean)); // HTTP status will be automatically sent as client error for the cause
+        final TooSimpleFailureResult result = createFailureResult(TooSimpleFailureType.CLIENT_EXCEPTION, resource);
+        return OptionalThing.of(asJson(result)); // HTTP status will be automatically sent as client error for the cause
     }
 
     @Override
@@ -98,21 +99,23 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     // ===================================================================================
     //                                                                        Assist Logic
     //                                                                        ============
-    protected JsonResponse<TooSimpleFailureBean> asJson(TooSimpleFailureBean bean) {
-        return new JsonResponse<TooSimpleFailureBean>(bean);
+    protected JsonResponse<TooSimpleFailureResult> asJson(TooSimpleFailureResult result) {
+        return new JsonResponse<TooSimpleFailureResult>(result);
     }
 
-    protected TooSimpleFailureBean createFailureBean(TooSimpleFailureType failureType, ApiFailureResource resource) {
-        return new TooSimpleFailureBean(failureType, resource.getPropertyMessageMap());
+    protected TooSimpleFailureResult createFailureResult(TooSimpleFailureType failureType, ApiFailureResource resource) {
+        return new TooSimpleFailureResult(failureType, resource.getPropertyMessageMap());
     }
 
-    public static class TooSimpleFailureBean {
+    public static class TooSimpleFailureResult {
 
         public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
+        @Required
         public final TooSimpleFailureType failureType;
+        @Required
         public final Map<String, List<String>> messageMap;
 
-        public TooSimpleFailureBean(TooSimpleFailureType failureType, Map<String, List<String>> messageMap) {
+        public TooSimpleFailureResult(TooSimpleFailureType failureType, Map<String, List<String>> messageMap) {
             this.failureType = failureType;
             this.messageMap = messageMap;
         }
@@ -122,6 +125,6 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
         VALIDATION_ERROR // special type
         , LOGIN_FAILURE, LOGIN_REQUIRED // specific type of application exception
         , APPLICATION_EXCEPTION // default type of application exception
-        , CLIENT_EXCEPTION
+        , CLIENT_EXCEPTION // e.g. 404 not found
     }
 }

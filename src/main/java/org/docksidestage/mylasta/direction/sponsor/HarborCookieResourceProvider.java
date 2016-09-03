@@ -24,20 +24,20 @@ import org.lastaflute.web.servlet.cookie.CookieResourceProvider;
  */
 public class HarborCookieResourceProvider implements CookieResourceProvider {
 
-    protected final HarborConfig harborConfig;
+    protected final HarborConfig config;
     protected final InvertibleCryptographer cookieCipher;
 
-    public HarborCookieResourceProvider(HarborConfig harborConfig, InvertibleCryptographer cookieCipher) {
-        this.harborConfig = harborConfig;
+    public HarborCookieResourceProvider(HarborConfig config, InvertibleCryptographer cookieCipher) {
+        this.config = config;
         this.cookieCipher = cookieCipher;
     }
 
     public String provideDefaultPath() {
-        return harborConfig.getCookieDefaultPath();
+        return config.getCookieDefaultPath();
     }
 
     public Integer provideDefaultExpire() {
-        return harborConfig.getCookieDefaultExpireAsInteger();
+        return config.getCookieDefaultExpireAsInteger();
     }
 
     public InvertibleCryptographer provideCipher() {

@@ -49,7 +49,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     //                                                                           Attribute
     //                                                                           =========
     @Resource
-    private HarborConfig harborConfig;
+    private HarborConfig config;
 
     // ===================================================================================
     //                                                                              Assist
@@ -65,14 +65,14 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     @Override
     protected void prepareCoreDirection(FwCoreDirection direction) {
         // this configuration is on harbor_env.properties because this is true only when development
-        direction.directDevelopmentHere(harborConfig.isDevelopmentHere());
+        direction.directDevelopmentHere(config.isDevelopmentHere());
 
         // titles of the application for logging are from configurations
-        direction.directLoggingTitle(harborConfig.getDomainTitle(), harborConfig.getEnvironmentTitle());
+        direction.directLoggingTitle(config.getDomainTitle(), config.getEnvironmentTitle());
 
         // this configuration is on sea_env.properties because it has no influence to production
         // even if you set true manually and forget to set false back
-        direction.directFrameworkDebug(harborConfig.isFrameworkDebug()); // basically false
+        direction.directFrameworkDebug(config.isFrameworkDebug()); // basically false
 
         // you can add your own process when your application is booting
         direction.directCurtainBefore(createCurtainBeforeHook());
@@ -94,7 +94,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected HarborTimeResourceProvider createTimeResourceProvider() {
-        return new HarborTimeResourceProvider(harborConfig);
+        return new HarborTimeResourceProvider(config);
     }
 
     protected HarborJsonResourceProvider createJsonResourceProvider() {
@@ -102,7 +102,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected HarborMailDeliveryDepartmentCreator createMailDeliveryDepartmentCreator() {
-        return new HarborMailDeliveryDepartmentCreator(harborConfig);
+        return new HarborMailDeliveryDepartmentCreator(config);
     }
 
     // ===================================================================================
@@ -141,7 +141,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected HarborCookieResourceProvider createCookieResourceProvider() { // #change_it_first
         final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dockside:harbor:");
-        return new HarborCookieResourceProvider(harborConfig, cr);
+        return new HarborCookieResourceProvider(config, cr);
     }
 
     protected HarborActionAdjustmentProvider createActionAdjustmentProvider() {
@@ -153,6 +153,6 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected HtmlRenderingProvider createHtmlRenderingProvider() {
-        return new ThymeleafRenderingProvider().asDevelopment(harborConfig.isDevelopmentHere());
+        return new ThymeleafRenderingProvider().asDevelopment(config.isDevelopmentHere());
     }
 }

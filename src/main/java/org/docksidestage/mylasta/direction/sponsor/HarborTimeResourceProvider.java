@@ -28,13 +28,13 @@ public class HarborTimeResourceProvider extends TypicalTimeResourceProvider {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final HarborConfig harborConfig;
+    protected final HarborConfig config;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public HarborTimeResourceProvider(HarborConfig harborConfig) {
-        this.harborConfig = harborConfig;
+    public HarborTimeResourceProvider(HarborConfig config) {
+        this.config = config;
     }
 
     // ===================================================================================
@@ -50,11 +50,11 @@ public class HarborTimeResourceProvider extends TypicalTimeResourceProvider {
     //                                                                     ===============
     @Override
     protected String getTimeAdjustTimeMillis() {
-        return harborConfig.getTimeAdjustTimeMillis();
+        return config.getTimeAdjustTimeMillis();
     }
 
     @Override
     protected Long getTimeAdjustTimeMillisAsLong() {
-        return harborConfig.getTimeAdjustTimeMillisAsLong();
+        return config.getTimeAdjustTimeMillisAsLong();
     }
 }

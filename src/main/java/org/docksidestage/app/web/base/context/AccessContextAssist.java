@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.app.logic.context;
+package org.docksidestage.app.web.base.context;
 
 import javax.annotation.Resource;
 
@@ -26,7 +26,7 @@ import org.lastaflute.db.dbflute.accesscontext.AccessContextResource;
 /**
  * @author jflute
  */
-public class AccessContextLogic {
+public class AccessContextAssist {
 
     // ===================================================================================
     //                                                                           Attribute

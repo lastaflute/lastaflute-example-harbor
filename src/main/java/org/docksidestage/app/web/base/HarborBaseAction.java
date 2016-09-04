@@ -99,7 +99,9 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     @Override
     protected AccessContextArranger newAccessContextArranger() { // for framework
         return resource -> {
-            return accessContextLogic.create(resource, () -> myUserType(), () -> getUserBean(), () -> myAppType());
+            return accessContextLogic.create(resource, () -> myUserType(), () -> getUserBean().map(userBean -> {
+                return userBean.getUserId(); // as user expression
+            }), () -> myAppType());
         };
     }
 

@@ -34,7 +34,7 @@ public class StartupLogic {
             String filtered = original;
             filtered = replace(filtered, "lastaflute-example-harbor", Srl.initUncap(serviceName));
             filtered = replace(filtered, "maihamadb", Srl.initUncap(serviceName) + (!serviceName.endsWith("db") ? "db" : ""));
-            filtered = replace(filtered, "org/docksidestage", replace(packageName, ".", "/"));
+            filtered = replace(filtered, "org/docksidestage", replace(packageName, ".", "/")); // for file path
             filtered = replace(filtered, "docksidestage.org", domain);
             filtered = replace(filtered, "org.docksidestage", packageName);
             filtered = replace(filtered, "Harbor", Srl.initCap(serviceName));
@@ -45,7 +45,7 @@ public class StartupLogic {
         }).newProject();
     }
 
-    protected String buildPackageName(String domain) {
+    protected String buildPackageName(String domain) { // e.g. docksidestage.org to org.docksidestage
         List<String> elementList = new ArrayList<String>(Arrays.asList(domain.split("\\.")));
         Collections.reverse(elementList);
         return elementList.stream().reduce((left, right) -> left + "." + right).get();

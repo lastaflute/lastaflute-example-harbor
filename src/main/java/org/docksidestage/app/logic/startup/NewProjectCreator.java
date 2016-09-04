@@ -86,10 +86,10 @@ public class NewProjectCreator {
         } catch (IOException e) {
             throw new IllegalStateException("Failed to get canonical path: " + currentFile);
         }
-        if (isAppResource(canonicalPath) && !isAppMigrated(canonicalPath)) {
+        if (isAppResource(canonicalPath) && !isAppMigrated(canonicalPath)) { // e.g. app.product
             return false;
         }
-        if (isWebInfViewResource(canonicalPath) && !isViewMigrated(canonicalPath)) {
+        if (isWebInfViewResource(canonicalPath) && !isViewMigrated(canonicalPath)) { // e.g. /view/product
             return false;
         }
         if (isMyLastaOnlyExample(canonicalPath) // e.g. mail
@@ -138,12 +138,12 @@ public class NewProjectCreator {
                 filtered = textIO.readFilteringLine(canonicalPath, createDatabaseInfoMapFilter());
             } else if (canonicalPath.endsWith("documentMap.dfprop")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createDocumentMapFilter());
+            } else if (canonicalPath.endsWith("lastafluteMap.dfprop")) {
+                filtered = textIO.readFilteringLine(canonicalPath, createLastaFluteMapFilter());
             } else if (canonicalPath.endsWith("_env.properties")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createEnvPropertiesFilter());
             } else if (canonicalPath.endsWith("pom.xml")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createPomXmlFilter());
-            } else if (canonicalPath.endsWith("lastafluteMap.dfprop")) {
-                filtered = textIO.readFilteringLine(canonicalPath, createLastaFluteMapFilter());
             } else if (canonicalPath.endsWith("HarborFwAssistantDirector.java")) {
                 filtered = textIO.readFilteringLine(canonicalPath, createFwAssistantDirectorFilter());
             } else {
@@ -165,6 +165,12 @@ public class NewProjectCreator {
         }
     }
 
+    // ===================================================================================
+    //                                                                       Create Filter
+    //                                                                       =============
+    // -----------------------------------------------------
+    //                                  Configuration Filter
+    //                                  --------------------
     protected FileTextLineFilter createAdditionalForeignKeyFilter() {
         return new FileTextLineFilter() {
             private boolean skipped;
@@ -235,14 +241,6 @@ public class NewProjectCreator {
         return line -> filterServiceName(filterJdbcSettings(line));
     }
 
-    protected FileTextLineFilter createEnvPropertiesFilter() {
-        return line -> filterServiceName(filterJdbcSettings(line));
-    }
-
-    protected FileTextLineFilter createPomXmlFilter() {
-        return line -> filterServiceName(filterJdbcSettings(line));
-    }
-
     protected FileTextLineFilter createLastaFluteMapFilter() {
         return new FileTextLineFilter() {
             private boolean appMap = false;
@@ -280,6 +278,17 @@ public class NewProjectCreator {
         };
     }
 
+    // -----------------------------------------------------
+    //                                  Configuration Filter
+    //                                  --------------------
+    protected FileTextLineFilter createEnvPropertiesFilter() {
+        return line -> filterServiceName(filterJdbcSettings(line));
+    }
+
+    protected FileTextLineFilter createPomXmlFilter() {
+        return line -> filterServiceName(filterJdbcSettings(line));
+    }
+
     protected FileTextLineFilter createFwAssistantDirectorFilter() {
         return new FileTextLineFilter() {
             @Override
@@ -295,6 +304,9 @@ public class NewProjectCreator {
         };
     }
 
+    // ===================================================================================
+    //                                                                       Common Filter
+    //                                                                       =============
     protected String filterJdbcSettings(String line) {
         // e.g. basicInfoMap.dfprop, databaseInfoMap.dfprop, _env.properties
         final String toDatabase = "; database = mysql";
@@ -328,6 +340,9 @@ public class NewProjectCreator {
         return serviceNameFilter.filter(str);
     }
 
+    // ===================================================================================
+    //                                                                       ReplaceSchema
+    //                                                                       =============
     protected void adjustReplaceSchemaDdl(String canonicalPath, String baseDir, String outputFile) throws IOException {
         final String basicDdl = "replace-schema-10-basic.sql";
         final String syncdbDdl = "replace-schema-99-syncdb.sql";
@@ -349,18 +364,8 @@ public class NewProjectCreator {
         }
     }
 
-    private File prepareStartupMySqlFile(String systemDdl) throws IOException {
+    protected File prepareStartupMySqlFile(String systemDdl) throws IOException {
         return new File(projectDir.getCanonicalPath() + "/etc/startup/mysql-" + systemDdl);
-    }
-
-    protected void copyFile(File currentFile, File outputFile) throws IOException {
-        logger.debug("...Copying to {}", bulidDisplayPath(outputFile.getCanonicalPath()));
-        LdiFileUtil.copy(currentFile, outputFile);
-    }
-
-    protected void writeFile(FileTextIO textIO, String outputFile, String filtered) throws IOException {
-        logger.debug("...Writing to {}", bulidDisplayPath(outputFile));
-        textIO.write(outputFile, filtered);
     }
 
     protected String bulidDisplayPath(String outputFile) throws IOException {
@@ -380,7 +385,7 @@ public class NewProjectCreator {
                 || Srl.containsAny(canonicalPath //
                         , "/app/web/RootAction", "/app/web/base", "/app/web/signin", "/app/web/mypage" // web
                         , "/app/logic/context", "/app/logic/i18n" // logic
-        );
+                );
     }
 
     protected boolean isWebInfViewResource(String canonicalPath) {
@@ -397,7 +402,7 @@ public class NewProjectCreator {
                 || baseDir.contains(".settings") // also
                 || baseDir.contains("/etc/eclipse") // also
                 || baseDir.contains("/etc/mysql") // also
-                ;
+        ;
     }
 
     // -----------------------------------------------------
@@ -449,5 +454,18 @@ public class NewProjectCreator {
 
     protected boolean isBuildDir(String canonicalPath) {
         return Srl.containsAny(canonicalPath, "/target/");
+    }
+
+    // ===================================================================================
+    //                                                                     Physical Helper
+    //                                                                     ===============
+    protected void copyFile(File currentFile, File outputFile) throws IOException {
+        logger.debug("...Copying to {}", bulidDisplayPath(outputFile.getCanonicalPath()));
+        LdiFileUtil.copy(currentFile, outputFile);
+    }
+
+    protected void writeFile(FileTextIO textIO, String outputFile, String filtered) throws IOException {
+        logger.debug("...Writing to {}", bulidDisplayPath(outputFile));
+        textIO.write(outputFile, filtered);
     }
 }

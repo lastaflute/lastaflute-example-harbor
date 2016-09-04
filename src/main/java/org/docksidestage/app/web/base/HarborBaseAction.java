@@ -18,7 +18,7 @@ package org.docksidestage.app.web.base;
 import javax.annotation.Resource;
 
 import org.dbflute.optional.OptionalThing;
-import org.docksidestage.app.web.base.context.AccessContextAssist;
+import org.docksidestage.app.logic.context.AccessContextLogic;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.base.view.HeaderBean;
 import org.docksidestage.mylasta.action.HarborHtmlPath;
@@ -54,7 +54,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     @Resource
     private DoubleSubmitManager doubleSubmitManager;
     @Resource
-    private AccessContextAssist accessContextAssist;
+    private AccessContextLogic accessContextLogic;
     @Resource
     private HarborLoginAssist loginAssist;
 
@@ -99,7 +99,9 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     @Override
     protected AccessContextArranger newAccessContextArranger() { // for framework
         return resource -> {
-            return accessContextAssist.create(resource, () -> myUserType(), () -> getUserBean(), () -> myAppType());
+            return accessContextLogic.create(resource, () -> myUserType(), () -> getUserBean().map(userBean -> {
+                return userBean.getUserId(); // as user expression
+            }), () -> myAppType());
         };
     }
 

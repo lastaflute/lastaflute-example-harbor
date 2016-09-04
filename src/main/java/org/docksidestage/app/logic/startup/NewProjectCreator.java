@@ -92,8 +92,8 @@ public class NewProjectCreator {
         if (isWebInfViewResource(canonicalPath) && !isViewMigrated(canonicalPath)) { // e.g. /view/product
             return false;
         }
-        if (isMyLastaOnlyExample(canonicalPath) // e.g. mail
-                || isResourcesOnlyExample(canonicalPath) // e.g. database
+        if (isMyLastaOnlyExample(canonicalPath) // e.g. /mylasta/mail/
+                || isResourcesOnlyExample(canonicalPath) // e.g. /resources/mail/
                 || isStartUpTool(canonicalPath) // e.g. this
                 || isDemoTestResource(canonicalPath) // e.g. .gitignore for DemoTest
                 || isTestDbResource(canonicalPath) // e.g. H2 database
@@ -155,13 +155,6 @@ public class NewProjectCreator {
             }
             writeFile(textIO, outputFile, filtered);
             adjustReplaceSchemaDdl(canonicalPath, baseDir, outputFile);
-        }
-    }
-
-    protected void mkdirs(String dirPath) {
-        final File dir = new File(dirPath);
-        if (!dir.exists()) {
-            dir.mkdirs();
         }
     }
 
@@ -368,11 +361,6 @@ public class NewProjectCreator {
         return new File(projectDir.getCanonicalPath() + "/etc/startup/mysql-" + systemDdl);
     }
 
-    protected String bulidDisplayPath(String outputFile) throws IOException {
-        final File parentFile = projectDir.getParentFile();
-        return Srl.substringFirstRear(outputFile, parentFile.getCanonicalPath());
-    }
-
     // ===================================================================================
     //                                                                       Determination
     //                                                                       =============
@@ -459,6 +447,13 @@ public class NewProjectCreator {
     // ===================================================================================
     //                                                                     Physical Helper
     //                                                                     ===============
+    protected void mkdirs(String dirPath) {
+        final File dir = new File(dirPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+    }
+
     protected void copyFile(File currentFile, File outputFile) throws IOException {
         logger.debug("...Copying to {}", bulidDisplayPath(outputFile.getCanonicalPath()));
         LdiFileUtil.copy(currentFile, outputFile);
@@ -467,5 +462,10 @@ public class NewProjectCreator {
     protected void writeFile(FileTextIO textIO, String outputFile, String filtered) throws IOException {
         logger.debug("...Writing to {}", bulidDisplayPath(outputFile));
         textIO.write(outputFile, filtered);
+    }
+
+    protected String bulidDisplayPath(String outputFile) throws IOException {
+        final File parentFile = projectDir.getParentFile();
+        return Srl.substringFirstRear(outputFile, parentFile.getCanonicalPath());
     }
 }

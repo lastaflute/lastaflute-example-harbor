@@ -1,7 +1,7 @@
 package org.docksidestage.app.web.mypage;
 
 import org.docksidestage.dbflute.exentity.Product;
-import org.docksidestage.mylasta.helper.MyToString;
+import org.lastaflute.core.util.Lato;
 import org.lastaflute.web.validation.Required;
 
 /**
@@ -21,6 +21,6 @@ public class MypageProductBean {
 
     @Override
     public String toString() {
-        return MyToString.of(this);
+        return Lato.string(this);
     }
 }

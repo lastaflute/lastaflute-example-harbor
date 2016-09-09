@@ -15,9 +15,9 @@
  */
 package org.docksidestage.app.web.product;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.hibernate.validator.constraints.Length;
+import org.lastaflute.core.util.Lato;
 
 /**
  * @author jflute
@@ -34,6 +34,6 @@ public class ProductSearchForm {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Lato.string(this);
     }
 }

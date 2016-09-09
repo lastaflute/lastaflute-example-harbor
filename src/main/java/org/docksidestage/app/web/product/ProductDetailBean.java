@@ -1,6 +1,6 @@
 package org.docksidestage.app.web.product;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.lastaflute.core.util.Lato;
 import org.lastaflute.web.validation.Required;
 
 /**
@@ -21,6 +21,6 @@ public class ProductDetailBean {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Lato.string(this);
     }
 }

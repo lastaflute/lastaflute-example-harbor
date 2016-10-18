@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
 
 import org.dbflute.optional.OptionalThing;
 import org.lastaflute.web.api.ApiFailureHook;
@@ -112,7 +113,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
         public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
         @Required
         public final TooSimpleFailureType failureType;
-        @Required
+        @NotNull
         public final Map<String, List<String>> messageMap;
 
         public TooSimpleFailureResult(TooSimpleFailureType failureType, Map<String, List<String>> messageMap) {

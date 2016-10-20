@@ -33,8 +33,7 @@ public class StartupLogic {
         String packageName = buildPackageName(domain);
         new NewProjectCreator("harbor", projectDir, original -> {
             String filtered = original;
-            String projectDirPureName = buildProjectDirPureName(projectDir); // e.g. lastaflute-example-harbor
-            filtered = replace(filtered, projectDirPureName, Srl.initUncap(serviceName));
+            filtered = replace(filtered, buildProjectDirPureName(projectDir), Srl.initUncap(serviceName)); // e.g. lastaflute-example-harbor
             filtered = replace(filtered, "lastaflute-example-harbor", Srl.initUncap(serviceName)); // just in case
             filtered = replace(filtered, "maihamadb", Srl.initUncap(serviceName) + (!serviceName.endsWith("db") ? "db" : ""));
             filtered = replace(filtered, "org/docksidestage", replace(packageName, ".", "/")); // for file path
@@ -54,7 +53,7 @@ public class StartupLogic {
         return elementList.stream().reduce((left, right) -> left + "." + right).get();
     }
 
-    private String buildProjectDirPureName(File projectDir) {
+    private String buildProjectDirPureName(File projectDir) { // e.g. /sea/mystic => mystic
         try {
             return Srl.substringLastRear(projectDir.getCanonicalPath(), "/"); // thanks oreilly
         } catch (IOException e) {

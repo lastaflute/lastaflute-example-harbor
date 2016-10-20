@@ -16,6 +16,7 @@
 package org.docksidestage.app.logic.startup;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,7 +33,9 @@ public class StartupLogic {
         String packageName = buildPackageName(domain);
         new NewProjectCreator("harbor", projectDir, original -> {
             String filtered = original;
-            filtered = replace(filtered, "lastaflute-example-harbor", Srl.initUncap(serviceName));
+            String projectDirPureName = buildProjectDirPureName(projectDir); // e.g. lastaflute-example-harbor
+            filtered = replace(filtered, projectDirPureName, Srl.initUncap(serviceName));
+            filtered = replace(filtered, "lastaflute-example-harbor", Srl.initUncap(serviceName)); // just in case
             filtered = replace(filtered, "maihamadb", Srl.initUncap(serviceName) + (!serviceName.endsWith("db") ? "db" : ""));
             filtered = replace(filtered, "org/docksidestage", replace(packageName, ".", "/")); // for file path
             filtered = replace(filtered, "docksidestage.org", domain);
@@ -49,6 +52,14 @@ public class StartupLogic {
         List<String> elementList = new ArrayList<String>(Arrays.asList(domain.split("\\.")));
         Collections.reverse(elementList);
         return elementList.stream().reduce((left, right) -> left + "." + right).get();
+    }
+
+    private String buildProjectDirPureName(File projectDir) {
+        try {
+            return Srl.substringLastRear(projectDir.getCanonicalPath(), "/"); // thanks oreilly
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to get canonical path: " + projectDir);
+        }
     }
 
     protected String replace(String str, String fromStr, String toStr) {

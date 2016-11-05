@@ -110,6 +110,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
 
     public static class UnifiedFailureResult {
 
+        public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
         @Required
         public final UnifiedFailureType failureType;
         @NotNull

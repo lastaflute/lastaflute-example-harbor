@@ -56,12 +56,12 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                          Definition
     //                                                                          ==========
     protected static final int BUSINESS_FAILURE_STATUS = HttpServletResponse.SC_BAD_REQUEST;
-    protected static final BusinessFailureMapping<TooSimpleFailureType> failureTypeMapping; // for application exception
+    protected static final BusinessFailureMapping<UnifiedFailureType> failureTypeMapping; // for application exception
 
     static { // you can add mapping of failure type with exception
-        failureTypeMapping = new BusinessFailureMapping<TooSimpleFailureType>(failureMap -> {
-            failureMap.put(LoginFailureException.class, TooSimpleFailureType.LOGIN_FAILURE);
-            failureMap.put(LoginRequiredException.class, TooSimpleFailureType.LOGIN_REQUIRED);
+        failureTypeMapping = new BusinessFailureMapping<UnifiedFailureType>(failureMap -> {
+            failureMap.put(LoginFailureException.class, UnifiedFailureType.LOGIN_FAILURE);
+            failureMap.put(LoginRequiredException.class, UnifiedFailureType.LOGIN_REQUIRED);
         });
     }
 
@@ -70,16 +70,16 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                    ================
     @Override
     public ApiResponse handleValidationError(ApiFailureResource resource) {
-        final TooSimpleFailureResult result = createFailureResult(TooSimpleFailureType.VALIDATION_ERROR, resource);
+        final UnifiedFailureResult result = createFailureResult(UnifiedFailureType.VALIDATION_ERROR, resource);
         return asJson(result).httpStatus(BUSINESS_FAILURE_STATUS);
     }
 
     @Override
     public ApiResponse handleApplicationException(ApiFailureResource resource, RuntimeException cause) {
-        final TooSimpleFailureType failureType = failureTypeMapping.findAssignable(cause).orElseGet(() -> {
-            return TooSimpleFailureType.APPLICATION_EXCEPTION;
+        final UnifiedFailureType failureType = failureTypeMapping.findAssignable(cause).orElseGet(() -> {
+            return UnifiedFailureType.APPLICATION_EXCEPTION;
         });
-        final TooSimpleFailureResult result = createFailureResult(failureType, resource);
+        final UnifiedFailureResult result = createFailureResult(failureType, resource);
         return asJson(result).httpStatus(BUSINESS_FAILURE_STATUS);
     }
 
@@ -88,7 +88,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                      ==============
     @Override
     public OptionalThing<ApiResponse> handleClientException(ApiFailureResource resource, RuntimeException cause) {
-        final TooSimpleFailureResult result = createFailureResult(TooSimpleFailureType.CLIENT_EXCEPTION, resource);
+        final UnifiedFailureResult result = createFailureResult(UnifiedFailureType.CLIENT_EXCEPTION, resource);
         return OptionalThing.of(asJson(result)); // HTTP status will be automatically sent as client error for the cause
     }
 
@@ -100,29 +100,28 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     // ===================================================================================
     //                                                                        Assist Logic
     //                                                                        ============
-    protected JsonResponse<TooSimpleFailureResult> asJson(TooSimpleFailureResult result) {
-        return new JsonResponse<TooSimpleFailureResult>(result);
+    protected JsonResponse<UnifiedFailureResult> asJson(UnifiedFailureResult result) {
+        return new JsonResponse<UnifiedFailureResult>(result);
     }
 
-    protected TooSimpleFailureResult createFailureResult(TooSimpleFailureType failureType, ApiFailureResource resource) {
-        return new TooSimpleFailureResult(failureType, resource.getPropertyMessageMap());
+    protected UnifiedFailureResult createFailureResult(UnifiedFailureType failureType, ApiFailureResource resource) {
+        return new UnifiedFailureResult(failureType, resource.getPropertyMessageMap());
     }
 
-    public static class TooSimpleFailureResult {
+    public static class UnifiedFailureResult {
 
-        public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
         @Required
-        public final TooSimpleFailureType failureType;
+        public final UnifiedFailureType failureType;
         @NotNull
         public final Map<String, List<String>> messageMap;
 
-        public TooSimpleFailureResult(TooSimpleFailureType failureType, Map<String, List<String>> messageMap) {
+        public UnifiedFailureResult(UnifiedFailureType failureType, Map<String, List<String>> messageMap) {
             this.failureType = failureType;
             this.messageMap = messageMap;
         }
     }
 
-    public static enum TooSimpleFailureType {
+    public static enum UnifiedFailureType {
         VALIDATION_ERROR // special type
         , LOGIN_FAILURE, LOGIN_REQUIRED // specific type of application exception
         , APPLICATION_EXCEPTION // default type of application exception

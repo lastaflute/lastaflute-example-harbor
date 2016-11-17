@@ -23,10 +23,10 @@ import org.dbflute.jetty.JettyBoot;
 public class HarborBoot { // #change_it_first
 
     public static void main(String[] args) { // e.g. java -Dlasta.env=production -jar harbor.war
-        new JettyBoot(8090, "/harbor").asDevelopment(isNoneEnv()).bootAwait();
+        new JettyBoot(8090, "/harbor").asDevelopment(isDevelopment()).bootAwait();
     }
 
-    private static boolean isNoneEnv() {
+    private static boolean isDevelopment() {
         return System.getProperty("lasta.env") == null;
     }
 }

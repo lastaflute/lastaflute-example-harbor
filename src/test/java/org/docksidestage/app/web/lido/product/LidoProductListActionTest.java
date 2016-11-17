@@ -24,7 +24,7 @@ public class LidoProductListActionTest extends UnitHarborTestCase {
         // ## Assert ##
         showJson(response);
         TestingJsonData<SearchPagingResult<ProductRowResult>> data = validateJsonData(response);
-        data.getJsonBean().rows.forEach(bean -> {
+        data.getJsonResult().rows.forEach(bean -> {
             log(bean);
             assertTrue(bean.productName.contains(body.productName));
         });

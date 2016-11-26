@@ -212,9 +212,9 @@
       "formTypeDocMeta": null,
       "returnTypeDocMeta": {
         "name": null,
-        "typeName": "org.lastaflute.web.response.JsonResponse\u003cjava.util.List\u003corg.docksidestage.app.web.lido.mypage.MypageProductBean\u003e\u003e",
-        "simpleTypeName": "JsonResponse\u003cList\u003cMypageProductBean\u003e\u003e",
-        "value": "new MypageProductBean(member),asJson(beans)",
+        "typeName": "org.lastaflute.web.response.JsonResponse\u003cjava.util.List\u003corg.docksidestage.app.web.lido.mypage.MypageProductResult\u003e\u003e",
+        "simpleTypeName": "JsonResponse\u003cList\u003cMypageProductResult\u003e\u003e",
+        "value": "new MypageProductResult(member),asJson(beans)",
         "description": null,
         "comment": null,
         "annotationList": [],
@@ -261,8 +261,8 @@
       "formTypeDocMeta": null,
       "returnTypeDocMeta": {
         "name": null,
-        "typeName": "org.lastaflute.web.response.JsonResponse\u003corg.docksidestage.app.web.lido.product.ProductDetailBean\u003e",
-        "simpleTypeName": "JsonResponse\u003cProductDetailBean\u003e",
+        "typeName": "org.lastaflute.web.response.JsonResponse\u003corg.docksidestage.app.web.lido.product.ProductDetailResult\u003e",
+        "simpleTypeName": "JsonResponse\u003cProductDetailResult\u003e",
         "value": "asJson(mappingToBean(product)",
         "description": null,
         "comment": null,
@@ -390,68 +390,68 @@
       },
       "returnTypeDocMeta": {
         "name": null,
-        "typeName": "org.lastaflute.web.response.JsonResponse\u003corg.docksidestage.app.web.base.paging.SearchPagingBean\u003corg.docksidestage.app.web.lido.product.ProductRowBean\u003e\u003e",
-        "simpleTypeName": "JsonResponse\u003cSearchPagingBean\u003cProductRowBean\u003e\u003e",
-        "value": "mappingToBean(product),asJson(bean)",
+        "typeName": "org.lastaflute.web.response.JsonResponse\u003corg.docksidestage.app.web.base.paging.SearchPagingResult\u003corg.docksidestage.app.web.lido.product.ProductRowResult\u003e\u003e",
+        "simpleTypeName": "JsonResponse\u003cSearchPagingResult\u003cProductRowResult\u003e\u003e",
+        "value": "mappingToBean(product),asJson(result)",
         "description": null,
         "comment": null,
         "annotationList": [],
         "nestTypeDocMetaList": [
           {
-            "name": "itemsPerPage",
+            "name": "pageSize",
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "page size ",
-            "comment": "/** page size */",
+            "description": "row count per one page ",
+            "comment": "/** row count per one page */",
             "annotationList": [
               "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "currentPage",
+            "name": "currentPageNumber",
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "current page number ",
-            "comment": "/** current page number */",
+            "description": "number of current page ",
+            "comment": "/** number of current page */",
             "annotationList": [
               "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "totalItems",
+            "name": "allRecordCount",
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "count of total items (records) ",
-            "comment": "/** count of total items (records) */",
+            "description": "count of all records ",
+            "comment": "/** count of all records */",
             "annotationList": [
               "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "totalPages",
+            "name": "allPageCount",
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "count of total pages ",
-            "comment": "/** count of total pages */",
+            "description": "count of all pages ",
+            "comment": "/** count of all pages */",
             "annotationList": [
               "Required"
             ],
             "nestTypeDocMetaList": []
           },
           {
-            "name": "items",
-            "typeName": "java.util.List\u003corg.docksidestage.app.web.lido.product.ProductRowBean\u003e",
-            "simpleTypeName": "List\u003cProductRowBean\u003e",
+            "name": "rows",
+            "typeName": "java.util.List\u003corg.docksidestage.app.web.lido.product.ProductRowResult\u003e",
+            "simpleTypeName": "List\u003cProductRowResult\u003e",
             "value": null,
-            "description": "paging data ",
-            "comment": "/** paging data */",
+            "description": "paging data for current page ",
+            "comment": "/** paging data for current page */",
             "annotationList": [
               "NotNull",
               "Valid"

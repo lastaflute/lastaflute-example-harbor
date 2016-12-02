@@ -4,6 +4,7 @@ import org.dbflute.optional.OptionalThing;
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.app.web.base.paging.PagingAssist;
 import org.docksidestage.app.web.base.paging.PagingNavi;
+import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.unit.UnitHarborTestCase;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -25,7 +26,7 @@ public class ProductListActionTest extends UnitHarborTestCase {
 
         // ## Assert ##
         TestingHtmlData htmlData = validateHtmlData(response);
-        assertTrue(htmlData.isRoutingAsHtmlForward());
+        htmlData.assertHtmlForward(HarborHtmlPath.path_Product_ProductListHtml);
         htmlData.requiredList("beans", ProductSearchRowBean.class).forEach(bean -> {
             log(bean);
             assertContainsIgnoreCase(bean.productName, form.productName);

@@ -26,6 +26,8 @@ import org.lastaflute.web.response.render.RenderData;
  */
 public class PagingAssist { // #app_customize
 
+    public static final String NAVI_KEY = "pagingNavi"; // public for e.g. unit test
+
     // ===================================================================================
     //                                                                       HTML Response
     //                                                                       =============
@@ -37,7 +39,7 @@ public class PagingAssist { // #app_customize
      * @param form The form for query string added to link. (NotNull)
      */
     public void registerPagingNavi(RenderData data, PagingResultBean<? extends Entity> page, Object form) { // application may call
-        data.register("pagingNavi", new PagingNavi(page, op -> op.rangeSize(3).fillLimit(), form));
+        data.register(NAVI_KEY, new PagingNavi(page, op -> op.rangeSize(3).fillLimit(), form));
     }
 
     // ===================================================================================

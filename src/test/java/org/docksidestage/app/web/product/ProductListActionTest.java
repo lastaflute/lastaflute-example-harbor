@@ -2,6 +2,8 @@ package org.docksidestage.app.web.product;
 
 import org.dbflute.optional.OptionalThing;
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
+import org.docksidestage.app.web.base.paging.PagingAssist;
+import org.docksidestage.app.web.base.paging.PagingNavi;
 import org.docksidestage.unit.UnitHarborTestCase;
 import org.lastaflute.web.response.HtmlResponse;
 
@@ -14,17 +16,22 @@ public class ProductListActionTest extends UnitHarborTestCase {
         // ## Arrange ##
         ProductListAction action = new ProductListAction();
         inject(action);
+        int pageNumber = 2;
         ProductSearchForm form = new ProductSearchForm();
         form.productName = "a";
 
         // ## Act ##
-        HtmlResponse response = action.index(OptionalThing.of(2), form);
+        HtmlResponse response = action.index(OptionalThing.of(pageNumber), form);
 
         // ## Assert ##
         TestingHtmlData htmlData = validateHtmlData(response);
+        assertTrue(htmlData.isRoutingAsHtmlForward());
         htmlData.requiredList("beans", ProductSearchRowBean.class).forEach(bean -> {
             log(bean);
             assertContainsIgnoreCase(bean.productName, form.productName);
         });
+        PagingNavi pagingNavi = htmlData.required(PagingAssist.NAVI_KEY, PagingNavi.class);
+        log(pagingNavi);
+        assertEquals(pageNumber, pagingNavi.getCurrentPageNumber());
     }
 }

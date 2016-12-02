@@ -27,7 +27,6 @@ import org.docksidestage.app.web.base.paging.PagingAssist;
 import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
-import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
@@ -82,7 +81,7 @@ public class ProductListAction extends HarborBaseAction {
             if (form.productName != null) {
                 cb.query().setProductName_LikeSearch(form.productName, op -> op.likeContain());
             }
-            if (LaStringUtil.isNotEmpty(form.purchaseMemberName)) {
+            if (form.purchaseMemberName != null) {
                 cb.query().existsPurchase(purchaseCB -> {
                     purchaseCB.query().queryMember().setMemberName_LikeSearch(form.purchaseMemberName, op -> op.likeContain());
                 });

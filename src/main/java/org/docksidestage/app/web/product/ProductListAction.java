@@ -24,7 +24,6 @@ import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.paging.PagingAssist;
-import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.ProductBhv;
 import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
@@ -44,8 +43,6 @@ public class ProductListAction extends HarborBaseAction {
     private ProductBhv productBhv;
     @Resource
     private PagingAssist pagingAssist;
-    @Resource
-    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute

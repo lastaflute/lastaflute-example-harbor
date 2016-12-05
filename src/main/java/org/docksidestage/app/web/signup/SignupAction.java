@@ -106,6 +106,7 @@ public class SignupAction extends HarborBaseAction {
             postcard.setToken(signupToken);
             postcard.async();
             postcard.retry(3, 1000L);
+            postcard.writeAuthor(this);
         });
     }
 

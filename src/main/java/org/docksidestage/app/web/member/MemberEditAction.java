@@ -15,10 +15,11 @@
  */
 package org.docksidestage.app.web.member;
 
+import java.time.LocalDateTime;
+
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
-import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.core.time.TimeManager;
@@ -37,8 +38,6 @@ public class MemberEditAction extends HarborBaseAction {
     private TimeManager timeManager;
     @Resource
     private MemberBhv memberBhv;
-    @Resource
-    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -97,7 +96,7 @@ public class MemberEditAction extends HarborBaseAction {
         Member member = new Member();
         member.setMemberId(form.memberId);
         member.setMemberName(form.memberName);
-        member.setBirthdate(displayAssist.toDate(form.birthdate).orElse(null)); // update as null if none
+        member.setBirthdate(form.birthdate); // may be updated as null
         member.setMemberStatusCodeAsMemberStatus(form.memberStatus);
         member.setMemberAccount(form.memberAccount);
         if (member.isMemberStatusCodeFormalized()) {
@@ -121,7 +120,10 @@ public class MemberEditAction extends HarborBaseAction {
         form.memberAccount = member.getMemberAccount();
         form.memberStatus = member.getMemberStatusCodeAsMemberStatus();
         form.birthdate = member.getBirthdate();
-        form.formalizedDate = displayAssist.toDate(member.getFormalizedDatetime()).orElse(null);
+        LocalDateTime formalizedDatetime = member.getFormalizedDatetime();
+        if (formalizedDatetime != null) {
+            form.formalizedDate = formalizedDatetime.toLocalDate();
+        }
         form.latestLoginDatetime = member.getLatestLoginDatetime();
         form.updateDatetime = member.getUpdateDatetime();
         form.previousStatus = member.getMemberStatusCodeAsMemberStatus(); // to determine new formalized member

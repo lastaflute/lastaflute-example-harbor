@@ -35,7 +35,7 @@ public class SignupActionTest extends UnitHarborTestCase {
 
     public void test_signup_success() {
         // ## Arrange ##
-        // for login histroy registration
+        // for login history registration
         changeAsyncToNormalSync();
         changeRequiresNewToRequired();
 

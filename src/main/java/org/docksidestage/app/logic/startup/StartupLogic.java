@@ -50,7 +50,8 @@ public class StartupLogic {
     protected String buildPackageName(String domain) { // e.g. docksidestage.org to org.docksidestage
         List<String> elementList = new ArrayList<String>(Arrays.asList(domain.split("\\.")));
         Collections.reverse(elementList);
-        return elementList.stream().reduce((left, right) -> left + "." + right).get();
+        String pkgName = elementList.stream().reduce((left, right) -> left + "." + right).get();
+        return pkgName.replace("-", ""); // e.g. org.dockside-stage to org.docksidestage
     }
 
     private String buildProjectDirPureName(File projectDir) { // e.g. /sea/mystic => mystic

@@ -40,12 +40,12 @@
 			<ul class="startup-list">
 				<li>
 					Domain:
-					<input type="text" name="domain" th:value="${domain}" placeholder="e.g. dancingdb.org"/>
+					<input type="text" la:property="domain" placeholder="e.g. dancingdb.org"/>
 					<span la:errors="domain"/>
 				</li>
 				<li>
 					Service Name:
-					<input type="text" name="serviceName" th:value="${serviceName}" placeholder="e.g. mythica"/>
+					<input type="text" la:property="serviceName" placeholder="e.g. dancingdb"/>
 					<span la:errors="serviceName"/>
 				</li>
 				<li>

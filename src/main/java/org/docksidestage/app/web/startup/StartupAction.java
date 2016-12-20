@@ -40,7 +40,7 @@ public class StartupAction extends HarborBaseAction {
         });
 
         File projectDir = getProjectDir();
-        startupLogic.toHarbor(projectDir, form.domain, form.serviceName);
+        startupLogic.fromHarbor(projectDir, form.domain, form.serviceName);
 
         StartupBean bean = mappingToBean(form, projectDir);
         return asHtml(path_Startup_StartupHtml).renderWith(data -> {

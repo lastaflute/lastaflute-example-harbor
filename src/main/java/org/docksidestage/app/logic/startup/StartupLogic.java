@@ -29,7 +29,7 @@ import org.dbflute.util.Srl;
  */
 public class StartupLogic {
 
-    public void toHarbor(File projectDir, String domain, String serviceName) {
+    public void fromHarbor(File projectDir, String domain, String serviceName) {
         String packageName = buildPackageName(domain);
         new NewProjectCreator("harbor", projectDir, original -> {
             String filtered = original;

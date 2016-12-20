@@ -35,7 +35,7 @@ public class StartupTest extends UnitHarborTestCase {
     public void test_startup_actually() throws Exception {
         final String domain = "dancingdb.org";
         final String serviceName = "mythica";
-        startupLogic.toHarbor(getProjectDir(), domain, serviceName);
+        startupLogic.fromHarbor(getProjectDir(), domain, serviceName);
         refresh(serviceName); // for retry
     }
 

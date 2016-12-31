@@ -17,11 +17,13 @@ package org.docksidestage.mylasta.appcls;
 
 import java.util.*;
 
+import org.dbflute.exception.ClassificationNotFoundException;
 import org.dbflute.jdbc.Classification;
 import org.dbflute.jdbc.ClassificationCodeType;
 import org.dbflute.jdbc.ClassificationMeta;
 import org.dbflute.jdbc.ClassificationUndefinedHandlingType;
 import org.dbflute.optional.OptionalThing;
+import static org.dbflute.util.DfTypeUtil.emptyStrings;
 import org.docksidestage.dbflute.allcommon.*;
 
 /**
@@ -30,24 +32,21 @@ import org.docksidestage.dbflute.allcommon.*;
  */
 public interface AppCDef extends Classification {
 
-    /** The empty array for no sisters. */
-    String[] EMPTY_SISTERS = new String[]{};
-
     /**
      * MemberStatus for search condition
      */
     public enum SearchMemberStatus implements AppCDef {
         /** Formalized: as formal member, allowed to use all service */
-        Formalized("FML", "Formalized", EMPTY_SISTERS)
+        Formalized("FML", "Formalized", emptyStrings())
         ,
         /** Withdrawal: withdrawal is fixed, not allowed to use service */
-        Withdrawal("WDL", "Withdrawal", EMPTY_SISTERS)
+        Withdrawal("WDL", "Withdrawal", emptyStrings())
         ,
         /** Provisional: first status after entry, allowed to use only part of service */
-        Provisional("PRV", "Provisional", EMPTY_SISTERS)
+        Provisional("PRV", "Provisional", emptyStrings())
         ,
         /** All Statuses: without status filter */
-        All("ALL", "All Statuses", EMPTY_SISTERS)
+        All("ALL", "All Statuses", emptyStrings())
         ;
         private static final Map<String, SearchMemberStatus> _codeClsMap = new HashMap<String, SearchMemberStatus>();
         private static final Map<String, SearchMemberStatus> _nameClsMap = new HashMap<String, SearchMemberStatus>();
@@ -257,27 +256,27 @@ public interface AppCDef extends Classification {
         }
 
         public List<Classification> listAll() {
-            if (SearchMemberStatus.name().equals(name())) { return toClassificationList(AppCDef.SearchMemberStatus.listAll()); }
+            if (SearchMemberStatus.name().equals(name())) { return toClsList(AppCDef.SearchMemberStatus.listAll()); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         public List<Classification> listByGroup(String groupName) { // exception if not found
-            if (SearchMemberStatus.name().equals(name())) { return toClassificationList(AppCDef.SearchMemberStatus.listByGroup(groupName)); }
-            throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
+            if (SearchMemberStatus.name().equals(name())) { return toClsList(AppCDef.SearchMemberStatus.listByGroup(groupName)); }
+            throw new IllegalStateException("Unknown groupName: " + groupName + ", " + this); // basically unreachable
         }
 
-        public List<? extends Classification> listOf(Collection<String> codeList) {
-            if (SearchMemberStatus.name().equals(name())) { return AppCDef.SearchMemberStatus.listOf(codeList); }
+        public List<Classification> listOf(Collection<String> codeList) {
+            if (SearchMemberStatus.name().equals(name())) { return toClsList(AppCDef.SearchMemberStatus.listOf(codeList)); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         public List<Classification> groupOf(String groupName) { // old style
-            if (SearchMemberStatus.name().equals(name())) { return toClassificationList(AppCDef.SearchMemberStatus.groupOf(groupName)); }
+            if (SearchMemberStatus.name().equals(name())) { return toClsList(AppCDef.SearchMemberStatus.groupOf(groupName)); }
             throw new IllegalStateException("Unknown definition: " + this); // basically unreachable
         }
 
         @SuppressWarnings("unchecked")
-        private List<Classification> toClassificationList(List<?> clsList) {
+        private List<Classification> toClsList(List<?> clsList) {
             return (List<Classification>)clsList;
         }
 
@@ -303,13 +302,6 @@ public interface AppCDef extends Classification {
             if (classificationName == null) { throw new IllegalArgumentException("The argument 'classificationName' should not be null."); }
             if (SearchMemberStatus.name().equalsIgnoreCase(classificationName)) { return AppCDef.DefMeta.SearchMemberStatus; }
             throw new IllegalStateException("Unknown classification: " + classificationName);
-        }
-    }
-
-    public static class ClassificationNotFoundException extends RuntimeException {
-        private static final long serialVersionUID = 1L;
-        public ClassificationNotFoundException(String msg) {
-            super(msg);
         }
     }
 }

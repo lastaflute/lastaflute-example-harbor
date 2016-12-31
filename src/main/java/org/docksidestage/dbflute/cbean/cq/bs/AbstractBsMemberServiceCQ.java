@@ -552,7 +552,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
      * @param serviceRankCodeList The collection of serviceRankCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setServiceRankCode_InScope(Collection<String> serviceRankCodeList) {
+    protected void setServiceRankCode_InScope(Collection<String> serviceRankCodeList) {
         doSetServiceRankCode_InScope(serviceRankCodeList);
     }
 
@@ -790,7 +790,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberServiceCB> scalar_GreaterThan() {
@@ -806,7 +805,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberServiceCB> scalar_LessThan() {

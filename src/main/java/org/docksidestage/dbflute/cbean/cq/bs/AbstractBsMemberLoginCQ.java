@@ -472,7 +472,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
      * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INTEGER(10), classification=Flg}
      * @param mobileLoginFlgList The collection of mobileLoginFlg as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMobileLoginFlg_InScope(Collection<Integer> mobileLoginFlgList) {
+    protected void setMobileLoginFlg_InScope(Collection<Integer> mobileLoginFlgList) {
         doSetMobileLoginFlg_InScope(mobileLoginFlgList);
     }
 
@@ -615,7 +615,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
      * (ログイン時会員ステータスコード)LOGIN_MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to MEMBER_STATUS, classification=MemberStatus}
      * @param loginMemberStatusCodeList The collection of loginMemberStatusCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setLoginMemberStatusCode_InScope(Collection<String> loginMemberStatusCodeList) {
+    protected void setLoginMemberStatusCode_InScope(Collection<String> loginMemberStatusCodeList) {
         doSetLoginMemberStatusCode_InScope(loginMemberStatusCodeList);
     }
 
@@ -721,7 +721,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberLoginCB> scalar_GreaterThan() {
@@ -737,7 +736,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberLoginCB> scalar_LessThan() {

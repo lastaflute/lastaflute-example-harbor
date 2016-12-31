@@ -302,7 +302,7 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to WITHDRAWAL_REASON, classification=WithdrawalReason}
      * @param withdrawalReasonCodeList The collection of withdrawalReasonCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setWithdrawalReasonCode_InScope(Collection<String> withdrawalReasonCodeList) {
+    protected void setWithdrawalReasonCode_InScope(Collection<String> withdrawalReasonCodeList) {
         doSetWithdrawalReasonCode_InScope(withdrawalReasonCodeList);
     }
 
@@ -708,7 +708,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberWithdrawalCB> scalar_GreaterThan() {
@@ -724,7 +723,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<MemberWithdrawalCB> scalar_LessThan() {

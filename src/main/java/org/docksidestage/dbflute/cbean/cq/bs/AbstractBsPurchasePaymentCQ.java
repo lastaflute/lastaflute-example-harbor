@@ -595,7 +595,7 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
      * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
      * @param paymentMethodCodeList The collection of paymentMethodCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setPaymentMethodCode_InScope(Collection<String> paymentMethodCodeList) {
+    protected void setPaymentMethodCode_InScope(Collection<String> paymentMethodCodeList) {
         doSetPaymentMethodCode_InScope(paymentMethodCodeList);
     }
 
@@ -801,7 +801,6 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<PurchasePaymentCB> scalar_GreaterThan() {
@@ -817,7 +816,6 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
      * </pre> 
-     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<PurchasePaymentCB> scalar_LessThan() {

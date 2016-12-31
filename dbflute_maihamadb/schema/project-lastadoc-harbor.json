@@ -402,7 +402,7 @@
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "row count per one page ",
+            "description": "row count per one page",
             "comment": "/** row count per one page */",
             "annotationList": [
               "Required"
@@ -414,7 +414,7 @@
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "number of current page ",
+            "description": "number of current page",
             "comment": "/** number of current page */",
             "annotationList": [
               "Required"
@@ -426,7 +426,7 @@
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "count of all records ",
+            "description": "count of all records",
             "comment": "/** count of all records */",
             "annotationList": [
               "Required"
@@ -438,7 +438,7 @@
             "typeName": "java.lang.Integer",
             "simpleTypeName": "Integer",
             "value": null,
-            "description": "count of all pages ",
+            "description": "count of all pages",
             "comment": "/** count of all pages */",
             "annotationList": [
               "Required"
@@ -450,7 +450,7 @@
             "typeName": "java.util.List\u003corg.docksidestage.app.web.lido.product.ProductRowResult\u003e",
             "simpleTypeName": "List\u003cProductRowResult\u003e",
             "value": null,
-            "description": "paging data for current page ",
+            "description": "paging data for current page",
             "comment": "/** paging data for current page */",
             "annotationList": [
               "NotNull",

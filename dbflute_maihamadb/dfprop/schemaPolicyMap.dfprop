@@ -27,6 +27,7 @@
 #             ; if columnName is suffix:_FLAG then bad
 #             ; if columnName is suffix:_FLG then notNull
 #             ; if columnName is suffix:_FLG then dbType is INTEGER 
+#             ; if columnName is suffix:_FLG then classification 
 #         }
 #     }
 # }
@@ -34,6 +35,9 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
+    # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    # set your DB design policy here #change_it_first
+    # _/_/_/_/_/_/_/_/_/_/
     # *REGION is the example table on maihamadb (that cannot pass identityIfPureIDPK)
     # so remove it and this comment after beginning of your DB design
     ; tableExceptList = list:{ REGION }
@@ -57,6 +61,7 @@ map:{
             ; if columnName is suffix:_FLG then notNull
             # *needs to adjust this setting for your DBMS
             #; if columnName is suffix:_FLG then dbType is INTEGER
+            ; if columnName is suffix:_FLG then classification
         }
     }
 }

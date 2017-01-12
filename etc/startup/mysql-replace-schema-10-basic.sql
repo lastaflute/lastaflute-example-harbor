@@ -128,17 +128,17 @@ CREATE TABLE MEMBER_STATUS
 
 CREATE TABLE MEMBER_WITHDRAWAL
 (
-	MEMBER_ID INT NOT NULL COMMENT 'メンバーID : 連番として自動採番される。会員IDだけに限らず採番方法はDBMS次第。',
+	MEMBER_ID INT NOT NULL COMMENT '会員ID : 連番として自動採番される。会員IDだけに限らず採番方法はDBMS次第。',
 	WITHDRAWAL_REASON_CODE CHAR(3) COMMENT '退会理由コード : 定型的な退会した理由を参照するコード。
 何も言わずに退会する会員もいるので必須項目ではない。',
 	WITHDRAWAL_REASON_INPUT_TEXT TEXT COMMENT '退会理由入力テキスト : 会員がフリーテキストで入力できる退会理由。
 もう言いたいこと言ってもらう感じ。サイト運営側としてはこういうのは真摯に受け止めて改善していきたいところ。',
 	WITHDRAWAL_DATETIME DATETIME NOT NULL COMMENT '退会日時 : 退会した瞬間の日時。
 正式会員日時と違い、こっちは one-to-one の別テーブルで管理されている。',
-	REGISTER_DATETIME DATETIME NOT NULL COMMENT '登録日付時間',
-	REGISTER_USER VARCHAR(200) NOT NULL COMMENT '登録ユーザ',
+	REGISTER_DATETIME DATETIME NOT NULL COMMENT '登録日時',
+	REGISTER_USER VARCHAR(200) NOT NULL COMMENT '登録ユーザー',
 	UPDATE_DATETIME DATETIME NOT NULL COMMENT '更新日時',
-	UPDATE_USER VARCHAR(200) NOT NULL COMMENT '更新ユーザ',
+	UPDATE_USER VARCHAR(200) NOT NULL COMMENT '更新ユーザー',
 	PRIMARY KEY (MEMBER_ID)
 ) COMMENT = '会員退会情報 : 退会会員の退会に関する詳細な情報。
 退会会員のみデータが存在し、"1 : 0..1" のパターンの one-to-one である。

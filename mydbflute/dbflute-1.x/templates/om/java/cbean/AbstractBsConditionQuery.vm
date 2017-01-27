@@ -1114,7 +1114,7 @@ public abstract class ${myClassName} extends AbstractConditionQuery {
      * ${col.aliasExpression}${col.name}: {${col.columnDefinitionLineDisp}}
      * @param ${tmpUncapitalisedJavaName} The value of ${col.uncapitalisedJavaName} as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void set${tmpJavaName}_Equal(${col.javaNative} ${tmpUncapitalisedJavaName}) {
+    ${col.propertySettingModifier} void set${tmpJavaName}_Equal(${col.javaNative} ${tmpUncapitalisedJavaName}) {
         reg${tmpJavaName}(CK_EQ, ${tmpUncapitalisedJavaName});
     }
 #if ($col.hasClassification())

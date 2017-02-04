@@ -28,7 +28,7 @@ import org.lastaflute.web.servlet.request.RequestManager;
 /**
  * @author jflute
  */
-public class DisplayAssist { // #change_it Does your service need internatinalization?
+public class DisplayAssist { // #change_it Does your service need internationalization?
 
     // ===================================================================================
     //                                                                           Attribute

@@ -36,32 +36,32 @@
 <div class="contents">
 	<h2 class="content-title" th:text="#{labels.signup.title}">labels.signup.title</h2>
 	<section class="sign-in-box">
-		<form styleClass="signup-form" action="#" th:action="@{/signup/}" method="post">
+		<form style="signup-form" action="#" th:action="@{/signup/}" method="post">
 			<ul>
 				<li>
 					<span th:text="#{labels.memberName}">labels.memberName</span>
 					<input type="text" name="memberName" th:value="${memberName}"/>
-					<span class="errors" th:each="er : ${errors.part('memberName')}" th:text="${er.message}"/>
+					<span la:errors="memberName"/>
 				</li>
 				<li>
 					<span th:text="#{labels.memberAccount}">labels.memberAccount</span>
 					<input type="text" name="memberAccount" th:value="${memberAccount}"/>
-					<span class="errors" th:each="er : ${errors.part('memberAccount')}" th:text="${er.message}"/>
+					<span la:errors="memberAccount"/>
 				</li>
 				<li>
 					<span th:text="#{labels.password}">labels.password</span>
 					<input type="password" name="password" th:value="${password}"/>
-					<span class="errors" th:each="er : ${errors.part('password')}" th:text="${er.message}"/>
+					<span la:errors="password"/>
 				</li>
 				<li>
 					<span th:text="#{labels.reminderQuestion}">labels.reminderQuestion</span>
 					<input type="password" name="reminderQuestion" th:value="${reminderQuestion}"/>
-					<span class="errors" th:each="er : ${errors.part('reminderQuestion')}" th:text="${er.message}"/>
+					<span la:errors="reminderQuestion"/>
 				</li>
 				<li>
 					<span th:text="#{labels.reminderAnswer}">labels.reminderAnswer</span>
 					<input type="password" name="reminderAnswer" th:value="${reminderAnswer}"/>
-					<span class="errors" th:each="er : ${errors.part('reminderAnswer')}" th:text="${er.message}"/>
+					<span la:errors="reminderAnswer"/>
 				</li>
 				<li>
 					<input type="submit" name="signup" th:value="#{labels.signup.button}" value="labels.signup.button"/>

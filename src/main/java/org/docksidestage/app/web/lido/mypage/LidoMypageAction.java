@@ -39,7 +39,7 @@ public class LidoMypageAction extends HarborBaseAction {
     @Resource
     private ProductBhv productBhv;
 
-    @AllowAnyoneAccess // TODO s.tadokoro Remove this when JSON Login feature is implemented.
+    @AllowAnyoneAccess // #for_now s.tadokoro Remove this when JSON Login feature is implemented.
     @Execute
     public JsonResponse<List<MypageProductResult>> index() {
         ListResultBean<Product> memberList = productBhv.selectList(cb -> {

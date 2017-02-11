@@ -21,6 +21,7 @@ import org.lastaflute.core.mail.Postbox;
 import org.lastaflute.core.security.PrimaryCipher;
 import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
+import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.servlet.request.ResponseManager;
 import org.lastaflute.web.servlet.session.SessionManager;
@@ -29,6 +30,7 @@ import org.lastaflute.web.servlet.session.SessionManager;
  * @author annie_pocket
  * @author jflute
  */
+@AllowAnyoneAccess
 public class SignupAction extends HarborBaseAction {
 
     // ===================================================================================
@@ -72,11 +74,12 @@ public class SignupAction extends HarborBaseAction {
             return asHtml(path_Signup_SignupHtml);
         });
         Integer memberId = insertProvisionalMember(form);
-        loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
 
         String signupToken = saveSignupToken();
         sendSignupMail(form, signupToken);
-        return redirect(MypageAction.class);
+        return redirect(MypageAction.class).afterTxCommit(() -> { // for asynchronous DB access
+            loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
+        });
     }
 
     private void moreValidate(SignupForm form, HarborMessages messages) {
@@ -92,7 +95,7 @@ public class SignupAction extends HarborBaseAction {
 
     private String saveSignupToken() {
         String token = primaryCipher.encrypt(String.valueOf(new Random().nextInt())); // #simple_for_example
-        sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token);
+        sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token); // #simple_for_example
         return token;
     }
 
@@ -111,7 +114,7 @@ public class SignupAction extends HarborBaseAction {
     }
 
     @Execute
-    public HtmlResponse formalize(String account, String token) { // from mail link
+    public HtmlResponse register(String account, String token) { // from mail link
         verifySignupTokenMatched(account, token);
         updateMemberAsFormalized(account);
         return redirect(SigninAction.class);

@@ -42,7 +42,7 @@
 				<li>
 					<span th:text="#{labels.productName}">labels.productName</span>
 					<input type="text" la:property="productName"/>
-					<span la:errors="productName"/>
+					<span la:errors="productName"></span>
 				</li>
 				<li>
 					<span th:text="#{labels.productStatus}">labels.productStatus</span>
@@ -50,11 +50,12 @@
 						<option value="" th:text="#{labels.listbox.caption.tell}"></option>
 						<option la:optionCls="ProductStatus"></option>
 					</select>
+					<span la:errors="productStatus"></span>
 				</li>
 				<li>
 					<span th:text="#{labels.purchase} + ' ' + #{labels.member}">labels.purchase labels.member</span>
 					<input type="text" la:property="purchaseMemberName"/>
-					<span la:errors="purchaseMemberName"/>
+					<span la:errors="purchaseMemberName"></span>
 				</li>
 			</ul>
 			<input type="submit" th:value="#{labels.search}" value="search"/>

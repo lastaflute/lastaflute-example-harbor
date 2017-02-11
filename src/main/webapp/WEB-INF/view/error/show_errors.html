@@ -36,8 +36,8 @@
 <div class="contents">
 	<h2 class="content-title" th:text="#{labels.error.message.title}">labels.error.message.title</h2>
 	<div class="content-box">
-		<ul th:unless="${errors.empty}" th:style="'color : red;'">
-			<li th:each="er : ${errors.all}" th:text="${er.message}"></li>
+		<ul th:unless="${errors.empty}">
+			<li la:errors="all"></li>
 		</ul>
 		<a th:href="@{/mypage/}" href="../mypage/mypage.html">to MyPage</a>
 	</div>

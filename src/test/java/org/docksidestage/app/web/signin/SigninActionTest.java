@@ -29,7 +29,7 @@ public class SigninActionTest extends UnitHarborTestCase {
         htmlData.assertRedirect(MypageAction.class);
     }
 
-    public void test_signin_failure() {
+    public void test_signin_validationError() {
         // ## Arrange ##
         SigninAction action = new SigninAction();
         inject(action);
@@ -38,16 +38,13 @@ public class SigninActionTest extends UnitHarborTestCase {
         form.password = "land";
 
         // ## Act ##
-        try {
-            action.signin(form);
-            // ## Assert ##
-            fail();
-        } catch (ValidationErrorException e) {
-            UserMessages messages = e.getMessages();
+        // ## Assert ##
+        assertException(ValidationErrorException.class, () -> action.signin(form)).handle(cause -> {
+            UserMessages messages = cause.getMessages();
             assertTrue(messages.hasMessageOf("account", HarborMessages.ERRORS_LOGIN_FAILURE));
-            HtmlResponse response = (HtmlResponse) e.getErrorHook().hook();
+            HtmlResponse response = hookValidationError(cause);
             validateHtmlData(response);
-            assertNull(form.password);
-        }
+            assertNull(form.password); // should cleared for security
+        });
     }
 }

@@ -24,6 +24,7 @@ import org.docksidestage.mylasta.direction.sponsor.HarborCurtainBeforeHook;
 import org.docksidestage.mylasta.direction.sponsor.HarborJsonResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborListedClassificationProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborMailDeliveryDepartmentCreator;
+import org.docksidestage.mylasta.direction.sponsor.HarborMultipartRequestHandler;
 import org.docksidestage.mylasta.direction.sponsor.HarborSecurityResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborTimeResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborUserLocaleProcessProvider;
@@ -37,6 +38,7 @@ import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
 import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
 import org.lastaflute.web.direction.FwWebDirection;
+import org.lastaflute.web.ruts.multipart.MultipartResourceProvider;
 import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 import org.lastaflute.web.servlet.filter.cors.CorsHook;
 
@@ -129,6 +131,7 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directApiCall(createApiFailureHook());
         direction.directCors(new CorsHook("http://localhost:5000")); // #change_it
         direction.directHtmlRendering(createHtmlRenderingProvider());
+        direction.directMultipart(createMultipartResourceProvider());
     }
 
     protected HarborUserLocaleProcessProvider createUserLocaleProcessProvider() {
@@ -154,5 +157,9 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected HtmlRenderingProvider createHtmlRenderingProvider() {
         return new ThymeleafRenderingProvider().asDevelopment(config.isDevelopmentHere());
+    }
+
+    protected MultipartResourceProvider createMultipartResourceProvider() {
+        return () -> new HarborMultipartRequestHandler();
     }
 }

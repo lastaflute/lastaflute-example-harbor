@@ -17,7 +17,7 @@
 		<dbflute.version>1.1.2</dbflute.version>
 		<h2.jdbc.version>1.4.193</h2.jdbc.version>
 		<lastaflute.version>0.9.0</lastaflute.version>
-		<lasta.thymeleaf.version>0.2.8</lasta.thymeleaf.version>
+		<lasta.thymeleaf.version>0.2.9</lasta.thymeleaf.version>
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.12</slf4j.version>

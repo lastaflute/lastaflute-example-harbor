@@ -29,6 +29,15 @@ public interface HarborConfig extends HarborEnv {
     /** The key of the configuration. e.g. Harbor */
     String DOMAIN_TITLE = "domain.title";
 
+    /** The key of the configuration. e.g. yyyy/MM/dd */
+    String APP_STANDARD_DATE_PATTERN = "app.standard.date.pattern";
+
+    /** The key of the configuration. e.g. yyyy/MM/dd HH:mm:ss */
+    String APP_STANDARD_DATETIME_PATTERN = "app.standard.datetime.pattern";
+
+    /** The key of the configuration. e.g. HH:mm:ss */
+    String APP_STANDARD_TIME_PATTERN = "app.standard.time.pattern";
+
     /** The key of the configuration. e.g. / */
     String COOKIE_DEFAULT_PATH = "cookie.default.path";
 
@@ -72,6 +81,30 @@ public interface HarborConfig extends HarborEnv {
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getDomainTitle();
+
+    /**
+     * Get the value for the key 'app.standard.date.pattern'. <br>
+     * The value is, e.g. yyyy/MM/dd <br>
+     * comment: The pattern of date as application standard used by e.g. Thymeleaf handy.format()
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getAppStandardDatePattern();
+
+    /**
+     * Get the value for the key 'app.standard.datetime.pattern'. <br>
+     * The value is, e.g. yyyy/MM/dd HH:mm:ss <br>
+     * comment: The pattern of date-time as application standard used by e.g. Thymeleaf handy.format()
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getAppStandardDatetimePattern();
+
+    /**
+     * Get the value for the key 'app.standard.time.pattern'. <br>
+     * The value is, e.g. HH:mm:ss <br>
+     * comment: The pattern of time as application standard used by e.g. Thymeleaf handy.format()
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getAppStandardTimePattern();
 
     /**
      * Get the value for the key 'cookie.default.path'. <br>
@@ -138,6 +171,18 @@ public interface HarborConfig extends HarborEnv {
 
         public String getDomainTitle() {
             return get(HarborConfig.DOMAIN_TITLE);
+        }
+
+        public String getAppStandardDatePattern() {
+            return get(HarborConfig.APP_STANDARD_DATE_PATTERN);
+        }
+
+        public String getAppStandardDatetimePattern() {
+            return get(HarborConfig.APP_STANDARD_DATETIME_PATTERN);
+        }
+
+        public String getAppStandardTimePattern() {
+            return get(HarborConfig.APP_STANDARD_TIME_PATTERN);
         }
 
         public String getCookieDefaultPath() {

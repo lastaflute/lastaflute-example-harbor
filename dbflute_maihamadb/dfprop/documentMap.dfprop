@@ -91,7 +91,7 @@ map:{
     # o isEntityJavaDocDbCommentValid: (NotRequired - Default true)
     #  Does it allow DB comment to be on java-doc?
     #
-    #; isEntityJavaDocDbCommentValid = true
+    ; isEntityJavaDocDbCommentValid = true
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

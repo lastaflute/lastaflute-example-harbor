@@ -26,7 +26,8 @@ h1 {
     letter-spacing: 0.2em;
 }
 h2 {
-    font-size: 1.5em;
+    font-size: 2.0em;
+    margin-top: 2.5em;
     margin-bottom: 10px;
     padding: 3px 0;
     background-color: #9e4873;
@@ -130,8 +131,11 @@ td {
 }
 .rowcellnum {
     text-align: right;
-    font-size: 0.4em;
+    font-size: 0.5em;
     color: #444;
+}
+.flgcell {
+	text-align: center;
 }
 
 /* inner table */
@@ -162,7 +166,7 @@ table.child, table.child td, table.child th {
 
 <p class="sisterneighborlink">
         <a href="#lastadoc_action">to action(31)</a>
-            | <a href="#lastadoc_mail">to mail(1)</a>
+                | <a href="#lastadoc_mail">to mail(1)</a>
                 | <a href="#lastadoc_appcls">to appcls(1)</a>
         </p>
 </div>
@@ -180,9 +184,9 @@ table.child, table.child td, table.child th {
         <th colspan="3">count</th>
     </tr>
     <tr>
-        <th>class fields</th>
-        <th>class line</th>
-        <th>method line</th>
+        <th>fields</th>
+        <th>class lines</th>
+        <th>method lines</th>
     </tr>
     </thead>
     <tbody id="table-list-body">
@@ -2448,6 +2452,7 @@ table.child, table.child td, table.child th {
 <span class="doctitle">Return as:</span> <span class="docsubvalue"><span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span></span>
 <p class="tablecomment" title=""></p>
 <p class="docsubitem"><span class="docsubtitle">implementations:</span> <span class="docsubvalue">asEntryHtml(),redirect(SignoutAction.class)</span></p>
+
 
 
 <h2 id="lastadoc_mail">mail</h2>

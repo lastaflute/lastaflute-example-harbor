@@ -76,12 +76,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="bean : ${beans}">
-					<td th:text="${bean.productId}">${f:h(bean.productId)}</td>
-					<td><a th:href="@{/product/detail/{productId}(productId=${bean.productId})}" href="product_detail.html" th:text="${bean.productName}">${f:h(bean.productName)}</a></td>
-					<td th:text="${bean.productStatus}">${f:h(bean.productStatus)}</td>
-					<td th:text="${bean.productCategory}">${f:h(bean.productCategory)}</td>
-					<td th:text="${bean.regularPrice}">${f:h(bean.regularPrice)}</td>
-					<td th:text="${bean.latestPurchaseDate}">${f:h(bean.latestPurchaseDate)}</td>
+					<td th:text="${bean.productId}">bean.productId</td>
+					<td><a th:href="@{/product/detail/{productId}(productId=${bean.productId})}" href="product_detail.html" th:text="${bean.productName}">bean.productName</a></td>
+					<td th:text="${bean.productStatus}">bean.productStatus</td>
+					<td th:text="${bean.productCategory}">bean.productCategory</td>
+					<td th:text="${bean.regularPrice}">bean.regularPrice</td>
+					<td th:text="${bean.latestPurchaseDate}">bean.latestPurchaseDate</td>
 				</tr>
 			</tbody>
 		</table>

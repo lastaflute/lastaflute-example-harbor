@@ -32,8 +32,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>0.6.9</utflute.version>
-		<javaparser.version>3.1.1</javaparser.version>
+		<utflute.version>0.7.0</utflute.version>
 	</properties>
 
 	<licenses>
@@ -315,11 +314,5 @@
 			<version>${utflute.version}</version>
 			<scope>test</scope>
 		</dependency>
-       	<dependency> <!-- for lastadoc -->
-           	<groupId>com.github.javaparser</groupId>
-           	<artifactId>javaparser-core</artifactId>
-           	<version>${javaparser.version}</version>
-			<scope>test</scope>
-       	</dependency>
 	</dependencies>
 </project>

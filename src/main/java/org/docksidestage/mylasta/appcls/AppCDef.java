@@ -298,10 +298,15 @@ public interface AppCDef extends Classification {
             });
         }
 
-        public static AppCDef.DefMeta meta(String classificationName) { // old style so use byName(name)
+        public static AppCDef.DefMeta meta(String classificationName) { // old style so use find(name)
             if (classificationName == null) { throw new IllegalArgumentException("The argument 'classificationName' should not be null."); }
             if (SearchMemberStatus.name().equalsIgnoreCase(classificationName)) { return AppCDef.DefMeta.SearchMemberStatus; }
             throw new IllegalStateException("Unknown classification: " + classificationName);
+        }
+
+        @SuppressWarnings("unused")
+        private String[] xinternalEmptyString() {
+            return emptyStrings(); // to suppress 'unused' warning of import statement
         }
     }
 }

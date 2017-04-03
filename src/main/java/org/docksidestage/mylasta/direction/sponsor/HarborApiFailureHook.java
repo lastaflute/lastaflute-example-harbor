@@ -15,9 +15,9 @@
  */
 package org.docksidestage.mylasta.direction.sponsor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -114,11 +114,10 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     }
 
     protected List<FailureErrorPart> toErrors(Map<String, List<String>> propertyMessageMap) {
-        List<FailureErrorPart> errors = new ArrayList<>();
-        propertyMessageMap.forEach((property, messages) -> {
-            errors.add(new FailureErrorPart(property, messages));
-        });
-        return errors;
+        return propertyMessageMap.entrySet()
+                .stream()
+                .map(entry -> new FailureErrorPart(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
     }
 
     // ===================================================================================

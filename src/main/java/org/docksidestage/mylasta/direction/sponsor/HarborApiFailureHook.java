@@ -138,10 +138,10 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
         public static class FailureErrorPart {
 
             @Required
-            public String field;
+            public final String field;
 
             @NotNull
-            public List<String> messages;
+            public final List<String> messages;
 
             public FailureErrorPart(String field, List<String> messages) {
                 this.field = field;
@@ -158,6 +158,8 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     public static enum UnifiedFailureType {
         VALIDATION_ERROR // special type
         , LOGIN_FAILURE, LOGIN_REQUIRED // specific type of application exception
+        // you can add your application exception type if you need it
+        //, ALREADY_DELETED, ALREADY_UPDATED
         , APPLICATION_EXCEPTION // default type of application exception
         , CLIENT_EXCEPTION // e.g. 404 not found
     }

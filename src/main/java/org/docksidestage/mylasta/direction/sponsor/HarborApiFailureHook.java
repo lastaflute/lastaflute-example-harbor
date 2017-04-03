@@ -15,13 +15,16 @@
  */
 package org.docksidestage.mylasta.direction.sponsor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.dbflute.optional.OptionalThing;
+import org.docksidestage.mylasta.direction.sponsor.HarborApiFailureHook.UnifiedFailureResult.FailureErrorPart;
 import org.lastaflute.web.api.ApiFailureHook;
 import org.lastaflute.web.api.ApiFailureResource;
 import org.lastaflute.web.api.BusinessFailureMapping;
@@ -37,17 +40,19 @@ import org.lastaflute.web.validation.Required;
 public class HarborApiFailureHook implements ApiFailureHook { // #change_it for handling API failure
 
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-    // [Front-side Implementation Example]
+    // [Reference Site]
+    // http://dbflute.seasar.org/ja/lastaflute/howto/impldesign/jsondesign.html
     //
+    // [Front-side Implementation Example]
     // if (HTTP Status: 200) { // success
-    //     XxxJsonBean bean = parseJsonAsSuccess(response);
+    //     [Business]JsonResult result = parseJsonAsSuccess(response);
     //     ...(do process per action)
     // } else if (HTTP Status: 400) { // e.g. validation error, application exception, client exception
-    //     FailureBean bean = parseJsonAsFailure(response);
-    //     ...(show bean.messageList or do process per bean.failureType)
+    //     FailureResult result = parseJsonAsFailure(response);
+    //     ...(show result.errors or do process per result.cause)
     // } else if (HTTP Status: 404) { // e.g. real not found, invalid parameter
     //     showNotFoundError();
-    // } else { // basically 500, server exception
+    // } else { // basically 500 or other client errors
     //     showSystemError();
     // }
     // _/_/_/_/_/_/_/_/_/_/
@@ -98,27 +103,55 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     }
 
     // ===================================================================================
-    //                                                                        Assist Logic
-    //                                                                        ============
+    //                                                                          JSON Logic
+    //                                                                          ==========
     protected JsonResponse<UnifiedFailureResult> asJson(UnifiedFailureResult result) {
         return new JsonResponse<UnifiedFailureResult>(result);
     }
 
     protected UnifiedFailureResult createFailureResult(UnifiedFailureType failureType, ApiFailureResource resource) {
-        return new UnifiedFailureResult(failureType, resource.getPropertyMessageMap());
+        return new UnifiedFailureResult(failureType, toErrors(resource.getPropertyMessageMap()));
     }
 
+    protected List<FailureErrorPart> toErrors(Map<String, List<String>> propertyMessageMap) {
+        List<FailureErrorPart> errors = new ArrayList<>();
+        propertyMessageMap.forEach((property, messages) -> {
+            errors.add(new FailureErrorPart(property, messages));
+        });
+        return errors;
+    }
+
+    // ===================================================================================
+    //                                                                      Failure Result
+    //                                                                      ==============
     public static class UnifiedFailureResult {
 
         public final String notice = "[Attension] tentative JSON so you should change it: " + HarborApiFailureHook.class;
-        @Required
-        public final UnifiedFailureType failureType;
-        @NotNull
-        public final Map<String, List<String>> messageMap;
 
-        public UnifiedFailureResult(UnifiedFailureType failureType, Map<String, List<String>> messageMap) {
-            this.failureType = failureType;
-            this.messageMap = messageMap;
+        @Required
+        public final UnifiedFailureType cause;
+
+        @NotNull
+        @Valid
+        public List<FailureErrorPart> errors;
+
+        public static class FailureErrorPart {
+
+            @Required
+            public String field;
+
+            @NotNull
+            public List<String> messages;
+
+            public FailureErrorPart(String field, List<String> messages) {
+                this.field = field;
+                this.messages = messages;
+            }
+        }
+
+        public UnifiedFailureResult(UnifiedFailureType cause, List<FailureErrorPart> errors) {
+            this.cause = cause;
+            this.errors = errors;
         }
     }
 

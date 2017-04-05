@@ -82,7 +82,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     @Override
     public ApiResponse handleApplicationException(ApiFailureResource resource, RuntimeException cause) {
         final UnifiedFailureType failureType = failureTypeMapping.findAssignable(cause).orElseGet(() -> {
-            return UnifiedFailureType.APPLICATION_EXCEPTION;
+            return UnifiedFailureType.BUSINESS_ERROR;
         });
         final UnifiedFailureResult result = createFailureResult(failureType, resource);
         return asJson(result).httpStatus(BUSINESS_FAILURE_STATUS);
@@ -93,7 +93,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     //                                                                      ==============
     @Override
     public OptionalThing<ApiResponse> handleClientException(ApiFailureResource resource, RuntimeException cause) {
-        final UnifiedFailureResult result = createFailureResult(UnifiedFailureType.CLIENT_EXCEPTION, resource);
+        final UnifiedFailureResult result = createFailureResult(UnifiedFailureType.CLIENT_ERROR, resource);
         return OptionalThing.of(asJson(result)); // HTTP status will be automatically sent as client error for the cause
     }
 
@@ -159,7 +159,7 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
         , LOGIN_FAILURE, LOGIN_REQUIRED // specific type of application exception
         // you can add your application exception type if you need it
         //, ALREADY_DELETED, ALREADY_UPDATED
-        , APPLICATION_EXCEPTION // default type of application exception
-        , CLIENT_EXCEPTION // e.g. 404 not found
+        , BUSINESS_ERROR // default type of application exception
+        , CLIENT_ERROR // e.g. 404 not found
     }
 }

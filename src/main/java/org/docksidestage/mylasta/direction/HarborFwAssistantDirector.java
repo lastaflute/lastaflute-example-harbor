@@ -30,17 +30,26 @@ import org.docksidestage.mylasta.direction.sponsor.HarborTimeResourceProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborUserLocaleProcessProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborUserTimeZoneProcessProvider;
 import org.lastaflute.core.direction.CachedFwAssistantDirector;
+import org.lastaflute.core.direction.CurtainBeforeHook;
 import org.lastaflute.core.direction.FwAssistDirection;
 import org.lastaflute.core.direction.FwCoreDirection;
+import org.lastaflute.core.json.JsonResourceProvider;
 import org.lastaflute.core.security.InvertibleCryptographer;
 import org.lastaflute.core.security.OneWayCryptographer;
+import org.lastaflute.core.security.SecurityResourceProvider;
+import org.lastaflute.core.time.TimeResourceProvider;
 import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
 import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
+import org.lastaflute.web.api.ApiFailureHook;
 import org.lastaflute.web.direction.FwWebDirection;
+import org.lastaflute.web.path.ActionAdjustmentProvider;
 import org.lastaflute.web.ruts.multipart.MultipartResourceProvider;
 import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
+import org.lastaflute.web.servlet.cookie.CookieResourceProvider;
 import org.lastaflute.web.servlet.filter.cors.CorsHook;
+import org.lastaflute.web.servlet.request.UserLocaleProcessProvider;
+import org.lastaflute.web.servlet.request.UserTimeZoneProcessProvider;
 
 /**
  * @author jflute
@@ -85,21 +94,21 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directMail(createMailDeliveryDepartmentCreator().create());
     }
 
-    protected HarborCurtainBeforeHook createCurtainBeforeHook() {
+    protected CurtainBeforeHook createCurtainBeforeHook() {
         return new HarborCurtainBeforeHook();
     }
 
-    protected HarborSecurityResourceProvider createSecurityResourceProvider() { // #change_it_first
+    protected SecurityResourceProvider createSecurityResourceProvider() { // #change_it_first
         final InvertibleCryptographer inver = InvertibleCryptographer.createAesCipher("harbor:dockside:");
         final OneWayCryptographer oneWay = OneWayCryptographer.createSha256Cryptographer();
         return new HarborSecurityResourceProvider(inver, oneWay);
     }
 
-    protected HarborTimeResourceProvider createTimeResourceProvider() {
+    protected TimeResourceProvider createTimeResourceProvider() {
         return new HarborTimeResourceProvider(config);
     }
 
-    protected HarborJsonResourceProvider createJsonResourceProvider() {
+    protected JsonResourceProvider createJsonResourceProvider() {
         return new HarborJsonResourceProvider();
     }
 
@@ -134,24 +143,24 @@ public class HarborFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directMultipart(createMultipartResourceProvider());
     }
 
-    protected HarborUserLocaleProcessProvider createUserLocaleProcessProvider() {
+    protected UserLocaleProcessProvider createUserLocaleProcessProvider() {
         return new HarborUserLocaleProcessProvider();
     }
 
-    protected HarborUserTimeZoneProcessProvider createUserTimeZoneProcessProvider() {
+    protected UserTimeZoneProcessProvider createUserTimeZoneProcessProvider() {
         return new HarborUserTimeZoneProcessProvider();
     }
 
-    protected HarborCookieResourceProvider createCookieResourceProvider() { // #change_it_first
+    protected CookieResourceProvider createCookieResourceProvider() { // #change_it_first
         final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dockside:harbor:");
         return new HarborCookieResourceProvider(config, cr);
     }
 
-    protected HarborActionAdjustmentProvider createActionAdjustmentProvider() {
+    protected ActionAdjustmentProvider createActionAdjustmentProvider() {
         return new HarborActionAdjustmentProvider();
     }
 
-    protected HarborApiFailureHook createApiFailureHook() {
+    protected ApiFailureHook createApiFailureHook() {
         return new HarborApiFailureHook();
     }
 

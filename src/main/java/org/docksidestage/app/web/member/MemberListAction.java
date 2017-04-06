@@ -23,7 +23,6 @@ import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.base.paging.PagingAssist;
-import org.docksidestage.app.web.base.view.DisplayAssist;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.core.util.LaStringUtil;
@@ -42,8 +41,6 @@ public class MemberListAction extends HarborBaseAction {
     private MemberBhv memberBhv;
     @Resource
     private PagingAssist pagingAssist;
-    @Resource
-    private DisplayAssist displayAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -90,11 +87,9 @@ public class MemberListAction extends HarborBaseAction {
                 cb.query().setMemberStatusCode_Equal_AsMemberStatus(form.memberStatus);
             }
             if (form.formalizedFrom != null || form.formalizedTo != null) {
-                OptionalThing<LocalDateTime> fromDate = displayAssist.toDateTime(form.formalizedFrom);
-                OptionalThing<LocalDateTime> toDate = displayAssist.toDateTime(form.formalizedTo);
-                cb.query().setFormalizedDatetime_FromTo(fromDate.orElse(null), toDate.orElse(null), op -> {
-                    op.compareAsDate().allowOneSide();
-                });
+                LocalDateTime fromTime = form.formalizedFrom != null ? form.formalizedFrom.atStartOfDay() : null;
+                LocalDateTime toTime = form.formalizedFrom != null ? form.formalizedFrom.atStartOfDay() : null;
+                cb.query().setFormalizedDatetime_FromTo(fromTime, toTime, op -> op.compareAsDate().allowOneSide());
             }
             cb.query().addOrderBy_UpdateDatetime_Desc();
             cb.query().addOrderBy_MemberId_Asc();
@@ -112,10 +107,11 @@ public class MemberListAction extends HarborBaseAction {
         member.getMemberStatus().alwaysPresent(status -> {
             bean.memberStatusName = status.getMemberStatusName();
         });
-        displayAssist.toDate(member.getFormalizedDatetime()).ifPresent(date -> {
-            bean.formalizedDate = date;
-        });
-        bean.updateDatetime = displayAssist.toStringDateTime(member.getUpdateDatetime()).get();
+        LocalDateTime formalizedDatetime = member.getFormalizedDatetime();
+        if (formalizedDatetime != null) {
+            bean.formalizedDate = formalizedDatetime.toLocalDate();
+        }
+        bean.updateDatetime = member.getUpdateDatetime();
         bean.withdrawalMember = member.isMemberStatusCodeWithdrawal();
         bean.purchaseCount = member.getPurchaseCount();
         return bean;

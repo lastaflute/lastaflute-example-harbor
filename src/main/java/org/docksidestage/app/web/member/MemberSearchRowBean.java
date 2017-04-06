@@ -16,6 +16,7 @@
 package org.docksidestage.app.web.member;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.lastaflute.web.validation.Required;
 
@@ -33,7 +34,7 @@ public class MemberSearchRowBean {
     /** null if provisional member */
     public LocalDate formalizedDate;
     @Required
-    public String updateDatetime;
+    public LocalDateTime updateDatetime;
     @Required
     public Boolean withdrawalMember; // wrapper type to avoid empty setting 
     @Required

@@ -105,10 +105,6 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
     // ===================================================================================
     //                                                                          JSON Logic
     //                                                                          ==========
-    protected JsonResponse<UnifiedFailureResult> asJson(UnifiedFailureResult result) {
-        return new JsonResponse<UnifiedFailureResult>(result);
-    }
-
     protected UnifiedFailureResult createFailureResult(UnifiedFailureType failureType, ApiFailureResource resource) {
         return new UnifiedFailureResult(failureType, toErrors(resource.getPropertyMessageMap()));
     }
@@ -118,6 +114,10 @@ public class HarborApiFailureHook implements ApiFailureHook { // #change_it for 
                 .stream()
                 .map(entry -> new FailureErrorPart(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
+    }
+
+    protected JsonResponse<UnifiedFailureResult> asJson(UnifiedFailureResult result) {
+        return new JsonResponse<UnifiedFailureResult>(result);
     }
 
     // ===================================================================================

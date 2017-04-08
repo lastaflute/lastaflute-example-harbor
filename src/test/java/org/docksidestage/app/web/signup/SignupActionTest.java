@@ -3,6 +3,7 @@ package org.docksidestage.app.web.signup;
 import javax.annotation.Resource;
 
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
+import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.MemberLogin;
@@ -19,6 +20,8 @@ public class SignupActionTest extends UnitHarborTestCase {
 
     @Resource
     private MemberBhv memberBhv;
+    @Resource
+    private HarborLoginAssist loginAssist;
 
     public void test_index_success() {
         // ## Arrange ##
@@ -60,6 +63,9 @@ public class SignupActionTest extends UnitHarborTestCase {
 
         // ## Act ##
         HtmlResponse response = action.signup(form);
+        response.getAfterTxCommitHook().alwaysPresent(hook -> {
+            hook.hook(); // login
+        });
 
         // ## Assert ##
         TestingHtmlData htmlData = validateHtmlData(response);

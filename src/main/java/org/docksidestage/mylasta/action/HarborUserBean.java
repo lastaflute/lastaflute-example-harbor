@@ -34,6 +34,7 @@ public class HarborUserBean extends TypicalUserBean<Integer> { // #change_it als
     //                                                                           =========
     protected final Integer memberId;
     protected final String memberName;
+    protected final String memberAccount;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -41,6 +42,7 @@ public class HarborUserBean extends TypicalUserBean<Integer> { // #change_it als
     public HarborUserBean(Member member) {
         memberId = member.getMemberId();
         memberName = member.getMemberName();
+        memberAccount = member.getMemberAccount();
     }
 
     // ===================================================================================
@@ -60,5 +62,9 @@ public class HarborUserBean extends TypicalUserBean<Integer> { // #change_it als
 
     public String getMemberName() {
         return memberName;
+    }
+
+    public String getMemberAccount() {
+        return memberAccount;
     }
 }

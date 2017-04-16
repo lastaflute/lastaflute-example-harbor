@@ -1,6 +1,19 @@
+/*
+ * Copyright 2015-2017 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 package org.docksidestage.app.web.signup;
-
-import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -22,8 +35,6 @@ import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
-import org.lastaflute.web.servlet.request.ResponseManager;
-import org.lastaflute.web.servlet.session.SessionManager;
 
 /**
  * @author annie_pocket
@@ -33,19 +44,10 @@ import org.lastaflute.web.servlet.session.SessionManager;
 public class SignupAction extends HarborBaseAction {
 
     // ===================================================================================
-    //                                                                          Definition
-    //                                                                          ==========
-    private static final String SIGNUP_TOKEN_KEY = "signupToken";
-
-    // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     @Resource
     private Postbox postbox;
-    @Resource
-    private SessionManager sessionManager;
-    @Resource
-    private ResponseManager responseManager;
     @Resource
     private HarborConfig config;
     @Resource
@@ -56,6 +58,8 @@ public class SignupAction extends HarborBaseAction {
     private MemberServiceBhv memberServiceBhv;
     @Resource
     private HarborLoginAssist loginAssist;
+    @Resource
+    private SignupTokenAssist signupTokenAssist;
 
     // ===================================================================================
     //                                                                             Execute
@@ -70,12 +74,11 @@ public class SignupAction extends HarborBaseAction {
         validate(form, messages -> moreValidate(form, messages), () -> {
             return asHtml(path_Signup_SignupHtml);
         });
-        Integer memberId = insertProvisionalMember(form);
-
-        String signupToken = saveSignupToken();
-        sendSignupMail(form, signupToken);
+        Member member = insertProvisionalMember(form);
+        String token = signupTokenAssist.saveSignupToken(member);
+        sendSignupMail(form, token);
         return redirect(MypageAction.class).afterTxCommit(() -> { // for asynchronous DB access
-            loginAssist.identityLogin(memberId, op -> {}); // no remember-me here
+            loginAssist.identityLogin(member.getMemberId(), op -> {}); // #simple_for_example no remember for now
         });
     }
 
@@ -90,20 +93,14 @@ public class SignupAction extends HarborBaseAction {
         }
     }
 
-    private String saveSignupToken() {
-        String token = Integer.toHexString(new Random().nextInt()); // #simple_for_example
-        sessionManager.setAttribute(SIGNUP_TOKEN_KEY, token); // #simple_for_example
-        return token;
-    }
-
-    private void sendSignupMail(SignupForm form, String signupToken) {
+    private void sendSignupMail(SignupForm form, String token) {
         WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
             postcard.setFrom(config.getMailAddressSupport(), "Harbor Support"); // #simple_for_example
             postcard.addTo(form.memberAccount + "@docksidestage.org"); // #simple_for_example
             postcard.setDomain(config.getServerDomain());
             postcard.setMemberName(form.memberName);
             postcard.setAccount(form.memberAccount);
-            postcard.setToken(signupToken);
+            postcard.setToken(token);
             postcard.async();
             postcard.retry(3, 1000L);
             postcard.writeAuthor(this);
@@ -112,24 +109,15 @@ public class SignupAction extends HarborBaseAction {
 
     @Execute
     public HtmlResponse register(String account, String token) { // from mail link
-        verifySignupTokenMatched(account, token);
+        signupTokenAssist.verifySignupTokenMatched(account, token);
         updateMemberAsFormalized(account);
         return redirect(SigninAction.class);
-    }
-
-    private void verifySignupTokenMatched(String account, String token) {
-        String saved = sessionManager.getAttribute(SIGNUP_TOKEN_KEY, String.class).orElseTranslatingThrow(cause -> {
-            return responseManager.new404("Not found the signupToken in session: " + account, op -> op.cause(cause));
-        });
-        if (!saved.equals(token)) {
-            throw responseManager.new404("Unmatched signupToken in session: saved=" + saved + ", requested=" + token);
-        }
     }
 
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    private Integer insertProvisionalMember(SignupForm form) {
+    private Member insertProvisionalMember(SignupForm form) {
         Member member = new Member();
         member.setMemberName(form.memberName);
         member.setMemberAccount(form.memberAccount);
@@ -149,7 +137,7 @@ public class SignupAction extends HarborBaseAction {
         service.setServicePointCount(0);
         service.setServiceRankCode_Plastic();
         memberServiceBhv.insert(service);
-        return member.getMemberId();
+        return member;
     }
 
     private void updateMemberAsFormalized(String account) {

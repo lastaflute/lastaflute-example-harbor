@@ -6,5 +6,6 @@
 /.gradle
 /tomcat.*
 /dbflute-intro.*
+/mydbflute/intro_resources
 trial_config.ignored
 .DS_Store

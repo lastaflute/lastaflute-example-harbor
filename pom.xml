@@ -24,7 +24,7 @@
 		<logback.version>1.1.3</logback.version>
 		<servlet.version>3.1.0</servlet.version>
 		<jsp.version>2.3.1</jsp.version>
-		<jetty.boot.version>0.4.6</jetty.boot.version>
+		<jetty.boot.version>0.4.7</jetty.boot.version>
 
 		<!-- GoodNeighbor Library -->
 		<commons.lang.version>3.4</commons.lang.version>

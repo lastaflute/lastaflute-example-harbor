@@ -117,6 +117,21 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: should be {propertyType} */
     public static final String CONSTRAINTS_TypeAny_MESSAGE = "{constraints.TypeAny.message}";
 
+    /** The key of the message: should be number */
+    public static final String CONSTRAINTS_TypeInteger_MESSAGE = "{constraints.TypeInteger.message}";
+
+    /** The key of the message: should be number */
+    public static final String CONSTRAINTS_TypeLong_MESSAGE = "{constraints.TypeLong.message}";
+
+    /** The key of the message: should be date */
+    public static final String CONSTRAINTS_TypeLocalDate_MESSAGE = "{constraints.TypeLocalDate.message}";
+
+    /** The key of the message: should be date-time */
+    public static final String CONSTRAINTS_TypeLocalDateTime_MESSAGE = "{constraints.TypeLocalDateTime.message}";
+
+    /** The key of the message: should be boolean */
+    public static final String CONSTRAINTS_TypeBoolean_MESSAGE = "{constraints.TypeBoolean.message}";
+
     /** The key of the message: could not login */
     public static final String ERRORS_LOGIN_FAILURE = "{errors.login.failure}";
 
@@ -579,6 +594,76 @@ public class HarborMessages extends HarborLabels {
     public HarborMessages addConstraintsTypeAnyMessage(String property, String propertyType) {
         assertPropertyNotNull(property);
         add(property, new UserMessage(CONSTRAINTS_TypeAny_MESSAGE, propertyType));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeInteger.message' with parameters.
+     * <pre>
+     * message: should be number
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeIntegerMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_TypeInteger_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeLong.message' with parameters.
+     * <pre>
+     * message: should be number
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeLongMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_TypeLong_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeLocalDate.message' with parameters.
+     * <pre>
+     * message: should be date
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeLocalDateMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_TypeLocalDate_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeLocalDateTime.message' with parameters.
+     * <pre>
+     * message: should be date-time
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeLocalDateTimeMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_TypeLocalDateTime_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.TypeBoolean.message' with parameters.
+     * <pre>
+     * message: should be boolean
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsTypeBooleanMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_TypeBoolean_MESSAGE));
         return this;
     }
 

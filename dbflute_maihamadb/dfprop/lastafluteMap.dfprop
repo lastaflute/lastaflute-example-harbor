@@ -32,7 +32,7 @@ map:{
     ; appMap = map:{
         ; harbor = map:{
             ; path = ..
-            ; freeGenList = list:{ env ; config ; label ; message ; mail ; template ; html ; doc ; appcls }
+            ; freeGenList = list:{ env ; config ; label ; message ; mail ; template ; html ; doc ; appcls ; namedcls }
             ; propertiesHtmlList = list:{ env ; config ; label ; message }
         }
     }

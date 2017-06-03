@@ -45,17 +45,17 @@ public class HarborActionDefTest extends UnitHarborTestCase {
         policeStoryOfJavaClassChase(new NonWebHasWebReferencePolice());
     }
 
-    public void test_webPackageNinjaReferencePolice() throws Exception {
+    public void test_webPackageNinjaReference() throws Exception {
         policeStoryOfJavaClassChase(new WebPackageNinjaReferencePolice());
     }
 
-    public void test_injectedResourceDefinitionPolice() throws Exception {
+    public void test_injectedResourceDefinition() throws Exception {
         policeStoryOfJavaClassChase(new InjectedResourceDefinitionPolice().shouldBePrivateField(field -> {
             return true; // means all fields
         }));
     }
 
-    public void test_lastaPresentsSomethingPolice() throws Exception {
+    public void test_lastaPresentsSomething() throws Exception {
         policeStoryOfJavaClassChase(new LastaPresentsSomethingPolice());
     }
 }

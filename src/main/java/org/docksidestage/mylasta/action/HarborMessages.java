@@ -60,7 +60,7 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: must be in the past */
     public static final String CONSTRAINTS_Past_MESSAGE = "{constraints.Past.message}";
 
-    /** The key of the message: must match "{regexp}" */
+    /** The key of the message: invalid format */
     public static final String CONSTRAINTS_Pattern_MESSAGE = "{constraints.Pattern.message}";
 
     /** The key of the message: size must be between {min} and {max} */
@@ -317,15 +317,14 @@ public class HarborMessages extends HarborLabels {
     /**
      * Add the created action message for the key 'constraints.Pattern.message' with parameters.
      * <pre>
-     * message: must match "{regexp}"
+     * message: invalid format
      * </pre>
      * @param property The property name for the message. (NotNull)
-     * @param regexp The parameter regexp for message. (NotNull)
      * @return this. (NotNull)
      */
-    public HarborMessages addConstraintsPatternMessage(String property, String regexp) {
+    public HarborMessages addConstraintsPatternMessage(String property) {
         assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_Pattern_MESSAGE, regexp));
+        add(property, new UserMessage(CONSTRAINTS_Pattern_MESSAGE));
         return this;
     }
 

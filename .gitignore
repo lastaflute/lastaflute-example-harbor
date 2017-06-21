@@ -1,8 +1,14 @@
 /target
 /build
 /bin
+/.idea/artifacts
+/.idea/libraries
+/.idea/modules
+/.idea/compiler.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
 /*.iml
-/.idea
 /.gradle
 /tomcat.*
 /dbflute-intro.*

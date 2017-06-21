@@ -1,6 +1,10 @@
+# common
 /target
 /build
 /bin
+.DS_Store
+
+# IntelliJ IDEA
 /.idea/artifacts
 /.idea/libraries
 /.idea/modules
@@ -9,9 +13,17 @@
 /.idea/vcs.xml
 /.idea/workspace.xml
 /*.iml
+/out
+
+# Gradle
 /.gradle
+
+# Tomcat
 /tomcat.*
+
+# DBFlute
 /dbflute-intro.*
 /mydbflute/intro_resources
+
+# LastaFlute
 trial_config.ignored
-.DS_Store

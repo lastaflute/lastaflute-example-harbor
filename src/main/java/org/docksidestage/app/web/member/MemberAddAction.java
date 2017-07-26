@@ -18,6 +18,7 @@ package org.docksidestage.app.web.member;
 import javax.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
+import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.lastaflute.core.time.TimeManager;
@@ -43,7 +44,9 @@ public class MemberAddAction extends HarborBaseAction {
     @Execute
     public HtmlResponse index() {
         saveToken();
-        return asHtml(path_Member_MemberAddHtml);
+        return asHtml(path_Member_MemberAddHtml).useForm(MemberAddForm.class, op -> op.setup(form -> {
+            form.memberStatus = CDef.MemberStatus.Provisional; // as default
+        }));
     }
 
     @Execute

@@ -64,7 +64,7 @@
 				<tr>
 					<td>Member Status</td>
 					<td>
-						<select name="memberStatus" th:class="${errors.exists('memberStatus')} ? 'valid-error'">
+						<select la:property="memberStatus" th:class="${errors.exists('memberStatus')} ? 'valid-error'">
 							<option value="" th:text="#{labels.listbox.caption.tell}"></option>
 							<option la:optionCls="MemberStatus"></option>
 						</select>

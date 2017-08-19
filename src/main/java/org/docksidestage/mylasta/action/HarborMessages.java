@@ -42,6 +42,9 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: numeric value out of bounds (&lt;{integer} digits&gt;.&lt;{fraction} digits&gt; expected) */
     public static final String CONSTRAINTS_Digits_MESSAGE = "{constraints.Digits.message}";
 
+    /** The key of the message: not a well-formed email address */
+    public static final String CONSTRAINTS_Email_MESSAGE = "{constraints.Email.message}";
+
     /** The key of the message: must be in the future */
     public static final String CONSTRAINTS_Future_MESSAGE = "{constraints.Future.message}";
 
@@ -50,6 +53,12 @@ public class HarborMessages extends HarborLabels {
 
     /** The key of the message: must be greater than or equal to {value} */
     public static final String CONSTRAINTS_Min_MESSAGE = "{constraints.Min.message}";
+
+    /** The key of the message: may not be empty */
+    public static final String CONSTRAINTS_NotBlank_MESSAGE = "{constraints.NotBlank.message}";
+
+    /** The key of the message: may not be empty */
+    public static final String CONSTRAINTS_NotEmpty_MESSAGE = "{constraints.NotEmpty.message}";
 
     /** The key of the message: may not be null */
     public static final String CONSTRAINTS_NotNull_MESSAGE = "{constraints.NotNull.message}";
@@ -72,9 +81,6 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: invalid {type} barcode */
     public static final String CONSTRAINTS_EAN_MESSAGE = "{constraints.EAN.message}";
 
-    /** The key of the message: not a well-formed email address */
-    public static final String CONSTRAINTS_Email_MESSAGE = "{constraints.Email.message}";
-
     /** The key of the message: length must be between {min} and {max} */
     public static final String CONSTRAINTS_Length_MESSAGE = "{constraints.Length.message}";
 
@@ -89,12 +95,6 @@ public class HarborMessages extends HarborLabels {
 
     /** The key of the message: The check digit for ${value} is invalid, ${modType} checksum failed */
     public static final String CONSTRAINTS_ModCheck_MESSAGE = "{constraints.ModCheck.message}";
-
-    /** The key of the message: may not be empty */
-    public static final String CONSTRAINTS_NotBlank_MESSAGE = "{constraints.NotBlank.message}";
-
-    /** The key of the message: may not be empty */
-    public static final String CONSTRAINTS_NotEmpty_MESSAGE = "{constraints.NotEmpty.message}";
 
     /** The key of the message: script expression "{script}" didn't evaluate to true */
     public static final String CONSTRAINTS_ParametersScriptAssert_MESSAGE = "{constraints.ParametersScriptAssert.message}";
@@ -152,6 +152,12 @@ public class HarborMessages extends HarborLabels {
 
     /** The key of the message: the account already exists so input others */
     public static final String ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS = "{errors.signup.account.already.exists}";
+
+    /** The key of the message: the {1} already {0} so input others */
+    public static final String ERRORS_XXXXXXXXXXXXXX = "{errors.xxxxxxxxxxxxxx}";
+
+    /** The key of the message: the {1} already {4} so input others */
+    public static final String ERRORS_YYYYYYYYYYYYYY = "{errors.yyyyyyyyyyyyyy}";
 
     /**
      * Add the created action message for the key 'constraints.AssertFalse.message' with parameters.
@@ -218,13 +224,27 @@ public class HarborMessages extends HarborLabels {
      * message: numeric value out of bounds (&lt;{integer} digits&gt;.&lt;{fraction} digits&gt; expected)
      * </pre>
      * @param property The property name for the message. (NotNull)
-     * @param integer The parameter integer for message. (NotNull)
      * @param fraction The parameter fraction for message. (NotNull)
+     * @param integer The parameter integer for message. (NotNull)
      * @return this. (NotNull)
      */
-    public HarborMessages addConstraintsDigitsMessage(String property, String integer, String fraction) {
+    public HarborMessages addConstraintsDigitsMessage(String property, String fraction, String integer) {
         assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_Digits_MESSAGE, integer, fraction));
+        add(property, new UserMessage(CONSTRAINTS_Digits_MESSAGE, fraction, integer));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.Email.message' with parameters.
+     * <pre>
+     * message: not a well-formed email address
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsEmailMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_Email_MESSAGE));
         return this;
     }
 
@@ -269,6 +289,34 @@ public class HarborMessages extends HarborLabels {
     public HarborMessages addConstraintsMinMessage(String property, String value) {
         assertPropertyNotNull(property);
         add(property, new UserMessage(CONSTRAINTS_Min_MESSAGE, value));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.NotBlank.message' with parameters.
+     * <pre>
+     * message: may not be empty
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsNotBlankMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_NotBlank_MESSAGE));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'constraints.NotEmpty.message' with parameters.
+     * <pre>
+     * message: may not be empty
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addConstraintsNotEmptyMessage(String property) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(CONSTRAINTS_NotEmpty_MESSAGE));
         return this;
     }
 
@@ -375,20 +423,6 @@ public class HarborMessages extends HarborLabels {
     }
 
     /**
-     * Add the created action message for the key 'constraints.Email.message' with parameters.
-     * <pre>
-     * message: not a well-formed email address
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addConstraintsEmailMessage(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_Email_MESSAGE));
-        return this;
-    }
-
-    /**
      * Add the created action message for the key 'constraints.Length.message' with parameters.
      * <pre>
      * message: length must be between {min} and {max}
@@ -455,41 +489,13 @@ public class HarborMessages extends HarborLabels {
      * message: The check digit for ${value} is invalid, ${modType} checksum failed
      * </pre>
      * @param property The property name for the message. (NotNull)
-     * @param value The parameter value for message. (NotNull)
      * @param modType The parameter modType for message. (NotNull)
+     * @param value The parameter value for message. (NotNull)
      * @return this. (NotNull)
      */
-    public HarborMessages addConstraintsModCheckMessage(String property, String value, String modType) {
+    public HarborMessages addConstraintsModCheckMessage(String property, String modType, String value) {
         assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_ModCheck_MESSAGE, value, modType));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'constraints.NotBlank.message' with parameters.
-     * <pre>
-     * message: may not be empty
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addConstraintsNotBlankMessage(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_NotBlank_MESSAGE));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'constraints.NotEmpty.message' with parameters.
-     * <pre>
-     * message: may not be empty
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addConstraintsNotEmptyMessage(String property) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(CONSTRAINTS_NotEmpty_MESSAGE));
+        add(property, new UserMessage(CONSTRAINTS_ModCheck_MESSAGE, modType, value));
         return this;
     }
 
@@ -571,6 +577,7 @@ public class HarborMessages extends HarborLabels {
      * Add the created action message for the key 'constraints.Required.message' with parameters.
      * <pre>
      * message: is required
+     * comment: --------------------
      * </pre>
      * @param property The property name for the message. (NotNull)
      * @return this. (NotNull)
@@ -762,6 +769,38 @@ public class HarborMessages extends HarborLabels {
     public HarborMessages addErrorsSignupAccountAlreadyExists(String property) {
         assertPropertyNotNull(property);
         add(property, new UserMessage(ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'errors.xxxxxxxxxxxxxx' with parameters.
+     * <pre>
+     * message: the {1} already {0} so input others
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @param arg0 The parameter arg0 for message. (NotNull)
+     * @param arg1 The parameter arg1 for message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addErrorsXxxxxxxxxxxxxx(String property, String arg0, String arg1) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(ERRORS_XXXXXXXXXXXXXX, arg0, arg1));
+        return this;
+    }
+
+    /**
+     * Add the created action message for the key 'errors.yyyyyyyyyyyyyy' with parameters.
+     * <pre>
+     * message: the {1} already {4} so input others
+     * </pre>
+     * @param property The property name for the message. (NotNull)
+     * @param arg1 The parameter arg1 for message. (NotNull)
+     * @param arg4 The parameter arg4 for message. (NotNull)
+     * @return this. (NotNull)
+     */
+    public HarborMessages addErrorsYyyyyyyyyyyyyy(String property, String arg1, String arg4) {
+        assertPropertyNotNull(property);
+        add(property, new UserMessage(ERRORS_YYYYYYYYYYYYYY, arg1, arg4));
         return this;
     }
 }

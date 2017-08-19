@@ -305,7 +305,7 @@ table.child, table.child td, table.child th {
 			<td class="filecell"><strong>../src/main/resources/harbor_message.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">42</td>
+			<td class="sizecell">44</td>
 			<td class="extendsfilecell">../src/main/resources/harbor_label.properties</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
@@ -2783,6 +2783,26 @@ table.child, table.child td, table.child th {
 	</tr>
 	<tr>
 		<td class="rownumcell">6</td>
+		<td class="keycell">constraints.Email.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">not&nbsp;a&nbsp;well-formed&nbsp;email&nbsp;address</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
 		<td class="keycell">constraints.Future.message</td>
 		<td>
 			<table class="child">
@@ -2802,7 +2822,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="keycell">constraints.Max.message</td>
 		<td>
 			<table class="child">
@@ -2822,7 +2842,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="keycell">constraints.Min.message</td>
 		<td>
 			<table class="child">
@@ -2842,7 +2862,47 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">10</td>
+		<td class="keycell">constraints.NotBlank.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="keycell">constraints.NotEmpty.message</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
 		<td class="keycell">constraints.NotNull.message</td>
 		<td>
 			<table class="child">
@@ -2862,7 +2922,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">13</td>
 		<td class="keycell">constraints.Null.message</td>
 		<td>
 			<table class="child">
@@ -2882,7 +2942,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">14</td>
 		<td class="keycell">constraints.Past.message</td>
 		<td>
 			<table class="child">
@@ -2902,7 +2962,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">15</td>
 		<td class="keycell">constraints.Pattern.message</td>
 		<td>
 			<table class="child">
@@ -2915,14 +2975,14 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">must&nbsp;match&nbsp;"{regexp}"</td>
+					<td class="valuecell">invalid&nbsp;format</td>
 					<td class="uniquenocell">1</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">16</td>
 		<td class="keycell">constraints.Size.message</td>
 		<td>
 			<table class="child">
@@ -2942,7 +3002,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">14</td>
+		<td class="rownumcell">17</td>
 		<td class="keycell">constraints.CreditCardNumber.message</td>
 		<td>
 			<table class="child">
@@ -2964,7 +3024,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">15</td>
+		<td class="rownumcell">18</td>
 		<td class="keycell">constraints.EAN.message</td>
 		<td>
 			<table class="child">
@@ -2984,27 +3044,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">16</td>
-		<td class="keycell">constraints.Email.message</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">not&nbsp;a&nbsp;well-formed&nbsp;email&nbsp;address</td>
-					<td class="uniquenocell">1</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">17</td>
+		<td class="rownumcell">19</td>
 		<td class="keycell">constraints.Length.message</td>
 		<td>
 			<table class="child">
@@ -3024,7 +3064,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">18</td>
+		<td class="rownumcell">20</td>
 		<td class="keycell">constraints.LuhnCheck.message</td>
 		<td>
 			<table class="child">
@@ -3044,7 +3084,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">19</td>
+		<td class="rownumcell">21</td>
 		<td class="keycell">constraints.Mod10Check.message</td>
 		<td>
 			<table class="child">
@@ -3064,7 +3104,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">20</td>
+		<td class="rownumcell">22</td>
 		<td class="keycell">constraints.Mod11Check.message</td>
 		<td>
 			<table class="child">
@@ -3084,7 +3124,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">21</td>
+		<td class="rownumcell">23</td>
 		<td class="keycell">constraints.ModCheck.message</td>
 		<td>
 			<table class="child">
@@ -3098,46 +3138,6 @@ table.child, table.child td, table.child th {
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
 					<td class="valuecell">The&nbsp;check&nbsp;digit&nbsp;for&nbsp;${value}&nbsp;is&nbsp;invalid,&nbsp;${modType}&nbsp;checksum&nbsp;failed</td>
-					<td class="uniquenocell">1</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">22</td>
-		<td class="keycell">constraints.NotBlank.message</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
-					<td class="uniquenocell">1</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">23</td>
-		<td class="keycell">constraints.NotEmpty.message</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">may&nbsp;not&nbsp;be&nbsp;empty</td>
 					<td class="uniquenocell">1</td>
 				</tr>
 			</table>
@@ -3253,12 +3253,14 @@ table.child, table.child td, table.child th {
 					<th>Lang</th>
 					<th>Property</th>
 					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
 				</tr>
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
 					<td class="valuecell">is&nbsp;required</td>
 					<td class="uniquenocell">1</td>
+					<td class="commentcell">--------------------</td>
 				</tr>
 			</table>
 		</td>
@@ -3520,6 +3522,46 @@ table.child, table.child td, table.child th {
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
 					<td class="valuecell">the&nbsp;account&nbsp;already&nbsp;exists&nbsp;so&nbsp;input&nbsp;others</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">43</td>
+		<td class="keycell">errors.xxxxxxxxxxxxxx</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">the&nbsp;{1}&nbsp;already&nbsp;{0}&nbsp;so&nbsp;input&nbsp;others</td>
+					<td class="uniquenocell">1</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">44</td>
+		<td class="keycell">errors.yyyyyyyyyyyyyy</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">the&nbsp;{1}&nbsp;already&nbsp;{4}&nbsp;so&nbsp;input&nbsp;others</td>
 					<td class="uniquenocell">1</td>
 				</tr>
 			</table>

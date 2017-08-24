@@ -49,10 +49,7 @@ public class ProductListAction extends HarborBaseAction {
     //                                                                             =======
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
-        validate(form, messages -> {
-            messages.addErrorsXxxxxxxxxxxxxx("productName", "x111", "x000");
-            messages.addErrorsYyyyyyyyyyyyyy("productName", "y111", "y444");
-        }, () -> {
+        validate(form, messages -> {}, () -> {
             return asHtml(path_Product_ProductListHtml);
         });
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), form);

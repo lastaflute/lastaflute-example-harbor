@@ -204,7 +204,7 @@ public interface AppCDef extends Classification {
         }
 
         /**
-         * @param dbCls The DB classification to find. (NullAllowed: if null, returns empty) 
+         * @param dbCls The DB classification to find. (NullAllowed: if null, returns empty)
          * @return The the app classification corresponding to the DB classification. (NotNull, EmptyAllowed: when null specified, not found)
          */
         public static OptionalThing<SearchMemberStatus> fromDBCls(CDef.MemberStatus dbCls) {

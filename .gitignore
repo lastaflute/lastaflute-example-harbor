@@ -6,6 +6,7 @@
 
 # IntelliJ IDEA
 /.idea/artifacts
+/.idea/dataSources*
 /.idea/libraries
 /.idea/modules
 /.idea/compiler.xml

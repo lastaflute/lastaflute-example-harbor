@@ -15,7 +15,7 @@
   <property name="backup.max.history" value="180"/>
 
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder><pattern>${log.pattern}</pattern></encoder>
+    <encoder><charset>${log.file.encoding}</charset><pattern>${log.pattern}</pattern></encoder>
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>${log.console.level}</level></filter>
   </appender>
   <appender name="appfile" class="ch.qos.logback.core.rolling.RollingFileAppender">

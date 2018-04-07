@@ -44,12 +44,12 @@
 						<option th:text="#{labels.listbox.caption.tell}">labels.listbox.caption.tell</option>
 						<option la:optionCls="WithdrawalReason"></option>
 					</select>
-					<span la:errors="selectedReason"></span>
+					<span la:errors="selectedReason"/>
 				</li>
 				<li class="withdrawal-reason-element">
 					<div>Withdrawal Reason</div>
 					<textarea rows="3" cols="30" class="withdrawal-write-reason" name="reasonInput" />
-					<span la:errors="reasonInput"></span>
+					<span la:errors="reasonInput"/>
 				</li>
 			</ul>
 			<input type="submit" th:value="#{labels.confirm}" value="confirm"/>

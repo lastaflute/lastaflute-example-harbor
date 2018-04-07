@@ -42,12 +42,12 @@
 				<li>
 					<span>Member Name</span>
 					<input type="text" name="memberName" th:value="${memberName}"/>
-					<span la:errors="memberName"></span>
+					<span la:errors="memberName"/>
 				</li>
 				<li>
 					<span>Purchase Product</span>
 					<input type="text" name="purchaseProductName" th:value="${purchaseProductName}"/>
-					<span la:errors="purchaseProductName"></span>
+					<span la:errors="purchaseProductName"/>
 				</li>
 				<li>
 					<span>Member Status</span>
@@ -55,7 +55,7 @@
 						<option value="" th:text="#{labels.listbox.caption.tell}"></option>
 						<option la:optionCls="MemberStatus"></option>
 					</select>
-					<span la:errors="memberStatus"></span>
+					<span la:errors="memberStatus"/>
 				</li>
 				<li>
 					<span>has unpaid?</span><input type="checkbox" th:value="unpaid"/>
@@ -64,7 +64,7 @@
 					<span>Formalized Date</span>
 					<input type="text" name="formalizedFrom" th:value="${formalizedFrom}" size="10"/>
 					- <input type="text" name="formalizedTo" th:value="${formalizedTo}" size="10"/>
-					<span la:errors="formalizedFrom"></span>
+					<span la:errors="formalizedFrom"/>
 				</li>
 				<li>
 					<input type="submit" th:value="#{labels.search}" value="search"/>

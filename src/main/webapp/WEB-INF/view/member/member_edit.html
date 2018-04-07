@@ -44,21 +44,21 @@
 					<td>Member Name</td>
 					<td>
 						<input type="text" name="memberName" th:value="${memberName}" th:class="${errors.exists('memberName')} ? 'valid-error'"/>
-						<span la:errors="memberName"></span>
+						<span la:errors="memberName"/>
 					</td>
 				</tr>
 				<tr>
 					<td>Member Account</td>
 					<td>
 						<input type="text" name="memberAccount" th:value="${memberAccount}" th:class="${errors.exists('memberAccount')} ? 'valid-error'"/>
-						<span la:errors="memberAccount"></span>
+						<span la:errors="memberAccount"/>
 					</td>
 				</tr>
 				<tr>
 					<td>Birthdate</td>
 					<td>
 						<input type="date" name="birthdate" th:value="${birthdate}" th:class="${errors.exists('birthdate')} ? 'valid-error'"/>
-						<span la:errors="birthdate"></span>
+						<span la:errors="birthdate"/>
 					</td>
 				</tr>
 				<tr>

@@ -81,7 +81,7 @@
 					<td th:text="${bean.productStatus}">bean.productStatus</td>
 					<td th:text="${bean.productCategory}">bean.productCategory</td>
 					<td th:text="${bean.regularPrice}">bean.regularPrice</td>
-					<td th:text="${bean.latestPurchaseDate}">bean.latestPurchaseDate</td>
+					<td th:text="${#handy.format(bean.latestPurchaseDate)}">bean.latestPurchaseDate</td>
 				</tr>
 			</tbody>
 		</table>

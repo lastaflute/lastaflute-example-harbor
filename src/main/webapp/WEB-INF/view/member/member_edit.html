@@ -43,21 +43,21 @@
 				<tr>
 					<td>Member Name</td>
 					<td>
-						<input type="text" name="memberName" th:value="${memberName}" th:class="${errors.exists('memberName')} ? 'valid-error'"/>
+						<input type="text" la:property="memberName" th:class="${errors.exists('memberName')} ? 'valid-error'"/>
 						<span la:errors="memberName"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Member Account</td>
 					<td>
-						<input type="text" name="memberAccount" th:value="${memberAccount}" th:class="${errors.exists('memberAccount')} ? 'valid-error'"/>
+						<input type="text" la:property="memberAccount" th:class="${errors.exists('memberAccount')} ? 'valid-error'"/>
 						<span la:errors="memberAccount"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Birthdate</td>
 					<td>
-						<input type="date" name="birthdate" th:value="${birthdate}" th:class="${errors.exists('birthdate')} ? 'valid-error'"/>
+						<input type="date" la:property="birthdate" th:class="${errors.exists('birthdate')} ? 'valid-error'"/>
 						<span la:errors="birthdate"></span>
 					</td>
 				</tr>
@@ -72,9 +72,9 @@
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="memberId" th:value="${memberId}"/>
-			<input type="hidden" name="previousStatus" th:value="${previousStatus}"/>
-			<input type="hidden" name="versionNo" th:value="${versionNo}"/>
+			<input type="hidden" la:property="memberId"/>
+			<input type="hidden" la:property="previousStatus"/>
+			<input type="hidden" la:property="versionNo"/>
 			<input type="submit" name="update" th:value="#{labels.update}" value="update" />
 		</form>
 		<div class="listback">

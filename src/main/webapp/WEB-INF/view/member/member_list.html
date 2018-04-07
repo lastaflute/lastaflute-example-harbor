@@ -41,12 +41,12 @@
 			<ul class="member-search-condition-list">
 				<li>
 					<span>Member Name</span>
-					<input type="text" name="memberName" th:value="${memberName}"/>
+					<input type="text" la:property="memberName"/>
 					<span la:errors="memberName"></span>
 				</li>
 				<li>
 					<span>Purchase Product</span>
-					<input type="text" name="purchaseProductName" th:value="${purchaseProductName}"/>
+					<input type="text" la:property="purchaseProductName"/>
 					<span la:errors="purchaseProductName"></span>
 				</li>
 				<li>
@@ -62,8 +62,8 @@
 				</li>
 				<li>
 					<span>Formalized Date</span>
-					<input type="text" name="formalizedFrom" th:value="${formalizedFrom}" size="10"/>
-					- <input type="text" name="formalizedTo" th:value="${formalizedTo}" size="10"/>
+					<input type="text" la:property="formalizedFrom" size="10"/>
+					- <input type="text" la:property="formalizedTo" size="10"/>
 					<span la:errors="formalizedFrom"></span>
 				</li>
 				<li>

@@ -95,7 +95,7 @@ public class SignupAction extends HarborBaseAction {
 
     private void sendSignupMail(SignupForm form, String token) {
         WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
-            postcard.setFrom(config.getMailAddressSupport(), "Harbor Support"); // #simple_for_example
+            postcard.setFrom(config.getMailAddressSupport(), HarborMessages.LABELS_MAIL_SUPPORT_PERSONAL);
             postcard.addTo(form.memberAccount + "@docksidestage.org"); // #simple_for_example
             postcard.setDomain(config.getServerDomain());
             postcard.setMemberName(form.memberName);

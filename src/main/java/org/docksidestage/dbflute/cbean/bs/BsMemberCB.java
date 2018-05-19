@@ -490,17 +490,17 @@ public class BsMemberCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnMemberStatusCode() { return doColumn("MEMBER_STATUS_CODE"); }
         /**
-         * (正式会員日時)FORMALIZED_DATETIME: {IX, TIMESTAMP(23, 10)}
+         * (正式会員日時)FORMALIZED_DATETIME: {IX, TIMESTAMP(26, 6)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnFormalizedDatetime() { return doColumn("FORMALIZED_DATETIME"); }
         /**
-         * (生年月日)BIRTHDATE: {DATE(8)}
+         * (生年月日)BIRTHDATE: {DATE(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnBirthdate() { return doColumn("BIRTHDATE"); }
         /**
-         * (登録日時)REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (登録日時)REGISTER_DATETIME: {NotNull, TIMESTAMP(26, 6)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRegisterDatetime() { return doColumn("REGISTER_DATETIME"); }
@@ -510,7 +510,7 @@ public class BsMemberCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnRegisterUser() { return doColumn("REGISTER_USER"); }
         /**
-         * (更新日時)UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (更新日時)UPDATE_DATETIME: {NotNull, TIMESTAMP(26, 6)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateDatetime() { return doColumn("UPDATE_DATETIME"); }

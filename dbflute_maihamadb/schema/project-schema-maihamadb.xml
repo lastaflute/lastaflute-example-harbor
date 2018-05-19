@@ -8,7 +8,7 @@
         <column autoIncrement="true"
             comment="会員ID: 連番として自動採番される。会員IDだけに限らず採番方法はDBMS次第。"
             dbType="INTEGER"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_F5EAA04F_09A2_4843_8E53_C074D3A9AF5D"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_F5E1A649_34BF_40C7_A7EB_FE2000817709"
             javaType="Integer" name="MEMBER_ID" pkName="CONSTRAINT_8"
             pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
@@ -26,13 +26,13 @@
         <column
             comment="正式会員日時: 会員が正式に確定した(正式会員になった)日時。&#xa;一度確定したらもう二度と更新されないはずだ！"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="FORMALIZED_DATETIME" size="23, 10" type="TIMESTAMP"/>
+            name="FORMALIZED_DATETIME" size="26, 6" type="TIMESTAMP"/>
         <column comment="生年月日: 必須項目ではないので、このデータがない会員もいる。" dbType="DATE"
-            javaType="java.time.LocalDate" name="BIRTHDATE" size="8" type="DATE"/>
+            javaType="java.time.LocalDate" name="BIRTHDATE" size="10" type="DATE"/>
         <column
             comment="登録日時: レコードが登録された日時。&#xa;会員が登録された日時とほぼ等しいが、そういった業務的な役割を兼務させるのはあまり推奨されない。といいつつ、このテーブルには会員登録日時がない...&#xa;仕様はどのテーブルでも同じなので、共通カラムの説明はこのテーブルでしか書かない。"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="REGISTER_DATETIME" required="true" size="23, 10" type="TIMESTAMP"/>
+            name="REGISTER_DATETIME" required="true" size="26, 6" type="TIMESTAMP"/>
         <column
             comment="登録ユーザ: レコードを登録したユーザ。&#xa;会員テーブルであれば当然、会員自身であるはずだが、他のテーブルの場合では管理画面から運用者による登録など考えられるので、しっかり保持しておく。"
             dbType="VARCHAR" javaType="String" name="REGISTER_USER"
@@ -40,7 +40,7 @@
         <column
             comment="更新日時: レコードが（最後に）更新された日時。&#xa;業務的な利用はあまり推奨されないと別項目で説明したが、このカラムはソートの要素としてよく利用される。"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="UPDATE_DATETIME" required="true" size="23, 10" type="TIMESTAMP"/>
+            name="UPDATE_DATETIME" required="true" size="26, 6" type="TIMESTAMP"/>
         <column
             comment="更新ユーザ: レコードを更新したユーザ。&#xa;システムは誰が何をしたのかちゃんと覚えているのさ。"
             dbType="VARCHAR" javaType="String" name="UPDATE_USER"
@@ -72,7 +72,7 @@
         <column autoIncrement="true"
             comment="会員住所ID: 会員住所を識別するID。&#xa;期間ごとに同じ会員のデータを保持することがあるため、これは単なるPKであってFKではない。"
             dbType="INTEGER"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_ED7554C7_6987_4608_94A6_E7258C68782A"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_238C98CA_5DF8_4E54_8515_FC53A01D6BA4"
             javaType="Integer" name="MEMBER_ADDRESS_ID"
             pkName="CONSTRAINT_B" pkPosition="1" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
@@ -83,11 +83,11 @@
         <column
             comment="有効開始日: 一つの有効期間の開始を示す日付。&#xa;前の有効終了日の次の日の値が格納される。"
             dbType="DATE" javaType="java.time.LocalDate"
-            name="VALID_BEGIN_DATE" required="true" size="8" type="DATE"/>
+            name="VALID_BEGIN_DATE" required="true" size="10" type="DATE"/>
         <column
             comment="有効終了日: 有効期間の終了日。&#xa;期間の最後の日が格納される。基本的に、次の有効開始日の一日前の値となるが、次の有効期間がない場合は 9999/12/31 となる。"
             dbType="DATE" javaType="java.time.LocalDate"
-            name="VALID_END_DATE" required="true" size="8" type="DATE"/>
+            name="VALID_END_DATE" required="true" size="10" type="DATE"/>
         <column comment="住所: まるごと住所" dbType="VARCHAR" javaType="String"
             name="ADDRESS" required="true" size="200" type="VARCHAR"/>
         <column comment="地域ID: 地域を参照するID。かなり漠然とした地域。" dbType="INTEGER"
@@ -95,12 +95,12 @@
             size="10" type="INTEGER"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -129,7 +129,7 @@
         name="MEMBER_FOLLOWING" schema="MAIHAMADB.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="会員フォローイングID: 連番"
             dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_A9153354_A749_4D79_9C1A_E97AEAD9A7E4"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_03D7A562_1117_4BA1_9B32_38A7379C4593"
             javaType="Long" name="MEMBER_FOLLOWING_ID"
             pkName="CONSTRAINT_BD" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
@@ -141,7 +141,7 @@
             required="true" size="10" type="INTEGER"/>
         <column comment="その瞬間: ふりかえるとちょっと恥ずかしい気持ちになる日時"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="FOLLOW_DATETIME" required="true" size="23, 10" type="TIMESTAMP"/>
+            name="FOLLOW_DATETIME" required="true" size="26, 6" type="TIMESTAMP"/>
         <foreign-key foreignSchema="MAIHAMADB.PUBLIC"
             foreignTable="MEMBER" name="FK_MEMBER_FOLLOWING_MY_MEMBER">
             <reference foreign="MEMBER_ID" local="MY_MEMBER_ID"/>
@@ -173,7 +173,7 @@
         name="MEMBER_LOGIN" schema="MAIHAMADB.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="会員ログインID: "
             dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_EB4DF696_F12F_46D9_98F9_B734B47C52C2"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_926CD86A_0357_45CC_A21A_E3E5CAB41A24"
             javaType="Long" name="MEMBER_LOGIN_ID"
             pkName="CONSTRAINT_BDA" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
@@ -182,7 +182,7 @@
         <column
             comment="ログイン日時: ログインした瞬間の日時。&#xa;同じ会員が同じ日時にログインはできない。(ユニーク制約で重複ログインできないようにしてある)"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="LOGIN_DATETIME" required="true" size="23, 10" type="TIMESTAMP"/>
+            name="LOGIN_DATETIME" required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="モバイルログインフラグ: モバイル機器からのログインか否か。"
             dbType="INTEGER" javaType="Integer" name="MOBILE_LOGIN_FLG"
             required="true" size="10" type="INTEGER"/>
@@ -234,12 +234,12 @@
             name="REMINDER_USE_COUNT" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -255,7 +255,7 @@
         <column autoIncrement="true"
             comment="会員サービスID: 独立した主キーとなるが、実質的に会員IDとは one-to-one である。"
             dbType="INTEGER"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_4E7A24AF_378C_4804_B17C_86EF63262396"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_D3F4543B_EDC2_429F_8B39_04E8DEEC1C44"
             javaType="Integer" name="MEMBER_SERVICE_ID"
             pkName="CONSTRAINT_6F" pkPosition="1" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
@@ -270,12 +270,12 @@
             size="3" type="CHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -342,15 +342,15 @@
         <column
             comment="退会日時: 退会した瞬間の日時。&#xa;正式会員日時と違い、こっちは one-to-one の別テーブルで管理されている。"
             dbType="TIMESTAMP" javaType="java.time.LocalDateTime"
-            name="WITHDRAWAL_DATETIME" required="true" size="23, 10" type="TIMESTAMP"/>
+            name="WITHDRAWAL_DATETIME" required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <foreign-key foreignSchema="MAIHAMADB.PUBLIC"
@@ -367,7 +367,7 @@
     </table>
     <table comment="商品:" name="PRODUCT" schema="MAIHAMADB.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="INTEGER"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_86334BA3_5EDA_49CC_9D41_78E4BC710912"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_F7BA89E8_B8CB_46DC_8CF8_0103A9EA8F30"
             javaType="Integer" name="PRODUCT_ID" pkName="CONSTRAINT_1"
             pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
@@ -386,12 +386,12 @@
             name="REGULAR_PRICE" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -457,7 +457,7 @@
         comment="購入: 一つの商品に対する購入を表現する(購入履歴とも言える)。&#xa;実業務であれば購入詳細というテーブルを作り、「購入という行為」と「その中身（詳細）」を違う粒度のデータとしてそれぞれ管理するのが一般的と言えるでしょう。というか、注文とか請求とかそういうことを考え始めたらもっと複雑になるはずですが、ExampleDBということで割り切っています。"
         name="PURCHASE" schema="MAIHAMADB.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_C9C09781_A717_4BB2_9C80_8F9CE15B46D8"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_0949A305_E368_436F_8602_29380D0D96B2"
             javaType="Long" name="PURCHASE_ID" pkName="CONSTRAINT_9"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column
@@ -469,7 +469,7 @@
             size="10" type="INTEGER"/>
         <column comment="購入日時: 購入した瞬間の日時。" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="PURCHASE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="購入数量: 購入した商品の一回の購入における数量。" dbType="INTEGER"
             javaType="Integer" name="PURCHASE_COUNT" required="true"
             size="10" type="INTEGER"/>
@@ -482,12 +482,12 @@
             name="PAYMENT_COMPLETE_FLG" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -528,7 +528,7 @@
         name="PURCHASE_PAYMENT" schema="MAIHAMADB.PUBLIC" type="TABLE">
         <column autoIncrement="true" comment="購入支払ID: 連番"
             dbType="BIGINT"
-            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_75DBAA87_5A00_4849_9C5E_68F848973A73"
+            default="NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_D3E2ABBC_2112_4630_BF3A_B778D2807A22"
             javaType="Long" name="PURCHASE_PAYMENT_ID"
             pkName="CONSTRAINT_C" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
@@ -539,18 +539,18 @@
             required="true" size="10, 2" type="DECIMAL"/>
         <column comment="支払日時: 支払ったときの日時" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="PAYMENT_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="支払方法コード: 手渡しや銀行振込など" dbType="CHAR"
             javaType="String" name="PAYMENT_METHOD_CODE" required="true"
             size="3" type="CHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REGISTER_USER" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="TIMESTAMP"
             javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
-            required="true" size="23, 10" type="TIMESTAMP"/>
+            required="true" size="26, 6" type="TIMESTAMP"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="UPDATE_USER" required="true" size="200" type="VARCHAR"/>
         <foreign-key foreignSchema="MAIHAMADB.PUBLIC"
@@ -622,21 +622,21 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_75DBAA87_5A00_4849_9C5E_68F848973A73" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_926CD86A_0357_45CC_A21A_E3E5CAB41A24" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_ED7554C7_6987_4608_94A6_E7258C68782A" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_D3E2ABBC_2112_4630_BF3A_B778D2807A22" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_A9153354_A749_4D79_9C1A_E97AEAD9A7E4" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_D3F4543B_EDC2_429F_8B39_04E8DEEC1C44" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_F5EAA04F_09A2_4843_8E53_C074D3A9AF5D" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_0949A305_E368_436F_8602_29380D0D96B2" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_4E7A24AF_378C_4804_B17C_86EF63262396" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_F5E1A649_34BF_40C7_A7EB_FE2000817709" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_EB4DF696_F12F_46D9_98F9_B734B47C52C2" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_03D7A562_1117_4BA1_9B32_38A7379C4593" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_C9C09781_A717_4BB2_9C80_8F9CE15B46D8" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_238C98CA_5DF8_4E54_8515_FC53A01D6BA4" schema="MAIHAMADB.PUBLIC"/>
         <sequence incrementSize="1"
-            name="SYSTEM_SEQUENCE_86334BA3_5EDA_49CC_9D41_78E4BC710912" schema="MAIHAMADB.PUBLIC"/>
+            name="SYSTEM_SEQUENCE_F7BA89E8_B8CB_46DC_8CF8_0103A9EA8F30" schema="MAIHAMADB.PUBLIC"/>
     </sequenceGroup>
     <procedureGroup/>
 </database>

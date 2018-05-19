@@ -1,6 +1,34 @@
 {
   "actionDocMetaList": [
     {
+      "url": "/root/",
+      "typeName": "org.docksidestage.app.web.RootAction",
+      "simpleTypeName": "RootAction",
+      "description": "@author jflute",
+      "typeComment": "@author jflute",
+      "fieldTypeDocMetaList": [],
+      "methodName": "index",
+      "methodComment": null,
+      "annotationList": [
+        "AllowAnyoneAccess",
+        "Execute"
+      ],
+      "parameterTypeDocMetaList": [],
+      "formTypeDocMeta": null,
+      "returnTypeDocMeta": {
+        "name": null,
+        "typeName": "org.lastaflute.web.response.HtmlResponse",
+        "simpleTypeName": "HtmlResponse",
+        "value": "redirect(MypageAction.class)",
+        "description": null,
+        "comment": null,
+        "annotationList": [],
+        "nestTypeDocMetaList": []
+      },
+      "fileLineCount": 7,
+      "methodLineCount": 3
+    },
+    {
       "url": "/lido/auth/signin",
       "typeName": "org.docksidestage.app.web.lido.auth.LidoAuthAction",
       "simpleTypeName": "LidoAuthAction",
@@ -976,7 +1004,7 @@
             "name": "productStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$ProductStatus",
             "simpleTypeName": "CDef.ProductStatus",
-            "value": "{PST\u003dProductionStop, SST\u003dSaleStop, ONS\u003dOnSaleProduction}",
+            "value": "{ONS\u003dOnSaleProduction, PST\u003dProductionStop, SST\u003dSaleStop}",
             "description": null,
             "comment": null,
             "annotationList": [],
@@ -1169,8 +1197,8 @@
         "annotationList": [],
         "nestTypeDocMetaList": []
       },
-      "fileLineCount": 45,
-      "methodLineCount": 4
+      "fileLineCount": 47,
+      "methodLineCount": 6
     },
     {
       "url": "/member/add/register",
@@ -1259,7 +1287,7 @@
             "name": "memberStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [
@@ -1279,7 +1307,7 @@
         "annotationList": [],
         "nestTypeDocMetaList": []
       },
-      "fileLineCount": 45,
+      "fileLineCount": 47,
       "methodLineCount": 10
     },
     {
@@ -1454,7 +1482,7 @@
             "name": "memberStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [
@@ -1486,7 +1514,7 @@
             "name": "previousStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [
@@ -1630,7 +1658,7 @@
             "name": "memberStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [
@@ -1662,7 +1690,7 @@
             "name": "previousStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [
@@ -1771,7 +1799,7 @@
             "name": "memberStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$MemberStatus",
             "simpleTypeName": "CDef.MemberStatus",
-            "value": "{FML\u003dFormalized, PRV\u003dProvisional, WDL\u003dWithdrawal}",
+            "value": "{FML\u003dFormalized, WDL\u003dWithdrawal, PRV\u003dProvisional}",
             "description": null,
             "comment": null,
             "annotationList": [],
@@ -2066,7 +2094,7 @@
             "name": "productStatus",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$ProductStatus",
             "simpleTypeName": "CDef.ProductStatus",
-            "value": "{PST\u003dProductionStop, SST\u003dSaleStop, ONS\u003dOnSaleProduction}",
+            "value": "{ONS\u003dOnSaleProduction, PST\u003dProductionStop, SST\u003dSaleStop}",
             "description": null,
             "comment": null,
             "annotationList": [],
@@ -2138,34 +2166,6 @@
       },
       "fileLineCount": 48,
       "methodLineCount": 8
-    },
-    {
-      "url": "/root/",
-      "typeName": "org.docksidestage.app.web.RootAction",
-      "simpleTypeName": "RootAction",
-      "description": "@author jflute",
-      "typeComment": "@author jflute",
-      "fieldTypeDocMetaList": [],
-      "methodName": "index",
-      "methodComment": null,
-      "annotationList": [
-        "AllowAnyoneAccess",
-        "Execute"
-      ],
-      "parameterTypeDocMetaList": [],
-      "formTypeDocMeta": null,
-      "returnTypeDocMeta": {
-        "name": null,
-        "typeName": "org.lastaflute.web.response.HtmlResponse",
-        "simpleTypeName": "HtmlResponse",
-        "value": "redirect(MypageAction.class)",
-        "description": null,
-        "comment": null,
-        "annotationList": [],
-        "nestTypeDocMetaList": []
-      },
-      "fileLineCount": 7,
-      "methodLineCount": 3
     },
     {
       "url": "/signin/",
@@ -3031,7 +3031,7 @@
             "name": "selectedReason",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$WithdrawalReason",
             "simpleTypeName": "CDef.WithdrawalReason",
-            "value": "{OTH\u003dOTH, PRD\u003dPRD, FRT\u003dFRT, SIT\u003dSIT}",
+            "value": "{SIT\u003dSIT, PRD\u003dPRD, FRT\u003dFRT, OTH\u003dOTH}",
             "description": null,
             "comment": null,
             "annotationList": [],
@@ -3127,7 +3127,7 @@
             "name": "selectedReason",
             "typeName": "org.docksidestage.dbflute.allcommon.CDef$WithdrawalReason",
             "simpleTypeName": "CDef.WithdrawalReason",
-            "value": "{OTH\u003dOTH, PRD\u003dPRD, FRT\u003dFRT, SIT\u003dSIT}",
+            "value": "{SIT\u003dSIT, PRD\u003dPRD, FRT\u003dFRT, OTH\u003dOTH}",
             "description": null,
             "comment": null,
             "annotationList": [],

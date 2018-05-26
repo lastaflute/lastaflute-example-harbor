@@ -16,6 +16,9 @@ map:{
     ; playSqlDirectory = playsql/syncdb
     # - - - - - - - - - -/
 
+    # it does not need take-assert for syncdb
+    ; conventionalTakeAssertMap = map:{}
+
     # it does not need to arrange in syncdb
     ; arrangeBeforeRepsMap = map:{}
 }

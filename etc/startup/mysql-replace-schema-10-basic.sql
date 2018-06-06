@@ -135,10 +135,10 @@ CREATE TABLE MEMBER_WITHDRAWAL
 もう言いたいこと言ってもらう感じ。サイト運営側としてはこういうのは真摯に受け止めて改善していきたいところ。',
 	WITHDRAWAL_DATETIME DATETIME NOT NULL COMMENT '退会日時 : 退会した瞬間の日時。
 正式会員日時と違い、こっちは one-to-one の別テーブルで管理されている。',
-	REGISTER_DATETIME DATETIME NOT NULL COMMENT '登録日時',
-	REGISTER_USER VARCHAR(200) NOT NULL COMMENT '登録ユーザー',
-	UPDATE_DATETIME DATETIME NOT NULL COMMENT '更新日時',
-	UPDATE_USER VARCHAR(200) NOT NULL COMMENT '更新ユーザー',
+	REGISTER_DATETIME DATETIME NOT NULL COMMENT '登録日時 : レコードが登録された日時',
+	REGISTER_USER VARCHAR(200) NOT NULL COMMENT '登録ユーザー : レコードを登録したユーザー',
+	UPDATE_DATETIME DATETIME NOT NULL COMMENT '更新日時 : レコードが(最後に)更新された日時',
+	UPDATE_USER VARCHAR(200) NOT NULL COMMENT '更新ユーザー : レコードを(最後に)更新したユーザー',
 	PRIMARY KEY (MEMBER_ID)
 ) COMMENT = '会員退会情報 : 退会会員の退会に関する詳細な情報。
 退会会員のみデータが存在し、"1 : 0..1" のパターンの one-to-one である。
@@ -161,7 +161,7 @@ CREATE TABLE PRODUCT
 	UPDATE_USER VARCHAR(200) NOT NULL COMMENT '更新ユーザー : レコードを(最後に)更新したユーザー',
 	VERSION_NO BIGINT NOT NULL COMMENT 'バージョン番号 : 排他制御用、更新されるごとにインクリメントされる',
 	PRIMARY KEY (PRODUCT_ID)
-) COMMENT = '商品';
+) COMMENT = '商品 : 相当偏ったラインナップ';
 
 
 CREATE TABLE PRODUCT_CATEGORY

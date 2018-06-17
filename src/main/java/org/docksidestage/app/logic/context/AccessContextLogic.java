@@ -51,27 +51,35 @@ public class AccessContextLogic {
         String supply();
     }
 
+    @FunctionalInterface
+    public interface ClientInfoSupplier {
+        OptionalThing<String> supply();
+    }
+
     // ===================================================================================
     //                                                                      Create Context
     //                                                                      ==============
-    public AccessContext create(AccessContextResource resource, UserTypeSupplier userTypeSupplier, UserInfoSupplier userInfoSupplier,
-            AppTypeSupplier appTypeSupplier) {
+    public AccessContext create(AccessContextResource resource, UserTypeSupplier userTypeSupplier, UserInfoSupplier userBeanSupplier,
+            AppTypeSupplier appTypeSupplier, ClientInfoSupplier clientInfoSupplier) {
         final AccessContext context = new AccessContext();
         context.setAccessLocalDateTimeProvider(() -> timeManager.currentDateTime());
-        context.setAccessUserProvider(() -> buildAccessUserTrace(resource, userTypeSupplier, userInfoSupplier, appTypeSupplier));
+        context.setAccessUserProvider(() -> {
+            return buildAccessUserTrace(resource, userTypeSupplier, userBeanSupplier, appTypeSupplier, clientInfoSupplier);
+        });
         return context;
     }
 
     private String buildAccessUserTrace(AccessContextResource resource, UserTypeSupplier userTypeSupplier,
-            UserInfoSupplier userInfoSupplier, AppTypeSupplier appTypeSupplier) {
+            UserInfoSupplier userBeanSupplier, AppTypeSupplier appTypeSupplier, ClientInfoSupplier clientInfoSupplier) {
         // #change_it you can customize the user trace for common column
-        // example default style: "M:7,HBR,ProductListAction" or "_:_,HBR,ProductListAction"
+        // example default style: "M:7,DCK,ProductListAction,_" or "_:_,DCK,ProductListAction,_"
         final StringBuilder sb = new StringBuilder();
         sb.append(userTypeSupplier.supply().orElse("_")).append(":");
-        sb.append(userInfoSupplier.supply().orElse("_"));
+        sb.append(userBeanSupplier.supply().orElse("_"));
         sb.append(",").append(appTypeSupplier.supply()).append(",").append(resource.getModuleName());
+        sb.append(",").append(clientInfoSupplier.supply().orElse("_"));
         final String trace = sb.toString();
-        final int columnSize = 200; // is same as e.g. REGISTER_USER
+        final int columnSize = 64; // should be less than size of trace column
         return trace.length() > columnSize ? trace.substring(0, columnSize) : trace;
     }
 }

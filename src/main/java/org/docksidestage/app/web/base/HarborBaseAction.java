@@ -29,6 +29,7 @@ import org.lastaflute.web.TypicalAction;
 import org.lastaflute.web.login.LoginManager;
 import org.lastaflute.web.response.ActionResponse;
 import org.lastaflute.web.ruts.process.ActionRuntime;
+import org.lastaflute.web.servlet.request.RequestManager;
 import org.lastaflute.web.token.DoubleSubmitManager;
 import org.lastaflute.web.validation.ActionValidator;
 import org.lastaflute.web.validation.LaValidatable;
@@ -51,6 +52,8 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    @Resource
+    private RequestManager requestManager;
     @Resource
     private DoubleSubmitManager doubleSubmitManager;
     @Resource
@@ -101,7 +104,7 @@ public abstract class HarborBaseAction extends TypicalAction // has several inte
         return resource -> {
             return accessContextLogic.create(resource, () -> myUserType(), () -> getUserBean().map(userBean -> {
                 return userBean.getUserId(); // as user expression
-            }), () -> myAppType());
+            }), () -> myAppType(), () -> requestManager.getHeaderUserAgent());
         };
     }
 

@@ -314,7 +314,7 @@ public class NewProjectCreator {
         line = Srl.replace(line, "jdbc:h2:file:../etc/testdb/maihamasyncdb", toSyncUrl);
 
         // pom.xml
-        final String toProperty = "<mysql.jdbc.version>5.1.46</mysql.jdbc.version>";
+        final String toProperty = "<mysql.jdbc.version>5.1.47</mysql.jdbc.version>";
         final String toGroupId = "<groupId>mysql</groupId>";
         final String artifactId = "<artifactId>mysql-connector-java</artifactId>";
         final String toVersion = "<version>${mysql.jdbc.version}</version>";

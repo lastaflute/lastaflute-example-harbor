@@ -334,6 +334,19 @@ dl.procedurelist dd.column pre {
 }
 
 /* -------------------------------------------------
+                                    Schema Policy
+------------------------------------------------- */
+pre.spolicydisp {
+	padding-top: 0.5em;
+	padding-left: 0.5em;
+}
+pre.spolicyviodisp {
+	padding-top: 0.5em;
+	padding-left: 0.5em;
+	color: #994747;
+}
+
+/* -------------------------------------------------
                                   Decomment Modal
 ------------------------------------------------- */
 .decommentmodal {
@@ -431,6 +444,7 @@ dl.procedurelist dd.column pre {
  <a href="#cdef">Classification Definition</a>
 | <a href="#arrangequery">ArrangeQuery List</a>
 | <a href="#procedure">Procedure List</a>
+| <a href="#schemapolicy">Schema Policy</a>
 | <a href="#diagram">Schema Diagram</a>
 </p>
 <p class="sisterlink"><a href="./history-maihamadb.html">to HistoryHTML</a></p>
@@ -3518,6 +3532,29 @@ dl.procedurelist dd.column pre {
 </dl>
 <h2 id="procedure">Procedure</h2>
 
+<h2 id="schemapolicy">Schema Policy</h2>
+<pre class="spolicydisp">
+
+[Schema Policy]
+ tableExceptList: [REGION]
+ tableTargetList: []
+ columnExceptMap: {}
+ isMainSchemaOnly: false
+ wholeMap:
+   themeList: [uniqueTableAlias, sameColumnAliasIfSameColumnName]
+   statementList:
+ tableMap:
+   themeList: [hasPK, upperCaseBasis, identityIfPureIDPK]
+   statementList:
+    {if:{tableName is $$ALL$$}} {then:{fkName is prefix:FK_$$table$$}}
+ columnMap:
+   themeList: [upperCaseBasis]
+   statementList:
+    {if:{columnName is suffix:_FLAG}} {then bad =&gt; should be _FLG}
+    {if:{columnName is suffix:_FLG}} {then notNull}
+    {if:{columnName is suffix:_FLG}} {then classification}
+</pre>
+
 <h2 id="diagram">Schema Diagram</h2>
 <h3>maihamadb_erd</h3>
 <p>
@@ -4535,6 +4572,7 @@ StoreClient.prototype = {
 			}
 			var decomment = {
 				"body": property["decomment"],
+				"pieceOwner": property["pieceOwner"],
 				"pieceGitBranch": property["pieceGitBranch"]
 			}
 			decomments.push(decomment);
@@ -4598,6 +4636,7 @@ StoreClient.prototype = {
 			}
 			var decomment = {
 				"body": property["decomment"],
+				"pieceOwner": property["pieceOwner"],
 				"pieceGitBranch": property["pieceGitBranch"]
 			}
 			decomments.push(decomment);
@@ -4664,6 +4703,7 @@ function PickupTableProperty(tableDbName, json) {
 		this.decomments = json.decomments || [];
 		this.previousPieces = json.previousPieces;
 		this.authors = json.authors;
+		this.pieceOwner = json.pieceOwner;
 		this.commentVersion = json.commentVersion;
 		this.columns = {};
 		var columns = json.columns || {};
@@ -4724,7 +4764,7 @@ PickupTableProperty.prototype = {
 			var decomment = this.decomments[key];
 			displayComment += decomment.body
 			if (this.isConflict() && decomment.pieceGitBranch) {
-				displayComment += '\n=======' + decomment.pieceGitBranch;
+				displayComment += '\n=======' + decomment.pieceGitBranch + ' (' + decomment.pieceOwner + ')';
 				if (key < commentCount - 1) {
 					displayComment += '\n\n'; // show between comments
 				}
@@ -4813,6 +4853,7 @@ function PickupColumnProperty(tableDbName, columnName, json) {
 		this.decomments = json['decomments'] || [];
 		this.previousPieces = json['previousPieces'];
 		this.authors = json['authors'];
+		this.pieceOwner = json['pieceOwner'];
 		this.commentVersion = json['commentVersion'];
 		this.previousWholeComment = json['previousWholeComment'];
 	}
@@ -4871,7 +4912,7 @@ PickupColumnProperty.prototype = {
 			var decomment = this.decomments[key];
 			displayComment += decomment.body
 			if (this.isConflict() && decomment.pieceGitBranch) {
-				displayComment += '\n=======' + decomment.pieceGitBranch;
+				displayComment += '\n=======' + decomment.pieceGitBranch + ' (' + decomment.pieceOwner + ')';
 				if (key < commentCount - 1) {
 					displayComment += '\n\n'; // show between comments
 				}

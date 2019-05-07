@@ -445,7 +445,6 @@ pre.spolicyviodisp {
 | <a href="#arrangequery">ArrangeQuery List</a>
 | <a href="#procedure">Procedure List</a>
 | <a href="#schemapolicy">Schema Policy</a>
-| <a href="#diagram">Schema Diagram</a>
 </p>
 <p class="sisterlink"><a href="./history-maihamadb.html">to HistoryHTML</a></p>
 <p class="sistersublink">
@@ -3553,17 +3552,8 @@ pre.spolicyviodisp {
     {if:{columnName is suffix:_FLAG}} {then bad =&gt; should be _FLG}
     {if:{columnName is suffix:_FLG}} {then notNull}
     {if:{columnName is suffix:_FLG}} {then classification}
+    {if:{columnName is PAYMENT_METHOD_CODE}} {then classification}
 </pre>
-
-<h2 id="diagram">Schema Diagram</h2>
-<h3>maihamadb_erd</h3>
-<p>
-	<a href="../../../modeling/maihamadb.png">
-		<img src="../../../modeling/maihamadb.png"
-			alt="ER Diagram"
-		/>
-	</a>
-</p>
 
 <h2 id="thanks">Thanks</h2>
 <p>

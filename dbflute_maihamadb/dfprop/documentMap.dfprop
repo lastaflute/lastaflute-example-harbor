@@ -53,9 +53,9 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
-    ; schemaDiagramMap = map:{
-        ; maihamadb_erd = map:{ path = ../../../modeling/maihamadb.png }
-    }
+#    ; schemaDiagramMap = map:{
+#        ; maihamadb_erd = map:{ path = ../../../modeling/maihamadb.png }
+#    }
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o documentOutputDirectory: (NotRequired - Default './output/doc')

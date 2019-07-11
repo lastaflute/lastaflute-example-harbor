@@ -3,7 +3,8 @@ root = true
 [*]
 indent_style = space
 charset = utf-8
-end_of_line = lf
+# using IDE settings to keep existing files (to avoid big differences)
+#end_of_line = lf
 
 [*.{html,xml,css}]
 indent_style = tab

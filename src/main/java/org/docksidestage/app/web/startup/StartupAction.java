@@ -48,8 +48,9 @@ public class StartupAction extends HarborBaseAction {
         });
     }
 
-    private File getProjectDir() { // e.g. [workspace]/[project]/target/classes
-        return DfResourceUtil.getBuildDir(getClass()).getParentFile().getParentFile();
+    private File getProjectDir() {
+        File buildDir = DfResourceUtil.getBuildDir(getClass()); // e.g. [workspace]/[project]/target/classes
+        return buildDir.getParentFile().getParentFile(); // e.g. [workspace]/[project]
     }
 
     private StartupBean mappingToBean(StartupForm form, File projectDir) {

@@ -39,6 +39,9 @@ public class PagingAssist { // #app_customize
      * @param form The form for query string added to link. (NotNull)
      */
     public void registerPagingNavi(RenderData data, PagingResultBean<? extends Entity> page, Object form) {
+        assertArgumentNotNull("data", data);
+        assertArgumentNotNull("page", page);
+        assertArgumentNotNull("form", form);
         data.register(NAVI_KEY, new PagingNavi(page, op -> op.rangeSize(3).fillLimit(), form));
     }
 
@@ -52,6 +55,22 @@ public class PagingAssist { // #app_customize
      * @return The new-created result of paging. (NotNull)
      */
     public <ENTITY extends Entity, BEAN> SearchPagingResult<BEAN> createPagingResult(PagingResultBean<ENTITY> page, List<BEAN> items) {
+        assertArgumentNotNull("page", page);
+        assertArgumentNotNull("items", items);
         return new SearchPagingResult<BEAN>(page, items);
+    }
+
+    // ===================================================================================
+    //                                                                       Assert Helper
+    //                                                                       =============
+    protected void assertArgumentNotNull(String variableName, Object value) {
+        if (variableName == null) {
+            String msg = "The value should not be null: variableName=null value=" + value;
+            throw new IllegalArgumentException(msg);
+        }
+        if (value == null) {
+            String msg = "The value should not be null: variableName=" + variableName;
+            throw new IllegalArgumentException(msg);
+        }
     }
 }

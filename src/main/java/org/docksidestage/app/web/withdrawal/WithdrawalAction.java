@@ -47,7 +47,7 @@ public class WithdrawalAction extends HarborBaseAction {
     }
 
     private void moreValidation(WithdrawalForm form, HarborMessages messages) {
-        if (form.selectedReason == null && LaStringUtil.isEmpty(form.reasonInput)) {
+        if (form.selectedReason == null && LaStringUtil.isEmpty(form.reasonInput)) { // not any reason
             messages.addConstraintsRequiredMessage("selectedReason");
         }
     }

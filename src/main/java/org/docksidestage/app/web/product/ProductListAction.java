@@ -36,11 +36,17 @@ import org.lastaflute.web.response.HtmlResponse;
 @AllowAnyoneAccess
 public class ProductListAction extends HarborBaseAction {
 
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
     @Resource
     private ProductBhv productBhv;
     @Resource
     private PagingAssist pagingAssist;
 
+    // ===================================================================================
+    //                                                                             Execute
+    //                                                                             =======
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
         validate(form, messages -> {}, () -> {

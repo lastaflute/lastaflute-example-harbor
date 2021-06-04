@@ -82,6 +82,16 @@ public class SignupAction extends HarborBaseAction {
         });
     }
 
+    @Execute
+    public HtmlResponse register(String account, String token) { // from mail link
+        signupTokenAssist.verifySignupTokenMatched(account, token);
+        updateMemberAsFormalized(account);
+        return redirect(SigninAction.class);
+    }
+
+    // ===================================================================================
+    //                                                                          Validation
+    //                                                                          ==========
     private void moreValidate(SignupForm form, HarborMessages messages) {
         if (LaStringUtil.isNotEmpty(form.memberAccount)) {
             int count = memberBhv.selectCount(cb -> {
@@ -91,27 +101,6 @@ public class SignupAction extends HarborBaseAction {
                 messages.addErrorsSignupAccountAlreadyExists("memberAccount");
             }
         }
-    }
-
-    private void sendSignupMail(SignupForm form, String token) {
-        WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
-            postcard.setFrom(config.getMailAddressSupport(), HarborMessages.LABELS_MAIL_SUPPORT_PERSONAL);
-            postcard.addTo(form.memberAccount + "@docksidestage.org"); // #simple_for_example
-            postcard.setDomain(config.getServerDomain());
-            postcard.setMemberName(form.memberName);
-            postcard.setAccount(form.memberAccount);
-            postcard.setToken(token);
-            postcard.async();
-            postcard.retry(3, 1000L);
-            postcard.writeAuthor(this);
-        });
-    }
-
-    @Execute
-    public HtmlResponse register(String account, String token) { // from mail link
-        signupTokenAssist.verifySignupTokenMatched(account, token);
-        updateMemberAsFormalized(account);
-        return redirect(SigninAction.class);
     }
 
     // ===================================================================================
@@ -145,5 +134,22 @@ public class SignupAction extends HarborBaseAction {
         member.uniqueBy(account);
         member.setMemberStatusCode_Formalized();
         memberBhv.updateNonstrict(member);
+    }
+
+    // ===================================================================================
+    //                                                                        Assist Logic
+    //                                                                        ============
+    private void sendSignupMail(SignupForm form, String token) {
+        WelcomeMemberPostcard.droppedInto(postbox, postcard -> {
+            postcard.setFrom(config.getMailAddressSupport(), HarborMessages.LABELS_MAIL_SUPPORT_PERSONAL);
+            postcard.addTo(form.memberAccount + "@docksidestage.org"); // #simple_for_example
+            postcard.setDomain(config.getServerDomain());
+            postcard.setMemberName(form.memberName);
+            postcard.setAccount(form.memberAccount);
+            postcard.setToken(token);
+            postcard.async();
+            postcard.retry(3, 1000L);
+            postcard.writeAuthor(this);
+        });
     }
 }

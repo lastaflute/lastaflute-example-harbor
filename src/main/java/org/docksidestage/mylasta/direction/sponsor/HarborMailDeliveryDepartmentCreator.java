@@ -84,8 +84,6 @@ public class HarborMailDeliveryDepartmentCreator {
 
     protected SMailDogmaticPostalPersonnel createDogmaticPostalPersonnel() { // #ext_point e.g. locale, database
         final String testPrefix = config.getMailSubjectTestPrefix();
-        final AsyncManager asyncManager = getAsyncManager();
-        final MessageManager messageManager = getMessageManager();
         return new SMailDogmaticPostalPersonnel() {
 
             // *if you need user locale switching or templates from database,
@@ -101,7 +99,7 @@ public class HarborMailDeliveryDepartmentCreator {
                 return OptionalThing.of(new SMailAsyncStrategy() {
                     @Override
                     public void async(CardView view, Runnable runnable) {
-                        asyncRunnable(asyncManager, runnable);
+                        asyncRunnable(getAsyncManager(), runnable);
                     }
 
                     @Override
@@ -113,7 +111,7 @@ public class HarborMailDeliveryDepartmentCreator {
 
             @Override
             protected OptionalThing<SMailLabelStrategy> createLabelStrategy() {
-                return OptionalThing.of((view, locale, label) -> resolveLabelIfNeeds(messageManager, locale, label));
+                return OptionalThing.of((view, locale, label) -> resolveLabelIfNeeds(getMessageManager(), locale, label));
             }
         };
     }

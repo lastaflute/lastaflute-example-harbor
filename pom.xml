@@ -176,7 +176,11 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-							<includeArtifactIds>javax.servlet-api, jetty-boot, jetty-all</includeArtifactIds>
+							<includeArtifactIds>
+								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
+								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
+								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli, tomcat-jasper
+							</includeArtifactIds>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
 						</configuration>
@@ -187,16 +191,21 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<packagingExcludes>WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/jetty-*.jar</packagingExcludes>
+					<packagingExcludes>
+						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
+						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
+						, WEB-INF/lib/org.eclipse.jdt.core-*.jar
+						, WEB-INF/lib/tomcat-*.jar
+					</packagingExcludes>
 					<webResources>
 						<resource>
 							<directory>${project.build.outputDirectory}</directory>
 							<includes>
 								<include>**/*Boot*.class</include>
-								<!-- properties may be used by the boot class -->
 								<include>*_config.properties</include>
 								<include>*_env*.properties</include>
 								<include>jetty_*.properties</include>
+								<include>tomcat_*.properties</include>
 							</includes>
 						</resource>
 					</webResources>

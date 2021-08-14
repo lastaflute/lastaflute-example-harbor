@@ -14,9 +14,9 @@
 
 	<properties>
 		<!-- Main Framework -->
-		<dbflute.version>1.2.4</dbflute.version>
+		<dbflute.version>1.2.5</dbflute.version>
 		<h2.jdbc.version>1.4.200</h2.jdbc.version>
-		<lastaflute.version>1.2.0</lastaflute.version>
+		<lastaflute.version>1.2.1</lastaflute.version>
 		<lasta.thymeleaf.version>0.4.2</lasta.thymeleaf.version>
 
 		<!-- Partner Library -->
@@ -31,7 +31,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>0.9.2</utflute.version>
+		<utflute.version>0.9.3</utflute.version>
 	</properties>
 
 	<licenses>

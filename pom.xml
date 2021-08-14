@@ -176,6 +176,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+							<!-- servlet container libraries are located as war resource -->
 							<includeArtifactIds>
 								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
 								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
@@ -191,6 +192,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+					<!-- servlet container libraries are not in application -->
 					<packagingExcludes>
 						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
 						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
@@ -201,11 +203,21 @@
 						<resource>
 							<directory>${project.build.outputDirectory}</directory>
 							<includes>
+								<!-- boot class is executed by java command directly -->
 								<include>**/*Boot*.class</include>
+								<!-- properties may be used by the boot class -->
 								<include>*_config.properties</include>
 								<include>*_env*.properties</include>
 								<include>jetty_*.properties</include>
 								<include>tomcat_*.properties</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>${basedir}/target/lastadoc</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<includes>
+								<!-- for swagger UI on deployment environments -->
+								<include>swagger.json</include>
 							</includes>
 						</resource>
 					</webResources>

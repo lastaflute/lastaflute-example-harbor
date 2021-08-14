@@ -23,7 +23,6 @@
 		<slf4j.version>1.7.12</slf4j.version>
 		<logback.version>1.2.3</logback.version>
 		<servlet.version>3.1.0</servlet.version>
-		<jsp.version>2.3.1</jsp.version>
 		<jetty.boot.version>0.5.0</jetty.boot.version>
 
 		<!-- GoodNeighbor Library -->

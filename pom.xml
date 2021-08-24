@@ -248,7 +248,7 @@
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                                Main Framework -->
 		<!--                                                                 = = = = = = = -->
-		<!-- dbflute -->
+		<!-- DBFlute -->
 		<dependency>
 			<groupId>org.dbflute</groupId>
 			<artifactId>dbflute-runtime</artifactId>
@@ -261,7 +261,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- lastaflute -->
+		<!-- LastaFlute -->
 		<dependency>
 			<groupId>org.lastaflute</groupId>
 			<artifactId>lastaflute</artifactId>
@@ -301,8 +301,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 		</dependency>
-
-		<!-- boot -->
 		<dependency>
 			<groupId>org.dbflute.jetty</groupId>
 			<artifactId>jetty-boot</artifactId>

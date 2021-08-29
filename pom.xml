@@ -23,7 +23,7 @@
 		<slf4j.version>1.7.12</slf4j.version>
 		<logback.version>1.2.3</logback.version>
 		<servlet.version>3.1.0</servlet.version>
-		<jetty.boot.version>0.5.1</jetty.boot.version>
+		<tomcat.boot.version>0.7.8</tomcat.boot.version>
 
 		<!-- GoodNeighbor Library -->
 		<commons.lang.version>3.8.1</commons.lang.version>
@@ -190,7 +190,8 @@
 							<includeArtifactIds>
 								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
 								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
-								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli, tomcat-jasper
+								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli
+								, tomcat-jasper, tomcat-jasper-el, tomcat-el-api, tomcat-jsp-api, ecj
 							</includeArtifactIds>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
@@ -312,9 +313,9 @@
 			<version>${servlet.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.dbflute.jetty</groupId>
-			<artifactId>jetty-boot</artifactId>
-			<version>${jetty.boot.version}</version>
+			<groupId>org.dbflute.tomcat</groupId>
+			<artifactId>tomcat-boot</artifactId>
+			<version>${tomcat.boot.version}</version>
 		</dependency>
  
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->

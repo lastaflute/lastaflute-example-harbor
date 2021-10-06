@@ -152,12 +152,6 @@ public class HarborMessages extends HarborLabels {
     /** The key of the message: the account already exists so input others */
     public static final String ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS = "{errors.signup.account.already.exists}";
 
-    /** The key of the message: the {1} already {0} so input others */
-    public static final String ERRORS_XXXXXXXXXXXXXX = "{errors.xxxxxxxxxxxxxx}";
-
-    /** The key of the message: the {1} already {4} so input others */
-    public static final String ERRORS_YYYYYYYYYYYYYY = "{errors.yyyyyyyyyyyyyy}";
-
     /**
      * Add the created action message for the key 'constraints.AssertFalse.message' with parameters.
      * <pre>
@@ -768,38 +762,6 @@ public class HarborMessages extends HarborLabels {
     public HarborMessages addErrorsSignupAccountAlreadyExists(String property) {
         assertPropertyNotNull(property);
         add(property, new UserMessage(ERRORS_SIGNUP_ACCOUNT_ALREADY_EXISTS));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'errors.xxxxxxxxxxxxxx' with parameters.
-     * <pre>
-     * message: the {1} already {0} so input others
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @param arg0 The parameter arg0 for message. (NotNull)
-     * @param arg1 The parameter arg1 for message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsXxxxxxxxxxxxxx(String property, String arg0, String arg1) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_XXXXXXXXXXXXXX, arg0, arg1));
-        return this;
-    }
-
-    /**
-     * Add the created action message for the key 'errors.yyyyyyyyyyyyyy' with parameters.
-     * <pre>
-     * message: the {1} already {4} so input others
-     * </pre>
-     * @param property The property name for the message. (NotNull)
-     * @param arg1 The parameter arg1 for message. (NotNull)
-     * @param arg4 The parameter arg4 for message. (NotNull)
-     * @return this. (NotNull)
-     */
-    public HarborMessages addErrorsYyyyyyyyyyyyyy(String property, String arg1, String arg4) {
-        assertPropertyNotNull(property);
-        add(property, new UserMessage(ERRORS_YYYYYYYYYYYYYY, arg1, arg4));
         return this;
     }
 }

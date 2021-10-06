@@ -1,7 +1,7 @@
 {
   "actionDocMetaList": [
     {
-      "url": "/root/",
+      "url": "/",
       "typeName": "org.docksidestage.app.web.RootAction",
       "simpleTypeName": "RootAction",
       "description": "@author jflute",

@@ -35,12 +35,15 @@
 <main>
 <div class="contents">
 	<h2 class="content-title">Confirm Withdrawal Reasons</h2>
-	<section class="withdrawal-reason-select-box">
+	<section class="withdrawal-box">
 		<h3 class="content-title-second">Confirm your withdrawal reason</h3>
 		<form class="withdrawal-form" action="#" th:action="@{/withdrawal/done/}" method="post">
-			<span th:text="${reasonCode}">reasonCode</span> 
-			<span th:text="${reasonInput}">reasonInput</span>
-			<input type="hidden" name="reasonCode" th:value="${reasonCode}" />
+			<ul class="withdrawal-reason-list">
+				<li class="withdrawal-reason-element"><span th:text="${selectedReason}">reasonCode</span></li>
+				<li class="withdrawal-reason-element"><span th:text="${reasonInput}">reasonInput</span></li>
+			</ul>
+
+			<input type="hidden" name="selectedReason" th:value="${selectedReason}" />
 			<input type="hidden" name="reasonInput" th:value="${reasonInput}" />
 			<input type="submit" name="done" th:value="#{labels.finish}" />
 		</form>

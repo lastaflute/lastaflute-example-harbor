@@ -20,8 +20,8 @@
 		<lasta.thymeleaf.version>0.4.2</lasta.thymeleaf.version>
 
 		<!-- Partner Library -->
-		<slf4j.version>1.7.12</slf4j.version>
-		<logback.version>1.2.3</logback.version>
+		<slf4j.version>1.7.36</slf4j.version>
+		<logback.version>1.2.11</logback.version>
 		<servlet.version>4.0.1</servlet.version>
 		<tomcat.boot.version>0.8.1</tomcat.boot.version>
 

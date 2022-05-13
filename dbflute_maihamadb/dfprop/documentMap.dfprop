@@ -129,7 +129,7 @@ map:{
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # o historyHtmlFileName (NotRequired - Default 'history-[project-name].html')
+    # o historyHtmlFileName: (NotRequired - Default 'history-[project-name].html')
     #  The file name (not contain path) of HistoryHtml.
     #  Basically you don't need this.
     #  (For example, when you use Application Behavior, you need this)

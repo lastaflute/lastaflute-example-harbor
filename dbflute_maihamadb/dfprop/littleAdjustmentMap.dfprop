@@ -84,8 +84,7 @@ map:{
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isTableDispNameUpperCase: (NotRequired - Default false)
     #   [true]
-    #     Table names for display, e.g. on documents,
-    #     are forcedly treated as upper case.
+    #     Table names for display, e.g. on documents, are forcedly treated as upper case.
     #
     ; isTableDispNameUpperCase = true
     # - - - - - - - - - -/

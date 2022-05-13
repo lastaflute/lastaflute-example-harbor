@@ -87,9 +87,6 @@ map:{
     #     Table names for display, e.g. on documents,
     #     are forcedly treated as upper case.
     #
-    #   [false]
-    #     Non.
-    #
     ; isTableDispNameUpperCase = true
     # - - - - - - - - - -/
 
@@ -99,9 +96,6 @@ map:{
     #     Table names on SQL executed by condition-bean or behavior
     #     are forcedly treated as upper case. (except outside-SQL)
     #
-    #   [false]
-    #     Non.
-    #
     ; isTableSqlNameUpperCase = true
     # - - - - - - - - - -/
 
@@ -110,9 +104,6 @@ map:{
     #   [true]
     #     Column names on SQL executed by condition-bean or behavior
     #     are forcedly treated as upper case. (except outside-SQL)
-    #
-    #   [false]
-    #     Non.
     #
     ; isColumnSqlNameUpperCase = true
     # - - - - - - - - - -/
@@ -188,8 +179,8 @@ map:{
     #; relationalNullObjectMap = map:{
     #    ; providerPackage = $$packageBase$$.nogen.cache
     #    ; foreignMap = map:{
-    #        ; MEMBER_STATUS = CachedMemberStatus.get($$PrimaryKey$$)
-    #        ; MEMBER_SECURITY = CachedMemberSecurity.get($$PrimaryKey$$)
+    #        ; MEMBER_STATUS = CachedMemberStatus.get(this, "$$foreignPropertyName$$", $$primaryKey$$)
+    #        ; MEMBER_SECURITY = CachedMemberSecurity.get(this, "$$foreignPropertyName$$", $$primaryKey$$)
     #    }
     #}
     # - - - - - - - - - -/

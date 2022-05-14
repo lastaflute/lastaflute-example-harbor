@@ -96,7 +96,7 @@ public class DBFluteConfig {
 
     // environment
     protected StatementConfig _defaultStatementConfig;
-    protected Integer _cursorSelectFetchSize = Integer.MIN_VALUE;
+    protected Integer _cursorSelectFetchSize = null;
     protected Integer _entitySelectFetchSize = null;
     protected boolean _usePagingByCursorSkipSynchronizedFetchSize = false;
     protected Integer _fixedPagingByCursorSkipSynchronizedFetchSize = null;

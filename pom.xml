@@ -23,7 +23,7 @@
 		<slf4j.version>1.7.36</slf4j.version>
 		<logback.version>1.2.11</logback.version>
 		<servlet.version>4.0.1</servlet.version>
-		<tomcat.boot.version>0.8.3</tomcat.boot.version>
+		<tomcat.boot.version>0.8.4</tomcat.boot.version>
 
 		<!-- GoodNeighbor Library -->
 		<commons.lang.version>3.8.1</commons.lang.version>

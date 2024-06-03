@@ -14,7 +14,7 @@
 
 	<properties>
 		<!-- Main Framework -->
-		<dbflute.version>1.2.6</dbflute.version>
+		<dbflute.version>1.2.8</dbflute.version>
 		<h2.jdbc.version>1.4.200</h2.jdbc.version>
 		<lastaflute.version>1.2.6</lastaflute.version>
 		<lasta.thymeleaf.version>0.4.2</lasta.thymeleaf.version>

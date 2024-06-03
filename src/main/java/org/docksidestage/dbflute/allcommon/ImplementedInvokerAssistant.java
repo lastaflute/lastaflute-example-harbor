@@ -459,11 +459,12 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     protected ResourceParameter createResourceParameter() {
         ResourceParameter parameter = newResourceParameter();
         parameter.setOutsideSqlPackage(DBFluteConfig.getInstance().getOutsideSqlPackage());
-        parameter.setMappingDateTimeZoneProvider(DBFluteConfig.getInstance().getMappingDateTimeZoneProvider());
+        parameter.setMappingDateTimeZoneProvider(DBFluteConfig.getInstance().getMappingDateTimeZoneProvider()); // since 1.1.0
         parameter.setLogDatePattern(DBFluteConfig.getInstance().getLogDatePattern());
         parameter.setLogTimestampPattern(DBFluteConfig.getInstance().getLogTimestampPattern());
         parameter.setLogTimePattern(DBFluteConfig.getInstance().getLogTimePattern());
         parameter.setLogTimeZoneProvider(DBFluteConfig.getInstance().getLogTimeZoneProvider());
+        parameter.setBehaviorLogMaskProvider(DBFluteConfig.getInstance().getBehaviorLogMaskProvider()); // since 1.2.7
         parameter.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
         return parameter;
     }

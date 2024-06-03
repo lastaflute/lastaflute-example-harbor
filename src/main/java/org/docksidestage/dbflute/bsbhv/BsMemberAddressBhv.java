@@ -35,35 +35,7 @@ import org.docksidestage.dbflute.bsentity.dbmeta.*;
 import org.docksidestage.dbflute.cbean.*;
 
 /**
- * The behavior of (会員住所情報)MEMBER_ADDRESS as TABLE. <br>
- * <pre>
- * [primary key]
- *     MEMBER_ADDRESS_ID
- *
- * [column]
- *     MEMBER_ADDRESS_ID, MEMBER_ID, VALID_BEGIN_DATE, VALID_END_DATE, ADDRESS, REGION_ID, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
- *
- * [sequence]
- *     
- *
- * [identity]
- *     MEMBER_ADDRESS_ID
- *
- * [version-no]
- *     VERSION_NO
- *
- * [foreign table]
- *     MEMBER, REGION
- *
- * [referrer table]
- *     
- *
- * [foreign property]
- *     member, region
- *
- * [referrer property]
- *     
- * </pre>
+ * The behavior of (会員住所情報)MEMBER_ADDRESS as TABLE.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class BsMemberAddressBhv extends AbstractBehaviorWritable<MemberAddress, MemberAddressCB> {
@@ -739,7 +711,7 @@ public abstract class BsMemberAddressBhv extends AbstractBehaviorWritable<Member
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * <span style="color: #0000C0">memberAddressBhv</span>.<span style="color: #CC4747">queryDelete</span>(memberAddress, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">memberAddressBhv</span>.<span style="color: #CC4747">queryDelete</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>

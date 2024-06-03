@@ -36,35 +36,7 @@ import org.docksidestage.dbflute.bsentity.dbmeta.*;
 import org.docksidestage.dbflute.cbean.*;
 
 /**
- * The behavior of (サービスランク)SERVICE_RANK as TABLE. <br>
- * <pre>
- * [primary key]
- *     SERVICE_RANK_CODE
- *
- * [column]
- *     SERVICE_RANK_CODE, SERVICE_RANK_NAME, SERVICE_POINT_INCIDENCE, NEW_ACCEPTABLE_FLG, DESCRIPTION, DISPLAY_ORDER
- *
- * [sequence]
- *     
- *
- * [identity]
- *     
- *
- * [version-no]
- *     
- *
- * [foreign table]
- *     
- *
- * [referrer table]
- *     MEMBER_SERVICE
- *
- * [foreign property]
- *     
- *
- * [referrer property]
- *     memberServiceList
- * </pre>
+ * The behavior of (サービスランク)SERVICE_RANK as TABLE.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class BsServiceRankBhv extends AbstractBehaviorWritable<ServiceRank, ServiceRankCB> {
@@ -700,7 +672,7 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable<ServiceR
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * <span style="color: #0000C0">serviceRankBhv</span>.<span style="color: #CC4747">queryDelete</span>(serviceRank, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">serviceRankBhv</span>.<span style="color: #CC4747">queryDelete</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>

@@ -159,6 +159,7 @@ public class ImplementedSqlClauseCreator implements SqlClauseCreator {
         doSetupSqlClauseNullOrEmptyQuery(sqlClause);
         doSetupSqlClauseEmptyStringQuery(sqlClause);
         doSetupSqlClauseOverridingQuery(sqlClause);
+        doSetupSqlClauseInvalidQueryAllowedWarning(sqlClause);
         doSetupSqlClauseColumnNullObject(sqlClause);
         doSetupSqlClauseColumnNullObjectGearedToSpecify(sqlClause);
         doSetupSqlClauseTruncateConditionDatetimePrecision(sqlClause);
@@ -174,6 +175,12 @@ public class ImplementedSqlClauseCreator implements SqlClauseCreator {
     protected void doSetupSqlClauseThatsBadTimingDetect(SqlClause sqlClause) {
         if (isThatsBadTimingDetect()) {
             sqlClause.enableThatsBadTimingDetect();
+        }
+        if (isThatsBadTimingWarningOnly()) {
+            sqlClause.enableThatsBadTimingWarningOnly();
+        }
+        if (isOrScopeQueryPurposeCheckWarningOnly()) {
+            sqlClause.enableOrScopeQueryPurposeCheckWarningOnly();
         }
     }
 
@@ -196,6 +203,14 @@ public class ImplementedSqlClauseCreator implements SqlClauseCreator {
             sqlClause.enableOverridingQuery();
         } else { // default for 1.1
             sqlClause.disableOverridingQuery();
+        }
+    }
+
+    protected void doSetupSqlClauseInvalidQueryAllowedWarning(SqlClause sqlClause) { // since 1.2.7
+        if (isInvalidQueryAllowedWarning()) {
+            sqlClause.enableInvalidQueryAllowedWarning();
+        } else {
+            sqlClause.disableInvalidQueryAllowedWarning();
         }
     }
 
@@ -244,6 +259,14 @@ public class ImplementedSqlClauseCreator implements SqlClauseCreator {
         return DBFluteConfig.getInstance().isThatsBadTimingDetect();
     }
 
+    protected boolean isThatsBadTimingWarningOnly() {
+        return DBFluteConfig.getInstance().isThatsBadTimingWarningOnly();
+    }
+
+    protected boolean isOrScopeQueryPurposeCheckWarningOnly() {
+        return DBFluteConfig.getInstance().isOrScopeQueryPurposeCheckWarningOnly();
+    }
+
     protected boolean isNullOrEmptyQueryAllowed() {
         return DBFluteConfig.getInstance().isNullOrEmptyQueryAllowed();
     }
@@ -254,6 +277,10 @@ public class ImplementedSqlClauseCreator implements SqlClauseCreator {
 
     protected boolean isOverridingQueryAllowed() {
         return DBFluteConfig.getInstance().isOverridingQueryAllowed();
+    }
+
+    protected boolean isInvalidQueryAllowedWarning() {
+        return DBFluteConfig.getInstance().isInvalidQueryAllowedWarning();
     }
 
     protected boolean isColumnNullObjectAllowed() {

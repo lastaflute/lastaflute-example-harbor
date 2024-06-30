@@ -16,14 +16,14 @@
 		<!-- Main Framework -->
 		<dbflute.version>1.2.8</dbflute.version>
 		<h2.jdbc.version>1.4.200</h2.jdbc.version>
-		<lastaflute.version>1.2.6</lastaflute.version>
-		<lasta.thymeleaf.version>0.4.2</lasta.thymeleaf.version>
+		<lastaflute.version>1.2.7</lastaflute.version>
+		<lasta.thymeleaf.version>0.4.3</lasta.thymeleaf.version>
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.36</slf4j.version>
 		<logback.version>1.2.11</logback.version>
 		<servlet.version>4.0.1</servlet.version>
-		<tomcat.boot.version>0.8.4</tomcat.boot.version>
+		<tomcat.boot.version>0.8.5</tomcat.boot.version>
 
 		<!-- GoodNeighbor Library -->
 		<commons.lang.version>3.8.1</commons.lang.version>
@@ -31,7 +31,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>0.9.5</utflute.version>
+		<utflute.version>0.9.6</utflute.version>
 	</properties>
 
 	<licenses>

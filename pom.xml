@@ -188,8 +188,8 @@
 							<outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
 							<!-- servlet container libraries are located as war resource -->
 							<includeArtifactIds>
-								javax.servlet-api, javax.servlet.jsp, javax.servlet.jsp-api
-								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, javax.websocket-api
+								jakarta.servlet-api, jakarta.servlet.jsp, jakarta.servlet.jsp-api
+								, jetty-boot, jetty-all, javax.el, jetty-jsp, jetty-schemas, jakarta.websocket-api
 								, tomcat-boot, tomcat-embed-core, tomcat-embed-logging-juli
 								, tomcat-jasper, tomcat-jasper-el, tomcat-el-api, tomcat-jsp-api, ecj
 							</includeArtifactIds>

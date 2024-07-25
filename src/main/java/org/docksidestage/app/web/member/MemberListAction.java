@@ -17,7 +17,7 @@ package org.docksidestage.app.web.member;
 
 import java.time.LocalDateTime;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;

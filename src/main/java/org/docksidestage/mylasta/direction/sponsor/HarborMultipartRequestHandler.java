@@ -19,19 +19,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.apache.commons.fileupload2.core.DiskFileItemFactory;
+import org.apache.commons.fileupload2.core.FileUploadByteCountLimitException;
+import org.apache.commons.fileupload2.core.FileUploadException;
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletDiskFileUpload;
 import org.dbflute.helper.message.ExceptionMessageBuilder;
 import org.lastaflute.core.message.UserMessages;
 import org.lastaflute.web.exception.Forced404NotFoundException;
@@ -42,6 +40,9 @@ import org.lastaflute.web.ruts.multipart.exception.MultipartExceededException;
 import org.lastaflute.web.util.LaServletContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author modified by jflute (originated in Seasar)
@@ -74,12 +75,12 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         // basically for JVN#14876762
         // thought not all problems are resolved however the main case is safety
         // - - - - - - - - - -/
-        final ServletFileUpload upload = createServletFileUpload(request);
+        final JakartaServletDiskFileUpload upload = createDiskFileUpload(request);
         prepareElementsHash();
         try {
-            final List<FileItem> items = parseRequest(request, upload);
+            final List<DiskFileItem> items = parseRequest(request, upload);
             mappingParameter(request, items);
-        } catch (SizeLimitExceededException e) {
+        } catch (FileUploadByteCountLimitException e) {
             handleSizeLimitExceededException(request, e);
         } catch (FileUploadException e) {
             handleFileUploadException(e);
@@ -89,18 +90,18 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     // ===================================================================================
     //                                                            Create ServletFileUpload
     //                                                            ========================
-    protected ServletFileUpload createServletFileUpload(HttpServletRequest request) {
+    protected JakartaServletDiskFileUpload createDiskFileUpload(HttpServletRequest request) {
         final DiskFileItemFactory fileItemFactory = createDiskFileItemFactory();
-        final ServletFileUpload upload = newServletFileUpload(fileItemFactory);
-        upload.setHeaderEncoding(request.getCharacterEncoding());
+        final JakartaServletDiskFileUpload upload = newDiskFileUpload(fileItemFactory);
+        upload.setHeaderCharset(Charset.forName(request.getCharacterEncoding()));
         upload.setSizeMax(getSizeMax());
         return upload;
     }
 
-    protected ServletFileUpload newServletFileUpload(DiskFileItemFactory fileItemFactory) {
-        return new ServletFileUpload(fileItemFactory) {
+    protected JakartaServletDiskFileUpload newDiskFileUpload(DiskFileItemFactory fileItemFactory) {
+        return new JakartaServletDiskFileUpload(fileItemFactory) {
             @Override
-            protected byte[] getBoundary(String contentType) { // for security
+            public byte[] getBoundary(String contentType) { // for security
                 final byte[] boundary = super.getBoundary(contentType);
                 checkBoundarySize(contentType, boundary);
                 return boundary;
@@ -144,7 +145,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
 
     protected DiskFileItemFactory createDiskFileItemFactory() {
         final File repository = createRepositoryFile();
-        return new DiskFileItemFactory((int) getSizeThreshold(), repository);
+        return DiskFileItemFactory.builder().setFile(repository).setBufferSize(getSizeThreshold()).get();
     }
 
     protected File createRepositoryFile() {
@@ -160,15 +161,15 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         elementsAll = new Hashtable<String, Object>();
     }
 
-    protected List<FileItem> parseRequest(HttpServletRequest request, ServletFileUpload upload) throws FileUploadException {
+    protected List<DiskFileItem> parseRequest(HttpServletRequest request, JakartaServletDiskFileUpload upload) throws FileUploadException {
         return upload.parseRequest(request);
     }
 
-    protected void mappingParameter(HttpServletRequest request, List<FileItem> items) {
+    protected void mappingParameter(HttpServletRequest request, List<DiskFileItem> items) {
         showFieldLoggingTitle();
-        final Iterator<FileItem> iter = items.iterator();
+        final Iterator<DiskFileItem> iter = items.iterator();
         while (iter.hasNext()) {
-            final FileItem item = iter.next();
+            final DiskFileItem item = iter.next();
             if (item.isFormField()) {
                 showFormFieldParameter(item);
                 addTextParameter(request, item);
@@ -189,21 +190,21 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         }
     }
 
-    protected void showFormFieldParameter(FileItem item) {
+    protected void showFormFieldParameter(DiskFileItem item) {
         if (logger.isDebugEnabled()) {
             logger.debug("[param] {}={}", item.getFieldName(), item.getString());
         }
     }
 
-    protected void showFileFieldParameter(FileItem item) {
+    protected void showFileFieldParameter(DiskFileItem item) {
         if (logger.isDebugEnabled()) {
             logger.debug("[param] {}:{name={}, size={}}", item.getFieldName(), item.getName(), item.getSize());
         }
     }
 
-    protected void handleSizeLimitExceededException(HttpServletRequest request, SizeLimitExceededException e) {
+    protected void handleSizeLimitExceededException(HttpServletRequest request, FileUploadByteCountLimitException e) {
         final long actual = e.getActualSize();
-        final long permitted = e.getPermittedSize();
+        final long permitted = e.getPermitted();
         String msg = "Exceeded size of the multipart request: actual=" + actual + " permitted=" + permitted;
         request.setAttribute(MAX_LENGTH_EXCEEDED_KEY, new MultipartExceededException(msg, actual, permitted, e));
         try {
@@ -242,9 +243,9 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     // ===================================================================================
     //                                                                            Add Text
     //                                                                            ========
-    protected void addTextParameter(HttpServletRequest request, FileItem item) {
+    protected void addTextParameter(HttpServletRequest request, DiskFileItem item) {
         final String name = item.getFieldName();
-        final String encoding = request.getCharacterEncoding();
+        final Charset encoding = Charset.forName(request.getCharacterEncoding());
         String value = null;
         boolean haveValue = false;
         if (encoding != null) {
@@ -255,9 +256,11 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         }
         if (!haveValue) {
             try {
-                value = item.getString("ISO-8859-1");
+                value = item.getString(Charset.forName("ISO-8859-1"));
             } catch (java.io.UnsupportedEncodingException uee) {
                 value = item.getString();
+            } catch (IOException e) {
+                throw new IllegalStateException("Failed to get string from the item: " + item, e);
             }
             haveValue = true;
         }
@@ -278,13 +281,13 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         elementsAll.put(name, newArray);
     }
 
-    protected void addFileParameter(FileItem item) {
+    protected void addFileParameter(DiskFileItem item) {
         final MultipartFormFile formFile = newActionMultipartFormFile(item);
         elementsFile.put(item.getFieldName(), formFile);
         elementsAll.put(item.getFieldName(), formFile);
     }
 
-    protected ActionMultipartFormFile newActionMultipartFormFile(FileItem item) {
+    protected ActionMultipartFormFile newActionMultipartFormFile(DiskFileItem item) {
         return new ActionMultipartFormFile(item);
     }
 
@@ -303,7 +306,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         return DEFAULT_SIZE_MAX;
     }
 
-    protected long getSizeThreshold() {
+    protected int getSizeThreshold() {
         return DEFAULT_SIZE_THRESHOLD;
     }
 
@@ -323,9 +326,9 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
 
         private static final long serialVersionUID = 1L;
 
-        protected final FileItem fileItem;
+        protected final DiskFileItem fileItem;
 
-        public ActionMultipartFormFile(FileItem fileItem) {
+        public ActionMultipartFormFile(DiskFileItem fileItem) {
             this.fileItem = fileItem;
         }
 
@@ -364,7 +367,11 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         }
 
         public void destroy() {
-            fileItem.delete();
+            try {
+                fileItem.delete();
+            } catch (IOException e) {
+                throw new IllegalStateException("Failed to delete the fileItem: " + fileItem, e);
+            }
         }
 
         @Override

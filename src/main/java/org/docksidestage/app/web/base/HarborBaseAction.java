@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.base;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.optional.OptionalThing;
 import org.docksidestage.app.logic.context.AccessContextLogic;

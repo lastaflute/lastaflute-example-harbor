@@ -18,7 +18,7 @@ package org.docksidestage.app.web.signup;
 import java.io.IOException;
 import java.util.Random;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.helper.filesystem.FileTextIO;
 import org.dbflute.util.DfResourceUtil;

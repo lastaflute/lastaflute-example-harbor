@@ -16,18 +16,18 @@
 		<!-- Main Framework -->
 		<dbflute.version>1.2.8</dbflute.version>
 		<h2.jdbc.version>1.4.200</h2.jdbc.version>
-		<lastaflute.version>1.2.7</lastaflute.version>
-		<lasta.thymeleaf.version>0.4.3</lasta.thymeleaf.version>
+		<lastaflute.version>2.0.0-B-SNAPSHOT</lastaflute.version> <!-- #jakarta -->
+		<lasta.thymeleaf.version>2.0.0-A-SNAPSHOT</lasta.thymeleaf.version> <!-- #jakarta -->
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.36</slf4j.version>
 		<logback.version>1.2.11</logback.version>
-		<servlet.version>4.0.1</servlet.version>
-		<tomcat.boot.version>0.8.5</tomcat.boot.version>
+		<servlet.version>6.0.0</servlet.version> <!-- #jakarta -->
+		<tomcat.boot.version>2.0.0-A-SNAPSHOT</tomcat.boot.version> <!-- #jakarta -->
 
 		<!-- GoodNeighbor Library -->
 		<commons.lang.version>3.8.1</commons.lang.version>
-		<commons.fileupload.version>1.5</commons.fileupload.version>
+		<commons.fileupload.version>2.0.0-M2</commons.fileupload.version> <!-- #jakarta -->
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
@@ -204,9 +204,9 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<!-- servlet container libraries are not in application -->
-					<packagingExcludes>
-						WEB-INF/lib/javax.servlet-api-*.jar, WEB-INF/lib/javax.servlet.jsp-*.jar
-						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/javax.el-*.jar, WEB-INF/lib/javax.websocket-*.jar
+					<packagingExcludes> <!-- #jakarta -->
+						WEB-INF/lib/jakarta.servlet-api-*.jar, WEB-INF/lib/jakarta.servlet.jsp-*.jar
+						, WEB-INF/lib/jetty-*.jar, WEB-INF/lib/jakarta.el-*.jar, WEB-INF/lib/jakarta.websocket-*.jar
 						, WEB-INF/lib/org.eclipse.jdt.core-*.jar
 						, WEB-INF/lib/tomcat-*.jar
 					</packagingExcludes>
@@ -289,9 +289,9 @@
 		<!--                                                               = = = = = = = = -->
 		<!-- transaction -->
 		<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>javax.transaction-api</artifactId>
-			<version>1.2</version>
+			<groupId>jakarta.transaction</groupId> <!-- #jakarta -->
+			<artifactId>jakarta.transaction-api</artifactId> <!-- #jakarta -->
+			<version>2.0.1</version>
 		</dependency>
 
 		<!-- logging -->
@@ -308,8 +308,8 @@
 
 		<!-- servlet -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId> <!-- #jakarta -->
+			<artifactId>jakarta.servlet-api</artifactId> <!-- #jakarta -->
 			<version>${servlet.version}</version>
 		</dependency>
 		<dependency>
@@ -328,8 +328,8 @@
 			<version>${commons.lang.version}</version>
 		</dependency>
 		<dependency> <!-- used for multipart request -->
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
+			<groupId>org.apache.commons</groupId> <!-- #jakarta -->
+			<artifactId>commons-fileupload2-jakarta-servlet6</artifactId> <!-- #jakarta -->
 			<version>${commons.fileupload.version}</version>
 		</dependency>
 

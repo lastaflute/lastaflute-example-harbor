@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.product;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.dbflute.exbhv.ProductBhv;

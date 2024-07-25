@@ -15,7 +15,7 @@
  */
 package org.docksidestage.unit;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.utflute.lastaflute.WebContainerTestCase;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;

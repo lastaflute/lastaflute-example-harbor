@@ -17,7 +17,7 @@ package org.docksidestage.app.web.profile;
 
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.docksidestage.app.web.base.HarborBaseAction;
 import org.docksidestage.app.web.profile.ProfileBean.PurchasedProductBean;

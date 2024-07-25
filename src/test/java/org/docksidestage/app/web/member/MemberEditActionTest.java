@@ -2,7 +2,7 @@ package org.docksidestage.app.web.member;
 
 import java.time.LocalDate;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.dbflute.allcommon.CDef;

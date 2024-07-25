@@ -18,7 +18,7 @@ package org.docksidestage.startup;
 import java.io.IOException;
 import java.util.Arrays;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.infra.manage.refresh.DfRefreshResourceRequest;
 import org.docksidestage.app.logic.startup.StartupLogic;

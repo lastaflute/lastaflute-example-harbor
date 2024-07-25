@@ -15,7 +15,7 @@
  */
 package org.docksidestage.mylasta.direction;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.docksidestage.mylasta.direction.sponsor.HarborActionAdjustmentProvider;
 import org.docksidestage.mylasta.direction.sponsor.HarborApiFailureHook;

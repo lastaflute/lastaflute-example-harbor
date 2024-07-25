@@ -18,7 +18,7 @@ package org.docksidestage.app.web.product;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.optional.OptionalThing;

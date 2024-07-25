@@ -15,7 +15,7 @@
  */
 package org.docksidestage.app.web.signin;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;

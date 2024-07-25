@@ -2,7 +2,7 @@ package org.docksidestage.app.web.startup;
 
 import java.io.File;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.dbflute.util.DfResourceUtil;
 import org.dbflute.util.Srl;

@@ -26,6 +26,9 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
+    # to use #jakarta package on generated classes by DBFlute
+    ; isMigrateOldJavaxToJakarta = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName: (NotRequired - Default false)
     #   [true]

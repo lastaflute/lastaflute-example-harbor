@@ -311,6 +311,7 @@
 			<groupId>jakarta.servlet</groupId> <!-- #jakarta -->
 			<artifactId>jakarta.servlet-api</artifactId> <!-- #jakarta -->
 			<version>${servlet.version}</version>
+			<scope>provided</scope> <!-- existing in jetty/tomcat -->
 		</dependency>
 		<dependency>
 			<groupId>org.dbflute.tomcat</groupId>

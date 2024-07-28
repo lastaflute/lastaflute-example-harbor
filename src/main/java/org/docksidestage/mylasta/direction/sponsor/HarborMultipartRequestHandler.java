@@ -132,7 +132,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         br.addElement("Too long boundary is treated as 404 because it's thought of as attack.");
         br.addElement("");
         br.addElement("While, you can override the boundary limit size");
-        br.addElement(" in " + HarborMultipartRequestHandler.class.getSimpleName() + ".");
+        br.addElement(" in " + getClass().getSimpleName() + ".");
         br.addItem("Content Type");
         br.addElement(contentType);
         br.addItem("Boundary Size");

@@ -31,7 +31,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>2.0.0-B-SNAPSHOT</utflute.version>
+		<utflute.version>2.0.0-B-SNAPSHOT</utflute.version> <!-- #jakarta -->
 	</properties>
 
 	<licenses>
@@ -288,10 +288,18 @@
 		<!--                                                               Partner Library -->
 		<!--                                                               = = = = = = = = -->
 		<!-- transaction -->
-		<dependency>
+		<dependency> <!-- Lasta Di uses e.g. TransactionManager -->
 			<groupId>jakarta.transaction</groupId> <!-- #jakarta -->
-			<artifactId>jakarta.transaction-api</artifactId> <!-- #jakarta -->
+			<artifactId>jakarta.transaction-api</artifactId>
 			<version>2.0.1</version>
+		</dependency>
+
+		<!-- annotation -->
+		<dependency> <!-- Lasta Di uses e.g. @Resource -->
+			<groupId>jakarta.annotation</groupId> <!-- #jakarta -->
+			<artifactId>jakarta.annotation-api</artifactId>
+			<version>2.1.1</version>
+			<scope>provided</scope> <!-- existing in jetty/tomcat -->
 		</dependency>
 
 		<!-- logging -->
@@ -309,7 +317,7 @@
 		<!-- servlet -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId> <!-- #jakarta -->
-			<artifactId>jakarta.servlet-api</artifactId> <!-- #jakarta -->
+			<artifactId>jakarta.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope> <!-- existing in jetty/tomcat -->
 		</dependency>
@@ -330,7 +338,7 @@
 		</dependency>
 		<dependency> <!-- used for multipart request -->
 			<groupId>org.apache.commons</groupId> <!-- #jakarta -->
-			<artifactId>commons-fileupload2-jakarta-servlet6</artifactId> <!-- #jakarta -->
+			<artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
 			<version>${commons.fileupload.version}</version>
 		</dependency>
 

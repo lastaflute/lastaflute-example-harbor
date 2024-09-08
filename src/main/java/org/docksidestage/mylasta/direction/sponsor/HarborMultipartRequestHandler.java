@@ -54,6 +54,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     private static final Logger logger = LoggerFactory.getLogger(HarborMultipartRequestHandler.class);
     public static final long DEFAULT_SIZE_MAX = 250 * 1024 * 1024; // 250MB
     public static final int DEFAULT_SIZE_THRESHOLD = 256 * 1024; // 250KB
+    public static final long DEFAULT_FILE_COUNT_MAX = 300; // files (contains normal parameters)
     protected static final String CONTEXT_TEMPDIR_KEY = "javax.servlet.context.tempdir";
     protected static final String JAVA_IO_TMPDIR_KEY = "java.io.tmpdir";
 
@@ -81,7 +82,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
             mappingParameter(request, items);
         } catch (SizeLimitExceededException e) {
             handleSizeLimitExceededException(request, e);
-        } catch (FileUploadException e) {
+        } catch (FileUploadException e) { // contains fileCount exceeded
             handleFileUploadException(e);
         }
     }
@@ -94,6 +95,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         final ServletFileUpload upload = newServletFileUpload(fileItemFactory);
         upload.setHeaderEncoding(request.getCharacterEncoding());
         upload.setSizeMax(getSizeMax());
+        upload.setFileCountMax(getFileCountMax()); // since commons-fileupload-1.5
         return upload;
     }
 
@@ -305,6 +307,10 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
 
     protected long getSizeThreshold() {
         return DEFAULT_SIZE_THRESHOLD;
+    }
+
+    protected long getFileCountMax() {
+        return DEFAULT_FILE_COUNT_MAX;
     }
 
     protected String getRepositoryPath() {

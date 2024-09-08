@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -113,7 +114,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     protected ServletFileUpload createServletFileUpload(HttpServletRequest request) {
         final DiskFileItemFactory fileItemFactory = createDiskFileItemFactory();
         final ServletFileUpload upload = newServletFileUpload(fileItemFactory);
-        setupServletFileUpload(request, upload);
+        setupServletFileUpload(upload, request);
         return upload;
     }
 
@@ -135,12 +136,13 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     }
 
     protected String getRepositoryPath() {
-        final File tempDirFile = (File) LaServletContextUtil.getServletContext().getAttribute(CONTEXT_TEMPDIR_KEY);
+        final ServletContext servletContext = LaServletContextUtil.getServletContext();
+        final File tempDirFile = (File) servletContext.getAttribute(CONTEXT_TEMPDIR_KEY);
         String tempDir = tempDirFile.getAbsolutePath();
         if (tempDir == null || tempDir.length() == 0) {
             tempDir = System.getProperty(JAVA_IO_TMPDIR_KEY);
         }
-        return tempDir;
+        return tempDir; // must be not null
     }
 
     // -----------------------------------------------------
@@ -157,6 +159,8 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         };
     }
 
+    // #for_now jflute to suppress CVE-2014-0050 even if commons-fileupload is older than safety version (2024/09/08)
+    // but if you use safety version, this extension is basically unneeded (or you can use it as double check)
     protected void checkBoundarySize(String contentType, byte[] boundary) {
         final int boundarySize = boundary.length;
         final int limitSize = getBoundaryLimitSize();
@@ -175,7 +179,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
         br.addNotice("Too long boundary size so treats it as 404.");
         br.addItem("Advice");
-        br.addElement("Against for JVN14876762.");
+        br.addElement("Against for CVE-2014-0050 (JVN14876762).");
         br.addElement("Boundary size is limited by Framework.");
         br.addElement("Too long boundary is treated as 404 because it's thought of as attack.");
         br.addElement("");
@@ -191,7 +195,7 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         throw new Forced404NotFoundException(msg, UserMessages.empty()); // heavy attack!? so give no page to tell wasted action
     }
 
-    protected void setupServletFileUpload(HttpServletRequest request, final ServletFileUpload upload) {
+    protected void setupServletFileUpload(ServletFileUpload upload, HttpServletRequest request) {
         upload.setHeaderEncoding(request.getCharacterEncoding());
         upload.setSizeMax(getSizeMax());
         upload.setFileCountMax(getFileCountMax()); // since commons-fileupload-1.5
@@ -226,8 +230,11 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
         }
     }
 
+    // -----------------------------------------------------
+    //                                     Parameter Logging
+    //                                     -----------------
+    // logging filter cannot show the parameters when multi-part so logging here
     protected void showFieldLoggingTitle() {
-        // logging filter cannot show the parameters when multi-part so logging here
         if (logger.isDebugEnabled()) {
             logger.debug("[Multipart Request Parameter]");
         }
@@ -405,17 +412,17 @@ public class HarborMultipartRequestHandler implements MultipartRequestHandler {
     //                                                                            Accessor
     //                                                                            ========
     @Override
-    public Map<String, Object> getAllElements() {
+    public Map<String, Object> getAllElements() { // not null after parsing
         return elementsAll;
     }
 
     @Override
-    public Map<String, String[]> getTextElements() {
+    public Map<String, String[]> getTextElements() { // me too
         return elementsText;
     }
 
     @Override
-    public Map<String, MultipartFormFile> getFileElements() {
+    public Map<String, MultipartFormFile> getFileElements() { // me too
         return elementsFile;
     }
 }

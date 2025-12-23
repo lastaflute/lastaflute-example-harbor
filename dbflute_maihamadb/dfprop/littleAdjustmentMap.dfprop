@@ -46,8 +46,7 @@ map:{
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableDatabaseDependency: (NotRequired - Default false)
     #   [true]
-    #     Generate the method that depends on the database.
-    #     For example: cb.lockWithRR() at DB2.
+    #     Generate the method that depends on the database. e.g. cb.lockWithRR() at DB2.
     #
     #; isAvailableDatabaseDependency = false
     # - - - - - - - - - -/
@@ -55,8 +54,7 @@ map:{
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableDatabaseNativeJDBC: (NotRequired - Default false)
     #   [true]
-    #     Use classes of database native JDBC on generated classes
-    #     to get best performances of DB access.
+    #     Use classes of database native JDBC on generated classes to get best performances of DB access.
     #     Your project needs to refer to database native JDBC.
     #
     #; isAvailableDatabaseNativeJDBC = false
@@ -116,7 +114,7 @@ map:{
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # o extendedDBFluteInitializerClass: (NotRequired - Default '')
+    # o extendedDBFluteInitializerClass: (NotRequired - Default null)
     #  If you want to extend the embedded DBFlute initializer,
     #  specify the class name of your original initializer
     #  that extends the embedded one.

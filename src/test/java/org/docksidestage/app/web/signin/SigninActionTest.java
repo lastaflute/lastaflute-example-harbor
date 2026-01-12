@@ -15,8 +15,6 @@
  */
 package org.docksidestage.app.web.signin;
 
-import jakarta.annotation.Resource;
-
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
@@ -25,9 +23,12 @@ import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.mylasta.action.HarborMessages;
 import org.docksidestage.mylasta.action.HarborUserBean;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.core.time.TimeManager;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.validation.Required;
+
+import jakarta.annotation.Resource;
 
 /**
  * @author jflute
@@ -44,6 +45,7 @@ public class SigninActionTest extends UnitHarborTestCase {
     // ===================================================================================
     //                                                                               Basic
     //                                                                               =====
+    @Test
     public void test_signin_basic() {
         // ## Arrange ##
         changeAsyncToNormalSync();

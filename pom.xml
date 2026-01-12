@@ -31,7 +31,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>2.0.0</utflute.version> <!-- #jakarta -->
+		<utflute.version>2.5.0-B-SNAPSHOT</utflute.version> <!-- #jakarta -->
 	</properties>
 
 	<licenses>
@@ -346,12 +346,6 @@
 		<!--                                                                       Testing -->
 		<!--                                                                       = = = = -->
 		<!-- unit test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.dbflute.utflute</groupId>
 			<artifactId>utflute-lastaflute</artifactId>

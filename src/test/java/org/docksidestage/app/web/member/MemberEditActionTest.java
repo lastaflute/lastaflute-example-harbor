@@ -2,16 +2,17 @@ package org.docksidestage.app.web.member;
 
 import java.time.LocalDate;
 
-import jakarta.annotation.Resource;
-
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.docksidestage.dbflute.exbhv.MemberBhv;
 import org.docksidestage.dbflute.exentity.Member;
 import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.token.exception.DoubleSubmittedRequestException;
+
+import jakarta.annotation.Resource;
 
 /**
  * @author jflute
@@ -24,6 +25,7 @@ public class MemberEditActionTest extends UnitHarborTestCase {
     // ===================================================================================
     //                                                                             index()
     //                                                                             =======
+    @Test
     public void test_index_success() {
         // ## Arrange ##
         MemberEditAction action = new MemberEditAction();
@@ -45,6 +47,7 @@ public class MemberEditActionTest extends UnitHarborTestCase {
     // ===================================================================================
     //                                                                            update()
     //                                                                            ========
+    @Test
     public void test_update_success() {
         // ## Arrange ##
         MemberEditAction action = new MemberEditAction();
@@ -61,6 +64,7 @@ public class MemberEditActionTest extends UnitHarborTestCase {
         assertTokenVerified();
     }
 
+    @Test
     public void test_update_doubleSubmitted() {
         // ## Arrange ##
         MemberEditAction action = new MemberEditAction();

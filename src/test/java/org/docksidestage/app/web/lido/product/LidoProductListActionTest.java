@@ -4,6 +4,7 @@ import org.dbflute.optional.OptionalThing;
 import org.dbflute.utflute.lastaflute.mock.TestingJsonData;
 import org.docksidestage.app.web.base.paging.SearchPagingResult;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.web.response.JsonResponse;
 
 /**
@@ -11,6 +12,7 @@ import org.lastaflute.web.response.JsonResponse;
  */
 public class LidoProductListActionTest extends UnitHarborTestCase {
 
+    @Test
     public void test_index_searchByName() {
         // ## Arrange ##
         LidoProductListAction action = new LidoProductListAction();

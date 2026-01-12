@@ -6,6 +6,7 @@ import org.docksidestage.app.web.base.paging.PagingAssist;
 import org.docksidestage.app.web.base.paging.PagingNavi;
 import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
@@ -13,6 +14,7 @@ import org.lastaflute.web.response.HtmlResponse;
  */
 public class ProductListActionTest extends UnitHarborTestCase {
 
+    @Test
     public void test_index_success_by_productName() throws Exception {
         // ## Arrange ##
         ProductListAction action = new ProductListAction();

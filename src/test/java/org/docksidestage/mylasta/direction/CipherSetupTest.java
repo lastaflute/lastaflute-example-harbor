@@ -1,10 +1,11 @@
 package org.docksidestage.mylasta.direction;
 
-import jakarta.annotation.Resource;
-
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.core.security.PrimaryCipher;
 import org.lastaflute.web.servlet.cookie.CookieCipher;
+
+import jakarta.annotation.Resource;
 
 /**
  * @author jflute
@@ -16,6 +17,7 @@ public class CipherSetupTest extends UnitHarborTestCase {
     @Resource
     private CookieCipher cookieCipher;
 
+    @Test
     public void test_primary() throws Exception {
         String encrypted = primaryCipher.encrypt("sea");
         log("encrypted: {}", encrypted);
@@ -25,6 +27,7 @@ public class CipherSetupTest extends UnitHarborTestCase {
         log(primaryCipher.oneway("land")); // expects no exception
     }
 
+    @Test
     public void test_cookie() throws Exception {
         String encrypted = cookieCipher.encrypt("sea");
         log("encrypted: {}", encrypted);

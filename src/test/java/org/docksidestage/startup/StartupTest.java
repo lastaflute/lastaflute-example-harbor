@@ -18,11 +18,12 @@ package org.docksidestage.startup;
 import java.io.IOException;
 import java.util.Arrays;
 
-import jakarta.annotation.Resource;
-
 import org.dbflute.infra.manage.refresh.DfRefreshResourceRequest;
 import org.docksidestage.app.logic.startup.StartupLogic;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
+
+import jakarta.annotation.Resource;
 
 /**
  * @author jflute
@@ -32,6 +33,7 @@ public class StartupTest extends UnitHarborTestCase {
     @Resource
     private StartupLogic startupLogic;
 
+    @Test
     public void test_startup_actually() throws Exception {
         final String domain = "dancingdb.org";
         final String serviceName = "mythica";

@@ -23,38 +23,46 @@ import org.dbflute.utflute.lastaflute.police.NonActionExtendsActionPolice;
 import org.dbflute.utflute.lastaflute.police.NonWebHasWebReferencePolice;
 import org.dbflute.utflute.lastaflute.police.WebPackageNinjaReferencePolice;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author jflute
  */
 public class HarborActionDefTest extends UnitHarborTestCase {
 
+    @Test
     public void test_component() throws Exception {
         policeStoryOfJavaClassChase(new ActionComponentPolice(tp -> getComponent(tp)));
     }
 
+    @Test
     public void test_hotDeployDestroyer() throws Exception {
         policeStoryOfJavaClassChase(new HotDeployDestroyerPolice(tp -> getComponent(tp)));
     }
 
+    @Test
     public void test_nonActionExtendsAction() throws Exception {
         policeStoryOfJavaClassChase(new NonActionExtendsActionPolice());
     }
 
+    @Test
     public void test_nonWebHasWebReference() throws Exception {
         policeStoryOfJavaClassChase(new NonWebHasWebReferencePolice());
     }
 
+    @Test
     public void test_webPackageNinjaReference() throws Exception {
         policeStoryOfJavaClassChase(new WebPackageNinjaReferencePolice());
     }
 
+    @Test
     public void test_injectedResourceDefinition() throws Exception {
         policeStoryOfJavaClassChase(new InjectedResourceDefinitionPolice().shouldBePrivateField(field -> {
             return true; // means all fields
         }));
     }
 
+    @Test
     public void test_lastaPresentsSomething() throws Exception {
         policeStoryOfJavaClassChase(new LastaPresentsSomethingPolice());
     }

@@ -1,7 +1,5 @@
 package org.docksidestage.app.web.signup;
 
-import jakarta.annotation.Resource;
-
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.app.web.base.login.HarborLoginAssist;
 import org.docksidestage.app.web.mypage.MypageAction;
@@ -10,7 +8,10 @@ import org.docksidestage.dbflute.exentity.MemberLogin;
 import org.docksidestage.dbflute.exentity.MemberSecurity;
 import org.docksidestage.mylasta.action.HarborHtmlPath;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 import org.lastaflute.web.response.HtmlResponse;
+
+import jakarta.annotation.Resource;
 
 /**
  * @author jflute
@@ -22,6 +23,7 @@ public class SignupActionTest extends UnitHarborTestCase {
     @Resource
     private HarborLoginAssist loginAssist;
 
+    @Test
     public void test_index_success() {
         // ## Arrange ##
         SignupAction action = new SignupAction();
@@ -35,6 +37,7 @@ public class SignupActionTest extends UnitHarborTestCase {
         htmlData.assertHtmlForward(HarborHtmlPath.path_Signup_SignupHtml);
     }
 
+    @Test
     public void test_signup_success() {
         // ## Arrange ##
         // for login history registration

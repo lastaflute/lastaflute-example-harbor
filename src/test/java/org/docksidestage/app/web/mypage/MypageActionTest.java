@@ -2,6 +2,9 @@ package org.docksidestage.app.web.mypage;
 
 import org.dbflute.utflute.lastaflute.mock.TestingHtmlData;
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.lastaflute.web.response.HtmlResponse;
 
 /**
@@ -9,12 +12,14 @@ import org.lastaflute.web.response.HtmlResponse;
  */
 public class MypageActionTest extends UnitHarborTestCase {
 
+    @BeforeEach
     @Override
-    public void setUp() throws Exception {
-        super.setUp();
+    public void setUp(TestInfo testInfo) throws Exception {
+        super.setUp(testInfo);
         mockLogin();
     }
 
+    @Test
     public void test_index() {
         // ## Arrange ##
         MypageAction action = new MypageAction();

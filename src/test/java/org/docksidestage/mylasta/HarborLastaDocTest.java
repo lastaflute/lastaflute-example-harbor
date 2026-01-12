@@ -16,12 +16,14 @@
 package org.docksidestage.mylasta;
 
 import org.docksidestage.unit.UnitHarborTestCase;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author jflute
  */
 public class HarborLastaDocTest extends UnitHarborTestCase {
 
+    @Test
     public void test_document() throws Exception {
         saveLastaDocMeta();
     }

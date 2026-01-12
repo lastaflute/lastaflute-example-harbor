@@ -9,6 +9,8 @@
 # o schemaHtmlFileName: (NotRequired - Default 'schema-[project-name].html')
 # o isSuppressSchemaHtmlOutsideSql: (NotRequired - Default false)
 # o isSuppressSchemaHtmlProcedure: (NotRequired - Default false)
+# o neighborhoodSchemaHtmlMap: (NotRequired - Default map:{})
+# o schemaDiagramMap: (NotRequired - Default map:{})
 # o historyHtmlFileName: (NotRequired - Default 'history-[project-name].html')
 # o isCheckColumnDefOrderDiff: (NotRequired - Default false)
 # o isCheckDbCommentDiff: (NotRequired - Default false)
@@ -27,6 +29,8 @@
 #     ; schemaHtmlFileName = xxx.html
 #     ; isSuppressSchemaHtmlOutsideSql = false
 #     ; isSuppressSchemaHtmlProcedure = false
+#     ; neighborhoodSchemaHtmlMap = map:{}
+#     ; schemaDiagramMap = map:{}
 #     ; historyHtmlFileName = xxx.html
 #     ; isCheckColumnDefOrderDiff = true
 #     ; isCheckDbCommentDiff = true
@@ -53,11 +57,6 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
-    # to show Diagram on SchemaHTML
-    ; schemaDiagramMap = map:{
-        ; maihamadb_erd = map:{ path = ../../../modeling/maihamadb.png }
-    }
-
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o documentOutputDirectory: (NotRequired - Default './output/doc')
     #  The output directory mainly for SchemaHtml and DataXlsTemplate.
@@ -127,6 +126,28 @@ map:{
     #  Procedure information is very useful.
     #
     #; isSuppressSchemaHtmlProcedure = false
+    # - - - - - - - - - -/
+
+    # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # o neighborhoodSchemaHtmlMap: (NotRequired - map:{})
+    #  You can add links to other SchemaHtmls on your SchemaHtml.
+    #  The path is relative from your SchemaHtml.
+    #
+    #; neighborhoodSchemaHtmlMap = map:{
+    #    ; dockside_maihama = map:{
+    #        ; path = ../../../../sea_app/dbflute_seadb/output/doc/schema-seadb.html
+    #    }
+    #}
+    # - - - - - - - - - -/
+
+    # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # o schemaDiagramMap: (NotRequired - map:{})
+    #  You can display your ER diagram on your SchemaHtml.
+    #  The path is relative from your SchemaHtml.
+    #
+    ; schemaDiagramMap = map:{
+        ; maihamadb_erd = map:{ path = ../../../modeling/maihamadb.png }
+    }
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

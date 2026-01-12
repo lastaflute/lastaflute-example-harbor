@@ -17,6 +17,7 @@ package org.docksidestage.app.web.lido.product;
 
 import org.docksidestage.dbflute.allcommon.CDef;
 import org.hibernate.validator.constraints.Length;
+import org.lastaflute.core.util.Lato;
 
 /**
  * @author s.tadokoro
@@ -31,4 +32,9 @@ public class ProductSearchBody {
 
     @Length(max = 5) // #simple_for_example just for validtion example
     public String purchaseMemberName;
+
+    @Override
+    public String toString() {
+        return Lato.string(this);
+    }
 }

@@ -31,7 +31,7 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version> <!-- is latest version without hamcrest -->
-		<utflute.version>2.5.0-B-SNAPSHOT</utflute.version> <!-- #jakarta -->
+		<utflute.version>2.5.0</utflute.version> <!-- #jakarta -->
 	</properties>
 
 	<licenses>

@@ -107,7 +107,7 @@ public abstract class BsProductBhv extends AbstractBehaviorWritable<Product, Pro
      * </pre>
      * @param cbLambda The callback for condition-bean of Product. (NotNull)
      * @return The optional entity selected by the condition. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @throws EntityAlreadyDeletedException When get(), alwaysPresent() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -146,7 +146,7 @@ public abstract class BsProductBhv extends AbstractBehaviorWritable<Product, Pro
      * Select the entity by the primary-key value.
      * @param productId : PK, ID, NotNull, INTEGER(10). (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @throws EntityAlreadyDeletedException When get(), alwaysPresent() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -175,7 +175,7 @@ public abstract class BsProductBhv extends AbstractBehaviorWritable<Product, Pro
      * Select the entity by the unique-key value.
      * @param productHandleCode (商品ハンドルコード): UQ, NotNull, VARCHAR(100). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @throws EntityAlreadyDeletedException When get(), alwaysPresent() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
